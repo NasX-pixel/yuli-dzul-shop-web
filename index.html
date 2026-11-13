@@ -371,6 +371,20 @@ img[data-foto].is-broken{display:none}
 .sk--t{width:70%;height:1.3em}.sk--p{width:42%;height:1.05em}.sk--s{width:55%;height:.85em}
 @keyframes shimmer{from{background-position:100% 0}to{background-position:-200% 0}}
 
+/* ───────── Ofertas ───────── */
+.price .was{margin-right:.4em;font-size:.8em;font-weight:500;color:var(--ink-soft);text-decoration:line-through;text-decoration-thickness:1.5px;text-decoration-color:color-mix(in srgb,var(--accent) 70%,transparent)}
+.deal{position:absolute;right:10px;top:10px;z-index:2;display:inline-flex;align-items:center;padding:.34em .78em;border-radius:99px;font-size:.78rem;font-weight:700;letter-spacing:.01em;color:#3d2611;background:linear-gradient(110deg,#d6b77f 0%,#f4e5c4 42%,#fff7e6 50%,#d6b77f 60%,#c9a165 100%) 0 0 / 260% 100%;box-shadow:0 8px 16px -10px rgb(120 80 30 / .7),inset 0 0 0 1px rgb(255 255 255 / .45);animation:sheen 4.2s ease-in-out infinite}
+.card__media .deal{top:auto;right:auto;bottom:12px;left:10px;max-width:calc(100% - 74px);white-space:nowrap}
+@media (max-width:699px){.card__media .deal__hasta{display:none}}
+.deal--inline{position:relative;right:auto;top:auto;vertical-align:middle;margin-left:.5em;font-size:.72rem}
+@keyframes sheen{0%,62%{background-position:100% 0}100%{background-position:-60% 0}}
+.ends{display:inline-block;font-size:.82rem;font-weight:600;color:var(--gold)}
+.pd__price .ends{display:block;margin-top:6px}
+.chip--deal{display:inline-flex;align-items:center;gap:.45em;border-color:color-mix(in srgb,var(--gold) 55%,var(--line));color:var(--heading)}
+.chip--deal .spark{color:var(--gold);font-size:.85em}
+.chip--deal[aria-pressed="true"]{background:linear-gradient(120deg,#b8925a,#d9bf8c);color:#2e1a08;border-color:transparent}
+.chip--deal[aria-pressed="true"] .spark{color:#2e1a08}
+
 /* ───────── Movimiento reducido ───────── */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important;transition-duration:.01ms !important;transition-delay:0s !important}
@@ -593,11 +607,12 @@ img[data-foto].is-broken{display:none}
   const FOTOS = SUPABASE_URL + '/storage/v1/object/public/shop-products/';
   const CONSULTA = '/rest/v1/shop_products'
     + '?select=id,name,category,description,created_at,'
-    + 'shop_colors(id,name,image_path,shop_variants(id,size,price_cents,stock,active))'
+    + 'shop_colors(id,name,image_path,shop_variants(id,size,price_cents,sale_price_cents,sale_ends_at,stock,active))'
     + '&active=eq.true&order=created_at.desc';
 
   const CATEGORIAS = { ropa: 'Ropa', bisuteria: 'Bisutería', temporada: 'Temporada', otros: 'Otros' };
   const CAT_FIJAS = ['ropa', 'bisuteria', 'temporada'];
+  const ETIQUETAS = { ...CATEGORIAS, ofertas: 'Ofertas' };
   const ORDENES = { destacados: 'Destacados', menor: 'Menor precio', mayor: 'Mayor precio' };
   const CLAVE_BOLSA = 'yuli-dzul-bolsa-v2';
   const CLAVE_CACHE = 'yuli-dzul-catalogo-v1';
@@ -647,7 +662,14 @@ img[data-foto].is-broken{display:none}
         const variantes = (Array.isArray(c.shop_variants) ? c.shop_variants : [])
           .filter(v => v && typeof v.id === 'string' && v.active !== false
             && Number.isInteger(v.price_cents) && v.price_cents > 0 && Number.isInteger(v.stock) && v.stock >= 0)
-          .map(v => ({ id: v.id, talla: String(v.size || '').trim() || 'Única', precio: v.price_cents, stock: v.stock }))
+          .map(v => {
+            // Oferta vigente: menor que el precio normal y sin fecha de fin vencida.
+            const fin = v.sale_ends_at ? Date.parse(v.sale_ends_at) : null;
+            const oferta = Number.isInteger(v.sale_price_cents) && v.sale_price_cents > 0 && v.sale_price_cents < v.price_cents
+              && (fin === null || (Number.isFinite(fin) && fin > Date.now())) ? v.sale_price_cents : null;
+            return { id: v.id, talla: String(v.size || '').trim() || 'Única', normal: v.price_cents, precio: oferta ?? v.price_cents,
+              oferta: oferta !== null, fin: oferta !== null && Number.isFinite(fin) ? fin : null, stock: v.stock };
+          })
           .sort((a, b) => ordenTalla(a.talla, b.talla));
         if (!variantes.length) continue;
         colores.push({ id: c.id, nombre: String(c.name || '').trim() || 'Sin color', imagen: foto(c.image_path), variantes });
@@ -655,6 +677,8 @@ img[data-foto].is-broken{display:none}
       if (!colores.length) continue;
       const todas = colores.flatMap(c => c.variantes);
       const precios = todas.map(v => v.precio);
+      const enOferta = todas.filter(v => v.oferta);
+      const fines = enOferta.map(v => v.fin).filter(Boolean);
       const cat = plano(p.category);
       productos.push({
         id: p.id,
@@ -667,6 +691,11 @@ img[data-foto].is-broken{display:none}
         tallas: [...new Set(todas.map(v => plano(v.talla)))].length,
         precioMin: Math.min(...precios),
         precioMax: Math.max(...precios),
+        normalMin: Math.min(...todas.map(v => v.normal)),
+        enOferta: enOferta.length > 0,
+        ofertaUniforme: enOferta.length === todas.length && new Set(todas.map(v => v.normal + ':' + v.precio)).size === 1,
+        descuento: Math.max(0, ...enOferta.map(v => Math.round((1 - v.precio / v.normal) * 100))),
+        fin: fines.length ? Math.min(...fines) : null,
         existencias: todas.reduce((a, v) => a + v.stock, 0),
         imagen: (colores.find(c => c.imagen && c.variantes.some(v => v.stock > 0)) || colores.find(c => c.imagen) || {}).imagen || ''
       });
@@ -712,12 +741,13 @@ img[data-foto].is-broken{display:none}
       const at = Date.now();
       guardarCache(datos, at);
       estado.cargando = false;
+      estado.crudo = datos;
       aplicarCatalogo(normalizar(datos), at, 'vivo');
     } catch (e) {
       estado.cargando = false;
       if (estado.catalogo) { estado.origen = 'fallo'; pintarConteo(); return; }
       const cache = leerCache();
-      if (cache) aplicarCatalogo(normalizar(cache.datos), cache.at, 'cache');
+      if (cache) { estado.crudo = cache.datos; aplicarCatalogo(normalizar(cache.datos), cache.at, 'cache'); }
       else pintarError();
     } finally {
       clearTimeout(reloj);
@@ -794,7 +824,20 @@ img[data-foto].is-broken{display:none}
   }
   const media = (src, alt = '') => `<span class="ph" aria-hidden="true">YD</span>${src ? `<img data-foto src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async">` : ''}`;
   const puntos = p => p.sinColor ? '' : `<span class="dots" aria-hidden="true">${p.colores.slice(0, 6).map(c => `<i class="dot" style="--c:${tono(c.nombre)}"></i>`).join('')}</span>`;
-  const etiquetaPrecio = p => p.precioMin === p.precioMax ? precio(p.precioMin) : `<span class="desde">Desde</span>${precio(p.precioMin)}`;
+  const etiquetaPrecio = p => {
+    if (p.enOferta && p.ofertaUniforme) return `<span class="was"><span class="sr">Antes </span>${precio(p.normalMin)}</span>${precio(p.precioMin)}`;
+    return p.precioMin === p.precioMax ? precio(p.precioMin) : `<span class="desde">Desde</span>${precio(p.precioMin)}`;
+  };
+  const sello = (pct, hasta = false, cls = 'deal') => pct > 0 ? `<span class="${cls}">${hasta ? '<span class="deal__hasta">Hasta\u00a0</span>' : ''}\u2212${pct}\u202f%</span>` : '';
+  function terminaEn(fin) {
+    if (!fin) return '';
+    const horas = (fin - Date.now()) / 3600000;
+    if (horas <= 0) return '';
+    if (horas < 1) return 'Últimos minutos de oferta';
+    if (horas < 24) return `Quedan ${Math.floor(horas)} h de oferta`.replace('Quedan 1 h', 'Queda 1 h');
+    const dias = Math.floor(horas / 24);
+    return dias === 1 ? 'Queda 1 día de oferta' : `Quedan ${dias} días de oferta`;
+  }
 
   /* ══════════ Rejilla ══════════ */
   const grid = $('#grid'), count = $('#count'), chips = $('#chips');
@@ -802,7 +845,7 @@ img[data-foto].is-broken{display:none}
   function listaVisible() {
     const q = plano(estado.q);
     const lista = (estado.catalogo || []).filter(p =>
-      (estado.cat === 'todo' || p.categoria === estado.cat) &&
+      (estado.cat === 'todo' || (estado.cat === 'ofertas' ? p.enOferta : p.categoria === estado.cat)) &&
       (!q || plano([p.nombre, CATEGORIAS[p.categoria], p.descripcion, ...p.colores.map(c => c.nombre), ...p.colores.flatMap(c => c.variantes.map(v => v.talla))].join(' ')).includes(q)));
     if (estado.orden === 'menor') lista.sort((a, b) => a.precioMin - b.precioMin);
     else if (estado.orden === 'mayor') lista.sort((a, b) => b.precioMax - a.precioMax);
@@ -821,12 +864,14 @@ img[data-foto].is-broken{display:none}
         <div class="card__media">
           ${media(p.imagen, p.nombre)}
           <span class="tag">${esc(CATEGORIAS[p.categoria])}</span>
+          ${p.enOferta ? sello(p.descuento, !p.ofertaUniforme) : ''}
           <button class="card__add" type="button" data-add="${esc(p.id)}" ${quedan < 1 ? 'disabled' : ''}
             aria-label="${unica ? 'Añadir ' + esc(p.nombre) + ' a mi bolsa' : 'Elegir opciones de ' + esc(p.nombre)}">${ico('plus')}</button>
         </div>
         <div class="card__body">
           <h3 class="card__name"><button class="card__open" type="button" data-open="${esc(p.id)}">${esc(p.nombre)}</button></h3>
           <p class="price">${etiquetaPrecio(p)}</p>
+          ${terminaEn(p.fin) ? `<p class="ends">${terminaEn(p.fin)}</p>` : ''}
           ${puntos(p)}
           ${detalles.length ? `<span class="pill">${detalles.join(' · ')}</span>` : ''}
           <p class="stock">${p.existencias < 1 ? 'Agotado' : plural(p.existencias, 'unidad disponible', 'unidades disponibles')}</p>
@@ -859,7 +904,7 @@ img[data-foto].is-broken{display:none}
     const lista = listaVisible();
     const sinFiltros = estado.cat === 'todo' && !estado.q;
     let texto = plural(lista.length, 'artículo', 'artículos');
-    if (estado.cat !== 'todo') texto += ' en ' + CATEGORIAS[estado.cat];
+    if (estado.cat !== 'todo') texto += ' en ' + ETIQUETAS[estado.cat];
     const fuente = estado.cargando ? '<span>Actualizando…</span>'
       : estado.origen === 'vivo' ? `<span>Actualizado a las ${hora(estado.at)}</span><button class="linkbtn" type="button" data-retry>Actualizar</button>`
       : `<span class="is-off">Sin conexión · catálogo guardado de las ${hora(estado.at)}</span><button class="linkbtn" type="button" data-retry>Reintentar</button>`;
@@ -877,8 +922,8 @@ img[data-foto].is-broken{display:none}
       html = `<div class="empty"><h3>La colección se está preparando</h3><p>Muy pronto verás aquí ropa, bisutería y artículos de temporada.</p></div>`;
     } else if (!lista.length) {
       const donde = estado.q
-        ? `No encontramos artículos para “${esc(estado.q)}”${estado.cat !== 'todo' ? ' en ' + CATEGORIAS[estado.cat] : ''}.`
-        : `Aún no hay artículos en ${CATEGORIAS[estado.cat]}.`;
+        ? `No encontramos artículos para “${esc(estado.q)}”${estado.cat !== 'todo' ? ' en ' + ETIQUETAS[estado.cat] : ''}.`
+        : estado.cat === 'ofertas' ? 'Por ahora no hay ofertas activas.' : `Aún no hay artículos en ${CATEGORIAS[estado.cat]}.`;
       html = `<div class="empty">
           <h3>${estado.q ? 'Sin coincidencias' : 'Muy pronto'}</h3>
           <p>${donde} Mira todo lo que hay en la tienda.</p>
@@ -897,14 +942,15 @@ img[data-foto].is-broken{display:none}
 
   function categoriasVisibles() {
     const hay = new Set((estado.catalogo || []).map(p => p.categoria));
-    return [...CAT_FIJAS, ...(hay.has('otros') ? ['otros'] : [])];
+    const ofertas = (estado.catalogo || []).some(p => p.enOferta);
+    return [...(ofertas ? ['ofertas'] : []), ...CAT_FIJAS, ...(hay.has('otros') ? ['otros'] : [])];
   }
   function pintarChips() {
     if (estado.cat !== 'todo' && !categoriasVisibles().includes(estado.cat)) estado.cat = 'todo';
-    chips.innerHTML = [['todo', 'Todo'], ...categoriasVisibles().map(k => [k, CATEGORIAS[k]])].map(([k, v]) =>
-      `<button class="chip" type="button" data-cat="${k}" aria-pressed="${estado.cat === k}">${v}</button>`).join('');
+    chips.innerHTML = [['todo', 'Todo'], ...categoriasVisibles().map(k => [k, ETIQUETAS[k]])].map(([k, v]) =>
+      `<button class="chip${k === 'ofertas' ? ' chip--deal' : ''}" type="button" data-cat="${k}" aria-pressed="${estado.cat === k}">${k === 'ofertas' ? '<svg class="spark" aria-hidden="true"><use href="#i-spark"/></svg>' : ''}${v}</button>`).join('');
     $('#footCats').innerHTML = categoriasVisibles().map(k =>
-      `<li><button type="button" data-footcat="${k}">${CATEGORIAS[k]}</button></li>`).join('');
+      `<li><button type="button" data-footcat="${k}">${ETIQUETAS[k]}</button></li>`).join('');
   }
   function elegirCat(cat) {
     estado.cat = cat;
@@ -950,7 +996,7 @@ img[data-foto].is-broken{display:none}
           <span class="line__img">${media(c.imagen || p.imagen)}</span>
           <div>
             <div class="line__top"><span class="line__name">${esc(p.nombre)}</span><span class="price">${precio(v.precio * l.cant)}</span></div>
-            <p class="line__var">${esc(nombreVariante(info))}</p>
+            <p class="line__var">${esc(nombreVariante(info))}${v.oferta ? ` · <span class="ends">Oferta \u2212${Math.round((1 - v.precio / v.normal) * 100)}\u202f%</span>` : ''}</p>
             <div class="line__row">
               <span class="qty">
                 <button type="button" data-menos="${esc(l.vid)}" aria-label="Quitar una unidad de ${esc(p.nombre)}">${ico('minus')}</button>
@@ -1076,11 +1122,13 @@ img[data-foto].is-broken{display:none}
     }
     $('#pdSizes').innerHTML = c.variantes.map(x =>
       `<label class="choice"><input type="radio" name="talla" value="${esc(x.id)}" ${x.id === v.id ? 'checked' : ''} ${x.stock < 1 ? 'disabled' : ''}>
-        <span>${esc(x.talla)}${x.stock < 1 ? ' · Agotada' : ''}</span></label>`).join('');
+        <span>${esc(x.talla)}${x.stock < 1 ? ' · Agotada' : x.oferta ? ` · <b class="ends">\u2212${Math.round((1 - x.precio / x.normal) * 100)}\u202f%</b>` : ''}</span></label>`).join('');
 
     const quedan = libres(v.id), mias = enBolsa(v.id);
     sel.cant = Math.max(1, Math.min(sel.cant, Math.max(quedan, 1)));
-    $('#pdPrice').textContent = precio(v.precio);
+    $('#pdPrice').innerHTML = v.oferta
+      ? `<span class="was"><span class="sr">Antes </span>${precio(v.normal)}</span>${precio(v.precio)} ${sello(Math.round((1 - v.precio / v.normal) * 100), false, 'deal deal--inline')}${terminaEn(v.fin) ? `<span class="ends">${terminaEn(v.fin)}</span>` : ''}`
+      : precio(v.precio);
     $('#pdCant').textContent = sel.cant;
     $('[data-q="-1"]', pd).disabled = sel.cant <= 1;
     $('[data-q="1"]', pd).disabled = sel.cant >= quedan;
@@ -1273,6 +1321,12 @@ img[data-foto].is-broken{display:none}
     if (!document.hidden && estado.catalogo && Date.now() - estado.at > REFRESCO_MS) cargarCatalogo();
   });
   addEventListener('online', () => { if (estado.origen !== 'vivo') cargarCatalogo(); });
+
+  /* Si una oferta vence con la página abierta, el precio vuelve al normal sin recargar. */
+  setInterval(() => {
+    if (!estado.crudo || !estado.catalogo || !estado.catalogo.some(p => p.fin && p.fin <= Date.now())) return;
+    aplicarCatalogo(normalizar(estado.crudo), estado.at, estado.origen);
+  }, 60000);
 
   /* ══════════ Arranque ══════════ */
   estado.bolsa = leerBolsa();
