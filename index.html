@@ -607,7 +607,7 @@ img[data-foto].is-broken{display:none}
   const FOTOS = SUPABASE_URL + '/storage/v1/object/public/shop-products/';
   const CONSULTA = '/rest/v1/shop_products'
     + '?select=id,name,category,description,created_at,'
-    + 'shop_colors(id,name,image_path,shop_variants(id,size,price_cents,sale_price_cents,sale_ends_at,stock,active))'
+    + 'shop_colors(id,name,image_path,shop_variants(id,size,price_cents,sale_price_cents,sale_ends_at,stock,available_stock,active))'
     + '&active=eq.true&order=created_at.desc';
 
   const CATEGORIAS = { ropa: 'Ropa', bisuteria: 'Bisutería', temporada: 'Temporada', otros: 'Otros' };
@@ -615,7 +615,7 @@ img[data-foto].is-broken{display:none}
   const ETIQUETAS = { ...CATEGORIAS, ofertas: 'Ofertas' };
   const ORDENES = { destacados: 'Destacados', menor: 'Menor precio', mayor: 'Mayor precio' };
   const CLAVE_BOLSA = 'yuli-dzul-bolsa-v2';
-  const CLAVE_CACHE = 'yuli-dzul-catalogo-v1';
+  const CLAVE_CACHE = 'yuli-dzul-catalogo-v2-reservas';
   const TALLAS = ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl', 'unica'];
   const REFRESCO_MS = 2 * 60 * 1000;
 
@@ -668,7 +668,7 @@ img[data-foto].is-broken{display:none}
             const oferta = Number.isInteger(v.sale_price_cents) && v.sale_price_cents > 0 && v.sale_price_cents < v.price_cents
               && (fin === null || (Number.isFinite(fin) && fin > Date.now())) ? v.sale_price_cents : null;
             return { id: v.id, talla: String(v.size || '').trim() || 'Única', normal: v.price_cents, precio: oferta ?? v.price_cents,
-              oferta: oferta !== null, fin: oferta !== null && Number.isFinite(fin) ? fin : null, stock: v.stock };
+              oferta: oferta !== null, fin: oferta !== null && Number.isFinite(fin) ? fin : null, stock: Number.isInteger(v.available_stock) && v.available_stock >= 0 && v.available_stock <= v.stock ? v.available_stock : 0 };
           })
           .sort((a, b) => ordenTalla(a.talla, b.talla));
         if (!variantes.length) continue;
