@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Yuli Dzul Shop · Catálogo</title>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://xrhbtkwwmfdhisuiexpf.supabase.co; connect-src https://xrhbtkwwmfdhisuiexpf.supabase.co; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://xrhbtkwwmfdhisuiexpf.supabase.co; connect-src https://xrhbtkwwmfdhisuiexpf.supabase.co; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#5A1832">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%235A1832'/%3E%3Cpath d='M32 12c1.400 10.300 8.700 17.600 20 20-11.300 2.400-18.600 9.700-20 20-1.400-10.300-8.700-17.600-20-20 11.300-2.400 18.600-9.700 20-20z' fill='%23D9BF8C'/%3E%3C/svg%3E">
@@ -390,7 +391,22 @@ img[data-foto].is-broken{display:none}
   *,*::before,*::after{animation:none !important;transition-duration:.01ms !important;transition-delay:0s !important}
   .js [data-rise],.js .hero__title .ln>span,.js .reveal,.js .step .step__n{opacity:1;translate:0 0;scale:1}
 }
+.order-panel{padding:clamp(20px,5vw,44px);max-width:640px;margin:auto}.order-panel h2{margin:18px 0}.order-panel p{margin:16px 0}.order-panel label{display:block;margin:20px 0}.order-panel input:not([type=checkbox]),.order-panel select,.order-panel textarea{display:block;width:100%;padding:14px;border:1px solid var(--line,#c9abb9);border-radius:16px;background:transparent;color:inherit;font:inherit;margin-top:8px}.order-panel select option{color:#351126;background:#fffaf3}.order-panel .consent{display:flex;gap:12px;align-items:flex-start}.order-panel .btn{margin:10px 0}.order-panel [hidden]{display:none!important}
 </style>
+
+<style id="yuli-scroll-fix">
+.order-panel {
+  box-sizing: border-box;
+  min-height: 0;
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+</style>
+
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -503,13 +519,13 @@ img[data-foto].is-broken{display:none}
       </div>
       <div class="step reveal" style="--d:.2s">
         <span class="step__n" aria-hidden="true">02</span>
-        <h3>Pedidos próximamente</h3>
-        <p>Estamos preparando la solicitud con recogida o envío.</p>
+        <h3>Solicita tu pedido</h3>
+        <p>Deja tus datos para recoger o solicitar envío.</p>
       </div>
       <div class="step reveal" style="--d:.3s">
         <span class="step__n" aria-hidden="true">03</span>
         <h3>Atención de la tienda</h3>
-        <p>La bolsa todavía no envía pedidos ni realiza cobros.</p>
+        <p>La tienda revisa y confirma tu solicitud. No se cobra en esta web.</p>
       </div>
     </section>
   </main>
@@ -525,8 +541,8 @@ img[data-foto].is-broken{display:none}
         <ul id="footCats"></ul>
       </div>
       <div>
-        <h3>Pedidos</h3>
-        <p class="footer__note">Pedidos en línea próximamente. Por ahora puedes preparar tu bolsa; no reserva existencias ni realiza cobros.</p>
+        <h3>Pedidos</h3><button class="linkbtn" data-social-order>Solicitar artículo de redes</button>
+        <p class="footer__note">Enviar una solicitud no reserva existencias. La tienda confirmará tu pedido.</p>
       </div>
     </div>
     <div class="footer__base">
@@ -980,7 +996,7 @@ img[data-foto].is-broken{display:none}
     bagBtn.classList.toggle('has-items', n > 0);
     if (brinco && !calm) { bagCount.classList.remove('is-bump'); void bagCount.offsetWidth; bagCount.classList.add('is-bump'); }
 
-    const aviso = `<p class="notice">Ya puedes preparar tu bolsa. La recepción de pedidos en línea aún no está habilitada.</p>`;
+    const aviso = `<p class="notice">Ya puedes preparar tu bolsa. Envía tu solicitud para que la tienda confirme disponibilidad.</p>`;
     if (!n || !estado.catalogo) {
       bagBody.innerHTML = `
         <p class="bag__empty">Tu bolsa está esperando tus favoritos.</p>
@@ -1014,7 +1030,7 @@ img[data-foto].is-broken{display:none}
       <p class="total"><span>Subtotal · ${plural(n, 'pieza', 'piezas')}</span><strong>${precio(subtotal())}</strong></p>
       ${aviso}
       <div class="bag__actions">
-        <button class="btn btn--ghost btn--block" type="button" data-copiar>Copiar mi lista</button>
+        <button class="btn btn--block" type="button" data-request-order>Solicitar este pedido</button><button class="btn btn--ghost btn--block" type="button" data-copiar>Copiar mi lista</button>
         <p class="bag__status" id="bagStatus" role="status"></p>
         <button class="linkbtn" type="button" data-vaciar>Vaciar bolsa</button>
       </div>
@@ -1328,6 +1344,104 @@ img[data-foto].is-broken{display:none}
     aplicarCatalogo(normalizar(estado.crudo), estado.at, estado.origen);
   }, 60000);
 
+  /* Recepción pública: habilitar solo tras configurar Edge y Turnstile. */
+  const ORDER_SITE_KEY = "0x4AAAAAAGD55M0y3iXyqFZF"; // Clave PÚBLICA del widget, nunca la clave secreta.
+  const ORDER_ENDPOINT = SUPABASE_URL + '/functions/v1/yuli-public-orders';
+  const pendingKey='yuli-public-request-v1';
+  let sendingOrder=false, captchaWidget=null, captchaProof='', pendingRequest=null;
+  try{pendingRequest=JSON.parse(sessionStorage.getItem(pendingKey)||'null');}catch{}
+  const od=document.createElement('dialog');od.className='modal';od.setAttribute('aria-label','Solicitud y seguimiento de pedido');
+  od.innerHTML='<div class="order-panel"><button type="button" class="linkbtn" data-order-close>Cerrar</button><div id="orderContent"></div></div>';
+  document.body.append(od);
+  od.addEventListener('cancel',e=>{e.preventDefault();if(!sendingOrder)cerrar(od);});
+  $('[data-order-close]',od).onclick=()=>{if(!sendingOrder)cerrar(od);};
+  const oc=$('#orderContent',od);
+  const tokenNuevo=()=>Array.from(crypto.getRandomValues(new Uint8Array(32)),n=>n.toString(16).padStart(2,'0')).join('');
+  const seguimientoURL=token=>location.origin+location.pathname+'#seguimiento='+token;
+  async function captcha(action){
+    captchaProof='';
+    if(!ORDER_SITE_KEY){$('#orderStatus',od).textContent='Los pedidos en línea se están preparando. Vuelve pronto.';return;}
+    try{
+      if(!window.turnstile)await new Promise((resolve,reject)=>{
+        const s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';s.onload=resolve;s.onerror=reject;document.head.append(s);
+      });
+      if(captchaWidget!==null)window.turnstile.remove(captchaWidget);
+      captchaWidget=window.turnstile.render($('#orderCaptcha',od),{sitekey:ORDER_SITE_KEY,action,callback:t=>{captchaProof=t;},'expired-callback':()=>{captchaProof='';}});
+    }catch{$('#orderStatus',od).textContent='No se pudo cargar la verificación. Comprueba tu conexión.';}
+  }
+  async function requestOrder(payload){
+    if(!captchaProof)throw Error('Completa la verificación de seguridad.');
+    const r=await fetch(ORDER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...payload,captcha:captchaProof}),signal:AbortSignal.timeout(25000)});
+    const data=await r.json();if(!r.ok){const e=Error(data.error||'No se pudo completar.');e.definitive=r.status===422;throw e;}return data;
+  }
+  function receipt(number,token){
+    oc.innerHTML=`<p class="eyebrow">Solicitud recibida</p><h2>Pedido #${esc(number)}</h2><p>La tienda revisará tu solicitud. Todavía no reserva unidades ni confirma la entrega.</p><p>Guarda este enlace privado para consultar el estado durante 90 días. Quien tenga el enlace podrá ver el pedido.</p><a class="btn" href="${esc(seguimientoURL(token))}">Ver seguimiento</a><button class="btn btn--ghost" id="copyTracking">Copiar enlace privado</button><p id="orderStatus" role="status"></p>`;
+    $('#copyTracking',od).onclick=async()=>{try{await navigator.clipboard.writeText(seguimientoURL(token));$('#orderStatus',od).textContent='Enlace copiado.';}catch{$('#orderStatus',od).textContent=seguimientoURL(token);}};
+  }
+  async function openOrder(social=false){
+    if(sendingOrder)return;
+    if($('#dlgBag').open)await cerrar($('#dlgBag'));
+    const retry=!!pendingRequest;
+    oc.innerHTML=`<p class="eyebrow">Tu próxima compra</p><h2>${retry?'Retomar solicitud':'Solicita tu pedido'}</h2>
+      <p>La tienda confirmará disponibilidad. No se realiza ningún cobro aquí. El envío, si lo solicitas, se acuerda por separado.</p>
+      ${retry?'<p>Hay un envío pendiente de comprobar. Se reenviará la misma solicitud para evitar duplicados.</p>':`<form id="publicOrderForm">
+      <label>Nombre<input name="customer_name" required maxlength="120" autocomplete="name"></label>
+      <label>Teléfono, también para recoger<input name="customer_phone" type="tel" required minlength="10" maxlength="25" autocomplete="tel"></label>
+      <label>Contacto preferido<select name="contact_method"><option value="whatsapp">WhatsApp</option><option value="messenger">Messenger</option><option value="phone">Llamada</option></select></label>
+      <label>Nombre o enlace de tu perfil de Messenger<input name="profile_name" maxlength="120"></label>
+      <label>Entrega<select name="delivery_method"><option value="pickup">Pasar a buscar</option><option value="shipping">A domicilio</option></select></label>
+      <div id="shippingFields" hidden><label>Localidad<input name="locality" maxlength="120" autocomplete="address-level2"></label><label>Dirección<input name="street" maxlength="250" autocomplete="street-address"></label><label>Referencia del domicilio<input name="reference" maxlength="500"></label></div>
+      <label>Qué artículo deseas / referencia de publicación<textarea name="customer_note" maxlength="1000" ${social?'required':''}></textarea></label>
+      <label class="consent"><input name="consent" type="checkbox" required> Autorizo a Yuli Dzul Shop a usar estos datos para atender mi pedido y contactarme por el medio elegido.</label>
+      <p>${social?'La tienda elegirá contigo el artículo y su precio.':'Subtotal orientativo: '+precio(subtotal())+'. El servidor comprobará los precios vigentes al enviar.'}</p>
+      </form>`}<div id="orderCaptcha"></div><p id="orderStatus" role="status" aria-live="polite"></p><button class="btn btn--block" id="sendPublicOrder">${retry?'Reintentar misma solicitud':'Enviar solicitud'}</button>`;
+    abrir(od);captcha('submit');
+    const form=$('#publicOrderForm',od);
+    if(form){const select=form.elements.delivery_method;select.onchange=()=>{const shipping=select.value==='shipping';$('#shippingFields',od).hidden=!shipping;for(const name of ['locality','street','reference'])form.elements[name].required=shipping;};form.elements.contact_method.onchange=()=>{form.elements.profile_name.required=form.elements.contact_method.value==='messenger';};form.onsubmit=e=>e.preventDefault();}
+    $('#sendPublicOrder',od).onclick=async()=>{
+      if(sendingOrder)return;
+      if(!pendingRequest){
+        if(!form.reportValidity())return;
+        if(!captchaProof){$('#orderStatus',od).textContent='Completa la verificación de seguridad.';return;}
+        const details=Object.fromEntries(new FormData(form));details.consent=form.elements.consent.checked;
+        const source=new URLSearchParams(location.search).get('origen');details.source=social&&['facebook','whatsapp'].includes(source)?source:'web';
+        const lines=social?[]:estado.bolsa.map(l=>({variant_id:l.vid,quantity:l.cant}));
+        if(!social&&!lines.length){$('#orderStatus',od).textContent='Añade un artículo a la bolsa.';return;}
+        pendingRequest={action:'submit',request_id:crypto.randomUUID(),token:tokenNuevo(),details,lines};
+        try{sessionStorage.setItem(pendingKey,JSON.stringify(pendingRequest));}catch{pendingRequest=null;$('#orderStatus',od).textContent='Habilita el almacenamiento del navegador para enviar sin duplicados.';return;}
+      }
+      sendingOrder=true;$('#sendPublicOrder',od).disabled=true;
+      try{
+        const token=pendingRequest.token;const result=await requestOrder(pendingRequest);
+        try{localStorage.setItem('yuli-last-tracking',token);}catch{}
+        sessionStorage.removeItem(pendingKey);pendingRequest=null;receipt(result.order_number,token);
+        // Keep the bag intact; customer may still want to review it.
+      }catch(e){
+        $('#orderStatus',od).textContent=e.message||'Conexión interrumpida. Reintenta la misma solicitud.';
+        if(e.definitive){sessionStorage.removeItem(pendingKey);pendingRequest=null;$('#orderStatus',od).textContent+=' Cierra y vuelve a abrir para corregir.';$('#sendPublicOrder',od).hidden=true;}
+        else $('#sendPublicOrder',od).textContent='Reintentar misma solicitud';
+        await captcha('submit');
+      }finally{sendingOrder=false;const btn=$('#sendPublicOrder',od);if(btn)btn.disabled=false;}
+    };
+  }
+  async function openTracking(token){
+    if(!/^[0-9a-f]{64}$/.test(token)||sendingOrder)return;
+    if($('#dlgBag').open)await cerrar($('#dlgBag'));
+    oc.innerHTML='<p class="eyebrow">Contigo hasta la entrega</p><h2>Tu pedido</h2><p>Verifica para consultar el estado. Este enlace es privado.</p><div id="trackingResult"></div><div id="orderCaptcha"></div><p id="orderStatus" role="status"></p><button class="btn" id="refreshTracking">Consultar estado</button>';
+    abrir(od);captcha('track');
+    $('#refreshTracking',od).onclick=async()=>{
+      if(sendingOrder)return;sendingOrder=true;$('#refreshTracking',od).disabled=true;
+      try{const o=await requestOrder({action:'track',token});
+        const status=o.status==='cancelled'?'Cancelado':o.delivery_status==='delivered'?'Entregado':({awaiting_items:'La tienda revisará tu referencia',pending:'Por confirmar',confirmed:'Reservado'}[o.status]||'En revisión');
+        $('#trackingResult',od).innerHTML=`<h3>Pedido #${esc(o.order_number)} · ${esc(status)}</h3><ul>${o.items.map(l=>`<li>${esc(l.quantity)} × ${esc(l.name)} · ${esc(l.color)} · ${esc(l.size)} — ${precio(l.unit_price_cents)}</li>`).join('')}</ul><p>Total de artículos y envío acordado: ${precio(o.total_cents)}</p>${o.delivery_method==='shipping'&&o.shipping_cents===null?'<p>Envío aún no incluido; se acuerda con la tienda.</p>':''}<p>Pagado: ${precio(o.paid_cents)}</p><p>${o.status==='cancelled'?'Cancelado · Sin cobro pendiente':'Por cobrar: '+precio(o.due_cents)}</p>${o.refund_review?'<p>Contacta a la tienda para revisar la devolución del pago.</p>':''}`;
+        $('#orderStatus',od).textContent='Estado actualizado.';
+      }catch(e){$('#orderStatus',od).textContent=e.message;}finally{sendingOrder=false;$('#refreshTracking',od).disabled=false;await captcha('track');}
+    };
+  }
+  document.addEventListener('click',e=>{if(e.target.closest('[data-request-order]'))openOrder(false);if(e.target.closest('[data-social-order]'))openOrder(true);});
+  function checkOrderLink(){const token=location.hash.match(/^#seguimiento=([0-9a-f]{64})$/)?.[1];if(token)openTracking(token);else if(location.hash==='#solicitud')openOrder(true);}
+  window.addEventListener('hashchange',checkOrderLink);setTimeout(checkOrderLink,0);
+
   /* ══════════ Arranque ══════════ */
   estado.bolsa = leerBolsa();
   pintarChips(); pintarBolsa();
@@ -1337,5 +1451,27 @@ img[data-foto].is-broken{display:none}
   else listo();
 })();
 </script>
+
+<button id="recuperar-pedido" type="button"
+style="position:fixed;bottom:18px;left:16px;z-index:9999;
+padding:14px 20px;border:1px solid #d8adbf;border-radius:24px;
+background:#641438;color:white;font:600 16px sans-serif;">
+Ver mi último pedido
+</button>
+<script>
+document.getElementById("recuperar-pedido").onclick = function () {
+  let token;
+  try { token = localStorage.getItem("yuli-last-tracking"); }
+  catch {}
+  if (!/^[0-9a-f]{64}$/.test(token || "")) {
+    alert("No se encontró un enlace guardado en este navegador.");
+    return;
+  }
+  const hash = "#seguimiento=" + token;
+  if (location.hash === hash) location.reload();
+  else location.hash = hash;
+};
+</script>
+
 </body>
 </html>
