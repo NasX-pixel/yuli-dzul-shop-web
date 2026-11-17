@@ -1451,5 +1451,27 @@ img[data-foto].is-broken{display:none}
   else listo();
 })();
 </script>
+
+<button id="recuperar-pedido" type="button"
+style="position:fixed;bottom:18px;left:16px;z-index:9999;
+padding:14px 20px;border:1px solid #d8adbf;border-radius:24px;
+background:#641438;color:white;font:600 16px sans-serif;">
+Ver mi último pedido
+</button>
+<script>
+document.getElementById("recuperar-pedido").onclick = function () {
+  let token;
+  try { token = localStorage.getItem("yuli-last-tracking"); }
+  catch {}
+  if (!/^[0-9a-f]{64}$/.test(token || "")) {
+    alert("No se encontró un enlace guardado en este navegador.");
+    return;
+  }
+  const hash = "#seguimiento=" + token;
+  if (location.hash === hash) location.reload();
+  else location.hash = hash;
+};
+</script>
+
 </body>
 </html>
