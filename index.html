@@ -1,3 +1,4 @@
+<!-- Yuli Dzul Shop - Diseno Terra · Boutique Calida - Basado en el index.html real de https://nasx-pixel.github.io/yuli-dzul-shop-web/ - Se conservan Supabase, catalogo, bolsa, formulario, seguimiento y contacto. Solo cambiaron colores, tonos calidos terracota y radios redondeados. Adaptativo a PC, tableta y celular. -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,8 +8,8 @@
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://xrhbtkwwmfdhisuiexpf.supabase.co; connect-src https://xrhbtkwwmfdhisuiexpf.supabase.co; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#5A1832">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%235A1832'/%3E%3Cpath d='M32 12c1.400 10.300 8.700 17.600 20 20-11.300 2.400-18.600 9.700-20 20-1.400-10.300-8.700-17.600-20-20 11.300-2.400 18.600-9.700 20-20z' fill='%23D9BF8C'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#7C3A1E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%237C3A1E'/%3E%3Cpath d='M32 12c1.400 10.300 8.700 17.600 20 20-11.300 2.400-18.600 9.700-20 20-1.400-10.300-8.700-17.600-20-20 11.300-2.400 18.600-9.700 20-20z' fill='%23D9BF8C'/%3E%3C/svg%3E">
 <meta name="description" content="Ropa, bisutería y artículos de temporada. Elige tu color, encuentra tu talla y prepara tu bolsa.">
 <script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://xrhbtkwwmfdhisuiexpf.supabase.co" crossorigin>
@@ -19,12 +20,12 @@
 /* ───────── Tokens ───────── */
 :root{
   color-scheme:light;
-  --bg:#FBF8F3; --wash:#F3E7EB; --surface:#FEFBF6; --surface-2:#EFE2E9; --frame:#F1E7E8;
-  --ink:#2E1F26; --ink-soft:#75676D; --heading:#5A1832; --accent:#803E5A; --gold:#8B734F;
-  --line:#E2D2D9; --ring:#CDBBAC; --band:#331223; --band-2:#3D162B; --on-band:#FBF1EF;
-  --btn-solid:#5A1832; --btn-a:#4B1A30; --btn-b:#753750; --on-btn:#FFF8F4; --chip-on:#803E5A;
-  --steps-b:#F3EDE1; --shadow:74 24 46; --backdrop:rgb(70 44 56 / .58);
-  --sw-vino:#5A1832; --sw-malva:#8A4A66; --sw-rosa:#EBD3DE;
+  --bg:#FFF7EE; --wash:#F6E3D3; --surface:#FFFBF5; --surface-2:#F3E0CC; --frame:#F5E6D6;
+  --ink:#33241C; --ink-soft:#7A6A5E; --heading:#7C3A1E; --accent:#C06A3E; --gold:#B98A4A;
+  --line:#E8D5C2; --ring:#D9B48F; --band:#3B2318; --band-2:#4A2C1C; --on-band:#FFF3E6;
+  --btn-solid:#7C3A1E; --btn-a:#8A4423; --btn-b:#C06A3E; --on-btn:#FFF8F0; --chip-on:#C06A3E;
+  --steps-b:#F7EAD8; --shadow:74 24 46; --backdrop:rgb(70 44 56 / .58);
+  --sw-vino:#7C3A1E; --sw-malva:#8A4A66; --sw-rosa:#EBD3DE;
 
   --font-display:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
   --font-body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -38,24 +39,8 @@
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    color-scheme:dark;
-    --bg:#180A10; --wash:#2B0F1D; --surface:#231018; --surface-2:#3A1B2A; --frame:#2E1521;
-    --ink:#F5EAEC; --ink-soft:#BDA7B0; --heading:#F2D6E0; --accent:#DFA3BB; --gold:#CFAC74;
-    --line:#482736; --ring:#6B5348; --band:#0E0408; --band-2:#10050A; --on-band:#F5EAEC;
-    --btn-solid:#7A2B4B; --btn-a:#6E2543; --btn-b:#A04E70; --on-btn:#FFF8F4; --chip-on:#9A4A6C;
-    --steps-b:#2A1716; --shadow:0 0 0; --backdrop:rgb(6 1 4 / .7);
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme:dark;
-  --bg:#180A10; --wash:#2B0F1D; --surface:#231018; --surface-2:#3A1B2A; --frame:#2E1521;
-  --ink:#F5EAEC; --ink-soft:#BDA7B0; --heading:#F2D6E0; --accent:#DFA3BB; --gold:#CFAC74;
-  --line:#482736; --ring:#6B5348; --band:#0E0408; --band-2:#10050A; --on-band:#F5EAEC;
-  --btn-solid:#7A2B4B; --btn-a:#6E2543; --btn-b:#A04E70; --on-btn:#FFF8F4; --chip-on:#9A4A6C;
-  --steps-b:#2A1716; --shadow:0 0 0; --backdrop:rgb(6 1 4 / .7);
-}
+
+
 
 /* ───────── Base ───────── */
 *,*::before,*::after{box-sizing:border-box}
@@ -142,7 +127,7 @@ h1,h2,h3,p{margin:0}
 .fan__sw--vino{background-color:var(--sw-vino);translate:calc(var(--px) * -10px) calc(var(--py) * -6px)}
 .fan__sw--malva{background-color:var(--sw-malva);translate:calc(var(--px) * -5px) calc(var(--py) * -3px)}
 .fan__sw--rosa{background-color:var(--sw-rosa);translate:calc(var(--px) * 9px) calc(var(--py) * -5px)}
-.fan__sw--rosa span{left:auto;right:20px;color:#5A1832}
+.fan__sw--rosa span{left:auto;right:20px;color:#7C3A1E}
 .fan__product{display:block;padding:9px 9px 14px;background:var(--surface);border:1px solid var(--line);text-align:left;box-shadow:0 36px 60px -30px rgb(var(--shadow) / .75);translate:calc(var(--px) * 14px) calc(var(--py) * 8px)}
 .fan__product .media{position:relative;display:block;border-radius:22px;overflow:hidden;aspect-ratio:4 / 5;background:var(--frame)}
 .fan__product img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:scale .7s var(--ease)}
@@ -392,6 +377,8 @@ img[data-foto].is-broken{display:none}
   .js [data-rise],.js .hero__title .ln>span,.js .reveal,.js .step .step__n{opacity:1;translate:0 0;scale:1}
 }
 .order-panel{padding:clamp(20px,5vw,44px);max-width:640px;margin:auto}.order-panel h2{margin:18px 0}.order-panel p{margin:16px 0}.order-panel label{display:block;margin:20px 0}.order-panel input:not([type=checkbox]),.order-panel select,.order-panel textarea{display:block;width:100%;padding:14px;border:1px solid var(--line,#c9abb9);border-radius:16px;background:transparent;color:inherit;font:inherit;margin-top:8px}.order-panel select option{color:#351126;background:#fffaf3}.order-panel .consent{display:flex;gap:12px;align-items:flex-start}.order-panel .btn{margin:10px 0}.order-panel [hidden]{display:none!important}
+/* Terra: tableta 768px - catalogo 3 columnas, hero en 2 columnas a partir de 860px, bolsa lateral */
+@media (min-width:768px) and (max-width:1023px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 
 <style id="yuli-scroll-fix">
@@ -407,6 +394,130 @@ img[data-foto].is-broken{display:none}
 }
 </style>
 
+<style id="terra-responsive-refinement">
+/* Terra · Boutique cálida — ajustes visuales, sin cambios en la tienda */
+:root{
+  --shadow:68 39 23; --backdrop:rgb(43 27 19 / .64);
+  --accent:#9A4B2B; --gold:#876334; --chip-on:#96502F;
+  --sw-malva:#A66C51; --sw-rosa:#E9CBB0;
+}
+
+
+html,body{max-width:100%;overflow-x:clip}
+body{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}
+button,a{touch-action:manipulation}
+input,select,textarea{font:inherit;min-width:0}
+.hero__copy,.tools>*,.card,.card__body,.pd__info,.line>*,.panel,.order-panel{min-width:0}
+.header__bar{gap:12px}
+.logo{min-width:0}
+.btn{padding-block:12px;text-align:center;line-height:1.3}
+.btn--block{white-space:normal}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card__name,.line__name,.pd__name{overflow-wrap:anywhere}
+.card__body{width:100%;gap:9px}
+.card__body .price{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 5px;line-height:1.35}
+.card__body .price .was{margin-right:0}
+.card__body .price .desde{margin-right:0}
+.card__media .deal{max-width:calc(100% - 66px);font-size:.74rem}
+.stock{line-height:1.4}
+.chips{gap:8px}
+.chip{min-height:46px;padding-inline:18px;font-size:1rem}
+.panel,.order-panel{scrollbar-width:thin;scrollbar-color:var(--ring) transparent}
+.modal{height:100dvh;padding:max(12px,env(safe-area-inset-top,0px)) 12px max(12px,env(safe-area-inset-bottom,0px))}
+.panel{border-radius:30px;max-width:100%}
+.order-panel{
+  width:min(100%,640px);margin:auto;background:var(--surface);border:1px solid var(--line);
+  border-radius:30px;box-shadow:0 28px 70px -28px rgb(var(--shadow) / .7);
+  padding:clamp(20px,4vw,36px);max-height:100%;overflow-x:hidden;
+}
+.order-panel h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,2.7rem);line-height:1.12;color:var(--heading)}
+.order-panel h3{font-family:var(--font-display);font-size:1.5rem;line-height:1.2;color:var(--heading)}
+.order-panel p,.order-panel li{overflow-wrap:anywhere}
+.order-panel label{font-size:1rem;font-weight:600;line-height:1.5}
+.order-panel input:not([type=checkbox]),.order-panel select,.order-panel textarea{
+  background:var(--bg);font-size:1rem;font-weight:400;min-height:48px;border-color:var(--line);
+}
+.order-panel textarea{min-height:100px;resize:vertical}
+.order-panel select option{background:var(--surface);color:var(--ink)}
+.order-panel .consent{font-weight:400}
+.order-panel .consent input{flex:none;width:22px;height:22px;margin:2px 0 0;accent-color:var(--heading)}
+.order-panel [data-order-close]{display:block;margin-left:auto;min-height:44px;padding:8px 12px;color:var(--heading)}
+.order-panel #orderCaptcha{min-width:0;min-height:65px}
+#trackingResult ul{padding-left:22px}
+#trackingResult li+li{margin-top:10px}
+.line__top,.line__row{flex-wrap:wrap}
+.line__top .price{white-space:nowrap}
+.line__row .linkbtn{min-height:44px;padding:8px}
+.bag__actions{padding-bottom:env(safe-area-inset-bottom,0px)}
+.bag__actions .btn{min-height:50px}
+#recuperar-pedido{
+  left:max(16px,env(safe-area-inset-left,0px))!important;
+  bottom:calc(16px + env(safe-area-inset-bottom,0px))!important;
+  max-width:calc(100% - 32px);min-height:46px;padding:12px 18px!important;
+  border:1px solid var(--line)!important;border-radius:99px!important;
+  background:var(--btn-solid)!important;color:var(--on-btn)!important;font:600 .94rem var(--font-body)!important;
+  box-shadow:0 12px 30px -14px rgb(var(--shadow) / .6);z-index:30!important;
+}
+.toast{bottom:calc(80px + env(safe-area-inset-bottom,0px));border-radius:24px}
+@media(min-width:768px){
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .order-panel{padding:32px}
+}
+@media(min-width:1024px){
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+  .modal--drawer .panel{width:min(480px,100%)}
+}
+@media(max-width:767px){
+  .panel{padding:22px;border-radius:28px}
+  .panel--product{padding:8px}
+  .modal--drawer .panel{width:100%}
+  .hero{gap:28px;padding-top:32px}
+  .trust{padding:20px;gap:12px;border-radius:24px;font-size:.94rem}
+  .tools{gap:12px}
+  .steps{border-radius:28px}
+}
+@media(max-width:480px){
+  :root{--pad:16px}
+  .header__bar{gap:8px;padding-block:12px;border-radius:0 0 22px 22px}
+  .logo{font-size:clamp(1.1rem,5.1vw,1.45rem)}
+  .bagbtn{gap:7px;padding:0 8px 0 13px;font-size:.92rem;min-height:46px}
+  .bagbtn__n{min-width:26px;height:26px}
+  .hero__title{font-size:clamp(2.8rem,11vw,3.5rem)}
+  .hero__copy>*+*{margin-top:18px}
+  .hero__pill{font-size:.68rem;letter-spacing:.08em;max-width:100%}
+  .hero__copy>.hero__cta{margin-top:26px}
+  .hero__lead{font-size:1.05rem}
+  .announce{font-size:.6rem;letter-spacing:.09em;height:34px}
+  .ticker{width:min(29em,86vw)}
+  .grid{gap:12px}
+  .card{padding:6px 6px 14px;border-radius:22px}
+  .card__media{border-radius:17px}
+  .card__body{padding:12px 5px 0}
+  .card__name{font-size:1.2rem;line-height:1.18}
+  .card__body .price{font-size:1.03rem}
+  .tag{left:7px;top:7px;font-size:.69rem;padding:.34em .65em}
+  .card__media .deal{left:7px;bottom:7px;max-width:calc(100% - 60px)}
+  .card__add{width:44px;height:44px;right:7px;bottom:7px}
+  .search input{height:52px;font-size:1rem}
+  .sortbtn{min-height:50px;font-size:1rem}
+  .chip{padding-inline:14px;font-size:.94rem}
+  .stock{font-size:.78rem}
+  .panel,.order-panel{padding:18px}
+  .panel--product{padding:8px}
+  .panel__title{font-size:2rem}
+  .line{grid-template-columns:54px minmax(0,1fr);gap:10px}
+  .line__img{width:54px;height:72px}
+  .pd__info{padding:18px 12px}
+  .pd__name{font-size:2rem}
+  .pd__media{aspect-ratio:1.12}
+  .order-panel #orderCaptcha{margin-inline:-8px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+@media(max-width:360px){.order-panel #orderCaptcha{zoom:.85}}
+
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
