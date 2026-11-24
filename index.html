@@ -1,4 +1,4 @@
-<!-- Yuli Dzul Shop - Diseno Terra · Boutique Calida - Basado en el index.html real de https://nasx-pixel.github.io/yuli-dzul-shop-web/ - Se conservan Supabase, catalogo, bolsa, formulario, seguimiento y contacto. Solo cambiaron colores, tonos calidos terracota y radios redondeados. Adaptativo a PC, tableta y celular. -->
+<!-- Yuli Dzul Shop - Diseno Terra v2 · Layout del interactivo, tal cual - Basado en el index.html real de https://nasx-pixel.github.io/yuli-dzul-shop-web/ - Se conservan Supabase, catalogo, bolsa, formulario, seguimiento y contacto. Cambios v2: barra superior terracota con menu, logo Yuli Shop y mas opciones; cabecera Yuli Dzul / SHOP · BOUTIQUE; hero con titular, 2 botones, checks y foto en arco; menus de navegacion. Sin productos ni precios de muestra: todo sale de Supabase. Adaptativo a PC, tableta y celular. -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -306,7 +306,10 @@ h1,h2,h3,p{margin:0}
 
 /* Detalle de artículo */
 .panel--product{width:min(100%,900px);padding:10px}
-.panel--product .close{position:absolute;right:18px;top:18px;z-index:3}
+.panel--product .close{position:absolute;left:18px;top:18px;z-index:3}
+.backbtn{display:inline-flex;align-items:center;gap:6px;width:auto!important;height:auto!important;min-height:44px;padding:10px 16px;border-radius:999px;font-weight:700;font-size:15px;color:var(--heading)}
+.backbtn .icon{width:18px;height:18px}
+.backbtn:hover{rotate:0deg}
 .pd{display:grid;gap:0}
 .pd__media{position:relative;border-radius:30px;overflow:hidden;background:var(--frame);aspect-ratio:1 / 1.02}
 .pd__media img{width:100%;height:100%;object-fit:contain}
@@ -556,6 +559,70 @@ input,select,textarea{font:inherit;min-width:0}
 .full-photo button{position:absolute;top:0;right:0;min-height:44px;border:0;border-radius:22px;background:#fff8ef;color:#59352a;padding:10px 18px;cursor:pointer}
 @media(max-width:480px){.pd__media{aspect-ratio:4/5}}
 </style>
+
+<style id="terra-v2">
+/* ───────── Terra v2 · Layout del interactivo, tal cual ───────── */
+/* Barra superior terracota: menu, logo Yuli Shop, mas opciones + linea de envios */
+.v2-topbar{height:auto;flex-direction:column;gap:8px;padding:12px 16px 14px;background:linear-gradient(180deg,#B45A2E,#A34A24);color:#FFF3E6}
+.v2-topbar .spark{display:none}
+.topbar-row{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1240px;margin-inline:auto}
+.topbtn{flex:none;display:grid;place-items:center;width:54px;height:54px;border:0;border-radius:50%;background:#2E211A;color:#FFF3E6;font-size:1.5rem;line-height:1;transition:translate .3s var(--ease),filter .3s}
+.topbtn span{translate:0 -1px}
+.topbtn:active{translate:0 1px;filter:brightness(1.15)}
+.top-logo{flex:none;display:flex;align-items:center;gap:9px;min-height:56px;padding:6px 16px;border-radius:999px;border:1px solid rgb(255 255 255 / .35);background:rgb(46 33 26 / .55);color:#FFF3E6;font-family:Georgia,'Times New Roman',serif;font-size:1.15rem;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+.top-logo svg{flex:none;width:18px;height:22px;fill:#E8C99A}
+.v2-topbar .ticker{position:relative;height:3.1em;width:min(100%,720px);margin-inline:auto}
+.v2-topbar .ticker span{display:block;white-space:normal;line-height:1.5;text-align:center}
+@media (hover:hover){.topbtn:hover{filter:brightness(1.2)}}
+
+/* Cabecera crema: Yuli Dzul / SHOP · BOUTIQUE */
+.logo{display:grid;gap:2px}
+.logo__sub{font-family:var(--font-body);font-size:.62rem;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--accent)}
+.footer .logo__sub{color:rgb(255 255 255 / .65)}
+
+/* Hero: orden en movil como en la captura (texto, checks, foto en arco) */
+.hero__copy{order:1}
+.hero .trust{order:2}
+.hero .fan{order:3}
+@media (min-width:980px){
+  .hero__copy{order:1}
+  .hero .fan{order:2}
+  .hero .trust{order:3}
+}
+.hero__lead{max-width:38ch}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px}
+.hero__cta .btn{flex:1 1 auto}
+@media (min-width:700px){.hero__cta .btn{flex:0 1 auto}}
+
+/* Checks sin tarjeta: como en la captura */
+.trust{border:0;background:transparent;padding:0;gap:10px 30px}
+.trust li:first-child{flex-basis:100%}
+@media (min-width:700px){.trust li:first-child{flex-basis:auto}}
+.trust .icon{color:var(--accent)}
+
+/* Foto en arco: la foto del articulo mas reciente de Supabase */
+.fan{display:block;position:relative;width:min(100%,540px);margin-inline:auto;animation:archIn 1s var(--ease) backwards .35s}
+@keyframes archIn{from{opacity:0;translate:0 26px}}
+.fan__sw,.fan__spark{display:none}
+.fan__product{position:relative;left:auto;top:auto;width:100%;margin:0;padding:0;border:0;background:transparent;box-shadow:none;rotate:0deg !important;translate:0 0 !important}
+.fan__product .media{border-radius:999px 999px 28px 28px;aspect-ratio:4 / 4.4;box-shadow:0 36px 60px -30px rgb(var(--shadow) / .6)}
+.fan__product .media img{object-fit:cover;object-position:50% 30%}
+.fan__product .row,.fan__product .tag{display:none}
+@media (hover:hover){.fan__product:hover img{scale:1.04}}
+@media (min-width:980px){.fan{width:min(100%,470px)}}
+
+/* Menus: lista */
+.menu-list{display:grid;gap:4px;margin-top:18px}
+.menu-list a,.menu-list button{display:block;width:100%;padding:16px 18px;border:1px solid var(--line);border-radius:20px;background:var(--surface);color:var(--heading);font:inherit;font-size:1.05rem;font-weight:600;text-align:left;text-decoration:none;cursor:pointer}
+.menu-list a + a,.menu-list a + button,.menu-list button + a,.menu-list button + button{margin-top:10px}
+@media (hover:hover){.menu-list a:hover,.menu-list button:hover{background:var(--surface-2)}}
+@media (max-width:480px){
+  .topbtn{width:48px;height:48px;font-size:1.35rem}
+  .top-logo{min-height:50px;padding:5px 13px;font-size:1.05rem}
+  .v2-topbar .ticker{height:3.4em;font-size:.72rem}
+  .hero__title{font-size:clamp(2.9rem,12vw,3.6rem)}
+}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -568,6 +635,7 @@ input,select,textarea{font:inherit;min-width:0}
   <symbol id="i-sort" viewBox="0 0 24 24"><path d="M8 20V5M4.500 8.500 8 5l3.500 3.500M16 4v15M12.500 15.500 16 19l3.500-3.500"/></symbol>
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.500 4.500 4.500L19 7"/></symbol>
@@ -577,20 +645,23 @@ input,select,textarea{font:inherit;min-width:0}
 
 <div class="page">
 
-  <div class="announce">
-    <svg class="spark" aria-hidden="true"><use href="#i-spark"/></svg>
+  <div class="announce v2-topbar">
+    <div class="topbar-row">
+      <button class="topbtn" id="menuBtn" type="button" aria-label="Abrir menú" aria-haspopup="dialog"><span aria-hidden="true">☰</span></button>
+      <span class="top-logo" aria-label="Yuli Shop"><svg viewBox="0 0 24 28" aria-hidden="true"><path d="M12 1l2.8 3.8-.7 4.7 5.4 16.5H4.5l5.4-16.5-.7-4.7L12 1z"/></svg>Yuli Shop</span>
+      <button class="topbtn" id="moreBtn" type="button" aria-label="Más opciones" aria-haspopup="dialog"><span aria-hidden="true">···</span></button>
+    </div>
     <div class="ticker" id="ticker">
-      <span class="is-on">Catálogo conectado a la tienda</span>
+      <span class="is-on">Envíos y recolección en tienda · La tienda confirma tu pedido, sin pago en línea</span>
       <span aria-hidden="true">Pedidos en línea próximamente</span>
       <span aria-hidden="true">Colores y tallas a tu elección</span>
       <span aria-hidden="true">Recoge o solicita envío</span>
     </div>
-    <svg class="spark" aria-hidden="true"><use href="#i-spark"/></svg>
   </div>
 
   <header class="header" id="header">
     <div class="header__bar">
-      <a class="logo" href="#inicio" data-go="inicio">Yuli Dzul <em>Shop</em></a>
+      <a class="logo" href="#inicio" data-go="inicio">Yuli Dzul<span class="logo__sub">Shop · Boutique</span></a>
       <nav class="nav" aria-label="Secciones">
         <a href="#coleccion" data-go="coleccion">Colección</a>
         <a href="#como-funciona" data-go="como-funciona">Cómo funciona</a>
@@ -602,6 +673,43 @@ input,select,textarea{font:inherit;min-width:0}
     </div>
   </header>
 
+
+<!-- Menu principal (hamburguesa de la barra superior) -->
+<dialog class="modal modal--menu" id="dlgMenu" aria-labelledby="menuTitle">
+  <div class="panel">
+    <div class="panel__head">
+      <div>
+        <p class="eyebrow">Yuli Dzul Shop</p>
+        <h2 class="panel__title" id="menuTitle">Menú</h2>
+      </div>
+      <button class="close backbtn" type="button" data-close-menu aria-label="Volver"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg><span>Volver</span></button>
+    </div>
+    <nav class="menu-list" aria-label="Menú principal">
+      <a href="#coleccion" data-go="coleccion">Colección</a>
+      <a href="#como-funciona" data-go="como-funciona">Cómo funciona</a>
+      <a href="solicitud.html">Solicitar artículo de redes</a>
+      <button type="button" data-track-last>Ver mi último pedido</button>
+    </nav>
+  </div>
+</dialog>
+
+<!-- Mas opciones (puntos de la barra superior): pedido -->
+<dialog class="modal modal--menu" id="dlgMore" aria-labelledby="moreTitle">
+  <div class="panel">
+    <div class="panel__head">
+      <div>
+        <p class="eyebrow">Yuli Dzul Shop</p>
+        <h2 class="panel__title" id="moreTitle">Más opciones</h2>
+      </div>
+      <button class="close backbtn" type="button" data-close-menu aria-label="Volver"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg><span>Volver</span></button>
+    </div>
+    <nav class="menu-list" aria-label="Más opciones">
+      <a href="solicitud.html">Solicitar artículo de redes</a>
+      <button type="button" data-track-last>Ver mi último pedido</button>
+    </nav>
+  </div>
+</dialog>
+
   <aside class="season-banner" data-season-banner hidden><i class="season-mark" data-season-mark aria-hidden="true"></i><span data-season-label></span></aside>
   <main>
     <section class="hero" id="inicio">
@@ -612,12 +720,11 @@ input,select,textarea{font:inherit;min-width:0}
           <span class="ln" style="--i:0"><span>Colores que</span></span>
           <span class="ln" style="--i:1"><span><em>van contigo.</em></span></span>
         </h1>
-        <p class="hero__lead" data-rise style="--i:4">Encuentra esa prenda que te encanta y los detalles que la hacen especial.</p>
-        <p class="hero__cta" data-rise style="--i:5"><a class="btn" href="#coleccion" data-go="coleccion">Explorar colección <svg class="icon icon--go" aria-hidden="true"><use href="#i-go"/></svg></a></p>
-        <p class="hero__micro" data-rise style="--i:6">Elige tu color. Encuentra tu talla. Hazlo tuyo.</p>
+        <p class="hero__lead" data-rise style="--i:4">Encuentra esa prenda que te encanta y los detalles que la hacen especial. Elige tu color, encuentra tu talla y hazlo tuyo.</p>
+        <p class="hero__cta" data-rise style="--i:5"><a class="btn" href="#coleccion" data-go="coleccion">Explorar colección <svg class="icon icon--go" aria-hidden="true"><use href="#i-go"/></svg></a><a class="btn btn--ghost" href="#como-funciona" data-go="como-funciona">Cómo funciona</a></p>
       </div>
 
-      <div class="fan" id="fan">
+      <div class="fan hero-arch" id="fan">
         <div class="fan__sw fan__sw--vino" aria-hidden="true"><span>Vino</span></div>
         <div class="fan__sw fan__sw--rosa" aria-hidden="true"><span>Rosa</span></div>
         <div class="fan__sw fan__sw--malva" aria-hidden="true"><span>Malva</span></div>
@@ -683,7 +790,7 @@ input,select,textarea{font:inherit;min-width:0}
   <footer class="footer">
     <div class="footer__top">
       <div>
-        <a class="logo" href="#inicio" data-go="inicio">Yuli Dzul <em>Shop</em></a>
+        <a class="logo" href="#inicio" data-go="inicio">Yuli Dzul<span class="logo__sub">Shop · Boutique</span></a>
         <p class="footer__say">Tu estilo, en cada detalle.</p><a class="store-location" href="https://maps.app.goo.gl/ts1PmMdhuPrf8S5FA?g_st=ac" target="_blank" rel="noopener noreferrer">Ubicación de la tienda · Cómo llegar</a>
       </div>
       <div>
@@ -710,7 +817,7 @@ input,select,textarea{font:inherit;min-width:0}
         <p class="eyebrow">A tu manera</p>
         <h2 class="panel__title" id="sortTitle">Ordena tu colección</h2>
       </div>
-      <button class="close" type="button" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+      <button class="close backbtn" type="button" data-close aria-label="Volver"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg><span>Volver</span></button>
     </div>
     <p class="panel__sub">Encuentra tu próximo favorito.</p>
     <div role="radiogroup" aria-labelledby="sortTitle" id="sortOpts">
@@ -741,7 +848,7 @@ input,select,textarea{font:inherit;min-width:0}
         <p class="eyebrow">Tus favoritos</p>
         <h2 class="panel__title" id="bagTitle">Mi bolsa</h2>
       </div>
-      <button class="close" type="button" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+      <button class="close backbtn" type="button" data-close aria-label="Volver"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg><span>Volver</span></button>
     </div>
     <div class="bag__body" id="bagBody"></div>
   </div>
@@ -750,7 +857,7 @@ input,select,textarea{font:inherit;min-width:0}
 <!-- Detalle -->
 <dialog class="modal" id="dlgProduct" aria-labelledby="pdName">
   <div class="panel panel--product">
-    <button class="close" type="button" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <button class="close backbtn" type="button" data-close aria-label="Volver"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg><span>Volver</span></button>
     <div class="pd" id="pd"></div>
   </div>
 </dialog>
@@ -1441,7 +1548,8 @@ input,select,textarea{font:inherit;min-width:0}
   const fan = $('#fan'), fanProduct = $('#fanProduct');
   function pintarAbanico() {
     const estrella = (estado.catalogo || []).filter(p => p.imagen).sort((a, b) => b.creado - a.creado)[0];
-    if (!estrella) { fanProduct.hidden = true; return; }
+    if (!estrella) { fanProduct.hidden = true; fan.hidden = true; return; }
+    fan.hidden = false;
     fanProduct.hidden = false;
     fanProduct.dataset.pid = estrella.id;
     fanProduct.setAttribute('aria-label', `Ver ${estrella.nombre}, ${precio(estrella.precioMin)}`);
@@ -1508,7 +1616,7 @@ input,select,textarea{font:inherit;min-width:0}
   let sendingOrder=false, captchaWidget=null, captchaProof='', pendingRequest=null;
   try{pendingRequest=JSON.parse(sessionStorage.getItem(pendingKey)||'null');}catch{}
   const od=document.createElement('dialog');od.className='modal';od.setAttribute('aria-label','Solicitud y seguimiento de pedido');
-  od.innerHTML='<div class="order-panel"><button type="button" class="linkbtn" data-order-close>Cerrar</button><div id="orderContent"></div></div>';
+  od.innerHTML='<div class="order-panel"><button type="button" class="linkbtn backbtn" data-order-close>‹ Volver</button><div id="orderContent"></div></div>';
   document.body.append(od);
   od.addEventListener('cancel',e=>{e.preventDefault();if(!sendingOrder)cerrar(od);});
   $('[data-order-close]',od).onclick=()=>{if(!sendingOrder)cerrar(od);};
@@ -1599,6 +1707,22 @@ input,select,textarea{font:inherit;min-width:0}
   function checkOrderLink(){const token=location.hash.match(/^#seguimiento=([0-9a-f]{64})$/)?.[1];if(token)openTracking(token);else if(location.hash==='#solicitud')location.replace('solicitud.html'+location.search);}
   window.addEventListener('hashchange',checkOrderLink);setTimeout(checkOrderLink,0);
 
+
+  /* ══════════ Menús v2: hamburguesa ☰ y más opciones ⋯ ══════════ */
+  const dlgMenu = $('#dlgMenu'), dlgMore = $('#dlgMore');
+  $('#menuBtn')?.addEventListener('click', () => abrir(dlgMenu));
+  $('#moreBtn')?.addEventListener('click', () => abrir(dlgMore));
+  $$('[data-close-menu]').forEach(b => b.addEventListener('click', () => { cerrar(dlgMenu); cerrar(dlgMore); }));
+  $$('#dlgMenu [data-go]').forEach(a => a.addEventListener('click', () => cerrar(dlgMenu)));
+  $$('[data-track-last]').forEach(b => b.addEventListener('click', () => {
+    let token = null;
+    try { token = localStorage.getItem('yuli-last-tracking'); } catch (e) { /* sin almacenamiento */ }
+    cerrar(dlgMenu); cerrar(dlgMore);
+    if (!/^[0-9a-f]{64}$/.test(token || '')) { alert('No se encontró un enlace guardado en este navegador.'); return; }
+    const hash = '#seguimiento=' + token;
+    if (location.hash === hash) location.reload(); else location.hash = hash;
+  }));
+
   /* ══════════ Arranque ══════════ */
   estado.bolsa = leerBolsa();
   pintarChips(); pintarBolsa();
@@ -1630,7 +1754,7 @@ document.getElementById("recuperar-pedido").onclick = function () {
 };
 </script>
 
-<dialog id="fullPhoto" class="full-photo"><button type="button" id="closeFullPhoto" aria-label="Cerrar foto completa">Cerrar ×</button><img id="fullPhotoImage" alt=""></dialog>
+<dialog id="fullPhoto" class="full-photo"><button type="button" id="closeFullPhoto" aria-label="Volver">‹ Volver</button><img id="fullPhotoImage" alt=""></dialog>
 <script>document.getElementById("closeFullPhoto").addEventListener("click",()=>document.getElementById("fullPhoto").close());</script>
 <script>
 
@@ -1639,13 +1763,14 @@ document.getElementById("recuperar-pedido").onclick = function () {
  const themes={'normal':['',''],'buen-fin':['Buen Fin','◇'],'hot-sale':['Hot Sale','◒'],'black-friday':['Black Friday','✦'],'navidad':['Navidad','✧'],'san-valentin':['San Valentín','♡'],'dia-madres':['Día de las Madres','∞']};
  const root=document.documentElement, counter=document.getElementById('webVisits');
  function apply(theme){if(!Object.hasOwn(themes,theme))return;root.dataset.season=theme;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';el.querySelector('[data-season-label]').textContent=themes[theme][0];el.querySelector('[data-season-mark]').textContent=themes[theme][1];});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';}
+ try{localStorage.removeItem('yuli-web-theme-manual-v1');}catch{} /* Eleccion manual vieja: se borra, la tematica la manda solo la tienda. */
  try{apply(localStorage.getItem('yuli-web-theme-v1')||'normal');}catch{apply('normal');}
  let busy=false;
  async function refresh(count=false){
   if(busy)return;busy=true;
   let key=null;
   if(count){try{const day=new Date().toISOString().slice(0,10);let visit=JSON.parse(localStorage.getItem('yuli-web-visit-v1')||'null');if(!visit||visit.day!==day||!/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i.test(visit.key)){visit={day,key:crypto.randomUUID()};localStorage.setItem('yuli-web-visit-v1',JSON.stringify(visit));}key=visit.key;}catch{}}
-  try{const res=await fetch('https://xrhbtkwwmfdhisuiexpf.supabase.co/rest/v1/rpc/'+(key?'shop_web_visit':'shop_web_info'),{method:'POST',headers:{apikey:'sb_publishable_smiua9QVJl9HzNhpgtyKpg_hWW1cs6B','Content-Type':'application/json'},body:JSON.stringify(key?{p_key:key}:{}),signal:AbortSignal.timeout(12000)});if(!res.ok)throw Error('unavailable');const data=await res.json();if(!data||!Object.hasOwn(themes,data.theme)||!Number.isSafeInteger(data.visits)||data.visits<0)throw Error('invalid');apply(data.theme);if(counter)counter.textContent='Visitas: '+data.visits.toLocaleString('es-MX');}
+  try{const res=await fetch('https://xrhbtkwwmfdhisuiexpf.supabase.co/rest/v1/rpc/'+(key?'shop_web_visit':'shop_web_info'),{method:'POST',headers:{apikey:'sb_publishable_smiua9QVJl9HzNhpgtyKpg_hWW1cs6B','Content-Type':'application/json'},body:JSON.stringify(key?{p_key:key}:{}),signal:AbortSignal.timeout(12000)});if(!res.ok)throw Error('unavailable');const data=await res.json();if(!data||!Object.hasOwn(themes,data.theme)||!Number.isSafeInteger(data.visits)||data.visits<0)throw Error('invalid');apply(data.theme); /* La tematica la manda solo la tienda (Supabase); el visitante no elige. */if(counter)counter.textContent='Visitas: '+data.visits.toLocaleString('es-MX');}
   catch{if(counter)counter.textContent='Visitas: —';}
   finally{busy=false;}
  }
