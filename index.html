@@ -349,7 +349,7 @@ img[data-foto].is-broken{display:none}
   *,*::before,*::after{animation:none !important;transition-duration:.01ms !important;transition-delay:0s !important}
   .js [data-rise],.js .hero__title .ln>span,.js .reveal,.js .step .step__n{opacity:1;translate:0 0;scale:1}
 }
-.order-panel{padding:clamp(20px,5vw,44px);max-width:640px;margin:auto}.order-panel h2{margin:18px 0}.order-panel p{margin:16px 0}.order-panel label{display:block;margin:20px 0}.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{display:block;width:100%;padding:14px;border:1px solid var(--line,#c9abb9);border-radius:16px;background:transparent;color:inherit;font:inherit;margin-top:8px}.order-panel select option{color:#351126;background:#fffaf3}.order-panel .consent{display:flex;gap:12px;align-items:flex-start}.order-panel .btn{margin:10px 0}.order-panel [hidden]{display:none!important}
+.order-panel{padding:clamp(20px,5vw,44px);max-width:640px;margin:auto}.order-panel h2{margin:10px 0}.order-panel p{margin:8px 0}.order-panel label{display:block;margin:10px 0}.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{display:block;width:100%;padding:14px;border:1px solid var(--line,#c9abb9);border-radius:16px;background:transparent;color:inherit;font:inherit;margin-top:8px}.order-panel select option{color:#351126;background:#fffaf3}.order-panel .consent{display:flex;gap:12px;align-items:flex-start}.order-panel .btn{margin:10px 0}.order-panel [hidden]{display:none!important}
 /* Terra: tableta 768px - catalogo 3 columnas, hero en 2 columnas a partir de 860px, bolsa lateral */
 @media (min-width:768px) and (max-width:1023px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
@@ -447,7 +447,7 @@ input,select,textarea{font:inherit;min-width:0}
 .toast{bottom:calc(80px + env(safe-area-inset-bottom,0px));border-radius:24px}
 @media(min-width:768px){
   .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-  .order-panel{padding:32px}
+  .order-panel{padding:20px}
 }
 @media(min-width:1024px){
   .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
@@ -639,7 +639,8 @@ input,select,textarea{font:inherit;min-width:0}
 .modal#dlgProduct{padding:0}
 .panel--product{width:min(100%,620px);max-width:100%;padding:0;border-radius:28px;overflow-y:auto;overflow-x:hidden;background:var(--bg)}
 .pd{display:block}
-.pd__media{border-radius:0;aspect-ratio:1 / 1;min-height:0;overflow:hidden;touch-action:pan-y}
+.pd__media{border-radius:0;aspect-ratio:1 / 1;min-height:0;overflow:hidden;touch-action:pan-y;cursor:zoom-in}
+.pd__full{position:absolute;left:12px;bottom:12px;z-index:2;padding:.35em .8em;border:0;border-radius:99px;background:rgb(255 251 245 / .95);color:var(--heading);font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 8px 18px -10px rgb(0 0 0 / .4)}
 .pd__media img{object-fit:cover;object-position:50% 30%;animation:pdFoto .35s ease}
 @keyframes pdFoto{from{opacity:0;transform:translateX(24px) scale(1.02)}to{opacity:1;transform:translateX(0) scale(1)}}
 .pd__media--atras img{animation-name:pdFotoAtras}
@@ -674,7 +675,7 @@ input,select,textarea{font:inherit;min-width:0}
 
 /* Formulario: inputs redondeados y tarjetas de opción, como en la captura */
 .order-panel{border-radius:28px}
-.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{border-radius:24px;min-height:56px;padding:14px 18px}
+.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{border-radius:24px;min-height:48px;padding:12px 18px}
 .opt-group{border:0;margin:20px 0 0;padding:0}
 .opt-group legend{padding:0;margin-bottom:10px;font-size:1rem;font-weight:600}
 .radio-pills{display:flex;flex-wrap:wrap;gap:8px}
@@ -852,6 +853,11 @@ input,select,textarea{font:inherit;min-width:0}
     <button class="close backbtn" type="button" data-close aria-label="Volver"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg><span>Volver</span></button>
     <div class="pd" id="pd"></div>
   </div>
+</dialog>
+
+<dialog class="full-photo" id="dlgPhoto" aria-label="Foto completa">
+  <button type="button" data-close-photo>&#8249; Volver</button>
+  <img id="photoFull" src="" alt="Foto completa del producto">
 </dialog>
 
 <div class="toast" id="toast" role="status" aria-live="polite">
@@ -1432,6 +1438,16 @@ input,select,textarea{font:inherit;min-width:0}
     }
   });
   pd.addEventListener('click', e => {
+    if (window.__pdSwipe && Date.now() - window.__pdSwipe < 400) return;
+    const fullBtn = e.target.closest('[data-full]');
+    const mediaImg = e.target.closest('#pdMedia img');
+    if (fullBtn || mediaImg) {
+      const img = $('#pdMedia img'); const full = $('#photoFull');
+      if (img && full) { full.src = img.currentSrc || img.src; full.alt = img.alt || 'Foto del producto'; }
+      const d = $('#dlgPhoto'); if (d && !d.open) d.showModal();
+      return;
+    }
+
     const fotoBtn = e.target.closest('[data-photo]');
     if (fotoBtn) { const p2 = (estado.catalogo || []).find(x => x.id === sel.pid); const c2 = p2.colores.find(x => x.id === sel.cid) || p2.colores[0]; const n = (c2.imagenes && c2.imagenes.length) || 1; const dir = Number(fotoBtn.dataset.photo); sel.photo = (sel.photo + dir + n) % n; const media = $('#pdMedia'); if (media) media.classList.toggle('pd__media--atras', dir < 0); return pintarDetalle(true); }
     const thumbBtn = e.target.closest('[data-thumb]');
@@ -1455,11 +1471,17 @@ input,select,textarea{font:inherit;min-width:0}
     const p2 = (estado.catalogo || []).find(x => x.id === sel.pid); if (!p2) return;
     const c2 = p2.colores.find(x => x.id === sel.cid) || p2.colores[0];
     const n = (c2.imagenes && c2.imagenes.length) || 1; if (n < 2) return;
-    const dir = dx < 0 ? 1 : -1;
+    const dir = dx < 0 ? 1 : -1; window.__pdSwipe = Date.now();
     sel.photo = (sel.photo + dir + n) % n;
     const media = $('#pdMedia'); if (media) media.classList.toggle('pd__media--atras', dir < 0);
     pintarDetalle(true);
   }, { passive: true });
+
+  document.addEventListener('click', e => {
+    if (e.target.closest('[data-close-photo]')) { const d = $('#dlgPhoto'); if (d && d.open) d.close(); }
+  });
+  const dlgPhoto = $('#dlgPhoto');
+  if (dlgPhoto) dlgPhoto.addEventListener('click', e => { if (e.target === dlgPhoto) dlgPhoto.close(); });
 
   /* ══════════ Aviso y vuelo a la bolsa ══════════ */
   const toast = $('#toast'); let relojAviso;
