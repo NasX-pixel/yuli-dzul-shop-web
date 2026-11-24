@@ -379,6 +379,26 @@ img[data-foto].is-broken{display:none}
 .order-panel{padding:clamp(20px,5vw,44px);max-width:640px;margin:auto}.order-panel h2{margin:18px 0}.order-panel p{margin:16px 0}.order-panel label{display:block;margin:20px 0}.order-panel input:not([type=checkbox]),.order-panel select,.order-panel textarea{display:block;width:100%;padding:14px;border:1px solid var(--line,#c9abb9);border-radius:16px;background:transparent;color:inherit;font:inherit;margin-top:8px}.order-panel select option{color:#351126;background:#fffaf3}.order-panel .consent{display:flex;gap:12px;align-items:flex-start}.order-panel .btn{margin:10px 0}.order-panel [hidden]{display:none!important}
 /* Terra: tableta 768px - catalogo 3 columnas, hero en 2 columnas a partir de 860px, bolsa lateral */
 @media (min-width:768px) and (max-width:1023px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* Yuli 0.8.9: temas de temporada, siempre claros. Sin ofertas ficticias. */
+:root[data-season="buen-fin"]{--bg:#fff7f3;--wash:#f8ded9;--heading:#93252d;--accent:#ac3439;--gold:#ab7650;--btn-solid:#93252d;--btn-a:#93252d;--btn-b:#b83c42;--chip-on:#93252d;--band:#4d2325;--band-2:#59262a;--surface:#fffcf9;--surface-2:#f6e2df;--frame:#f8e7e0;--line:#e8c9c4;--ring:#c98f89;--steps-b:#fae9e3}
+:root[data-season="hot-sale"]{--bg:#fff7ed;--wash:#ffe1c9;--heading:#98301a;--accent:#ad391d;--gold:#a66b2d;--btn-solid:#98301a;--btn-a:#98301a;--btn-b:#b94623;--chip-on:#a5361b;--band:#57291c;--band-2:#68311e;--surface:#fffcf6;--surface-2:#ffe9d4;--frame:#ffead7;--line:#eed0b6;--ring:#cb9670;--steps-b:#fff0dc}
+:root[data-season="black-friday"]{--bg:#faf7f0;--wash:#eae1d0;--heading:#292421;--accent:#665035;--gold:#947044;--btn-solid:#292421;--btn-a:#292421;--btn-b:#544536;--chip-on:#39312b;--band:#292421;--band-2:#332b24;--surface:#fffdf7;--surface-2:#ece5d8;--frame:#eee8dc;--line:#d9cdb9;--ring:#b09b7b;--steps-b:#f0e8d8}
+:root[data-season="navidad"]{--bg:#fff9ed;--wash:#e4ebdf;--heading:#245943;--accent:#9a3540;--gold:#aa7b37;--btn-solid:#245943;--btn-a:#245943;--btn-b:#3b6e55;--chip-on:#245943;--band:#203e32;--band-2:#294b3b;--surface:#fffdf6;--surface-2:#e8eddf;--frame:#edeadd;--line:#d2dece;--ring:#a5b79d;--steps-b:#f1eddb}
+:root[data-season="san-valentin"]{--bg:#fff5f7;--wash:#f5dfe8;--heading:#8d3152;--accent:#9a385c;--gold:#a37959;--btn-solid:#8d3152;--btn-a:#8d3152;--btn-b:#a84a69;--chip-on:#8d3152;--band:#512738;--band-2:#622b41;--surface:#fffbfc;--surface-2:#f4e2e9;--frame:#f5e6ec;--line:#e7cbd5;--ring:#c992a6;--steps-b:#f7e9ed}
+:root[data-season="dia-madres"]{--bg:#fff8f0;--wash:#f0e1d6;--heading:#785132;--accent:#8d4c59;--gold:#a47b4b;--btn-solid:#785132;--btn-a:#785132;--btn-b:#946747;--chip-on:#785132;--band:#49342a;--band-2:#594036;--surface:#fffdf8;--surface-2:#f2e3db;--frame:#f3e7db;--line:#e2d0c0;--ring:#c3a78a;--steps-b:#f7ebdf}
+.season-banner{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:14px;padding:16px 24px;background:var(--wash);color:var(--heading);border-block:1px solid var(--line);text-align:center}
+.season-banner[hidden]{display:none}.season-banner span{font-family:var(--font-display);font-size:clamp(1.3rem,3vw,1.8rem);letter-spacing:.04em}.season-mark{font-style:normal;font-size:1.6rem;color:var(--gold)}
+[data-season="buen-fin"] .season-banner:before{content:"";position:absolute;inset:-80px auto -80px 7%;width:58px;transform:rotate(30deg);border-inline:12px solid var(--heading);opacity:.12;z-index:-1}
+[data-season="hot-sale"] .season-banner{background:radial-gradient(ellipse at 90% 130%,#f3b98b 0 18%,transparent 19% 28%,#f5c9a7 29% 40%,transparent 41%),var(--wash)}
+[data-season="black-friday"] .season-banner{border-block:3px double var(--gold);letter-spacing:.1em;background:linear-gradient(115deg,transparent 75%,#decbaa55 75% 78%,transparent 78%),var(--wash)}
+[data-season="navidad"] .season-banner{background:radial-gradient(circle at 12% 35%,#c8a66d 0 2px,transparent 3px),radial-gradient(circle at 83% 65%,#c8a66d 0 2px,transparent 3px),var(--wash)}
+[data-season="san-valentin"] .season-banner:after{content:"♡";position:absolute;right:8%;font-size:5rem;line-height:1;color:#b66b8733;z-index:-1}
+[data-season="dia-madres"] .season-banner:before{content:"";position:absolute;inset:-40px 8% -40px auto;width:90px;border:10px double #be928a55;border-radius:50%;transform:rotate(30deg);z-index:-1}
+.store-location{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border:1px solid currentColor;border-radius:16px;padding:12px 18px;color:inherit;text-decoration:none;margin-top:14px;font-weight:600}
+.web-visits{display:block;font-variant-numeric:tabular-nums}.footer__base{padding-bottom:70px}
+#recuperar-pedido{background:var(--btn-solid)!important;border-color:var(--line)!important;color:var(--on-btn)!important;max-width:calc(100vw - 32px)}
+
 </style>
 
 <style id="yuli-scroll-fix">
@@ -582,6 +602,7 @@ input,select,textarea{font:inherit;min-width:0}
     </div>
   </header>
 
+  <aside class="season-banner" data-season-banner hidden><i class="season-mark" data-season-mark aria-hidden="true"></i><span data-season-label></span></aside>
   <main>
     <section class="hero" id="inicio">
       <div class="hero__copy">
@@ -663,20 +684,20 @@ input,select,textarea{font:inherit;min-width:0}
     <div class="footer__top">
       <div>
         <a class="logo" href="#inicio" data-go="inicio">Yuli Dzul <em>Shop</em></a>
-        <p class="footer__say">Tu estilo, en cada detalle.</p>
+        <p class="footer__say">Tu estilo, en cada detalle.</p><a class="store-location" href="https://maps.app.goo.gl/ts1PmMdhuPrf8S5FA?g_st=ac" target="_blank" rel="noopener noreferrer">Ubicación de la tienda · Cómo llegar</a>
       </div>
       <div>
         <h3>Categorías</h3>
         <ul id="footCats"></ul>
       </div>
       <div>
-        <h3>Pedidos</h3><button class="linkbtn" data-social-order>Solicitar artículo de redes</button>
+        <h3>Pedidos</h3><a class="linkbtn" href="solicitud.html">Solicitar artículo de redes</a>
         <p class="footer__note">Enviar una solicitud no reserva existencias. La tienda confirmará tu pedido.</p>
       </div>
     </div>
     <div class="footer__base">
       <span>© 2026 Yuli Dzul Shop</span>
-      <span>Ropa · Bisutería · Temporada</span>
+      <span>Ropa · Bisutería · Temporada</span><span id="webVisits" class="web-visits" title="Visitas aproximadas; una por navegador y día. No equivale a personas únicas.">Visitas: —</span>
     </div>
   </footer>
 </div>
@@ -1575,7 +1596,7 @@ input,select,textarea{font:inherit;min-width:0}
     };
   }
   document.addEventListener('click',e=>{if(e.target.closest('[data-request-order]'))openOrder(false);if(e.target.closest('[data-social-order]'))openOrder(true);});
-  function checkOrderLink(){const token=location.hash.match(/^#seguimiento=([0-9a-f]{64})$/)?.[1];if(token)openTracking(token);else if(location.hash==='#solicitud')openOrder(true);}
+  function checkOrderLink(){const token=location.hash.match(/^#seguimiento=([0-9a-f]{64})$/)?.[1];if(token)openTracking(token);else if(location.hash==='#solicitud')location.replace('solicitud.html'+location.search);}
   window.addEventListener('hashchange',checkOrderLink);setTimeout(checkOrderLink,0);
 
   /* ══════════ Arranque ══════════ */
@@ -1611,5 +1632,26 @@ document.getElementById("recuperar-pedido").onclick = function () {
 
 <dialog id="fullPhoto" class="full-photo"><button type="button" id="closeFullPhoto" aria-label="Cerrar foto completa">Cerrar ×</button><img id="fullPhotoImage" alt=""></dialog>
 <script>document.getElementById("closeFullPhoto").addEventListener("click",()=>document.getElementById("fullPhoto").close());</script>
+<script>
+
+/* Apariencia y visitas públicas. No lee ni escribe precios, bolsa ni pedidos. */
+(()=>{
+ const themes={'normal':['',''],'buen-fin':['Buen Fin','◇'],'hot-sale':['Hot Sale','◒'],'black-friday':['Black Friday','✦'],'navidad':['Navidad','✧'],'san-valentin':['San Valentín','♡'],'dia-madres':['Día de las Madres','∞']};
+ const root=document.documentElement, counter=document.getElementById('webVisits');
+ function apply(theme){if(!Object.hasOwn(themes,theme))return;root.dataset.season=theme;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';el.querySelector('[data-season-label]').textContent=themes[theme][0];el.querySelector('[data-season-mark]').textContent=themes[theme][1];});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';}
+ try{apply(localStorage.getItem('yuli-web-theme-v1')||'normal');}catch{apply('normal');}
+ let busy=false;
+ async function refresh(count=false){
+  if(busy)return;busy=true;
+  let key=null;
+  if(count){try{const day=new Date().toISOString().slice(0,10);let visit=JSON.parse(localStorage.getItem('yuli-web-visit-v1')||'null');if(!visit||visit.day!==day||!/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i.test(visit.key)){visit={day,key:crypto.randomUUID()};localStorage.setItem('yuli-web-visit-v1',JSON.stringify(visit));}key=visit.key;}catch{}}
+  try{const res=await fetch('https://xrhbtkwwmfdhisuiexpf.supabase.co/rest/v1/rpc/'+(key?'shop_web_visit':'shop_web_info'),{method:'POST',headers:{apikey:'sb_publishable_smiua9QVJl9HzNhpgtyKpg_hWW1cs6B','Content-Type':'application/json'},body:JSON.stringify(key?{p_key:key}:{}),signal:AbortSignal.timeout(12000)});if(!res.ok)throw Error('unavailable');const data=await res.json();if(!data||!Object.hasOwn(themes,data.theme)||!Number.isSafeInteger(data.visits)||data.visits<0)throw Error('invalid');apply(data.theme);if(counter)counter.textContent='Visitas: '+data.visits.toLocaleString('es-MX');}
+  catch{if(counter)counter.textContent='Visitas: —';}
+  finally{busy=false;}
+ }
+ refresh(true);setInterval(()=>{if(!document.hidden)refresh(false);},60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh(true);});window.addEventListener('online',()=>refresh(true));
+})();
+
+</script>
 </body>
 </html>
