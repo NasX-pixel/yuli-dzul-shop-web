@@ -386,8 +386,7 @@ img[data-foto].is-broken{display:none}
 [data-season="san-valentin"] .season-banner:after{content:"♡";position:absolute;right:8%;font-size:5rem;line-height:1;color:#b66b8733;z-index:-1}
 [data-season="dia-madres"] .season-banner:before{content:"";position:absolute;inset:-40px 8% -40px auto;width:90px;border:10px double #be928a55;border-radius:50%;transform:rotate(30deg);z-index:-1}
 .store-location{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border:1px solid currentColor;border-radius:16px;padding:12px 18px;color:inherit;text-decoration:none;margin-top:14px;font-weight:600}
-.web-visits{display:block;font-variant-numeric:tabular-nums}.footer__base{padding-bottom:70px}
-#recuperar-pedido{background:var(--btn-solid)!important;border-color:var(--line)!important;color:var(--on-btn)!important;max-width:calc(100vw - 32px)}
+.web-visits{display:block;font-variant-numeric:tabular-nums}
 
 </style>
 <style id="yuli-scroll-fix">
@@ -457,14 +456,6 @@ input,select,textarea{font:inherit;min-width:0}
 .line__top,.line__row{flex-wrap:wrap}
 .line__top .price{white-space:nowrap}
 .line__row .linkbtn{min-height:44px;padding:8px}
-#recuperar-pedido{
-  left:max(16px,env(safe-area-inset-left,0px))!important;
-  bottom:calc(16px + env(safe-area-inset-bottom,0px))!important;
-  max-width:calc(100% - 32px);min-height:46px;padding:12px 18px!important;
-  border:1px solid var(--line)!important;border-radius:99px!important;
-  background:var(--btn-solid)!important;color:var(--on-btn)!important;font:600 .94rem var(--font-body)!important;
-  box-shadow:0 12px 30px -14px rgb(var(--shadow) / .6);z-index:30!important;
-}
 .toast{bottom:calc(80px + env(safe-area-inset-bottom,0px));border-radius:24px}
 @media(min-width:768px){
   .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
@@ -541,18 +532,9 @@ input,select,textarea{font:inherit;min-width:0}
 </style>
 <style id="terra-v2">
 /* ───────── Terra v2 · Layout del interactivo, tal cual ───────── */
-/* Barra superior terracota: menu, logo Yuli Shop, mas opciones + linea de envios */
-.v2-topbar{height:auto;flex-direction:column;gap:8px;padding:12px 16px 14px;background:linear-gradient(180deg,#B45A2E,#A34A24);color:#FFF3E6}
-.v2-topbar .spark{display:none}
-.topbar-row{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1240px;margin-inline:auto}
-.topbtn{flex:none;display:grid;place-items:center;width:54px;height:54px;border:0;border-radius:50%;background:#2E211A;color:#FFF3E6;font-size:1.5rem;line-height:1;transition:translate .3s var(--ease),filter .3s}
-.topbtn span{translate:0 -1px}
-.topbtn:active{translate:0 1px;filter:brightness(1.15)}
-.top-logo{flex:none;display:flex;align-items:center;gap:9px;min-height:56px;padding:6px 16px;border-radius:999px;border:1px solid rgb(255 255 255 / .35);background:rgb(46 33 26 / .55);color:#FFF3E6;font-family:Georgia,'Times New Roman',serif;font-size:1.15rem;font-weight:700;letter-spacing:.02em;white-space:nowrap}
-.top-logo svg{flex:none;width:18px;height:22px;fill:#E8C99A}
-.v2-topbar .ticker{position:relative;height:3.1em;width:min(100%,720px);margin-inline:auto}
-.v2-topbar .ticker span{display:block;white-space:normal;line-height:1.5;text-align:center}
-@media (hover:hover){.topbtn:hover{filter:brightness(1.2)}}
+/* SIN barra superior terracota: la pagina empieza directamente con la cabecera
+   crema (Yuli Dzul / SHOP · BOUTIQUE). El regreso a la tienda es el ‹ Volver
+   del formulario, en flujo normal. */
 
 /* Cabecera crema: Yuli Dzul / SHOP · BOUTIQUE */
 .logo{display:grid;gap:2px}
@@ -590,15 +572,7 @@ input,select,textarea{font:inherit;min-width:0}
 @media (hover:hover){.fan__product:hover img{scale:1.04}}
 @media (min-width:980px){.fan{width:min(100%,470px)}}
 
-/* Menus: lista */
-.menu-list{display:grid;gap:4px;margin-top:18px}
-.menu-list a,.menu-list button{display:block;width:100%;padding:16px 18px;border:1px solid var(--line);border-radius:20px;background:var(--surface);color:var(--heading);font:inherit;font-size:1.05rem;font-weight:600;text-align:left;text-decoration:none;cursor:pointer}
-.menu-list a + a,.menu-list a + button,.menu-list button + a,.menu-list button + button{margin-top:10px}
-@media (hover:hover){.menu-list a:hover,.menu-list button:hover{background:var(--surface-2)}}
 @media (max-width:480px){
-  .topbtn{width:48px;height:48px;font-size:1.35rem}
-  .top-logo{min-height:50px;padding:5px 13px;font-size:1.05rem}
-  .v2-topbar .ticker{height:3.4em;font-size:.72rem}
   .hero__title{font-size:clamp(2.9rem,12vw,3.6rem)}
 }
 </style>
@@ -646,17 +620,6 @@ input,select,textarea{font:inherit;min-width:0}
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15M6.500 13.500 12 19l5.500-5.500"/></symbol>
 </svg>
 <div class="page">
-  <div class="announce v2-topbar">
-    <div class="topbar-row">
-      <a class="topbtn" href="index.html" aria-label="Volver a la tienda"><svg class="icon" aria-hidden="true" style="width:26px;height:26px"><use href="#i-back"/></svg></a>
-      <span class="top-logo" aria-label="Yuli Shop"><svg viewBox="0 0 24 28" aria-hidden="true"><path d="M12 1l2.8 3.8-.7 4.7 5.4 16.5H4.5l5.4-16.5-.7-4.7L12 1z"/></svg>Yuli Shop</span>
-      <span class="topbtn" aria-hidden="true" style="visibility:hidden">···</span>
-    </div>
-    <div class="ticker" id="ticker">
-      <span class="is-on">Envíos y recolección en tienda · La tienda confirma tu pedido, sin pago en línea</span>
-    </div>
-  </div>
-
   <header class="header" id="header">
     <div class="header__bar">
       <a class="logo" href="index.html">Yuli Dzul<span class="logo__sub">Shop · Boutique</span></a>
