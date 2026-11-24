@@ -637,10 +637,13 @@ input,select,textarea{font:inherit;min-width:0}
 
 /* Detalle, tal cual la captura: lámina de una columna, foto a sangre */
 .modal#dlgProduct{padding:0}
-.panel--product{width:min(100%,620px);max-width:100%;padding:0;border-radius:28px;overflow:hidden;background:var(--bg)}
+.panel--product{width:min(100%,620px);max-width:100%;padding:0;border-radius:28px;overflow-y:auto;overflow-x:hidden;background:var(--bg)}
 .pd{display:block}
-.pd__media{border-radius:0;aspect-ratio:1 / 1;min-height:0}
-.pd__media img{object-fit:cover;object-position:50% 30%}
+.pd__media{border-radius:0;aspect-ratio:1 / 1;min-height:0;overflow:hidden;touch-action:pan-y}
+.pd__media img{object-fit:cover;object-position:50% 30%;animation:pdFoto .35s ease}
+@keyframes pdFoto{from{opacity:0;transform:translateX(24px) scale(1.02)}to{opacity:1;transform:translateX(0) scale(1)}}
+.pd__media--atras img{animation-name:pdFotoAtras}
+@keyframes pdFotoAtras{from{opacity:0;transform:translateX(-24px) scale(1.02)}to{opacity:1;transform:translateX(0) scale(1)}}
 .pd__count{position:absolute;right:12px;bottom:12px;z-index:2;padding:.3em .7em;border-radius:99px;background:rgb(43 26 18 / .82);color:#FFF8F0;font-size:.8rem;font-weight:700;font-variant-numeric:tabular-nums}
 .pd__nav{position:absolute;top:50%;translate:0 -50%;z-index:2;display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:rgb(255 251 245 / .95);color:var(--heading);font-size:1.4rem;font-weight:700;cursor:pointer;box-shadow:0 8px 18px -10px rgb(0 0 0 / .4)}
 .pd__nav--prev{left:12px}
@@ -1430,7 +1433,7 @@ input,select,textarea{font:inherit;min-width:0}
   });
   pd.addEventListener('click', e => {
     const fotoBtn = e.target.closest('[data-photo]');
-    if (fotoBtn) { const p2 = (estado.catalogo || []).find(x => x.id === sel.pid); const c2 = p2.colores.find(x => x.id === sel.cid) || p2.colores[0]; const n = (c2.imagenes && c2.imagenes.length) || 1; sel.photo = (sel.photo + Number(fotoBtn.dataset.photo) + n) % n; return pintarDetalle(true); }
+    if (fotoBtn) { const p2 = (estado.catalogo || []).find(x => x.id === sel.pid); const c2 = p2.colores.find(x => x.id === sel.cid) || p2.colores[0]; const n = (c2.imagenes && c2.imagenes.length) || 1; const dir = Number(fotoBtn.dataset.photo); sel.photo = (sel.photo + dir + n) % n; const media = $('#pdMedia'); if (media) media.classList.toggle('pd__media--atras', dir < 0); return pintarDetalle(true); }
     const thumbBtn = e.target.closest('[data-thumb]');
     if (thumbBtn) { sel.photo = Number(thumbBtn.dataset.thumb); return pintarDetalle(true); }
     const paso = e.target.closest('[data-q]');
@@ -1441,6 +1444,22 @@ input,select,textarea{font:inherit;min-width:0}
       if (n) cerrar(dlgProduct).then(() => avisar(`${info.p.nombre} se añadió a tu bolsa`));
     }
   });
+
+  /* Deslizar la foto del detalle con el dedo, con animación */
+  let toqueX = null;
+  pd.addEventListener('touchstart', e => { toqueX = e.changedTouches[0].clientX; }, { passive: true });
+  pd.addEventListener('touchend', e => {
+    if (toqueX === null) return;
+    const dx = e.changedTouches[0].clientX - toqueX; toqueX = null;
+    if (Math.abs(dx) < 50) return;
+    const p2 = (estado.catalogo || []).find(x => x.id === sel.pid); if (!p2) return;
+    const c2 = p2.colores.find(x => x.id === sel.cid) || p2.colores[0];
+    const n = (c2.imagenes && c2.imagenes.length) || 1; if (n < 2) return;
+    const dir = dx < 0 ? 1 : -1;
+    sel.photo = (sel.photo + dir + n) % n;
+    const media = $('#pdMedia'); if (media) media.classList.toggle('pd__media--atras', dir < 0);
+    pintarDetalle(true);
+  }, { passive: true });
 
   /* ══════════ Aviso y vuelo a la bolsa ══════════ */
   const toast = $('#toast'); let relojAviso;
