@@ -173,7 +173,7 @@ h1,h2,h3,p{margin:0}
 
 .card{position:relative;display:flex;flex-direction:column;padding:8px 8px 18px;border:1px solid var(--line);border-radius:30px;background:var(--surface);transition:translate .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;animation:cardIn .6s var(--ease) backwards;animation-delay:calc(var(--i,0) * 70ms)}
 @keyframes cardIn{from{opacity:0;translate:0 18px}}
-.card__media{position:relative;border-radius:24px;overflow:hidden;background:var(--frame);aspect-ratio:4 / 5}
+.card__media{position:relative;border-radius:24px;overflow:hidden;background:var(--frame);aspect-ratio:1 / 1}
 .card__media img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:scale .8s var(--ease)}
 .tag{position:absolute;left:10px;bottom:10px;padding:.36em .95em;border-radius:99px;background:color-mix(in srgb,var(--surface) 90%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:var(--heading);font-size:.8rem;box-shadow:0 6px 14px -8px rgb(var(--shadow) / .5)}
 .card__body{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:14px 10px 0}
@@ -349,7 +349,7 @@ img[data-foto].is-broken{display:none}
   *,*::before,*::after{animation:none !important;transition-duration:.01ms !important;transition-delay:0s !important}
   .js [data-rise],.js .hero__title .ln>span,.js .reveal,.js .step .step__n{opacity:1;translate:0 0;scale:1}
 }
-.order-panel{padding:clamp(20px,5vw,44px);max-width:640px;margin:auto}.order-panel h2{margin:18px 0}.order-panel p{margin:16px 0}.order-panel label{display:block;margin:20px 0}.order-panel input:not([type=checkbox]),.order-panel select,.order-panel textarea{display:block;width:100%;padding:14px;border:1px solid var(--line,#c9abb9);border-radius:16px;background:transparent;color:inherit;font:inherit;margin-top:8px}.order-panel select option{color:#351126;background:#fffaf3}.order-panel .consent{display:flex;gap:12px;align-items:flex-start}.order-panel .btn{margin:10px 0}.order-panel [hidden]{display:none!important}
+.order-panel{padding:clamp(20px,5vw,44px);max-width:640px;margin:auto}.order-panel h2{margin:18px 0}.order-panel p{margin:16px 0}.order-panel label{display:block;margin:20px 0}.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{display:block;width:100%;padding:14px;border:1px solid var(--line,#c9abb9);border-radius:16px;background:transparent;color:inherit;font:inherit;margin-top:8px}.order-panel select option{color:#351126;background:#fffaf3}.order-panel .consent{display:flex;gap:12px;align-items:flex-start}.order-panel .btn{margin:10px 0}.order-panel [hidden]{display:none!important}
 /* Terra: tableta 768px - catalogo 3 columnas, hero en 2 columnas a partir de 860px, bolsa lateral */
 @media (min-width:768px) and (max-width:1023px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
@@ -428,7 +428,7 @@ input,select,textarea{font:inherit;min-width:0}
 .order-panel h3{font-family:var(--font-display);font-size:1.5rem;line-height:1.2;color:var(--heading)}
 .order-panel p,.order-panel li{overflow-wrap:anywhere}
 .order-panel label{font-size:1rem;font-weight:600;line-height:1.5}
-.order-panel input:not([type=checkbox]),.order-panel select,.order-panel textarea{
+.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{
   background:var(--bg);font-size:1rem;font-weight:400;min-height:48px;border-color:var(--line);
 }
 .order-panel textarea{min-height:100px;resize:vertical}
@@ -567,8 +567,8 @@ input,select,textarea{font:inherit;min-width:0}
 /* Tarjeta de producto, como en la imagen: meta en una linea, Ahorras y 2 botones */
 .card__meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--ink-soft);font-size:.98rem}
 .saving{color:var(--accent);font-weight:700}
-.card__actions{position:relative;z-index:1;display:flex;gap:10px;width:100%;margin-top:6px}
-.card__actions .btn{min-height:50px;padding:10px 14px;font-size:.98rem}
+.card__actions{position:relative;z-index:1;display:flex;gap:6px;width:100%;margin-top:6px}
+.card__actions .btn{min-height:46px;padding:10px 8px;border-radius:12px;font-size:.88rem;line-height:1.2;text-align:center}
 .card__cta{flex:1 1 auto}
 .card__view{flex:0 0 auto}
 .pd__price{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
@@ -610,29 +610,29 @@ input,select,textarea{font:inherit;min-width:0}
 
 /* Tarjeta, tal cual la captura: foto a sangre, sin borde ni padding */
 .card{padding:0;border:0;border-radius:24px;background:var(--surface);box-shadow:0 18px 34px -24px rgb(var(--shadow) / .6);overflow:hidden}
-.card__media{border-radius:0;aspect-ratio:4 / 5}
+.card__media{border-radius:0;aspect-ratio:1 / 1}
 .card__media .deal{top:12px;left:12px;bottom:auto;right:auto;max-width:calc(100% - 24px);padding:.5em .9em;font-size:.78rem;background:#B85C38;color:#FFF8F0;box-shadow:0 8px 16px -10px rgb(120 80 30 / .7)}
 .tag{left:12px;bottom:12px;top:auto;padding:.4em .85em;border-radius:99px;background:rgb(255 251 245 / .95);color:var(--heading);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 6px 14px -8px rgb(var(--shadow) / .5)}
-.card__body{padding:16px 16px 18px;gap:7px}
-.card__name{font-family:var(--font-body);font-weight:800;font-size:1.06rem;line-height:1.25;color:#2B1A12}
-.card__body .price{color:#2B1A12;font-size:1.22rem;font-weight:800}
+.card__body{padding:12px 12px 14px;gap:5px}
+.card__name{font-family:var(--font-body);font-weight:800;font-size:1rem;line-height:1.25;color:#2B1A12}
+.card__body .price{color:#2B1A12;font-size:1.15rem;font-weight:800}
 .card__body .price .was{font-size:.88rem}
-.saving{color:#B85C38;font-weight:700;font-size:.95rem}
+.saving{color:#B85C38;font-weight:700;font-size:.9rem}
 .card__meta{font-size:.92rem;gap:8px}
 .dot{width:16px;height:16px}
-.card__actions{margin-top:8px}
-.card__actions .btn{min-height:56px;border-radius:99px;font-size:.98rem;line-height:1.25}
-.card__cta{flex:1 1 auto}
-.card__view{flex:0 0 auto;min-width:76px}
+.card__actions{margin-top:6px;gap:6px}
+.card__actions .btn{min-height:46px;border-radius:12px;font-size:.88rem;line-height:1.2;padding:10px 8px;text-align:center}
+.card__cta{flex:1 1 0;min-width:0}
+.card__view{flex:0 0 54px;min-width:0}
 .grid{gap:14px}
 @media (min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
 @media (min-width:1080px){.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}}
 @media (max-width:480px){
   .card{border-radius:20px}
-  .card__body{padding:14px 12px 16px}
+  .card__body{padding:12px 12px 14px}
   .card__name{font-size:1rem}
   .card__body .price{font-size:1.12rem}
-  .card__actions .btn{min-height:52px;font-size:.92rem}
+  .card__actions .btn{min-height:46px;font-size:.88rem}
 }
 
 /* Detalle, tal cual la captura: lámina de una columna, foto a sangre */
@@ -641,6 +641,14 @@ input,select,textarea{font:inherit;min-width:0}
 .pd{display:block}
 .pd__media{border-radius:0;aspect-ratio:1 / 1;min-height:0}
 .pd__media img{object-fit:cover;object-position:50% 30%}
+.pd__count{position:absolute;right:12px;bottom:12px;z-index:2;padding:.3em .7em;border-radius:99px;background:rgb(43 26 18 / .82);color:#FFF8F0;font-size:.8rem;font-weight:700;font-variant-numeric:tabular-nums}
+.pd__nav{position:absolute;top:50%;translate:0 -50%;z-index:2;display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:rgb(255 251 245 / .95);color:var(--heading);font-size:1.4rem;font-weight:700;cursor:pointer;box-shadow:0 8px 18px -10px rgb(0 0 0 / .4)}
+.pd__nav--prev{left:12px}
+.pd__nav--next{right:12px}
+.pd__thumbs{display:flex;gap:8px;padding:10px 0 0;overflow-x:auto}
+.pd__thumbs button{flex:none;width:64px;height:64px;padding:0;border:2px solid transparent;border-radius:12px;overflow:hidden;background:var(--frame);cursor:pointer}
+.pd__thumbs button[aria-current="true"]{border-color:var(--accent)}
+.pd__thumbs img{width:100%;height:100%;object-fit:cover;display:block}
 .pd__info{background:var(--bg);padding:22px 20px 28px;gap:16px}
 .pd__info .eyebrow{color:#B85C38}
 .pd__name{font-size:clamp(2rem,8vw,2.4rem)}
@@ -663,18 +671,21 @@ input,select,textarea{font:inherit;min-width:0}
 
 /* Formulario: inputs redondeados y tarjetas de opción, como en la captura */
 .order-panel{border-radius:28px}
-.order-panel input:not([type=checkbox]),.order-panel select,.order-panel textarea{border-radius:24px;min-height:56px;padding:14px 18px}
+.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{border-radius:24px;min-height:56px;padding:14px 18px}
 .opt-group{border:0;margin:20px 0 0;padding:0}
 .opt-group legend{padding:0;margin-bottom:10px;font-size:1rem;font-weight:600}
 .radio-pills{display:flex;flex-wrap:wrap;gap:8px}
 .opt-radio{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;border:1px solid var(--line);border-radius:99px;background:var(--surface);cursor:pointer;font-weight:600}
 .opt-radio:has(input:checked){border-color:var(--accent);background:var(--surface-2);color:var(--heading)}
-.opt-radio input{accent-color:var(--heading);width:18px;height:18px;margin:0}
+.order-panel label.opt-radio{display:inline-flex;align-items:center}
+.order-panel .opt-radio input,.order-panel .delivery-cards input{flex:none;width:20px;height:20px;min-height:0;padding:0}
+.opt-radio input{accent-color:var(--heading);flex:none;width:20px;height:20px;min-height:0;padding:0;margin:0}
 .delivery-cards{display:grid;gap:12px;margin-top:8px}
-.delivery-cards label{margin:0!important;display:block;border:1px solid var(--line);border-radius:24px;padding:16px 18px;background:var(--surface);cursor:pointer;transition:border-color .25s,background .25s}
+.delivery-cards label{margin:0!important;display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);border-radius:24px;padding:14px 16px;background:var(--surface);cursor:pointer;transition:border-color .25s,background .25s}
 .delivery-cards label:has(input:checked){border-color:var(--accent);background:var(--surface-2)}
-.delivery-cards input{accent-color:var(--heading);width:20px;height:20px}
-.delivery-cards strong{display:block;margin-top:6px;font-size:1.05rem}
+.delivery-cards input{flex:none;width:20px;height:20px;min-height:0;padding:0;margin:3px 0 0;accent-color:var(--heading)}
+.delivery-cards .delivery-text{display:block;min-width:0}
+.delivery-cards strong{display:block;font-size:1.05rem}
 .delivery-cards small{display:block;color:var(--ink-soft);font-weight:400}
 .order-total{display:flex;justify-content:space-between;align-items:baseline;gap:14px;border-top:1px dashed var(--line);padding-top:18px;margin:22px 0 0;font-size:1.12rem;font-weight:700;color:var(--heading)}
 .order-total strong{font-family:var(--font-display);font-size:1.5rem;font-weight:700}
@@ -1126,7 +1137,7 @@ input,select,textarea{font:inherit;min-width:0}
           ${p.enOferta && ahorro > 0 ? `<p class="saving">Ahorras ${precio(ahorro)}</p>` : ''}
           ${meta}
           <div class="card__actions">
-            <button class="btn card__cta" type="button" data-add="${esc(p.id)}" ${quedan < 1 ? 'disabled' : ''}>Agregar a la bolsa</button>
+            <button class="btn card__cta" type="button" data-add="${esc(p.id)}" ${quedan < 1 ? 'disabled' : ''}>Agregar</button>
             <button class="btn btn--ghost card__view" type="button" data-open="${esc(p.id)}">Ver</button>
           </div>
         </div>
@@ -1323,6 +1334,7 @@ input,select,textarea{font:inherit;min-width:0}
     sel = { pid, cid: color.id, vid: variante.id, cant: 1, photo: 0 };
     pd.innerHTML = `
       <div class="pd__media" id="pdMedia"></div>
+      <div class="pd__thumbs" id="pdThumbs"></div>
       <div class="pd__info">
         <div>
           <p class="eyebrow">${esc(CATEGORIAS[p.categoria])}${p.enOferta ? ' · Oferta' : ''}</p>
@@ -1360,8 +1372,13 @@ input,select,textarea{font:inherit;min-width:0}
       const images=c.imagenes?.length?c.imagenes:[c.imagen||p.imagen].filter(Boolean);
       sel.photo=Math.max(0,Math.min(sel.photo||0,Math.max(0,images.length-1)));
       const nueva=images[sel.photo]||'';
-      $('#pdMedia').innerHTML=media(nueva,`${p.nombre}${p.sinColor?'':', color '+c.nombre}`);
+      const total=images.length;
+      $('#pdMedia').innerHTML=media(nueva,`${p.nombre}${p.sinColor?'':', color '+c.nombre}`)
+        +(total?`<span class="pd__count" aria-live="polite">${sel.photo+1} / ${total}</span>`:'')
+        +(total>1?`<button type="button" class="pd__nav pd__nav--prev" data-photo="-1" aria-label="Foto anterior">\u2039</button><button type="button" class="pd__nav pd__nav--next" data-photo="1" aria-label="Foto siguiente">\u203a</button>`:'');
       marcarFotosListas($('#pdMedia'));
+      const th=$('#pdThumbs');
+      if(th) th.innerHTML=total>1?images.map((src,i)=>`<button type="button" data-thumb="${i}" aria-current="${i===sel.photo}" aria-label="Ver foto ${i+1} de ${total}"><img src="${esc(src)}" alt="" loading="lazy"></button>`).join(''):'';
     }
     if (!p.sinColor) {
       $('#pdColorLbl').textContent = 'Color — ' + c.nombre;
@@ -1373,7 +1390,7 @@ input,select,textarea{font:inherit;min-width:0}
     }
     $('#pdSizes').innerHTML = c.variantes.map(x =>
       `<label class="choice"><input type="radio" name="talla" value="${esc(x.id)}" ${x.id === v.id ? 'checked' : ''} ${x.stock < 1 ? 'disabled' : ''}>
-        <span>${esc(x.talla)}${x.stock < 1 ? ' · Agotada' : x.oferta ? ` · <b class="ends">\u2212${Math.round((1 - x.precio / x.normal) * 100)}\u202f%</b>` : ''}</span></label>`).join('');
+        <span>${esc(x.talla)}${x.stock < 1 ? ' · Agotada' : ''}</span></label>`).join('');
 
     const quedan = libres(v.id), mias = enBolsa(v.id);
     sel.cant = Math.max(1, Math.min(sel.cant, Math.max(quedan, 1)));
@@ -1412,6 +1429,10 @@ input,select,textarea{font:inherit;min-width:0}
     }
   });
   pd.addEventListener('click', e => {
+    const fotoBtn = e.target.closest('[data-photo]');
+    if (fotoBtn) { const p2 = (estado.catalogo || []).find(x => x.id === sel.pid); const c2 = p2.colores.find(x => x.id === sel.cid) || p2.colores[0]; const n = (c2.imagenes && c2.imagenes.length) || 1; sel.photo = (sel.photo + Number(fotoBtn.dataset.photo) + n) % n; return pintarDetalle(true); }
+    const thumbBtn = e.target.closest('[data-thumb]');
+    if (thumbBtn) { sel.photo = Number(thumbBtn.dataset.thumb); return pintarDetalle(true); }
     const paso = e.target.closest('[data-q]');
     if (paso) { sel.cant += +paso.dataset.q; return pintarDetalle(false); }
     if (e.target.closest('#pdAdd')) {
@@ -1621,8 +1642,8 @@ input,select,textarea{font:inherit;min-width:0}
       </div></fieldset>
       <label>Nombre o enlace de tu perfil de Messenger<input name="profile_name" maxlength="120"></label>
       <fieldset class="opt-group"><legend>¿Cómo recibes tu pedido?</legend><div class="delivery-cards">
-        <label><input type="radio" name="delivery_method" value="pickup" checked> <strong>Recoger en tienda</strong><small>Pasas por tu pedido cuando la tienda lo confirme.</small></label>
-        <label><input type="radio" name="delivery_method" value="shipping"> <strong>Envío a domicilio</strong><small>La tienda te confirma el costo de envío.</small></label>
+        <label><input type="radio" name="delivery_method" value="pickup" checked> <span class="delivery-text"><strong>Recoger en tienda</strong><small>Pasas por tu pedido cuando la tienda lo confirme.</small></span></label>
+        <label><input type="radio" name="delivery_method" value="shipping"> <span class="delivery-text"><strong>Envío a domicilio</strong><small>La tienda te confirma el costo de envío.</small></span></label>
       </div></fieldset>
       <div id="shippingFields" hidden><label>Localidad<input name="locality" maxlength="120" autocomplete="address-level2"></label><label>Dirección<input name="street" maxlength="250" autocomplete="street-address"></label><label>Referencia del domicilio<input name="reference" maxlength="500"></label></div>
       <label>Qué artículo deseas / referencia de publicación<textarea name="customer_note" maxlength="1000" ${social?'required':''}></textarea></label>

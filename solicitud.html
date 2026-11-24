@@ -367,7 +367,7 @@ img[data-foto].is-broken{display:none}
   *,*::before,*::after{animation:none !important;transition-duration:.01ms !important;transition-delay:0s !important}
   .js [data-rise],.js .hero__title .ln>span,.js .reveal,.js .step .step__n{opacity:1;translate:0 0;scale:1}
 }
-.order-panel{padding:clamp(20px,5vw,44px);max-width:640px;margin:auto}.order-panel h2{margin:18px 0}.order-panel p{margin:16px 0}.order-panel label{display:block;margin:20px 0}.order-panel input:not([type=checkbox]),.order-panel select,.order-panel textarea{display:block;width:100%;padding:14px;border:1px solid var(--line,#c9abb9);border-radius:16px;background:transparent;color:inherit;font:inherit;margin-top:8px}.order-panel select option{color:#351126;background:#fffaf3}.order-panel .consent{display:flex;gap:12px;align-items:flex-start}.order-panel .btn{margin:10px 0}.order-panel [hidden]{display:none!important}
+.order-panel{padding:clamp(20px,5vw,44px);max-width:640px;margin:auto}.order-panel h2{margin:18px 0}.order-panel p{margin:16px 0}.order-panel label{display:block;margin:20px 0}.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{display:block;width:100%;padding:14px;border:1px solid var(--line,#c9abb9);border-radius:16px;background:transparent;color:inherit;font:inherit;margin-top:8px}.order-panel select option{color:#351126;background:#fffaf3}.order-panel .consent{display:flex;gap:12px;align-items:flex-start}.order-panel .btn{margin:10px 0}.order-panel [hidden]{display:none!important}
 @media (min-width:768px) and (max-width:1023px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 /* Yuli 0.8.9: temas de temporada, siempre claros. Sin ofertas ficticias. */
@@ -442,7 +442,7 @@ input,select,textarea{font:inherit;min-width:0}
 .order-panel h3{font-family:var(--font-display);font-size:1.5rem;line-height:1.2;color:var(--heading)}
 .order-panel p,.order-panel li{overflow-wrap:anywhere}
 .order-panel label{font-size:1rem;font-weight:600;line-height:1.5}
-.order-panel input:not([type=checkbox]),.order-panel select,.order-panel textarea{
+.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{
   background:var(--bg);font-size:1rem;font-weight:400;min-height:48px;border-color:var(--line);
 }
 .order-panel textarea{min-height:100px;resize:vertical}
@@ -589,10 +589,11 @@ input,select,textarea{font:inherit;min-width:0}
 .sol .note{color:var(--ink-soft);font-size:.95rem}
 .sol .order-panel{max-width:640px}
 .delivery-cards{display:grid;gap:12px;margin-top:8px}
-.delivery-cards label{margin:0!important;display:block;border:1px solid var(--line);border-radius:24px;padding:16px 18px;background:var(--surface);cursor:pointer;transition:border-color .25s,background .25s}
+.delivery-cards label{margin:0!important;display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);border-radius:24px;padding:14px 16px;background:var(--surface);cursor:pointer;transition:border-color .25s,background .25s}
 .delivery-cards label:has(input:checked){border-color:var(--accent);background:var(--surface-2)}
-.delivery-cards input{accent-color:var(--heading);width:20px;height:20px}
-.delivery-cards strong{display:block;margin-top:6px;font-size:1.05rem}
+.delivery-cards input{flex:none;width:20px;height:20px;min-height:0;padding:0;margin:3px 0 0;accent-color:var(--heading)}
+.delivery-cards .delivery-text{display:block;min-width:0}
+.delivery-cards strong{display:block;font-size:1.05rem}
 .delivery-cards small{display:block;color:var(--ink-soft);font-weight:400}
 .sol .receipt{text-align:left}
 .sol .receipt .btn{margin:10px 0}
@@ -645,8 +646,8 @@ input,select,textarea{font:inherit;min-width:0}
         <fieldset style="border:0;margin:20px 0;padding:0">
           <legend style="font-weight:600">¿Cómo recibes tu pedido? *</legend>
           <div class="delivery-cards">
-            <label><input type="radio" name="delivery_method" value="pickup" checked> <strong>Recoger en tienda</strong><small>Pasas por tu pedido cuando la tienda lo confirme.</small></label>
-            <label><input type="radio" name="delivery_method" value="shipping"> <strong>Envío a domicilio</strong><small>La tienda te confirma el costo de envío.</small></label>
+            <label><input type="radio" name="delivery_method" value="pickup" checked> <span class="delivery-text"><strong>Recoger en tienda</strong><small>Pasas por tu pedido cuando la tienda lo confirme.</small></span></label>
+            <label><input type="radio" name="delivery_method" value="shipping"> <span class="delivery-text"><strong>Envío a domicilio</strong><small>La tienda te confirma el costo de envío.</small></span></label>
           </div>
         </fieldset>
         <div id="shippingFields" hidden>
