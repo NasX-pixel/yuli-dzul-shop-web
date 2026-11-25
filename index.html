@@ -15,20 +15,20 @@
 <link rel="preconnect" href="https://xrhbtkwwmfdhisuiexpf.supabase.co" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
 <style>
 /* ───────── Tokens ───────── */
 :root{
   color-scheme:light;
-  --bg:#FFF7EE; --wash:#F6E3D3; --surface:#FFFBF5; --surface-2:#F3E0CC; --frame:#F5E6D6;
-  --ink:#33241C; --ink-soft:#7A6A5E; --heading:#7C3A1E; --accent:#C06A3E; --gold:#B98A4A;
+  --bg:#FBF2E1; --wash:#F6E3D3; --surface:#FFFBF5; --surface-2:#F3E0CC; --frame:#F5E6D6;
+  --ink:#33241C; --ink-soft:#7A6A5E; --heading:#7C3A1E; --accent:#B4652F; --terra:#B4652F; --terra-dark:#96501F; --gold:#B98A4A;
   --line:#E8D5C2; --ring:#D9B48F; --band:#3B2318; --band-2:#4A2C1C; --on-band:#FFF3E6;
-  --btn-solid:#7C3A1E; --btn-a:#8A4423; --btn-b:#C06A3E; --on-btn:#FFF8F0; --chip-on:#C06A3E;
+  --btn-solid:#7C3A1E; --btn-a:#8A4423; --btn-b:#B4652F; --on-btn:#FFF8F0; --chip-on:#B4652F;
   --steps-b:#F7EAD8; --shadow:74 24 46; --backdrop:rgb(70 44 56 / .58);
   --sw-vino:#7C3A1E; --sw-malva:#8A4A66; --sw-rosa:#EBD3DE;
 
-  --font-display:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
-  --font-body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-display:"Playfair Display",Georgia,serif;
+  --font-body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
   --ease:cubic-bezier(.22,.8,.26,1);
   --spring:cubic-bezier(.3,1.3,.5,1);
   --pad:clamp(18px,4.6vw,56px);
@@ -391,7 +391,7 @@ img[data-foto].is-broken{display:none}
 /* Terra · Boutique cálida — ajustes visuales, sin cambios en la tienda */
 :root{
   --shadow:68 39 23; --backdrop:rgb(43 27 19 / .64);
-  --accent:#9A4B2B; --gold:#876334; --chip-on:#96502F;
+  --accent:#B4652F; --gold:#876334; --chip-on:#96502F;
   --sw-malva:#A66C51; --sw-rosa:#E9CBB0;
 }
 
@@ -546,7 +546,7 @@ input,select,textarea{font:inherit;min-width:0}
 @keyframes archIn{from{opacity:0;translate:0 26px}}
 .fan__spark{display:none}
 .fan__product{position:relative;left:auto;top:auto;width:100%;margin:0;padding:0;border:0;background:transparent;box-shadow:none;rotate:0deg !important;translate:0 0 !important}
-.fan__product .media{border-radius:999px 999px 28px 28px;aspect-ratio:4 / 4.4;box-shadow:0 36px 60px -30px rgb(var(--shadow) / .6)}
+.fan__product .media{border-radius:999px 999px 28px 28px;aspect-ratio:922 / 680;box-shadow:0 36px 60px -30px rgb(var(--shadow) / .6)}
 .fan__product .media img{object-fit:cover;object-position:50% 30%}
 .fan__product .row,.fan__product .tag{display:none}
 @media (hover:hover){.fan__product:hover img{scale:1.04}}
@@ -559,7 +559,7 @@ input,select,textarea{font:inherit;min-width:0}
 
 /* Tarjetas debajo del arco: A tu eleccion / Recoge o recibe */
 .hero-cards{order:4;grid-column:1 / -1;display:grid;gap:12px}
-@media (min-width:700px){.hero-cards{grid-template-columns:1fr 1fr}}
+@media (min-width:700px){.hero-cards{grid-template-columns:1fr 1fr 1fr}}
 .hero-card{padding:20px 22px;border:1px solid var(--line);border-radius:24px;background:var(--surface-2)}
 .hero-card h3{font-size:1.12rem;line-height:1.25;color:var(--heading)}
 .hero-card p{margin-top:6px;color:var(--ink-soft)}
@@ -609,15 +609,15 @@ input,select,textarea{font:inherit;min-width:0}
 .tools__extra[hidden]{display:none}
 
 /* Tarjeta, tal cual la captura: foto a sangre, sin borde ni padding */
-.card{padding:0;border:0;border-radius:24px;background:var(--surface);box-shadow:0 18px 34px -24px rgb(var(--shadow) / .6);overflow:hidden}
+.card{padding:0;border:0;border-radius:28px;background:var(--surface);box-shadow:0 18px 34px -24px rgb(var(--shadow) / .6);overflow:hidden}
 .card__media{border-radius:0;aspect-ratio:1 / 1}
-.card__media .deal{top:12px;left:12px;bottom:auto;right:auto;max-width:calc(100% - 24px);padding:.5em .9em;font-size:.78rem;background:#B85C38;color:#FFF8F0;box-shadow:0 8px 16px -10px rgb(120 80 30 / .7)}
+.card__media .deal{top:12px;left:12px;bottom:auto;right:auto;max-width:calc(100% - 24px);padding:.5em .9em;font-size:.78rem;background:var(--accent);color:#FFF8F0;box-shadow:0 8px 16px -10px rgb(120 80 30 / .7)}
 .tag{left:12px;bottom:12px;top:auto;padding:.4em .85em;border-radius:99px;background:rgb(255 251 245 / .95);color:var(--heading);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 6px 14px -8px rgb(var(--shadow) / .5)}
 .card__body{padding:12px 12px 14px;gap:5px}
-.card__name{font-family:var(--font-body);font-weight:800;font-size:1rem;line-height:1.25;color:#2B1A12}
-.card__body .price{color:#2B1A12;font-size:1.15rem;font-weight:800}
+.card__name{font-family:var(--font-body);font-weight:900;font-size:17.5px;line-height:1.25;color:#2B1A12}
+.card__body .price{color:#2B1A12;font-size:25px;font-weight:900}
 .card__body .price .was{font-size:.88rem}
-.saving{color:#B85C38;font-weight:700;font-size:.9rem}
+.saving{color:var(--accent);font-weight:700;font-size:.9rem}
 .card__meta{font-size:.92rem;gap:8px}
 .dot{width:16px;height:16px}
 .card__actions{margin-top:6px;gap:6px}
@@ -628,10 +628,10 @@ input,select,textarea{font:inherit;min-width:0}
 @media (min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
 @media (min-width:1080px){.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}}
 @media (max-width:480px){
-  .card{border-radius:20px}
+  .card{border-radius:28px}
   .card__body{padding:12px 12px 14px}
-  .card__name{font-size:1rem}
-  .card__body .price{font-size:1.12rem}
+  .card__name{font-size:17.5px}
+  .card__body .price{font-size:25px}
   .card__actions .btn{min-height:46px;font-size:.88rem}
 }
 
@@ -654,11 +654,11 @@ input,select,textarea{font:inherit;min-width:0}
 .pd__thumbs button[aria-current="true"]{border-color:var(--accent)}
 .pd__thumbs img{width:100%;height:100%;object-fit:cover;display:block}
 .pd__info{background:var(--bg);padding:22px 20px 28px;gap:16px}
-.pd__info .eyebrow{color:#B85C38}
+.pd__info .eyebrow{color:var(--accent)}
 .pd__name{font-size:clamp(2rem,8vw,2.4rem)}
 .pd__price{color:#2B1A12;font-size:1.45rem;font-weight:800}
 .pd__price .was{font-size:.85rem}
-.pd__price .saving{font-size:1.05rem;color:#B85C38}
+.pd__price .saving{font-size:1.05rem;color:var(--accent)}
 .pd__desc{font-size:.98rem}
 .pd legend,.pd .lbl{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
 .choice span{min-height:48px}
@@ -763,10 +763,14 @@ input,select,textarea{font:inherit;min-width:0}
           <h3>Recoge o recibe</h3>
           <p>Pasa por tu pedido a tienda o solicita envío a domicilio.</p>
         </div>
+        <div class="hero-card">
+          <h3>Atención personal</h3>
+          <p>Te confirmamos tu pedido y resolvemos tus dudas de forma personal.</p>
+        </div>
       </div>
     </section>
 
-    <section class="catalog" id="coleccion" aria-labelledby="catTitle">
+    <section class="catalog" id="coleccion" aria-label="Colección">
       <div class="tools reveal" style="--d:.08s">
         <button class="chip chip--only" id="onlyOffers" type="button" aria-pressed="false">Solo ofertas</button>
         <label class="sortrow"><span>Ordenar</span><span class="sortselect"><select id="sortSelect" aria-label="Ordenar"><option value="destacados">Relevancia</option><option value="menor">Menor precio</option><option value="mayor">Mayor precio</option></select><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></span></label>
@@ -1383,6 +1387,7 @@ input,select,textarea{font:inherit;min-width:0}
       const nueva=images[sel.photo]||'';
       const total=images.length;
       $('#pdMedia').innerHTML=media(nueva,`${p.nombre}${p.sinColor?'':', color '+c.nombre}`)
+        +(nueva?`<button type="button" class="pd__full" data-full>Ver completa</button>`:'')
         +(total?`<span class="pd__count" aria-live="polite">${sel.photo+1} / ${total}</span>`:'')
         +(total>1?`<button type="button" class="pd__nav pd__nav--prev" data-photo="-1" aria-label="Foto anterior">\u2039</button><button type="button" class="pd__nav pd__nav--next" data-photo="1" aria-label="Foto siguiente">\u203a</button>`:'');
       marcarFotosListas($('#pdMedia'));
