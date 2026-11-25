@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://xrhbtkwwmfdhisuiexpf.supabase.co" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
 <style>
 /* ───────── Tokens ───────── */
 :root{
@@ -366,7 +366,6 @@ img[data-foto].is-broken{display:none}
 [data-season="hot-sale"] .season-banner{background:radial-gradient(ellipse at 90% 130%,#f3b98b 0 18%,transparent 19% 28%,#f5c9a7 29% 40%,transparent 41%),var(--wash)}
 [data-season="black-friday"] .season-banner{border-block:3px double var(--gold);letter-spacing:.1em;background:linear-gradient(115deg,transparent 75%,#decbaa55 75% 78%,transparent 78%),var(--wash)}
 [data-season="navidad"] .season-banner{background:radial-gradient(circle at 12% 35%,#c8a66d 0 2px,transparent 3px),radial-gradient(circle at 83% 65%,#c8a66d 0 2px,transparent 3px),var(--wash)}
-[data-season="san-valentin"] .season-banner:after{content:"♡";position:absolute;right:8%;font-size:5rem;line-height:1;color:#b66b8733;z-index:-1}
 [data-season="dia-madres"] .season-banner:before{content:"";position:absolute;inset:-40px 8% -40px auto;width:90px;border:10px double #be928a55;border-radius:50%;transform:rotate(30deg);z-index:-1}
 .store-location{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border:1px solid currentColor;border-radius:16px;padding:12px 18px;color:inherit;text-decoration:none;margin-top:14px;font-weight:600}
 .web-visits{display:block;font-variant-numeric:tabular-nums}
@@ -397,7 +396,7 @@ img[data-foto].is-broken{display:none}
 
 
 html,body{max-width:100%;overflow-x:clip}
-body{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+body{padding-bottom:env(safe-area-inset-bottom,0px))}
 button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}
 button,a{touch-action:manipulation}
 input,select,textarea{font:inherit;min-width:0}
@@ -581,7 +580,7 @@ input,select,textarea{font:inherit;min-width:0}
 <style id="terra-v3">
 /* ───────── Terra v3 · Layout del interactivo, de verdad ─────────
    Cambios de LAYOUT (no de color) respecto a la v2 anterior:
-   - Hero sin pill extra; checks con ✓; botones lado a lado.
+   - Hero sin pill extra; checks con SVG i-check; botones lado a lado.
    - Herramientas: Solo ofertas + Ordenar/Relevancia (select nativo);
      buscar y categorías quedan en un desplegable.
    - Tarjeta: sin padding ni borde, foto a sangre, pill de oferta
@@ -694,6 +693,82 @@ input,select,textarea{font:inherit;min-width:0}
 .order-total{display:flex;justify-content:space-between;align-items:baseline;gap:14px;border-top:1px dashed var(--line);padding-top:18px;margin:22px 0 0;font-size:1.12rem;font-weight:700;color:var(--heading)}
 .order-total strong{font-family:var(--font-display);font-size:1.5rem;font-weight:700}
 </style>
+<style id="terra-v3-2">
+/* ───────── Terra v3.2 · Espaciado, tarjeta, bold e iconos, tal cual el interactivo ───────── */
+body{padding-bottom:env(safe-area-inset-bottom,0px)}
+
+/* (A) Espaciado */
+.hero{padding:22px var(--gutter) 6px;gap:18px}
+.hero__title{font-size:2.4rem;font-weight:700}
+.header__bar{padding:14px var(--gutter) 12px;-webkit-backdrop-filter:none;backdrop-filter:none;border:0;border-bottom:1px solid var(--line);border-radius:0}
+.catalog{padding-top:30px}
+.tools{gap:12px;margin-top:16px}
+.steps{margin:26px var(--gutter) 0;padding:26px}
+.footer{margin-top:26px;padding:38px var(--gutter) 46px;border-radius:0;background:transparent;color:var(--ink)}
+.footer .logo{color:var(--heading);font-size:24px;font-weight:700}
+.footer__say{color:var(--ink-soft)}
+.footer h3{color:var(--ink-soft);font-weight:800}
+.footer li button{color:var(--ink);font-weight:800}
+.footer__note{color:var(--ink-soft)}
+.footer__top{gap:24px}
+.footer__base{margin-top:22px;padding-top:16px;border-top-color:var(--line);color:var(--ink-soft)}
+.pd__media{aspect-ratio:16/10.4;min-height:0}
+.pd__info{padding:24px 22px 0}
+.bag__body{margin-top:14px;gap:12px}
+.line{padding:12px 0}
+.opt-group{margin-top:14px}
+
+/* (B) Tarjeta */
+.card__media{aspect-ratio:1/1.06}
+.card__body{padding:16px 16px 18px;gap:7px}
+.card__body .price{flex-wrap:nowrap}
+.card__body .price .was{font-size:17px}
+.card__name .card__open{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:left}
+
+/* (C) Bold, tal cual el interactivo */
+.catalog__title{font-weight:700}
+.steps__title{font-weight:700}
+.panel__title{font-weight:700;font-size:29px}
+.pd__name{font-weight:700;font-size:40px}
+@media (min-width:760px){.pd__name{font-size:46px}}
+.pd__price{font-weight:900;font-size:29px}
+.btn{font-weight:900}
+.bagbtn{font-weight:800}
+.chip,.chip--only{font-weight:800}
+.sortselect select{font-weight:800}
+.sortbtn{font-weight:800}
+.choice input:checked+span{font-weight:800}
+.opt-radio{font-weight:800}
+.delivery-cards strong{font-weight:900}
+.line__name{font-family:var(--font-body);font-weight:900}
+.total strong{font-weight:900}
+.tag{font-weight:900}
+.deal{font-weight:900}
+.saving{font-weight:900}
+.qty output{font-weight:900;font-size:18px}
+.backbtn{font-weight:900;font-size:16px}
+.eyebrow{font-weight:900}
+.pd legend,.pd .lbl{font-weight:900}
+.stock{font-weight:700}
+.count,.fine{font-weight:700}
+.order-panel h2{font-size:19px;font-weight:900}
+
+/* (D) Iconos en vez de texto */
+.trust .tick{width:1.05em;height:1.05em}
+.pd__nav{font-size:1rem}
+.pd__nav--prev .icon{rotate:90deg}
+.pd__nav--next .icon{rotate:-90deg}
+.full-photo button{display:inline-flex;align-items:center;gap:6px}
+.season-mark{display:inline-flex;align-items:center}
+.season-mark .icon{width:1.6rem;height:1.6rem}
+[data-season="san-valentin"] .season-banner::after{content:none}
+.receipt-check{display:grid;place-items:center;width:74px;height:74px;border-radius:50%;background:var(--accent);color:#FFF8F0;margin-bottom:14px}
+.receipt-check .icon{width:34px;height:34px;stroke-width:2.4}
+
+/* (E) Otros */
+.fan__product .media{border-radius:290px 290px 26px 26px}
+#pdAdd{margin-top:30px}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -712,6 +787,8 @@ input,select,textarea{font:inherit;min-width:0}
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.500 4.500 4.500L19 7"/></symbol>
   <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 20V5M6.500 10.500 12 5l5.500 5.500"/></symbol>
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15M6.500 13.500 12 19l5.500-5.500"/></symbol>
+  <symbol id="i-dot-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-infinity" viewBox="0 0 24 24"><path d="M6.5 15.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5c3 0 4 3.5 5.5 3.5 1.5 0 2.5-3.5 5.5-3.5 1.9 0 3.5 1.6 3.5 3.5s-1.6 3.5-3.5 3.5c-3 0-4-3.5-5.5-3.5-1.5 0-2.5 3.5-5.5 3.5z"/></symbol>
 </svg>
 
 <div class="page">
@@ -749,9 +826,9 @@ input,select,textarea{font:inherit;min-width:0}
       </div>
 
       <ul class="trust" data-rise style="--i:8">
-        <li><span class="tick" aria-hidden="true">✓</span>Colores y tallas a tu elección</li>
-        <li><span class="tick" aria-hidden="true">✓</span>Recoge o solicita envío</li>
-        <li><span class="tick" aria-hidden="true">✓</span>Atención personal</li>
+        <li><svg class="icon tick" aria-hidden="true"><use href="#i-check"/></svg>Colores y tallas a tu elección</li>
+        <li><svg class="icon tick" aria-hidden="true"><use href="#i-check"/></svg>Recoge o solicita envío</li>
+        <li><svg class="icon tick" aria-hidden="true"><use href="#i-check"/></svg>Atención personal</li>
       </ul>
 
       <div class="hero-cards">
@@ -860,7 +937,7 @@ input,select,textarea{font:inherit;min-width:0}
 </dialog>
 
 <dialog class="full-photo" id="dlgPhoto" aria-label="Foto completa">
-  <button type="button" data-close-photo>&#8249; Volver</button>
+  <button type="button" data-close-photo><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>Volver</button>
   <img id="photoFull" src="" alt="Foto completa del producto">
 </dialog>
 
@@ -1389,7 +1466,7 @@ input,select,textarea{font:inherit;min-width:0}
       $('#pdMedia').innerHTML=media(nueva,`${p.nombre}${p.sinColor?'':', color '+c.nombre}`)
         +(nueva?`<button type="button" class="pd__full" data-full>Ver completa</button>`:'')
         +(total?`<span class="pd__count" aria-live="polite">${sel.photo+1} / ${total}</span>`:'')
-        +(total>1?`<button type="button" class="pd__nav pd__nav--prev" data-photo="-1" aria-label="Foto anterior">\u2039</button><button type="button" class="pd__nav pd__nav--next" data-photo="1" aria-label="Foto siguiente">\u203a</button>`:'');
+        +(total>1?`<button type="button" class="pd__nav pd__nav--prev" data-photo="-1" aria-label="Foto anterior"><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button><button type="button" class="pd__nav pd__nav--next" data-photo="1" aria-label="Foto siguiente"><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button>`:'');
       marcarFotosListas($('#pdMedia'));
       const th=$('#pdThumbs');
       if(th) th.innerHTML=total>1?images.map((src,i)=>`<button type="button" data-thumb="${i}" aria-current="${i===sel.photo}" aria-label="Ver foto ${i+1} de ${total}"><img src="${esc(src)}" alt="" loading="lazy"></button>`).join(''):'';
@@ -1645,7 +1722,7 @@ input,select,textarea{font:inherit;min-width:0}
   let sendingOrder=false, captchaWidget=null, captchaProof='', pendingRequest=null;
   try{pendingRequest=JSON.parse(sessionStorage.getItem(pendingKey)||'null');}catch{}
   const od=document.createElement('dialog');od.className='modal';od.setAttribute('aria-label','Solicitud y seguimiento de pedido');
-  od.innerHTML='<div class="order-panel"><button type="button" class="linkbtn backbtn" data-order-close>‹ Volver</button><div id="orderContent"></div></div>';
+  od.innerHTML='<div class="order-panel"><button type="button" class="linkbtn backbtn" data-order-close><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>Volver</button><div id="orderContent"></div></div>';
   document.body.append(od);
   od.addEventListener('cancel',e=>{e.preventDefault();if(!sendingOrder)cerrar(od);});
   $('[data-order-close]',od).onclick=()=>{if(!sendingOrder)cerrar(od);};
@@ -1669,7 +1746,7 @@ input,select,textarea{font:inherit;min-width:0}
     const data=await r.json();if(!r.ok){const e=Error(data.error||'No se pudo completar.');e.definitive=r.status===422;throw e;}return data;
   }
   function receipt(number,token){
-    oc.innerHTML=`<p class="eyebrow">Solicitud recibida</p><h2>Pedido #${esc(number)}</h2><p>La tienda revisará tu solicitud. Todavía no reserva unidades ni confirma la entrega.</p><p>Guarda este enlace privado para consultar el estado durante 90 días. Quien tenga el enlace podrá ver el pedido.</p><a class="btn" href="${esc(seguimientoURL(token))}">Ver seguimiento</a><button class="btn btn--ghost" id="copyTracking">Copiar enlace privado</button><p id="orderStatus" role="status"></p>`;
+    oc.innerHTML=`<span class="receipt-check" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span><p class="eyebrow">Solicitud recibida</p><h2>Pedido #${esc(number)}</h2><p>La tienda revisará tu solicitud. Todavía no reserva unidades ni confirma la entrega.</p><p>Guarda este enlace privado para consultar el estado durante 90 días. Quien tenga el enlace podrá ver el pedido.</p><a class="btn" href="${esc(seguimientoURL(token))}">Ver seguimiento</a><button class="btn btn--ghost" id="copyTracking">Copiar enlace privado</button><p id="orderStatus" role="status"></p>`;
     $('#copyTracking',od).onclick=async()=>{try{await navigator.clipboard.writeText(seguimientoURL(token));$('#orderStatus',od).textContent='Enlace copiado.';}catch{$('#orderStatus',od).textContent=seguimientoURL(token);}};
   }
   async function openOrder(social=false){
@@ -1772,9 +1849,9 @@ input,select,textarea{font:inherit;min-width:0}
 
 /* Apariencia y visitas públicas. No lee ni escribe precios, bolsa ni pedidos. */
 (()=>{
- const themes={'normal':['',''],'buen-fin':['Buen Fin','◇'],'hot-sale':['Hot Sale','◒'],'black-friday':['Black Friday','✦'],'navidad':['Navidad','✧'],'san-valentin':['San Valentín','♡'],'dia-madres':['Día de las Madres','∞']};
+ const themes={'normal':['',''],'buen-fin':['Buen Fin','i-diamond'],'hot-sale':['Hot Sale','i-dot-circle'],'black-friday':['Black Friday','i-spark'],'navidad':['Navidad','i-spark'],'san-valentin':['San Valentín','i-heart'],'dia-madres':['Día de las Madres','i-infinity']};
  const root=document.documentElement, counter=document.getElementById('webVisits');
- function apply(theme){if(!Object.hasOwn(themes,theme))return;root.dataset.season=theme;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';el.querySelector('[data-season-label]').textContent=themes[theme][0];el.querySelector('[data-season-mark]').textContent=themes[theme][1];});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';}
+ function apply(theme){if(!Object.hasOwn(themes,theme))return;root.dataset.season=theme;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';el.querySelector('[data-season-label]').textContent=themes[theme][0];el.querySelector('[data-season-mark]').innerHTML=themes[theme][1]?'<svg class="icon" aria-hidden="true"><use href="#'+themes[theme][1]+'"/></svg>':'';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';}
  try{localStorage.removeItem('yuli-web-theme-manual-v1');}catch{} /* Eleccion manual vieja: se borra, la tematica la manda solo la tienda. */
  try{apply(localStorage.getItem('yuli-web-theme-v1')||'normal');}catch{apply('normal');}
  let busy=false;
