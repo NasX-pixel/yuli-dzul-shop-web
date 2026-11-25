@@ -188,9 +188,6 @@ h1,h2,h3,p{margin:0}
   .card:hover{translate:0 -5px;border-color:color-mix(in srgb,var(--accent) 35%,var(--line));box-shadow:0 30px 44px -30px rgb(var(--shadow) / .6)}
   .card:hover .card__media img{scale:1.06}
 }
-.card--soon{align-items:center;justify-content:center;gap:10px;min-height:220px;padding:24px 18px;border-style:dashed;background:transparent;text-align:center;color:var(--ink-soft)}
-.card--soon .spark{font-size:1.4rem;color:var(--gold)}
-.card--soon strong{font-family:var(--font-display);font-weight:500;font-size:1.25rem;line-height:1.2;color:var(--heading)}
 .empty{grid-column:1 / -1;display:grid;justify-items:center;gap:12px;padding:52px 22px;border:1px dashed var(--line);border-radius:30px;text-align:center;animation:cardIn .6s var(--ease) backwards}
 .empty h3{font-family:var(--font-display);font-weight:500;font-size:1.6rem;color:var(--heading)}
 .empty p{color:var(--ink-soft);max-width:36ch}
@@ -396,7 +393,7 @@ img[data-foto].is-broken{display:none}
 
 
 html,body{max-width:100%;overflow-x:clip}
-body{padding-bottom:env(safe-area-inset-bottom,0px))}
+body{padding-bottom:env(safe-area-inset-bottom,0px)}
 button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}
 button,a{touch-action:manipulation}
 input,select,textarea{font:inherit;min-width:0}
@@ -636,9 +633,9 @@ input,select,textarea{font:inherit;min-width:0}
 
 /* Detalle, tal cual la captura: lámina de una columna, foto a sangre */
 .modal#dlgProduct{padding:0}
-.panel--product{width:min(100%,620px);max-width:100%;padding:0;border-radius:28px;overflow-y:auto;overflow-x:hidden;background:var(--bg)}
+.panel--product{width:min(100%,620px);max-width:100%;padding:12px;border-radius:28px;overflow-y:auto;overflow-x:hidden;background:var(--bg)}
 .pd{display:block}
-.pd__media{border-radius:0;aspect-ratio:1 / 1;min-height:0;overflow:hidden;touch-action:pan-y;cursor:zoom-in}
+.pd__media{border-radius:18px;aspect-ratio:1 / 1;min-height:0;overflow:hidden;touch-action:pan-y;cursor:zoom-in}
 .pd__full{position:absolute;left:12px;bottom:12px;z-index:2;padding:.35em .8em;border:0;border-radius:99px;background:rgb(255 251 245 / .95);color:var(--heading);font-size:.8rem;font-weight:600;cursor:pointer;box-shadow:0 8px 18px -10px rgb(0 0 0 / .4)}
 .pd__media img{object-fit:cover;object-position:50% 30%;animation:pdFoto .35s ease}
 @keyframes pdFoto{from{opacity:0;transform:translateX(24px) scale(1.02)}to{opacity:1;transform:translateX(0) scale(1)}}
@@ -661,7 +658,7 @@ input,select,textarea{font:inherit;min-width:0}
 .pd__desc{font-size:.98rem}
 .pd legend,.pd .lbl{font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
 .choice span{min-height:48px}
-.panel--product .close{position:absolute;left:14px;top:14px;z-index:3;background:rgb(255 251 245 / .96);box-shadow:0 8px 18px -10px rgb(0 0 0 / .4)}
+.panel--product .close{position:absolute;left:24px;top:24px;z-index:3;background:rgb(255 251 245 / .96);box-shadow:0 8px 18px -10px rgb(0 0 0 / .4)}
 @media (max-width:699px){
   .modal#dlgProduct{padding:0}
   .panel--product{width:100%;max-height:100dvh;border-radius:0}
@@ -820,7 +817,6 @@ strong,b{font-weight:600}
 .card__meta{font-size:.85rem}
 .card__actions .btn{font-size:.85rem;min-height:44px}
 .card__view{flex-basis:50px}
-.card--soon strong{font-size:1.05rem;font-weight:500}
 .empty h3{font-size:1.25rem;font-weight:500}
 
 /* Ofertas en verde hoja: se ven a primera vista */
@@ -916,6 +912,37 @@ strong,b{font-weight:600}
 .chip--only{font-size:1rem;min-height:48px}
 .sortselect select{min-height:48px}
 </style>
+<style id="terra-v3-5">
+/* Terra v3.5 · filtros que no abrían, foto del detalle con aire, sin tarjeta de relleno, hueco hero→filtros estable */
+
+/* (B) CAUSA RAÍZ DE LOS FILTROS: la regla v3.3 ".modal#dlgProduct{display:flex}" no llevaba
+   [open], así que el diálogo cerrado quedaba como un velo invisible a pantalla completa
+   (position:fixed; inset:0; opacity:0) tapando "Solo ofertas", "Ordenar" y "Buscar y categorías".
+   Los botones de la tarjeta sí llegaban porque tienen z-index:1. Arreglo de raíz: el diálogo
+   solo se muestra cuando está abierto. */
+.modal#dlgProduct{display:none}
+.modal#dlgProduct[open]{display:flex;align-items:center;justify-content:center}
+/* Seguridad: ningún diálogo cerrado vuelve a pintarse, aunque otra regla lo pida sin [open]. */
+.modal:not([open]),.full-photo:not([open]){display:none}
+/* Un diálogo que se está desvaneciendo nunca se traga toques: durante los 270 ms del cierre
+   los toques pasan a la página (filtros incluidos). */
+.modal:not(.is-in),.full-photo:not(.is-in){pointer-events:none}
+
+/* (A) Detalle con aire por dentro: el panel ya lleva 12 px de raíz (bloque v3.2 corregido);
+   en tableta/PC 14 px. La información se alinea con la foto (12 + 10 = 22 px desde el borde). */
+@media (min-width:700px){.panel--product{padding:14px}}
+.pd__info{padding-left:10px;padding-right:10px}
+/* Barra de scroll delgada dentro del pop up (la franja beige del borde derecho). */
+.panel--product{scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.panel--product::-webkit-scrollbar{width:6px}
+.panel--product::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.panel--product::-webkit-scrollbar-track{background:transparent}
+
+/* (D) Hueco hero→filtros estable en ~52 px: el ".reveal" bajaba .tools 26 px hasta entrar en
+   pantalla, así que el hueco se veía de ~78 px y luego saltaba a 52 px. Sin el desplazamiento,
+   solo se desvanece y el hueco queda fijo en 52 px. */
+.tools.reveal{translate:0 0}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1007,8 +1034,8 @@ strong,b{font-weight:600}
             <button class="search__clear" id="qClear" type="button" aria-label="Borrar búsqueda" hidden><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
           </div>
           <div class="chips" id="chips" role="group" aria-label="Categorías"></div>
-          <p class="count" id="count" aria-live="polite"></p>
         </div>
+        <p class="count" id="count" aria-live="polite"></p>
       </div>
 
       <div class="grid" id="grid"></div>
@@ -1426,23 +1453,18 @@ strong,b{font-weight:600}
     if (!estado.catalogo) return;
     grid.removeAttribute('aria-busy');
     const lista = listaVisible();
-    const sinFiltros = estado.cat === 'todo' && !estado.q;
     let html = lista.map(tarjeta).join('');
 
     if (!estado.catalogo.length) {
-      html = `<div class="empty"><h3>La colección se está preparando</h3><p>Muy pronto verás aquí ropa, bisutería y artículos de temporada.</p></div>`;
+      html = `<div class="empty"><h3>La colección se está preparando</h3><p>Pronto verás aquí ropa, bisutería y artículos de temporada.</p></div>`;
     } else if (!lista.length) {
       const donde = estado.q
         ? `No encontramos artículos para “${esc(estado.q)}”${estado.cat !== 'todo' ? ' en ' + ETIQUETAS[estado.cat] : ''}.`
         : estado.cat === 'ofertas' ? 'Por ahora no hay ofertas activas.' : `Aún no hay artículos en ${CATEGORIAS[estado.cat]}.`;
       html = `<div class="empty">
-          <h3>${estado.q ? 'Sin coincidencias' : 'Muy pronto'}</h3>
+          <h3>${estado.q ? 'Sin coincidencias' : 'Sin artículos por ahora'}</h3>
           <p>${donde} Mira todo lo que hay en la tienda.</p>
           <button class="btn btn--ghost" type="button" data-reset>Ver todo</button>
-        </div>`;
-    } else if (sinFiltros && lista.length < 4) {
-      html += `<div class="card card--soon" style="--i:${lista.length}">
-          ${ico('spark', 'spark')}<strong>Muy pronto, más artículos</strong><span>Ropa, bisutería y temporada.</span>
         </div>`;
     }
     grid.innerHTML = html;

@@ -212,9 +212,6 @@ h1,h2,h3,p{margin:0}
   .card:hover .card__media img{scale:1.06}
   .card__add:not([disabled]):hover{background:var(--btn-solid);color:var(--on-btn);rotate:90deg}
 }
-.card--soon{align-items:center;justify-content:center;gap:10px;min-height:220px;padding:24px 18px;border-style:dashed;background:transparent;text-align:center;color:var(--ink-soft)}
-.card--soon .spark{font-size:1.4rem;color:var(--gold)}
-.card--soon strong{font-family:var(--font-display);font-weight:500;font-size:1.25rem;line-height:1.2;color:var(--heading)}
 .empty{grid-column:1 / -1;display:grid;justify-items:center;gap:12px;padding:52px 22px;border:1px dashed var(--line);border-radius:30px;text-align:center;animation:cardIn .6s var(--ease) backwards}
 .empty h3{font-family:var(--font-display);font-weight:500;font-size:1.6rem;color:var(--heading)}
 .empty p{color:var(--ink-soft);max-width:36ch}
@@ -410,7 +407,7 @@ img[data-foto].is-broken{display:none}
 
 
 html,body{max-width:100%;overflow-x:clip}
-body{padding-bottom:env(safe-area-inset-bottom,0px))}
+body{padding-bottom:env(safe-area-inset-bottom,0px)}
 button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}
 button,a{touch-action:manipulation}
 input,select,textarea{font:inherit;min-width:0}
