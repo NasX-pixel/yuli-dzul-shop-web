@@ -687,7 +687,7 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
 
 <style id="terra-v3-3">
 /* Terra v3.3 · letra pequeña sin bold, cabecera opaca, ofertas en verde hoja */
-:root{--deal:#3F6B3A;--deal-soft:#E9F1E4}
+:root{--deal:#161616;--deal-soft:#EDEDED}
 strong,b{font-weight:600}
 .icon{flex:none}
 .header{background:var(--bg)}
@@ -713,6 +713,16 @@ strong,b{font-weight:600}
 .season-banner{font-size:.85rem;padding:12px 16px}
 .backbtn{font-size:15px}
 .receipt h2{font-size:1.4rem;font-weight:500}
+
+<style id="terra-v3-4">
+/* Terra v3.4 · ofertas en negro metálico (elegido por Carlos, en vez del verde hoja) y menores de pie */
+:root{--deal:#161616;--deal-soft:#EDEDED}
+.deal{background:linear-gradient(115deg,#0a0a0a 0%,#2b2b2b 38%,#6f6f6f 50%,#2b2b2b 62%,#0a0a0a 100%);background-size:220% 100%;color:#FFF8F0;animation:dealSheen 5s ease-in-out infinite}
+.card__media .deal{background:linear-gradient(115deg,#0a0a0a 0%,#2b2b2b 38%,#6f6f6f 50%,#2b2b2b 62%,#0a0a0a 100%);background-size:220% 100%;color:#FFF8F0}
+@keyframes dealSheen{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+@media (prefers-reduced-motion:reduce){.deal{animation:none}}
+.footer .logo{font-size:22px;font-weight:500}
+.footer li button{font-size:1rem;font-weight:600}
 </style>
 </head>
 <body>

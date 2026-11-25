@@ -772,7 +772,7 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
 
 <style id="terra-v3-3">
 /* Terra v3.3 · letra pequeña sin bold, sin recortes, cabecera opaca, arco sin hueco, detalle pop up, ofertas en verde hoja */
-:root{--deal:#3F6B3A;--deal-soft:#E9F1E4}
+:root{--deal:#161616;--deal-soft:#EDEDED}
 strong,b{font-weight:600}
 .icon{flex:none}
 
@@ -881,6 +881,40 @@ strong,b{font-weight:600}
 .footer__say{font-size:.92rem}
 .opt strong{font-size:1.05rem}
 .opt small{font-size:.88rem}
+
+<style id="terra-v3-4">
+/* Terra v3.4 · arreglo del trabado al cerrar, botones apilados en móvil, ofertas en negro metálico, menores de bolsa/pie/chips */
+:root{--deal:#161616;--deal-soft:#EDEDED}
+
+/* Ofertas en negro metálico con efecto (elegido por Carlos, en vez del verde hoja):
+   degradado metálico con un brillo que se mueve suave; el texto de oferta usa el negro sólido. */
+.deal{background:linear-gradient(115deg,#0a0a0a 0%,#2b2b2b 38%,#6f6f6f 50%,#2b2b2b 62%,#0a0a0a 100%);background-size:220% 100%;color:#FFF8F0;animation:dealSheen 5s ease-in-out infinite}
+.card__media .deal{background:linear-gradient(115deg,#0a0a0a 0%,#2b2b2b 38%,#6f6f6f 50%,#2b2b2b 62%,#0a0a0a 100%);background-size:220% 100%;color:#FFF8F0}
+@keyframes dealSheen{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+@media (prefers-reduced-motion:reduce){.deal{animation:none}}
+
+/* Foto completa con el mismo desvanecido que los demás diálogos */
+.full-photo{transition:opacity .27s ease}
+.full-photo:not(.is-in){opacity:0}
+@media (prefers-reduced-motion:reduce){.full-photo{transition:none}}
+
+/* (B) Botones de la tarjeta apilados solo en móvil (grid de 2 columnas estrechas):
+   en tableta/PC (3-4 columnas) la fila ya tiene aire y se queda como está. */
+@media (max-width:699px){
+  .card__actions{flex-direction:column;gap:6px}
+  .card__actions .card__cta,.card__actions .card__view{flex:0 0 auto;width:100%;min-height:46px}
+  .card__actions .card__view{min-height:40px}
+}
+
+/* (C) Menores */
+.line{grid-template-columns:74px minmax(0,1fr)}
+.line__img{width:74px;height:74px}
+.panel__title{font-size:24px;font-weight:500}
+.footer .logo{font-size:22px;font-weight:500}
+.footer li button{font-size:1rem;font-weight:600}
+.chip{font-size:1rem;min-height:48px}
+.chip--only{font-size:1rem;min-height:48px}
+.sortselect select{min-height:48px}
 </style>
 </head>
 <body>
@@ -1257,23 +1291,32 @@ strong,b{font-weight:600}
   }
 
   /* ══════════ Ventanas ══════════ */
+  /* Cierres pendientes por diálogo: evitan el doble cierre y la carrera
+     de 270 ms que dejaba el diálogo abierto pero invisible (trabado). */
+  const cierresPendientes = new WeakMap();
   function abrir(d) {
-    if (d.open) return;
+    const pendiente = cierresPendientes.get(d);
+    if (pendiente) { clearTimeout(pendiente.timer); cierresPendientes.delete(d); pendiente.resolver(); }
+    if (d.open) { d.classList.add('is-in'); return; }
     ocultarAviso();
     d.showModal();
     root.classList.add('is-locked');
     requestAnimationFrame(() => requestAnimationFrame(() => d.classList.add('is-in')));
   }
   function cerrar(d) {
-    return new Promise(listo => {
-      if (!d.open) return listo();
-      d.classList.remove('is-in');
-      setTimeout(() => {
-        d.close();
-        if (!$('dialog[open]')) root.classList.remove('is-locked');
-        listo();
-      }, calm ? 0 : 270);
-    });
+    if (cierresPendientes.has(d)) return cierresPendientes.get(d).promesa;
+    if (!d.open) return Promise.resolve();
+    let resolver;
+    const promesa = new Promise(listo => { resolver = listo; });
+    const timer = setTimeout(() => {
+      try { d.close(); } catch (e) { /* ya estaba cerrado */ }
+      if (!$('dialog[open]')) root.classList.remove('is-locked');
+      cierresPendientes.delete(d);
+      resolver();
+    }, calm ? 0 : 270);
+    cierresPendientes.set(d, { timer, resolver, promesa });
+    d.classList.remove('is-in');
+    return promesa;
   }
   $$('dialog.modal').forEach(d => {
     d.addEventListener('cancel', e => { e.preventDefault(); cerrar(d); });
@@ -1639,7 +1682,7 @@ strong,b{font-weight:600}
     if (fullBtn || mediaImg) {
       const img = $('#pdMedia img'); const full = $('#photoFull');
       if (img && full) { full.src = img.currentSrc || img.src; full.alt = img.alt || 'Foto del producto'; }
-      const d = $('#dlgPhoto'); if (d && !d.open) d.showModal();
+      const d = $('#dlgPhoto'); if (d) abrir(d);
       return;
     }
 
@@ -1673,10 +1716,11 @@ strong,b{font-weight:600}
   }, { passive: true });
 
   document.addEventListener('click', e => {
-    if (e.target.closest('[data-close-photo]')) { const d = $('#dlgPhoto'); if (d && d.open) d.close(); }
+    if (e.target.closest('[data-close-photo]')) { const d = $('#dlgPhoto'); if (d && d.open) cerrar(d); }
   });
   const dlgPhoto = $('#dlgPhoto');
-  if (dlgPhoto) dlgPhoto.addEventListener('click', e => { if (e.target === dlgPhoto) dlgPhoto.close(); });
+  if (dlgPhoto) dlgPhoto.addEventListener('click', e => { if (e.target === dlgPhoto) cerrar(dlgPhoto); });
+  if (dlgPhoto) dlgPhoto.addEventListener('cancel', e => { e.preventDefault(); cerrar(dlgPhoto); });
 
   /* ══════════ Aviso y vuelo a la bolsa ══════════ */
   const toast = $('#toast'); let relojAviso;
@@ -1838,6 +1882,7 @@ strong,b{font-weight:600}
   od.innerHTML='<div class="order-panel"><button type="button" class="linkbtn backbtn" data-order-close><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>Volver</button><div id="orderContent"></div></div>';
   document.body.append(od);
   od.addEventListener('cancel',e=>{e.preventDefault();if(!sendingOrder)cerrar(od);});
+  od.addEventListener('click',e=>{if(e.target===od&&!sendingOrder)cerrar(od);});
   $('[data-order-close]',od).onclick=()=>{if(!sendingOrder)cerrar(od);};
   const oc=$('#orderContent',od);
   const tokenNuevo=()=>Array.from(crypto.getRandomValues(new Uint8Array(32)),n=>n.toString(16).padStart(2,'0')).join('');
