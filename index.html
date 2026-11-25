@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://xrhbtkwwmfdhisuiexpf.supabase.co" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Nunito:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet">
 <style>
 /* ───────── Tokens ───────── */
 :root{
@@ -1101,83 +1101,132 @@ strong,b{font-weight:600}
 .order-total{border-top:1.5px solid #EBDCC0;padding-top:10px}
 .order-total strong{font-family:var(--font-body);color:#2E2019}
 </style>
-<style id="terra-v3-8">
-/* ───────── Terra v3.8 · Fuente exacta del interactivo + tarjeta y bolsa iguales ─────────
-   (1) FUENTE: la familia ya era la misma (Playfair + Nunito), pero el enlace solo
-   cargaba 400/500/600 y el interactivo usa 600/700/800/900 (58 reglas, cero 400/500).
-   Cada peso 700/800/900 se veía más delgado porque el archivo no existía. Ahora el
-   enlace es el del interactivo + 400/500 que la web usa en otros lados.
-   (2) "G" CORTADA, causa REAL: el <em> del título usa background-clip:text con
-   degradado; el fondo solo cubre la caja del em (su line-height), así que el
-   descendente de la "g" itálica quedaba sin fondo y se veía cortado. La máscara .ln
-   tenía aire de sobra: con las métricas reales de Playfair (hhea 1082/-251, la "g"
-   itálica baja 0.192em) la "g" cabía en la máscara; el corte era del fondo del em.
-   Con line-height 1.15 el corte bajó de ~4.5 px a ~1.2 px pero seguía ahí. Corrección
-   a prueba de fallos: se quita overflow:hidden del título, line-height 1.25, se
-   anula la animación de subida del título y el <em> lleva padding abajo que amplía
-   su fondo .3em, así el descendente siempre tiene fondo.
-   (3) TARJETA Y BOLSA: pesos exactos del interactivo (nombre 900, precio 900,
-   tachado 700, Ahorras 900, meta 700, pill 900, Agregar 900, Ver 800, Mi bolsa 800,
-   líneas 900/700, totales 700 con gran total 900). Tamaños de letra chicos se
-   mantienen; lo que cambia es familia y peso. Ofertas siguen en negro metálico
-   #161616 (regla de Carlos), no terracota. Botones apilados en móvil. */
+<style id="terra-v3-9">
+/* ───────── Terra v3.9 · Código del interactivo copiado tal cual, sin semi bold, tarjetas cortas ─────────
+   Fuente: ~/workspace/ts-spaces/yuli-dzul-shop-vista-previa-web-terra-v3/index.html (leído completo).
+   Qué se copió literal del interactivo: tokens, botón "Mi bolsa", tarjeta de producto
+   (radio, sombra, pill de oferta, etiqueta de categoría, nombre, precio, tachado, "Ahorras",
+   meta con puntos de color, botones), líneas de la bolsa como tarjetas, totales, formulario
+   (campos y tarjetas de entrega) y detalle (eyebrow, nombre, precio, opciones, cantidad).
+   Qué NO se copió: productos de muestra, barra terracota con foto de persona, selector de temática,
+   hoja de bolsa a pantalla completa (la web real usa su panel) ni el pie claro (el pie de la
+   web real es oscuro, pendiente de decisión de Carlos).
+   Adaptaciones por reglas de Carlos (mandan sobre el interactivo):
+   - SIN SEMI BOLD: los pesos del interactivo se quedan en 500/600. El enlace de fuentes
+     vuelve a cargar solo 400/500/600. Carlos dijo que el semi bold no le gustó.
+   - TARJETAS CORTAS: la tarjeta se queda compacta como en la v3.7 (foto 1/1.12, cuerpo con
+     poco padding y poco gap, botones bajos apilados en móvil). NO se vuelve a la foto
+     1/1.06 ni al cuerpo grande del interactivo. Las tarjetas del hero también se quedan
+     compactas como en la v3.7 (bloque terra-v3-7, sin tocar).
+   - OFERTAS EN NEGRO METÁLICO con efecto (bloque v3.4, se conserva; el interactivo las
+     trae en terracota, pero Carlos eligió el negro metálico).
+   - LETRA PEQUEÑA: los tamaños chicos de la v3.7/v3.8 se mantienen; lo que se copia del
+     interactivo es familia, colores, radios, sombras, estructura y proporciones.
+   - La "g" completa: la corrección v3.8 se queda tal cual (ver (1) abajo). */
 
-/* (1) La "g" cortada, a prueba de fallos */
+/* (0) Tokens del interactivo, tal cual */
+:root{
+  --bg:#FBF2E1; --bg-soft:#F6E9D2; --surface:#FFFDF8; --surface-2:#FDF3E3; --frame:#EFE9DC;
+  --ink:#2E2019; --ink-soft:#5C4634; --muted:#97816C;
+  --accent:#B4652F; --terra:#B4652F; --terra-dark:#96501F; --terra-deep:#7A4326;
+  --line:#EBDCC0; --line-soft:#F0E3CB; --gold:#C9A24B;
+  --btn-solid:#B4652F; --btn-a:#B4652F; --btn-b:#B4652F; --on-btn:#FFF7EA; --chip-on:#B4652F;
+}
+
+/* (1) La "g" completa — corrección v3.8, se queda tal cual */
 .hero__title{line-height:1.25}
 .hero__title .ln{overflow:visible;padding:.08em .12em .35em 0;margin:-.08em 0 -.35em}
 .js .hero__title .ln>span,.is-ready .hero__title .ln>span{translate:0 0;transition:none}
 .hero__title em{padding:.12em .1em .3em 0;margin:-.12em 0 -.3em}
-/* Nombres de producto con line-clamp: aire abajo para el descendente de la 2ª línea */
 .card__name .card__open{padding-bottom:.18em;margin-bottom:-.18em}
 
-/* (2) Tarjeta, pesos exactos del interactivo (tamaños chicos se mantienen) */
-.card__media{aspect-ratio:1/1.06}
-.card__body{padding:16px 16px 18px;gap:7px}
-.card__name{font-family:var(--font-body);font-weight:900;font-size:1rem;line-height:1.25;color:#2E2019}
-.card__body .price{font-size:19px;font-weight:900;color:#2E2019;gap:3px 9px;line-height:1.2}
-.card__body .price .was{font-size:14px;font-weight:700;color:#97816C}
-.card__body .price .desde{font-weight:700;color:#97816C}
-.saving{font-weight:900;color:var(--deal);font-size:.88rem}
-.card__meta{font-weight:700;font-size:.88rem;gap:8px;color:#97816C}
-.deal{font-weight:900;font-size:.84rem;padding:.5em .9em;letter-spacing:.02em}
-.tag{font-weight:900}
-.card__actions{gap:10px;margin-top:auto;padding-top:12px}
-.card__actions .card__cta{font-weight:900;font-size:.9rem}
-.card__actions .card__view{font-weight:800;font-size:.9rem}
+/* (2) Botón "Mi bolsa" — código del interactivo (.bag-btn) tal cual */
+.bagbtn{gap:10px;background:var(--terra);color:#FFF7EA;font-size:.98rem;font-weight:600;padding:0 12px 0 20px;min-height:48px;border-radius:999px;box-shadow:0 6px 16px rgba(180,101,47,.28)}
+.bagbtn:active{background:var(--terra-dark)}
+.bagbtn__n{background:#FFF7EA;color:var(--ink);min-width:27px;height:27px;border-radius:999px;font-size:.9rem;font-weight:600;padding:0 6px}
+.bagbtn.has-items .bagbtn__n{background:#FFF7EA;color:var(--ink)}
 
-/* (3) Bolsa, pesos exactos del interactivo */
-.bagbtn{font-weight:800;font-size:.98rem}
-.bagbtn__n{font-weight:900}
-.panel__title{font-family:var(--font-display);font-weight:700;font-size:22px}
-.line__name{font-weight:900;font-size:1.02rem;line-height:1.25;color:#2E2019}
-.line__var{font-weight:700;color:#97816C}
-.line__top .price{font-weight:900;font-size:1.02rem;color:#2E2019}
-.lines .qty button{font-weight:900}
-.lines .qty output{font-weight:900;font-size:16px}
-.lines .linkbtn{font-weight:800}
-.total{font-weight:700;font-size:1.03rem;color:#5C4634}
-.total strong{font-weight:700}
+/* (3) Tarjeta de producto — código del interactivo (.card, .card-photo, .pill-offer,
+   .pill-cat, .card-body, .card-name, .price-line, .save, .meta, .card-actions, .btn-add,
+   .btn-ver) tal cual, sobre las clases reales de la web. Alto compacto de la v3.7. */
+.card{padding:0;border:0;border-radius:28px;overflow:hidden;background:#FFFFFF;box-shadow:0 4px 18px rgba(122,67,38,.06)}
+.card__media{border-radius:0;aspect-ratio:1/1.12}
+.card__body{padding:12px 14px 14px;gap:5px}
+.card__name{font-family:var(--font-body);font-weight:600;font-size:1rem;line-height:1.25;color:#2E2019}
+.card__body .price{font-size:19px;font-weight:600;color:#2E2019;gap:3px 9px;line-height:1.2}
+.card__body .price .was{font-size:14px;font-weight:500;color:#97816C}
+.card__body .price .desde{font-weight:500;color:#97816C}
+.saving{font-weight:600;color:var(--deal);font-size:.88rem}
+.card__meta{font-weight:500;font-size:.88rem;gap:8px;color:#97816C}
+.card__meta .dot{width:19px;height:19px;border-color:rgba(46,32,25,.14)}
+/* Pill de oferta: posición, tamaño, padding y radio del interactivo; el COLOR se queda
+   en negro metálico con efecto (bloque v3.4, decisión de Carlos), no terracota. */
+.deal{top:12px;left:12px;right:auto;bottom:auto;color:#FFF7EA;font-size:.84rem;font-weight:600;letter-spacing:.02em;padding:8px 14px;border-radius:999px}
+.card__media .deal{top:12px;left:12px;font-size:.84rem;max-width:calc(100% - 24px);white-space:nowrap}
+/* Etiqueta de categoría: código del interactivo (.pill-cat) tal cual */
+.tag{left:12px;bottom:12px;background:rgba(255,255,255,.96);color:#2E2019;font-size:.78rem;font-weight:600;letter-spacing:.14em;padding:8px 13px;border-radius:9px;text-transform:uppercase;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
+.card__actions{gap:6px;margin-top:6px;padding-top:2px}
+.card__actions .card__cta{flex:1;font-weight:600;font-size:.9rem}
+.card__actions .card__view{font-weight:600;font-size:.9rem}
+@media (min-width:700px){
+  .card__actions .card__cta,.card__actions .card__view{min-height:52px}
+  .card__actions .card__view{flex:0 0 64px;width:64px}
+}
+.grid{gap:16px}
+
+/* (4) Bolsa — código del interactivo (.bag-item, .totals, .qty.small, .btn-remove) tal cual */
+.panel__title{font-family:var(--font-display);font-weight:500;font-size:22px;color:#2E2019;line-height:1.05}
+#dlgBag .eyebrow{color:var(--terra)}
+.lines{display:grid;gap:12px}
+.line{align-items:center;background:#FFFDF8;border:1.5px solid #F0E3CB;border-radius:20px;padding:12px;grid-template-columns:74px minmax(0,1fr);gap:14px}
+.line:first-child{padding:12px}
+.line__img{width:74px;height:74px;border-radius:14px}
+.line__name{font-family:var(--font-body);font-weight:600;font-size:1.02rem;line-height:1.25;color:#2E2019}
+.line__var{font-weight:500;font-size:.88rem;color:#97816C;margin-top:2px}
+.line__top .price{font-weight:600;font-size:1.02rem;color:#2E2019}
+.line__row{margin-top:8px}
+.lines .qty button{width:38px;height:38px;font-size:19px;font-weight:600;color:#7A4326}
+.lines .qty output{font-size:16px;font-weight:600;min-width:26px}
+.lines .linkbtn{color:var(--accent);text-decoration:none;font-size:.9rem;font-weight:600;padding:6px;min-height:36px}
+.total{font-size:1.03rem;font-weight:500;color:#5C4634}
+.total strong{font-family:var(--font-body);font-weight:600;font-size:1.03rem;color:#2E2019}
 .total--save strong{color:var(--deal)}
 .total--grand{border-top:1.5px solid #EBDCC0;padding-top:10px;margin-top:4px}
-.total--grand strong{font-weight:900;font-size:1.25rem;color:#2E2019}
-.bag__actions [data-vaciar]{font-weight:800}
-.bag__actions .btn{font-weight:900}
-.order-panel .btn{font-weight:900}
+.total--grand strong{font-weight:600;font-size:1.25rem;color:#2E2019}
+.bag__actions [data-vaciar]{font-weight:600}
+.bag__actions .btn{font-weight:600}
 
-/* (4) Detalle, pesos exactos del interactivo */
-.pd__name{font-weight:700}
-.pd__price{font-weight:900}
-.pd__price .was{font-weight:700}
-.pd__price .saving{font-weight:900}
+/* (5) Formulario del pedido — código del interactivo (.field, .deliv-card, .btn-add-big)
+   tal cual; las etiquetas se quedan en frase normal con icono (regla de Carlos, el
+   interactivo las trae en mayúsculas sin icono). */
+.order-panel h3{font-family:var(--font-body);font-size:1.19rem;font-weight:600;margin:26px 0 4px}
+.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{font-weight:500}
+.delivery-cards strong{font-size:1.03rem;font-weight:600;color:#2E2019}
+.delivery-cards small{font-weight:600;color:#97816C}
+.order-panel .btn{font-weight:600}
 
-/* (5) Cabecera y etiquetas, pesos exactos del interactivo */
-.logo{font-weight:700}
-.logo__sub{font-weight:800}
-.eyebrow{font-weight:900;letter-spacing:.2em}
-.order-panel label{font-weight:800}
-.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{font-weight:700}
-.delivery-cards strong{font-weight:900}
-.delivery-cards small{font-weight:600}
+/* (6) Detalle — valores del interactivo (.detail-cat, .detail-name, .detail-price,
+   .opt-label, .opt-pill, .qty, .btn-add-big) tal cual, en el pop up de la web real */
+.pd__info .eyebrow{font-size:.9rem;font-weight:600;letter-spacing:.22em;color:var(--terra);text-transform:uppercase}
+.pd__name{font-weight:500}
+.pd__price{font-size:1.5rem;font-weight:600;color:#2E2019}
+.pd__price .was{font-weight:500;color:#97816C}
+.pd__price .saving{font-weight:600}
+.pd legend,.pd .lbl{font-size:.9rem;font-weight:600;letter-spacing:.18em}
+.choice span{font-size:1rem;font-weight:600;min-height:50px;padding:0 22px}
+.pd__qty .qty button{font-size:22px;font-weight:600;color:#7A4326}
+.pd__qty .qty output{font-size:18px;font-weight:600}
+.pd__qty .stock{font-size:.94rem;font-weight:500;color:var(--ink-soft)}
+#pdAdd{margin-top:30px;min-height:58px;font-size:1.02rem;font-weight:600}
+
+/* (7) Cabecera y filtros — código del interactivo (.brand, .chip-offers, .sort-select) tal cual */
+.logo{font-weight:600;color:#2E2019}
+.logo__sub{font-weight:600;color:#97816C}
+.btn--ghost{border:1.5px solid var(--line)}
+.chip--only{font-size:1rem;font-weight:600;min-height:48px;border-width:1.5px;background:#FFFDF8}
+.chip--only[aria-pressed="true"]{background:var(--terra);border-color:var(--terra);color:#FFF7EA}
+.sortrow>span:first-child{font-size:.98rem;font-weight:500;color:#97816C}
+.sortselect{font-size:.98rem;font-weight:600;background:#FFFDF8;border-width:1.5px}
 </style>
 
 </head>
