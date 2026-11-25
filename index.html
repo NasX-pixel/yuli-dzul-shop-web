@@ -377,7 +377,7 @@ img[data-foto].is-broken{display:none}
   max-height: calc(100vh - 32px);
   max-height: calc(100dvh - 32px);
   overflow-y: auto;
-  overscroll-behavior-y: contain;
+  overscroll-behavior-y: auto;
   touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
 }
@@ -1227,6 +1227,17 @@ strong,b{font-weight:600}
 .chip--only[aria-pressed="true"]{background:var(--terra);border-color:var(--terra);color:#FFF7EA}
 .sortrow>span:first-child{font-size:.98rem;font-weight:500;color:#97816C}
 .sortselect{font-size:.98rem;font-weight:600;background:#FFFDF8;border-width:1.5px}
+
+/* Terra v3.10 · (1) Botón Ordenar: UN SOLO icono, el chevron a la derecha.
+   Causa del icono encimado: el botón tenía DOS svg (.icon) y la regla vieja de la
+   era del select nativo (.sortselect .icon, línea del CSS base) los ponía a los
+   DOS en position:absolute;right:16px;top:50%, uno encima del otro — se veía el
+   icono de ordenar montado con el chevron. El svg de ordenar se quitó del botón
+   y el chevron que queda vuelve al flujo flex, a la derecha, sin tocar el texto.
+   (2) El formulario de "Solicitar artículo de redes" ya no lleva
+   overscroll-behavior-y:contain (ver bloque #yuli-scroll-fix): ese contain
+   atrapaba el gesto táctil en el panel y no lo dejaba pasar a la ventana. */
+.sortselect .icon{position:static;translate:none;flex:none}
 </style>
 
 </head>
@@ -1316,7 +1327,7 @@ strong,b{font-weight:600}
     <section class="catalog" id="coleccion" aria-label="Colección">
       <div class="tools reveal" style="--d:.08s">
         <button class="chip chip--only" id="onlyOffers" type="button" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>Solo ofertas</button>
-        <div class="sortrow"><span>Ordenar</span><button class="sortselect" id="sortBtn" type="button" aria-haspopup="dialog" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-sort"/></svg><span id="sortValue">Relevancia</span><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button></div>
+        <div class="sortrow"><span>Ordenar</span><button class="sortselect" id="sortBtn" type="button" aria-haspopup="dialog" aria-expanded="false"><span id="sortValue">Relevancia</span><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button></div>
         <button class="linkbtn tools__more" id="moreFilters" type="button" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Buscar y categorías</button>
         <div class="tools__extra" id="toolsExtra" hidden>
           <div class="search" role="search">
@@ -1451,21 +1462,21 @@ strong,b{font-weight:600}
   const ETIQUETAS = { ...CATEGORIAS, ofertas: 'Solo ofertas' };
   const CLAVE_BOLSA = 'yuli-dzul-bolsa-v2';
   const CLAVE_CACHE = 'yuli-dzul-catalogo-v2-reservas';
-  const TALLAS = ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl', 'unica'];
+  const TALLAS = ['xxs', 'xs', 's', 'ch', 'm', 'g', 'l', 'xl', 'xxl', 'xxxl', 'unica'];
   const REFRESCO_MS = 2 * 60 * 1000;
 
   /* Mismos tonos que las muestras de color de la app. */
   const TONOS = { negro: '#25212a', blanco: '#fffaf3', rosa: '#c87e9c', vino: '#691d40', rojo: '#c44754', azul: '#607ea7',
     verde: '#708a72', oliva: '#89966b', dorado: '#bd9659', plateado: '#a7acb8', crema: '#e9d8bb', beige: '#c9b696',
     morado: '#8a6eaa', amarillo: '#e5bf61', naranja: '#d18a58', gris: '#92929b', cafe: '#87634d', malva: '#8a4a66',
-    ciruela: '#5a1832', marfil: '#f6efe3', nude: '#d9b8a3', coral: '#e07a6a', lila: '#b59ccc', turquesa: '#4f9c98' };
+    ciruela: '#5a1832', marfil: '#f6efe3', nude: '#d9b8a3', coral: '#e07a6a', lila: '#b59ccc', turquesa: '#4f9c98', arena: '#D9C7A7', salvia: '#A9BCA0' };
 
   /* ══════════ Utilidades ══════════ */
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const root = document.documentElement;
   const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const dinero = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' });
+  const dinero = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', minimumFractionDigits: 0, maximumFractionDigits: 2 });
   const precio = c => dinero.format(c / 100).replace(/^MX\$/, '$');
   const plano = s => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));

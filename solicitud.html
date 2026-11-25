@@ -392,10 +392,20 @@ img[data-foto].is-broken{display:none}
   max-height: calc(100vh - 32px);
   max-height: calc(100dvh - 32px);
   overflow-y: auto;
-  overscroll-behavior-y: contain;
+  overscroll-behavior-y: auto;
   touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
 }
+</style>
+
+<style id="yuli-v310-fix">
+/* Terra v3.10 · El formulario no deslizaba con el dedo: el panel .order-panel.sol
+   era un contenedor de scroll (max-height + overflow-y:auto del bloque
+   #yuli-scroll-fix) sin desbordamiento interno, y overscroll-behavior-y:contain
+   atrapaba el gesto y no lo dejaba pasar a la ventana. En esta página el panel
+   va en flujo normal, así que deja de ser contenedor de scroll y la que se
+   mueve es la ventana, como debe ser. */
+.order-panel.sol{max-height:none;overflow:visible;overscroll-behavior-y:auto}
 </style>
 <style id="terra-responsive-refinement">
 /* Terra · Boutique cálida — ajustes visuales, sin cambios en la tienda */
