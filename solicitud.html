@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://xrhbtkwwmfdhisuiexpf.supabase.co" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Nunito:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
 <style>
 /* ───────── Tokens ───────── */
 :root{
@@ -744,6 +744,25 @@ strong,b{font-weight:600}
 .delivery-cards small{color:#97816C;line-height:1.4;margin-top:4px}
 .order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{background:#FFFDF8;border:1.5px solid #EBDCC0;border-radius:16px;min-height:52px;padding:14px 16px;font-size:1.06rem;color:#2E2019}
 </style>
+<style id="terra-v3-8">
+/* ───────── Terra v3.8 · Fuente exacta del interactivo (pesos 700/800/900 cargados) ─────────
+   Misma causa que en el index: el enlace solo cargaba 400/500/600. La "g" del
+   título usa el mismo <em> con background-clip:text: padding abajo para que el
+   descendente siempre tenga fondo, sin máscara overflow:hidden. */
+.hero__title{line-height:1.25}
+.hero__title .ln{overflow:visible;padding:.08em .12em .35em 0;margin:-.08em 0 -.35em}
+.js .hero__title .ln>span,.is-ready .hero__title .ln>span{translate:0 0;transition:none}
+.hero__title em{padding:.12em .1em .3em 0;margin:-.12em 0 -.3em}
+.logo{font-weight:700}
+.logo__sub{font-weight:800}
+.eyebrow{font-weight:900;letter-spacing:.2em}
+.order-panel label{font-weight:800}
+.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{font-weight:700}
+.delivery-cards strong{font-weight:900}
+.delivery-cards small{font-weight:600}
+.order-panel .btn{font-weight:900}
+</style>
+
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
