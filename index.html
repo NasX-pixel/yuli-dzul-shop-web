@@ -1037,6 +1037,70 @@ strong,b{font-weight:600}
 .card__actions{gap:6px;margin-top:6px;padding-top:2px}
 .card__actions .btn{border-radius:999px}
 </style>
+<style id="terra-v3-7">
+/* Terra v3.7 · tarjetas del hero compactas + tarjeta y bolsa tal cual el interactivo (valores exactos) */
+
+/* (1) Tarjetas del hero compactas: antes cada una ~134 px de alto (3 tarjetas + huecos ≈ 422 px);
+   ahora ~110 px cada una (≈ 346 px en total). Fondo #F6E9D2 y sin borde, como el interactivo. */
+.hero-cards{gap:8px}
+.hero-card{padding:12px 16px;background:#F6E9D2;border:0}
+.hero-card__ico{width:1.15rem;height:1.15rem;margin-bottom:5px}
+.hero-card h3{font-size:.95rem}
+.hero-card p{margin-top:4px;font-size:.88rem;line-height:1.4;color:#97816C}
+
+/* (2) Tarjeta de producto, valores exactos del interactivo */
+.card{box-shadow:0 4px 18px rgba(122,67,38,.06)}
+.card__name{color:#2E2019}
+.card__body .price{color:#2E2019}
+.card__body .price .was{color:#97816C;text-decoration-color:#97816C}
+.card__body .price .desde{color:#97816C}
+.card__meta{color:#97816C}
+.card__meta .dot{width:19px;height:19px;border-color:rgba(46,32,25,.14)}
+.card__actions .btn{font-size:.9rem}
+
+/* Botones principales en terracota sólido como el interactivo (antes degradado):
+   "Agregar", "Solicitar este pedido", "Enviar solicitud", "Explorar colección".
+   "Ver" y "Cómo funciona" siguen siendo fantasma (se protegen abajo). */
+.btn{background:var(--accent);box-shadow:0 8px 20px rgba(180,101,47,.25)}
+.btn:active{background:var(--terra-dark);filter:none}
+@media (hover:hover){.btn:not([disabled]):hover{box-shadow:0 14px 26px -12px rgba(180,101,47,.35)}}
+.btn--ghost{background:transparent;box-shadow:none}
+/* "Ver" de la tarjeta, como el interactivo: fondo crema, borde 1.5 px, tinta */
+.card__view{background:#FFFDF8;border:1.5px solid #EBDCC0;color:#2E2019}
+
+/* (3) Bolsa: botón con el color crema exacto y contador en tinta */
+.bagbtn{color:#FFF7EA}
+.bagbtn__n{color:#2E2019}
+
+/* Panel de la bolsa con el fondo del interactivo */
+#dlgBag .panel{background:var(--bg)}
+
+/* Líneas de la bolsa como tarjetas redondeadas, como el interactivo */
+.lines{display:grid;gap:12px}
+.line{align-items:center;background:#FFFDF8;border:1.5px solid #F0E3CB;border-radius:20px;padding:12px}
+.line:first-child{padding:12px}
+.line__img{border-radius:14px}
+.line__name{color:#2E2019}
+.line__var{color:#97816C;margin-top:2px}
+.line__top .price{color:#2E2019}
+.line__row{margin-top:8px}
+.lines .qty button{width:38px;height:38px;font-size:19px;color:#7A4326}
+.lines .qty output{font-size:16px}
+.lines .linkbtn{color:var(--accent);text-decoration:none;font-size:.9rem;font-weight:600}
+
+/* Totales de la bolsa con la letra del interactivo */
+.total{font-size:1.03rem;color:#5C4634}
+.total strong{font-family:var(--font-body);color:#2E2019}
+
+/* Entrega y formulario, como el interactivo */
+.delivery-cards label{background:#FFFDF8;border:1.5px solid #EBDCC0;border-radius:20px;padding:16px;min-height:86px}
+.delivery-cards label:has(input:checked){border-color:var(--accent);background:#FDF3E3;box-shadow:inset 0 0 0 1px var(--accent)}
+.delivery-cards strong{font-size:1.03rem;color:#2E2019}
+.delivery-cards small{color:#97816C;line-height:1.4;margin-top:4px}
+.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{background:#FFFDF8;border:1.5px solid #EBDCC0;border-radius:16px;min-height:52px;padding:14px 16px;font-size:1.06rem;color:#2E2019}
+.order-total{border-top:1.5px solid #EBDCC0;padding-top:10px}
+.order-total strong{font-family:var(--font-body);color:#2E2019}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
