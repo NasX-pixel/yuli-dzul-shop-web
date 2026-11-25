@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://xrhbtkwwmfdhisuiexpf.supabase.co" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Nunito:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet">
 <style>
 /* ───────── Tokens ───────── */
 :root{
@@ -57,10 +57,10 @@ h1,h2,h3,p{margin:0}
 .icon{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .spark{width:1em;height:1em;flex:none;fill:currentColor}
 
-.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--heading)}
+.eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--heading)}
 .eyebrow--soft{color:var(--ink-soft)}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:56px;padding:0 1.6em;border:0;border-radius:99px;background:linear-gradient(120deg,var(--btn-a),var(--btn-b));color:var(--on-btn);font-weight:700;font-size:1.02rem;text-decoration:none;box-shadow:0 16px 30px -16px rgb(var(--shadow) / .7);transition:translate .3s var(--ease),box-shadow .3s var(--ease),filter .3s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:56px;padding:0 1.6em;border:0;border-radius:99px;background:linear-gradient(120deg,var(--btn-a),var(--btn-b));color:var(--on-btn);font-weight:600;font-size:1.02rem;text-decoration:none;box-shadow:0 16px 30px -16px rgb(var(--shadow) / .7);transition:translate .3s var(--ease),box-shadow .3s var(--ease),filter .3s}
 .btn .icon{transition:translate .3s var(--ease)}
 .btn:active{translate:0 1px;filter:brightness(.95)}
 .btn[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none}
@@ -86,7 +86,7 @@ h1,h2,h3,p{margin:0}
 .header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
 .header__bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px var(--gutter);background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);border:1px solid var(--line);border-top:0;border-radius:0 0 30px 30px;transition:box-shadow .35s,padding .35s var(--ease)}
 .header.is-stuck .header__bar{padding-block:10px;box-shadow:0 18px 36px -26px rgb(var(--shadow) / .55)}
-.logo{font-family:var(--font-display);font-weight:700;font-size:clamp(1.25rem,6vw,1.75rem);letter-spacing:-.01em;color:var(--heading);text-decoration:none;white-space:nowrap;line-height:1}
+.logo{font-family:var(--font-display);font-weight:600;font-size:clamp(1.25rem,6vw,1.75rem);letter-spacing:-.01em;color:var(--heading);text-decoration:none;white-space:nowrap;line-height:1}
 .logo em{font-weight:500}
 .nav{display:none;gap:30px;margin-left:auto;margin-right:14px}
 .nav a{color:var(--ink);text-decoration:none;font-weight:500;padding:.5em 0;background:linear-gradient(var(--accent),var(--accent)) 0 100% / 0 1.5px no-repeat;transition:background-size .35s var(--ease),color .2s}
@@ -126,8 +126,8 @@ h1,h2,h3,p{margin:0}
 .fan__product .media{position:relative;display:block;border-radius:22px;overflow:hidden;aspect-ratio:4 / 5;background:var(--frame)}
 .fan__product img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:scale .7s var(--ease)}
 .fan__product .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 8px 0}
-.fan__product .name{font-family:var(--font-display);font-weight:700;font-size:1.25rem;line-height:1.1}
-.fan__product .price{color:var(--gold);font-weight:700;font-variant-numeric:tabular-nums}
+.fan__product .name{font-family:var(--font-display);font-weight:600;font-size:1.25rem;line-height:1.1}
+.fan__product .price{color:var(--gold);font-weight:600;font-variant-numeric:tabular-nums}
 .fan__product[hidden]{display:none}
 .fan__spark{position:absolute;right:4%;top:2%;font-size:2.1rem;color:var(--gold);animation:twinkle 6s ease-in-out infinite}
 @keyframes twinkle{0%,100%{scale:1;rotate:0deg;opacity:.9}50%{scale:.72;rotate:45deg;opacity:.55}}
@@ -197,11 +197,11 @@ h1,h2,h3,p{margin:0}
 .card__media img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:scale .8s var(--ease)}
 .tag{position:absolute;left:10px;top:10px;padding:.36em .95em;border-radius:99px;background:color-mix(in srgb,var(--surface) 90%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:var(--heading);font-size:.8rem;box-shadow:0 6px 14px -8px rgb(var(--shadow) / .5)}
 .card__body{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:14px 10px 0}
-.card__name{font-family:var(--font-display);font-weight:700;font-size:clamp(1.3rem,1.1rem + .8vw,1.6rem);line-height:1.12}
+.card__name{font-family:var(--font-display);font-weight:600;font-size:clamp(1.3rem,1.1rem + .8vw,1.6rem);line-height:1.12}
 .card__open{all:unset;cursor:pointer}
 .card__open::after{content:"";position:absolute;inset:0;border-radius:30px}
 .card__open:focus-visible::after{outline:2px solid var(--accent);outline-offset:3px}
-.price{color:var(--gold);font-weight:700;font-size:1.16rem;font-variant-numeric:tabular-nums}
+.price{color:var(--gold);font-weight:600;font-size:1.16rem;font-variant-numeric:tabular-nums}
 .pill{display:inline-block;padding:.32em .85em;border-radius:99px;background:var(--surface-2);color:var(--accent);font-size:.84rem}
 .stock{font-size:.86rem;color:var(--ink-soft)}
 .card__add{position:absolute;right:10px;bottom:10px;z-index:2;width:46px;height:46px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--heading);box-shadow:0 10px 18px -10px rgb(var(--shadow) / .6);transition:background .3s,color .3s,scale .3s var(--spring),rotate .4s var(--spring)}
@@ -235,7 +235,7 @@ h1,h2,h3,p{margin:0}
 .footer__top{display:grid;gap:34px}
 .footer .logo{color:var(--on-band);font-size:2rem}
 .footer__say{margin-top:12px;font-family:var(--font-display);font-style:italic;font-size:1.3rem;color:rgb(255 255 255 / .72)}
-.footer h3{font-size:.76rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgb(255 255 255 / .55);margin-bottom:12px}
+.footer h3{font-size:.76rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgb(255 255 255 / .55);margin-bottom:12px}
 .footer ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
 .footer li button{background:none;border:0;padding:.45em 0;color:var(--on-band);font-size:1.05rem;text-align:left;background:linear-gradient(currentColor,currentColor) 0 88% / 0 1px no-repeat;transition:background-size .35s var(--ease)}
 @media (hover:hover){.footer li button:hover{background-size:100% 1px}}
@@ -281,13 +281,13 @@ h1,h2,h3,p{margin:0}
 .line__img{position:relative;display:block;width:68px;height:86px;border-radius:16px;overflow:hidden;background:var(--frame)}
 .line__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
 .line__top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
-.line__name{font-family:var(--font-display);font-weight:700;font-size:1.2rem;line-height:1.15}
+.line__name{font-family:var(--font-display);font-weight:600;font-size:1.2rem;line-height:1.15}
 .line__var{font-size:.9rem;color:var(--ink-soft)}
 .line__row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
 .qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:99px;background:var(--surface)}
 .qty button{display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:50%;background:none;color:var(--heading)}
 .qty button[disabled]{opacity:.35;cursor:not-allowed}
-.qty output{min-width:1.6em;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+.qty output{min-width:1.6em;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
 .total{display:flex;justify-content:space-between;align-items:baseline;font-size:1.05rem}
 .total strong{font-family:var(--font-display);font-size:1.7rem;font-weight:500;color:var(--heading);font-variant-numeric:tabular-nums}
 .copybox{width:100%;min-height:110px;padding:12px 14px;border:1px solid var(--line);border-radius:18px;background:var(--bg);font:inherit;font-size:.92rem;color:var(--ink);resize:vertical}
@@ -295,7 +295,7 @@ h1,h2,h3,p{margin:0}
 /* Detalle de artículo */
 .panel--product{width:min(100%,900px);padding:10px}
 .panel--product .close{position:absolute;left:18px;top:18px;z-index:3}
-.backbtn{display:inline-flex;align-items:center;gap:6px;width:auto!important;height:auto!important;min-height:44px;padding:10px 16px;border-radius:999px;font-weight:700;font-size:15px;color:var(--heading)}
+.backbtn{display:inline-flex;align-items:center;gap:6px;width:auto!important;height:auto!important;min-height:44px;padding:10px 16px;border-radius:999px;font-weight:600;font-size:15px;color:var(--heading)}
 .backbtn .icon{width:18px;height:18px}
 .backbtn:hover{rotate:0deg}
 .pd{display:grid;gap:0}
@@ -306,7 +306,7 @@ h1,h2,h3,p{margin:0}
 .pd__name{font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,1.7rem + 2vw,3rem);line-height:1.04;letter-spacing:-.015em;color:var(--heading)}
 .pd__price{font-size:1.5rem}
 .pd fieldset{border:0;margin:0;padding:0}
-.pd legend,.pd .lbl{padding:0;margin-bottom:10px;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.pd legend,.pd .lbl{padding:0;margin-bottom:10px;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
 .choices{display:flex;flex-wrap:wrap;gap:8px}
 .choice{position:relative}
 .choice input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
@@ -323,7 +323,7 @@ h1,h2,h3,p{margin:0}
 /* Aviso flotante y efecto de vuelo */
 .toast{position:fixed;left:0;right:0;margin-inline:auto;width:fit-content;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:6px;max-width:calc(100% - 28px);padding:8px 8px 8px 22px;border-radius:99px;background:var(--band);color:var(--on-band);border:1px solid rgb(255 255 255 / .12);box-shadow:0 24px 40px -20px rgb(0 0 0 / .6);translate:0 28px;opacity:0;visibility:hidden;transition:translate .5s var(--spring),opacity .3s,visibility 0s .4s}
 .toast.is-in{translate:0 0;opacity:1;visibility:visible;transition-delay:0s}
-.toast button{flex:none;min-height:40px;padding:0 16px;border:0;border-radius:99px;background:rgb(255 255 255 / .14);color:inherit;font-weight:700}
+.toast button{flex:none;min-height:40px;padding:0 16px;border:0;border-radius:99px;background:rgb(255 255 255 / .14);color:inherit;font-weight:600}
 .fly{position:fixed;z-index:50;object-fit:cover;border-radius:24px;pointer-events:none;box-shadow:0 20px 30px -16px rgb(0 0 0 / .5)}
 
 /* ───────── Catálogo en vivo ───────── */
@@ -350,7 +350,7 @@ img[data-foto].is-broken{display:none}
 
 /* ───────── Ofertas ───────── */
 .price .was{margin-right:.4em;font-size:.8em;font-weight:500;color:var(--ink-soft);text-decoration:line-through;text-decoration-thickness:1.5px;text-decoration-color:color-mix(in srgb,var(--accent) 70%,transparent)}
-.deal{position:absolute;right:10px;top:10px;z-index:2;display:inline-flex;align-items:center;padding:.34em .78em;border-radius:99px;font-size:.78rem;font-weight:700;letter-spacing:.01em;color:#3d2611;background:linear-gradient(110deg,#d6b77f 0%,#f4e5c4 42%,#fff7e6 50%,#d6b77f 60%,#c9a165 100%) 0 0 / 260% 100%;box-shadow:0 8px 16px -10px rgb(120 80 30 / .7),inset 0 0 0 1px rgb(255 255 255 / .45);animation:sheen 4.2s ease-in-out infinite}
+.deal{position:absolute;right:10px;top:10px;z-index:2;display:inline-flex;align-items:center;padding:.34em .78em;border-radius:99px;font-size:.78rem;font-weight:600;letter-spacing:.01em;color:#3d2611;background:linear-gradient(110deg,#d6b77f 0%,#f4e5c4 42%,#fff7e6 50%,#d6b77f 60%,#c9a165 100%) 0 0 / 260% 100%;box-shadow:0 8px 16px -10px rgb(120 80 30 / .7),inset 0 0 0 1px rgb(255 255 255 / .45);animation:sheen 4.2s ease-in-out infinite}
 .card__media .deal{top:auto;right:auto;bottom:12px;left:10px;max-width:calc(100% - 74px);white-space:nowrap}
 @media (max-width:699px){.card__media .deal__hasta{display:none}}
 .deal--inline{position:relative;right:auto;top:auto;vertical-align:middle;margin-left:.5em;font-size:.72rem}
@@ -537,7 +537,7 @@ input,select,textarea{font:inherit;min-width:0}
 
 /* Cabecera crema: Yuli Dzul / SHOP · BOUTIQUE */
 .logo{display:grid;gap:2px}
-.logo__sub{font-family:var(--font-body);font-size:.62rem;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--accent)}
+.logo__sub{font-family:var(--font-body);font-size:.62rem;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--accent)}
 .footer .logo__sub{color:rgb(255 255 255 / .65)}
 
 /* Hero: orden en movil como en la captura (texto, checks, foto en arco) */
@@ -584,7 +584,7 @@ input,select,textarea{font:inherit;min-width:0}
 .sol .lead{color:var(--ink-soft)}
 .sol .total-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:18px 0 4px;padding-top:16px;border-top:1px dashed var(--line)}
 .sol .total-row strong{font-family:var(--font-display);font-size:1.7rem;font-weight:500;color:var(--heading);font-variant-numeric:tabular-nums}
-.sol .total-row span:first-child{font-size:1.15rem;font-weight:700}
+.sol .total-row span:first-child{font-size:1.15rem;font-weight:600}
 .sol .note{color:var(--ink-soft);font-size:.95rem}
 .sol .order-panel{max-width:640px}
 .delivery-cards{display:grid;gap:12px;margin-top:8px}
@@ -614,16 +614,16 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
 
 /* (A) Espaciado */
 .hero{padding:22px var(--gutter) 6px;gap:18px}
-.hero__title{font-size:2.4rem;font-weight:700}
+.hero__title{font-size:2.4rem;font-weight:600}
 .header__bar{padding:14px var(--gutter) 12px;-webkit-backdrop-filter:none;backdrop-filter:none;border:0;border-bottom:1px solid var(--line);border-radius:0}
 .catalog{padding-top:30px}
 .tools{gap:12px;margin-top:16px}
 .steps{margin:26px var(--gutter) 0;padding:26px}
 .footer{margin-top:26px;padding:38px var(--gutter) 46px;border-radius:0;background:transparent;color:var(--ink)}
-.footer .logo{color:var(--heading);font-size:24px;font-weight:700}
+.footer .logo{color:var(--heading);font-size:24px;font-weight:600}
 .footer__say{color:var(--ink-soft)}
-.footer h3{color:var(--ink-soft);font-weight:800}
-.footer li button{color:var(--ink);font-weight:800}
+.footer h3{color:var(--ink-soft);font-weight:600}
+.footer li button{color:var(--ink);font-weight:600}
 .footer__note{color:var(--ink-soft)}
 .footer__top{gap:24px}
 .footer__base{margin-top:22px;padding-top:16px;border-top-color:var(--line);color:var(--ink-soft)}
@@ -636,37 +636,37 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
 /* (B) Tarjeta */
 .card__media{aspect-ratio:1/1.06}
 .card__body{padding:16px 16px 18px;gap:7px}
-.card__body .price{flex-wrap:nowrap}
+.card__body .price{flex-wrap:wrap}
 .card__body .price .was{font-size:17px}
 .card__name .card__open{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:left}
 
 /* (C) Bold, tal cual el interactivo */
-.catalog__title{font-weight:700}
-.steps__title{font-weight:700}
-.panel__title{font-weight:700;font-size:29px}
-.pd__name{font-weight:700;font-size:40px}
+.catalog__title{font-weight:600}
+.steps__title{font-weight:600}
+.panel__title{font-weight:600;font-size:29px}
+.pd__name{font-weight:600;font-size:40px}
 @media (min-width:760px){.pd__name{font-size:46px}}
-.pd__price{font-weight:900;font-size:29px}
-.btn{font-weight:900}
-.bagbtn{font-weight:800}
-.chip,.chip--only{font-weight:800}
-.sortselect select{font-weight:800}
-.sortbtn{font-weight:800}
-.choice input:checked+span{font-weight:800}
-.opt-radio{font-weight:800}
-.delivery-cards strong{font-weight:900}
-.line__name{font-family:var(--font-body);font-weight:900}
-.total strong{font-weight:900}
-.tag{font-weight:900}
-.deal{font-weight:900}
-.saving{font-weight:900}
-.qty output{font-weight:900;font-size:18px}
-.backbtn{font-weight:900;font-size:16px}
-.eyebrow{font-weight:900}
-.pd legend,.pd .lbl{font-weight:900}
-.stock{font-weight:700}
-.count,.fine{font-weight:700}
-.order-panel h2{font-size:19px;font-weight:900}
+.pd__price{font-weight:600;font-size:29px}
+.btn{font-weight:600}
+.bagbtn{font-weight:600}
+.chip,.chip--only{font-weight:600}
+.sortselect select{font-weight:600}
+.sortbtn{font-weight:600}
+.choice input:checked+span{font-weight:600}
+.opt-radio{font-weight:600}
+.delivery-cards strong{font-weight:600}
+.line__name{font-family:var(--font-body);font-weight:600}
+.total strong{font-weight:600}
+.tag{font-weight:600}
+.deal{font-weight:600}
+.saving{font-weight:600}
+.qty output{font-weight:600;font-size:18px}
+.backbtn{font-weight:600;font-size:16px}
+.eyebrow{font-weight:600}
+.pd legend,.pd .lbl{font-weight:600}
+.stock{font-weight:600}
+.count,.fine{font-weight:600}
+.order-panel h2{font-size:19px;font-weight:600}
 
 /* (D) Iconos en vez de texto */
 .trust .tick{width:1.05em;height:1.05em}
@@ -683,6 +683,36 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
 /* (E) Otros */
 .fan__product .media{border-radius:290px 290px 26px 26px}
 #pdAdd{margin-top:30px}
+</style>
+
+<style id="terra-v3-3">
+/* Terra v3.3 · letra pequeña sin bold, cabecera opaca, ofertas en verde hoja */
+:root{--deal:#3F6B3A;--deal-soft:#E9F1E4}
+strong,b{font-weight:600}
+.icon{flex:none}
+.header{background:var(--bg)}
+.header__bar{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 1px 0 var(--line)}
+.fan{aspect-ratio:auto}
+.hero__title{font-size:2.4rem;font-weight:500}
+.hero__lead{font-size:1rem}
+.logo{font-size:1.3rem;font-weight:500}
+.eyebrow{font-size:.72rem;font-weight:600}
+.btn{font-size:.95rem;min-height:52px}
+.order-panel h2{font-size:17px;font-weight:600}
+.order-panel label{font-size:.95rem}
+.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{font-size:1rem}
+.opt-group legend{font-size:.92rem}
+.opt-radio{font-size:.92rem;min-height:44px}
+.delivery-cards strong{display:flex;align-items:center;gap:8px;font-size:1rem;font-weight:600}
+.delivery-cards strong .icon{color:var(--accent)}
+.delivery-cards small{font-size:.88rem}
+.delivery-cards label{padding:12px 14px}
+.deal{background:var(--deal);color:#FFF8F0;animation:none}
+.card__media .deal{background:var(--deal);color:#FFF8F0}
+.saving{color:var(--deal)}
+.season-banner{font-size:.85rem;padding:12px 16px}
+.backbtn{font-size:15px}
+.receipt h2{font-size:1.4rem;font-weight:500}
 </style>
 </head>
 <body>
@@ -735,8 +765,8 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
         <fieldset style="border:0;margin:20px 0;padding:0">
           <legend style="font-weight:600">¿Cómo recibes tu pedido? *</legend>
           <div class="delivery-cards">
-            <label><input type="radio" name="delivery_method" value="pickup" checked> <span class="delivery-text"><strong>Recoger en tienda</strong><small>Pasas por tu pedido cuando la tienda lo confirme.</small></span></label>
-            <label><input type="radio" name="delivery_method" value="shipping"> <span class="delivery-text"><strong>Envío a domicilio</strong><small>La tienda te confirma el costo de envío.</small></span></label>
+            <label><input type="radio" name="delivery_method" value="pickup" checked> <span class="delivery-text"><strong><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Recoger en tienda</strong><small>Pasas por tu pedido cuando la tienda lo confirme.</small></span></label>
+            <label><input type="radio" name="delivery_method" value="shipping"> <span class="delivery-text"><strong><svg class="icon" aria-hidden="true"><use href="#i-go"/></svg>Envío a domicilio</strong><small>La tienda te confirma el costo de envío.</small></span></label>
           </div>
         </fieldset>
         <div id="shippingFields" hidden>
@@ -749,7 +779,7 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
       </form>
       <div id="orderCaptcha"></div>
       <p id="orderStatus" role="status" aria-live="polite"></p>
-      <button class="btn btn--block" id="sendPublicOrder" type="button">Enviar solicitud</button>
+      <button class="btn btn--block" id="sendPublicOrder" type="button"><svg class="icon" aria-hidden="true"><use href="#i-go"/></svg>Enviar solicitud</button>
     </div>
   </main>
 

@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://xrhbtkwwmfdhisuiexpf.supabase.co" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Nunito:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet">
 <style>
 /* ───────── Tokens ───────── */
 :root{
@@ -58,10 +58,10 @@ h1,h2,h3,p{margin:0}
 .icon{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .spark{width:1em;height:1em;flex:none;fill:currentColor}
 
-.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--heading)}
+.eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--heading)}
 .eyebrow--soft{color:var(--ink-soft)}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:56px;padding:0 1.6em;border:0;border-radius:99px;background:linear-gradient(120deg,var(--btn-a),var(--btn-b));color:var(--on-btn);font-weight:700;font-size:1.02rem;text-decoration:none;box-shadow:0 16px 30px -16px rgb(var(--shadow) / .7);transition:translate .3s var(--ease),box-shadow .3s var(--ease),filter .3s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:56px;padding:0 1.6em;border:0;border-radius:99px;background:linear-gradient(120deg,var(--btn-a),var(--btn-b));color:var(--on-btn);font-weight:600;font-size:1.02rem;text-decoration:none;box-shadow:0 16px 30px -16px rgb(var(--shadow) / .7);transition:translate .3s var(--ease),box-shadow .3s var(--ease),filter .3s}
 .btn .icon{transition:translate .3s var(--ease)}
 .btn:active{translate:0 1px;filter:brightness(.95)}
 .btn[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none}
@@ -80,14 +80,14 @@ h1,h2,h3,p{margin:0}
 .header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
 .header__bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px var(--gutter);background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);border:1px solid var(--line);border-top:0;border-radius:0 0 30px 30px;transition:box-shadow .35s,padding .35s var(--ease)}
 .header.is-stuck .header__bar{padding-block:10px;box-shadow:0 18px 36px -26px rgb(var(--shadow) / .55)}
-.logo{font-family:var(--font-display);font-weight:700;font-size:clamp(1.25rem,6vw,1.75rem);letter-spacing:-.01em;color:var(--heading);text-decoration:none;white-space:nowrap;line-height:1}
+.logo{font-family:var(--font-display);font-weight:600;font-size:clamp(1.25rem,6vw,1.75rem);letter-spacing:-.01em;color:var(--heading);text-decoration:none;white-space:nowrap;line-height:1}
 .logo em{font-weight:500}
 .nav{display:none;gap:30px;margin-left:auto;margin-right:14px}
 .nav a{color:var(--ink);text-decoration:none;font-weight:500;padding:.5em 0;background:linear-gradient(var(--accent),var(--accent)) 0 100% / 0 1.5px no-repeat;transition:background-size .35s var(--ease),color .2s}
 @media (hover:hover){.nav a:hover{background-size:100% 1.5px;color:var(--heading)}}
 @media (min-width:860px){.nav{display:flex}}
 .bagbtn{flex:none;display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 10px 0 20px;border:0;border-radius:99px;background:var(--btn-solid);color:var(--on-btn);font-size:1.05rem;font-weight:500;transition:translate .3s var(--ease),box-shadow .3s}
-.bagbtn__n{display:grid;place-items:center;min-width:30px;height:30px;padding:0 6px;border-radius:99px;background:rgb(255 255 255 / .17);font-size:.86rem;font-weight:700;font-variant-numeric:tabular-nums}
+.bagbtn__n{display:grid;place-items:center;min-width:30px;height:30px;padding:0 6px;border-radius:99px;background:rgb(255 255 255 / .17);font-size:.86rem;font-weight:600;font-variant-numeric:tabular-nums}
 .bagbtn.has-items .bagbtn__n{background:var(--on-btn);color:var(--btn-solid)}
 .bagbtn__n.is-bump{animation:bump .55s var(--spring)}
 @keyframes bump{0%{scale:1}35%{scale:1.45}100%{scale:1}}
@@ -117,8 +117,8 @@ h1,h2,h3,p{margin:0}
 .fan__product .media{position:relative;display:block;border-radius:22px;overflow:hidden;aspect-ratio:4 / 5;background:var(--frame)}
 .fan__product img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:scale .7s var(--ease)}
 .fan__product .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 8px 0}
-.fan__product .name{font-family:var(--font-display);font-weight:700;font-size:1.25rem;line-height:1.1}
-.fan__product .price{color:var(--gold);font-weight:700;font-variant-numeric:tabular-nums}
+.fan__product .name{font-family:var(--font-display);font-weight:600;font-size:1.25rem;line-height:1.1}
+.fan__product .price{color:var(--gold);font-weight:600;font-variant-numeric:tabular-nums}
 .fan__product[hidden]{display:none}
 .fan__spark{position:absolute;right:4%;top:2%;font-size:2.1rem;color:var(--gold);animation:twinkle 6s ease-in-out infinite}
 @keyframes twinkle{0%,100%{scale:1;rotate:0deg;opacity:.9}50%{scale:.72;rotate:45deg;opacity:.55}}
@@ -177,11 +177,11 @@ h1,h2,h3,p{margin:0}
 .card__media img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:scale .8s var(--ease)}
 .tag{position:absolute;left:10px;bottom:10px;padding:.36em .95em;border-radius:99px;background:color-mix(in srgb,var(--surface) 90%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:var(--heading);font-size:.8rem;box-shadow:0 6px 14px -8px rgb(var(--shadow) / .5)}
 .card__body{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:14px 10px 0}
-.card__name{font-family:var(--font-display);font-weight:700;font-size:clamp(1.3rem,1.1rem + .8vw,1.6rem);line-height:1.12}
+.card__name{font-family:var(--font-display);font-weight:600;font-size:clamp(1.3rem,1.1rem + .8vw,1.6rem);line-height:1.12}
 .card__open{all:unset;cursor:pointer}
 .card__open::after{content:"";position:absolute;inset:0;border-radius:30px}
 .card__open:focus-visible::after{outline:2px solid var(--accent);outline-offset:3px}
-.price{color:var(--gold);font-weight:700;font-size:1.16rem;font-variant-numeric:tabular-nums}
+.price{color:var(--gold);font-weight:600;font-size:1.16rem;font-variant-numeric:tabular-nums}
 .pill{display:inline-block;padding:.32em .85em;border-radius:99px;background:var(--surface-2);color:var(--accent);font-size:.84rem}
 .stock{font-size:.86rem;color:var(--ink-soft)}
 @media (hover:hover){
@@ -211,7 +211,7 @@ h1,h2,h3,p{margin:0}
 .footer__top{display:grid;gap:34px}
 .footer .logo{color:var(--on-band);font-size:2rem}
 .footer__say{margin-top:12px;font-family:var(--font-display);font-style:italic;font-size:1.3rem;color:rgb(255 255 255 / .72)}
-.footer h3{font-size:.76rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgb(255 255 255 / .55);margin-bottom:12px}
+.footer h3{font-size:.76rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgb(255 255 255 / .55);margin-bottom:12px}
 .footer ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
 .footer li button{background:none;border:0;padding:.45em 0;color:var(--on-band);font-size:1.05rem;text-align:left;background:linear-gradient(currentColor,currentColor) 0 88% / 0 1px no-repeat;transition:background-size .35s var(--ease)}
 @media (hover:hover){.footer li button:hover{background-size:100% 1px}}
@@ -260,13 +260,13 @@ h1,h2,h3,p{margin:0}
 .line__img{position:relative;display:block;width:68px;height:86px;border-radius:16px;overflow:hidden;background:var(--frame)}
 .line__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
 .line__top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
-.line__name{font-family:var(--font-display);font-weight:700;font-size:1.2rem;line-height:1.15}
+.line__name{font-family:var(--font-display);font-weight:600;font-size:1.2rem;line-height:1.15}
 .line__var{font-size:.9rem;color:var(--ink-soft)}
 .line__row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
 .qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:99px;background:var(--surface)}
 .qty button{display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:50%;background:none;color:var(--heading)}
 .qty button[disabled]{opacity:.35;cursor:not-allowed}
-.qty output{min-width:1.6em;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+.qty output{min-width:1.6em;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
 .total{display:flex;justify-content:space-between;align-items:baseline;font-size:1.05rem}
 .total strong{font-family:var(--font-display);font-size:1.7rem;font-weight:500;color:var(--heading);font-variant-numeric:tabular-nums}
 .bag__actions{display:grid;gap:6px;justify-items:center}
@@ -277,7 +277,7 @@ h1,h2,h3,p{margin:0}
 /* Detalle de artículo */
 .panel--product{width:min(100%,900px);padding:10px}
 .panel--product .close{position:absolute;left:18px;top:18px;z-index:3}
-.backbtn{display:inline-flex;align-items:center;gap:6px;width:auto!important;height:auto!important;min-height:44px;padding:10px 16px;border-radius:999px;font-weight:700;font-size:15px;color:var(--heading)}
+.backbtn{display:inline-flex;align-items:center;gap:6px;width:auto!important;height:auto!important;min-height:44px;padding:10px 16px;border-radius:999px;font-weight:600;font-size:15px;color:var(--heading)}
 .backbtn .icon{width:18px;height:18px}
 .backbtn:hover{rotate:0deg}
 .pd{display:grid;gap:0}
@@ -288,7 +288,7 @@ h1,h2,h3,p{margin:0}
 .pd__name{font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,1.7rem + 2vw,3rem);line-height:1.04;letter-spacing:-.015em;color:var(--heading)}
 .pd__price{font-size:1.5rem}
 .pd fieldset{border:0;margin:0;padding:0}
-.pd legend,.pd .lbl{padding:0;margin-bottom:10px;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.pd legend,.pd .lbl{padding:0;margin-bottom:10px;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
 .choices{display:flex;flex-wrap:wrap;gap:8px}
 .choice{position:relative}
 .choice input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
@@ -305,7 +305,7 @@ h1,h2,h3,p{margin:0}
 /* Aviso flotante y efecto de vuelo */
 .toast{position:fixed;left:0;right:0;margin-inline:auto;width:fit-content;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:6px;max-width:calc(100% - 28px);padding:8px 8px 8px 22px;border-radius:99px;background:var(--band);color:var(--on-band);border:1px solid rgb(255 255 255 / .12);box-shadow:0 24px 40px -20px rgb(0 0 0 / .6);translate:0 28px;opacity:0;visibility:hidden;transition:translate .5s var(--spring),opacity .3s,visibility 0s .4s}
 .toast.is-in{translate:0 0;opacity:1;visibility:visible;transition-delay:0s}
-.toast button{flex:none;min-height:40px;padding:0 16px;border:0;border-radius:99px;background:rgb(255 255 255 / .14);color:inherit;font-weight:700}
+.toast button{flex:none;min-height:40px;padding:0 16px;border:0;border-radius:99px;background:rgb(255 255 255 / .14);color:inherit;font-weight:600}
 .fly{position:fixed;z-index:50;object-fit:cover;border-radius:24px;pointer-events:none;box-shadow:0 20px 30px -16px rgb(0 0 0 / .5)}
 
 /* ───────── Catálogo en vivo ───────── */
@@ -332,7 +332,7 @@ img[data-foto].is-broken{display:none}
 
 /* ───────── Ofertas ───────── */
 .price .was{margin-right:.4em;font-size:.8em;font-weight:500;color:var(--ink-soft);text-decoration:line-through;text-decoration-thickness:1.5px;text-decoration-color:color-mix(in srgb,var(--accent) 70%,transparent)}
-.deal{position:absolute;left:10px;top:10px;z-index:2;display:inline-flex;align-items:center;padding:.34em .78em;border-radius:99px;font-size:.78rem;font-weight:700;letter-spacing:.01em;color:#FFF8F0;background:var(--accent);box-shadow:0 8px 16px -10px rgb(120 80 30 / .7)}
+.deal{position:absolute;left:10px;top:10px;z-index:2;display:inline-flex;align-items:center;padding:.34em .78em;border-radius:99px;font-size:.78rem;font-weight:600;letter-spacing:.01em;color:#FFF8F0;background:var(--accent);box-shadow:0 8px 16px -10px rgb(120 80 30 / .7)}
 .card__media .deal{top:10px;right:auto;bottom:auto;left:10px;max-width:calc(100% - 20px);white-space:nowrap}
 @media (max-width:699px){.card__media .deal__hasta{display:none}}
 .deal--inline{position:relative;right:auto;top:auto;vertical-align:middle;margin-left:.5em;font-size:.72rem}
@@ -517,7 +517,7 @@ input,select,textarea{font:inherit;min-width:0}
 
 /* Cabecera crema: Yuli Dzul / SHOP · BOUTIQUE */
 .logo{display:grid;gap:2px}
-.logo__sub{font-family:var(--font-body);font-size:.62rem;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--accent)}
+.logo__sub{font-family:var(--font-body);font-size:.62rem;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--accent)}
 .footer .logo__sub{color:rgb(255 255 255 / .65)}
 
 /* Hero: orden en movil como en la captura (texto, checks, foto en arco) */
@@ -553,8 +553,8 @@ input,select,textarea{font:inherit;min-width:0}
 
 /* Etiqueta sobre la foto en arco: OFERTA / nombre — precio, con datos reales */
 .fan__label{position:absolute;left:14px;right:14px;bottom:14px;z-index:2;display:block;padding:13px 18px;border-radius:20px;background:rgb(255 253 246 / .97);box-shadow:0 14px 26px -14px rgb(var(--shadow) / .6);text-align:left}
-.fan__label-eyebrow{display:block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-.fan__label-name{display:block;margin-top:3px;font-family:var(--font-display);font-weight:700;font-size:1.18rem;line-height:1.15;color:var(--heading)}
+.fan__label-eyebrow{display:block;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.fan__label-name{display:block;margin-top:3px;font-family:var(--font-display);font-weight:600;font-size:1.18rem;line-height:1.15;color:var(--heading)}
 
 /* Tarjetas debajo del arco: A tu eleccion / Recoge o recibe */
 .hero-cards{order:4;grid-column:1 / -1;display:grid;gap:12px}
@@ -565,7 +565,7 @@ input,select,textarea{font:inherit;min-width:0}
 
 /* Tarjeta de producto, como en la imagen: meta en una linea, Ahorras y 2 botones */
 .card__meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--ink-soft);font-size:.98rem}
-.saving{color:var(--accent);font-weight:700}
+.saving{color:var(--accent);font-weight:600}
 .card__actions{position:relative;z-index:1;display:flex;gap:6px;width:100%;margin-top:6px}
 .card__actions .btn{min-height:46px;padding:10px 8px;border-radius:12px;font-size:.88rem;line-height:1.2;text-align:center}
 .card__cta{flex:1 1 auto}
@@ -590,13 +590,13 @@ input,select,textarea{font:inherit;min-width:0}
 /* Hero */
 .hero__copy>*+*{margin-top:20px}
 .trust li{font-weight:600;color:var(--ink-soft)}
-.trust .tick{color:var(--accent);font-weight:800;font-size:1.05em}
+.trust .tick{color:var(--accent);font-weight:600;font-size:1.05em}
 .hero__cta .btn{flex:1 1 0;min-height:56px}
 @media (min-width:700px){.hero__cta .btn{flex:0 1 auto}}
 
 /* Herramientas, tal cual la captura */
 .tools{display:grid;gap:14px;margin-top:22px}
-.chip--only{justify-self:start;min-height:50px;padding:0 24px;border:1px solid var(--line);border-radius:99px;background:var(--surface);color:var(--heading);font-weight:700;font-size:1.02rem}
+.chip--only{justify-self:start;min-height:50px;padding:0 24px;border:1px solid var(--line);border-radius:99px;background:var(--surface);color:var(--heading);font-weight:600;font-size:1.02rem}
 .chip--only[aria-pressed="true"]{background:var(--btn-solid);border-color:transparent;color:#fff;box-shadow:0 14px 24px -14px rgb(var(--shadow) / .75)}
 .sortrow{display:flex;align-items:center;gap:14px}
 .sortrow>span:first-child{color:var(--ink-soft);font-weight:600;flex:none}
@@ -611,12 +611,12 @@ input,select,textarea{font:inherit;min-width:0}
 .card{padding:0;border:0;border-radius:28px;background:var(--surface);box-shadow:0 18px 34px -24px rgb(var(--shadow) / .6);overflow:hidden}
 .card__media{border-radius:0;aspect-ratio:1 / 1}
 .card__media .deal{top:12px;left:12px;bottom:auto;right:auto;max-width:calc(100% - 24px);padding:.5em .9em;font-size:.78rem;background:var(--accent);color:#FFF8F0;box-shadow:0 8px 16px -10px rgb(120 80 30 / .7)}
-.tag{left:12px;bottom:12px;top:auto;padding:.4em .85em;border-radius:99px;background:rgb(255 251 245 / .95);color:var(--heading);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 6px 14px -8px rgb(var(--shadow) / .5)}
+.tag{left:12px;bottom:12px;top:auto;padding:.4em .85em;border-radius:99px;background:rgb(255 251 245 / .95);color:var(--heading);font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 6px 14px -8px rgb(var(--shadow) / .5)}
 .card__body{padding:12px 12px 14px;gap:5px}
-.card__name{font-family:var(--font-body);font-weight:900;font-size:17.5px;line-height:1.25;color:#2B1A12}
-.card__body .price{color:#2B1A12;font-size:25px;font-weight:900}
+.card__name{font-family:var(--font-body);font-weight:600;font-size:17.5px;line-height:1.25;color:#2B1A12}
+.card__body .price{color:#2B1A12;font-size:25px;font-weight:600}
 .card__body .price .was{font-size:.88rem}
-.saving{color:var(--accent);font-weight:700;font-size:.9rem}
+.saving{color:var(--accent);font-weight:600;font-size:.9rem}
 .card__meta{font-size:.92rem;gap:8px}
 .dot{width:16px;height:16px}
 .card__actions{margin-top:6px;gap:6px}
@@ -639,13 +639,13 @@ input,select,textarea{font:inherit;min-width:0}
 .panel--product{width:min(100%,620px);max-width:100%;padding:0;border-radius:28px;overflow-y:auto;overflow-x:hidden;background:var(--bg)}
 .pd{display:block}
 .pd__media{border-radius:0;aspect-ratio:1 / 1;min-height:0;overflow:hidden;touch-action:pan-y;cursor:zoom-in}
-.pd__full{position:absolute;left:12px;bottom:12px;z-index:2;padding:.35em .8em;border:0;border-radius:99px;background:rgb(255 251 245 / .95);color:var(--heading);font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:0 8px 18px -10px rgb(0 0 0 / .4)}
+.pd__full{position:absolute;left:12px;bottom:12px;z-index:2;padding:.35em .8em;border:0;border-radius:99px;background:rgb(255 251 245 / .95);color:var(--heading);font-size:.8rem;font-weight:600;cursor:pointer;box-shadow:0 8px 18px -10px rgb(0 0 0 / .4)}
 .pd__media img{object-fit:cover;object-position:50% 30%;animation:pdFoto .35s ease}
 @keyframes pdFoto{from{opacity:0;transform:translateX(24px) scale(1.02)}to{opacity:1;transform:translateX(0) scale(1)}}
 .pd__media--atras img{animation-name:pdFotoAtras}
 @keyframes pdFotoAtras{from{opacity:0;transform:translateX(-24px) scale(1.02)}to{opacity:1;transform:translateX(0) scale(1)}}
-.pd__count{position:absolute;right:12px;bottom:12px;z-index:2;padding:.3em .7em;border-radius:99px;background:rgb(43 26 18 / .82);color:#FFF8F0;font-size:.8rem;font-weight:700;font-variant-numeric:tabular-nums}
-.pd__nav{position:absolute;top:50%;translate:0 -50%;z-index:2;display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:rgb(255 251 245 / .95);color:var(--heading);font-size:1.4rem;font-weight:700;cursor:pointer;box-shadow:0 8px 18px -10px rgb(0 0 0 / .4)}
+.pd__count{position:absolute;right:12px;bottom:12px;z-index:2;padding:.3em .7em;border-radius:99px;background:rgb(43 26 18 / .82);color:#FFF8F0;font-size:.8rem;font-weight:600;font-variant-numeric:tabular-nums}
+.pd__nav{position:absolute;top:50%;translate:0 -50%;z-index:2;display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:rgb(255 251 245 / .95);color:var(--heading);font-size:1.4rem;font-weight:600;cursor:pointer;box-shadow:0 8px 18px -10px rgb(0 0 0 / .4)}
 .pd__nav--prev{left:12px}
 .pd__nav--next{right:12px}
 .pd__thumbs{display:flex;gap:8px;padding:10px 0 0;overflow-x:auto}
@@ -655,11 +655,11 @@ input,select,textarea{font:inherit;min-width:0}
 .pd__info{background:var(--bg);padding:22px 20px 28px;gap:16px}
 .pd__info .eyebrow{color:var(--accent)}
 .pd__name{font-size:clamp(2rem,8vw,2.4rem)}
-.pd__price{color:#2B1A12;font-size:1.45rem;font-weight:800}
+.pd__price{color:#2B1A12;font-size:1.45rem;font-weight:600}
 .pd__price .was{font-size:.85rem}
 .pd__price .saving{font-size:1.05rem;color:var(--accent)}
 .pd__desc{font-size:.98rem}
-.pd legend,.pd .lbl{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.pd legend,.pd .lbl{font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
 .choice span{min-height:48px}
 .panel--product .close{position:absolute;left:14px;top:14px;z-index:3;background:rgb(255 251 245 / .96);box-shadow:0 8px 18px -10px rgb(0 0 0 / .4)}
 @media (max-width:699px){
@@ -690,8 +690,8 @@ input,select,textarea{font:inherit;min-width:0}
 .delivery-cards .delivery-text{display:block;min-width:0}
 .delivery-cards strong{display:block;font-size:1.05rem}
 .delivery-cards small{display:block;color:var(--ink-soft);font-weight:400}
-.order-total{display:flex;justify-content:space-between;align-items:baseline;gap:14px;border-top:1px dashed var(--line);padding-top:18px;margin:22px 0 0;font-size:1.12rem;font-weight:700;color:var(--heading)}
-.order-total strong{font-family:var(--font-display);font-size:1.5rem;font-weight:700}
+.order-total{display:flex;justify-content:space-between;align-items:baseline;gap:14px;border-top:1px dashed var(--line);padding-top:18px;margin:22px 0 0;font-size:1.12rem;font-weight:600;color:var(--heading)}
+.order-total strong{font-family:var(--font-display);font-size:1.5rem;font-weight:600}
 </style>
 <style id="terra-v3-2">
 /* ───────── Terra v3.2 · Espaciado, tarjeta, bold e iconos, tal cual el interactivo ───────── */
@@ -699,16 +699,16 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
 
 /* (A) Espaciado */
 .hero{padding:22px var(--gutter) 6px;gap:18px}
-.hero__title{font-size:2.4rem;font-weight:700}
+.hero__title{font-size:2.4rem;font-weight:600}
 .header__bar{padding:14px var(--gutter) 12px;-webkit-backdrop-filter:none;backdrop-filter:none;border:0;border-bottom:1px solid var(--line);border-radius:0}
 .catalog{padding-top:30px}
 .tools{gap:12px;margin-top:16px}
 .steps{margin:26px var(--gutter) 0;padding:26px}
 .footer{margin-top:26px;padding:38px var(--gutter) 46px;border-radius:0;background:transparent;color:var(--ink)}
-.footer .logo{color:var(--heading);font-size:24px;font-weight:700}
+.footer .logo{color:var(--heading);font-size:24px;font-weight:600}
 .footer__say{color:var(--ink-soft)}
-.footer h3{color:var(--ink-soft);font-weight:800}
-.footer li button{color:var(--ink);font-weight:800}
+.footer h3{color:var(--ink-soft);font-weight:600}
+.footer li button{color:var(--ink);font-weight:600}
 .footer__note{color:var(--ink-soft)}
 .footer__top{gap:24px}
 .footer__base{margin-top:22px;padding-top:16px;border-top-color:var(--line);color:var(--ink-soft)}
@@ -721,37 +721,37 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
 /* (B) Tarjeta */
 .card__media{aspect-ratio:1/1.06}
 .card__body{padding:16px 16px 18px;gap:7px}
-.card__body .price{flex-wrap:nowrap}
+.card__body .price{flex-wrap:wrap}
 .card__body .price .was{font-size:17px}
 .card__name .card__open{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:left}
 
 /* (C) Bold, tal cual el interactivo */
-.catalog__title{font-weight:700}
-.steps__title{font-weight:700}
-.panel__title{font-weight:700;font-size:29px}
-.pd__name{font-weight:700;font-size:40px}
+.catalog__title{font-weight:600}
+.steps__title{font-weight:600}
+.panel__title{font-weight:600;font-size:29px}
+.pd__name{font-weight:600;font-size:40px}
 @media (min-width:760px){.pd__name{font-size:46px}}
-.pd__price{font-weight:900;font-size:29px}
-.btn{font-weight:900}
-.bagbtn{font-weight:800}
-.chip,.chip--only{font-weight:800}
-.sortselect select{font-weight:800}
-.sortbtn{font-weight:800}
-.choice input:checked+span{font-weight:800}
-.opt-radio{font-weight:800}
-.delivery-cards strong{font-weight:900}
-.line__name{font-family:var(--font-body);font-weight:900}
-.total strong{font-weight:900}
-.tag{font-weight:900}
-.deal{font-weight:900}
-.saving{font-weight:900}
-.qty output{font-weight:900;font-size:18px}
-.backbtn{font-weight:900;font-size:16px}
-.eyebrow{font-weight:900}
-.pd legend,.pd .lbl{font-weight:900}
-.stock{font-weight:700}
-.count,.fine{font-weight:700}
-.order-panel h2{font-size:19px;font-weight:900}
+.pd__price{font-weight:600;font-size:29px}
+.btn{font-weight:600}
+.bagbtn{font-weight:600}
+.chip,.chip--only{font-weight:600}
+.sortselect select{font-weight:600}
+.sortbtn{font-weight:600}
+.choice input:checked+span{font-weight:600}
+.opt-radio{font-weight:600}
+.delivery-cards strong{font-weight:600}
+.line__name{font-family:var(--font-body);font-weight:600}
+.total strong{font-weight:600}
+.tag{font-weight:600}
+.deal{font-weight:600}
+.saving{font-weight:600}
+.qty output{font-weight:600;font-size:18px}
+.backbtn{font-weight:600;font-size:16px}
+.eyebrow{font-weight:600}
+.pd legend,.pd .lbl{font-weight:600}
+.stock{font-weight:600}
+.count,.fine{font-weight:600}
+.order-panel h2{font-size:19px;font-weight:600}
 
 /* (D) Iconos en vez de texto */
 .trust .tick{width:1.05em;height:1.05em}
@@ -768,6 +768,119 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
 /* (E) Otros */
 .fan__product .media{border-radius:290px 290px 26px 26px}
 #pdAdd{margin-top:30px}
+</style>
+
+<style id="terra-v3-3">
+/* Terra v3.3 · letra pequeña sin bold, sin recortes, cabecera opaca, arco sin hueco, detalle pop up, ofertas en verde hoja */
+:root{--deal:#3F6B3A;--deal-soft:#E9F1E4}
+strong,b{font-weight:600}
+.icon{flex:none}
+
+/* Cabecera opaca: al hacer scroll nada se transparenta detrás del logo ni de Mi bolsa */
+.header{background:var(--bg)}
+.header__bar{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 1px 0 var(--line)}
+
+/* Hero junto: sin hueco bajo el arco (.fan tenía aspect-ratio 1/1.06 y dejaba ~110 px vacíos) */
+.fan{aspect-ratio:auto}
+.hero{gap:16px}
+.trust{padding:12px 16px;gap:8px 16px}
+.trust li{font-size:.92rem}
+.hero-cards{gap:10px}
+.hero-card{padding:16px 18px}
+.hero-card h3{font-size:1rem;font-weight:500}
+.hero-card p{font-size:.92rem}
+.hero__lead{font-size:1rem}
+.hero__micro{font-size:.85rem}
+.hero__copy>*+*{margin-top:16px}
+
+/* Letra pequeña, sin bold (títulos 500, resto 400/500/600) */
+.hero__title{font-size:2.4rem;font-weight:500}
+.logo{font-size:1.3rem;font-weight:500}
+.eyebrow{font-size:.72rem;font-weight:600}
+.catalog__title{font-size:1.5rem;font-weight:500}
+.bagbtn{font-size:.95rem;min-height:46px}
+.btn{font-size:.95rem;min-height:52px}
+.hero__cta .btn{min-height:52px}
+.chip{font-size:.92rem;min-height:46px}
+.chip--only{font-size:.95rem;min-height:46px}
+.sortrow>span:first-child{font-size:.92rem}
+.sortselect select{font-size:.95rem;min-height:50px}
+.search input{height:52px;font-size:1rem}
+.tools__more{display:inline-flex;align-items:center;gap:8px}
+.chip--only{display:inline-flex;align-items:center;gap:8px}
+.season-banner{font-size:.85rem;padding:12px 16px}
+.count,.fine{font-size:.88rem}
+
+/* Tarjeta: precio que cabe, nunca recortado (se quitó el nowrap de la v3.2) */
+.card__name{font-size:15px;font-weight:500;line-height:1.3}
+.card__body .price{flex-wrap:wrap;font-size:19px;font-weight:600}
+.card__body .price .was{font-size:13px}
+.card__body .price .now{color:var(--deal)}
+.card__body .price .desde{font-size:.8rem}
+.card__meta{font-size:.85rem}
+.card__actions .btn{font-size:.85rem;min-height:44px}
+.card__view{flex-basis:50px}
+.card--soon strong{font-size:1.05rem;font-weight:500}
+.empty h3{font-size:1.25rem;font-weight:500}
+
+/* Ofertas en verde hoja: se ven a primera vista */
+.deal{background:var(--deal);color:#FFF8F0;animation:none}
+.card__media .deal{background:var(--deal);color:#FFF8F0}
+.saving{color:var(--deal);font-size:.8rem;font-weight:600}
+.fan__label-eyebrow{color:var(--deal);font-size:.68rem}
+.fan__label-name{font-size:1rem;font-weight:500}
+.pd__price .saving{color:var(--deal);font-size:.92rem}
+.pd__price .ends{color:var(--deal)}
+.pd__price .now{color:var(--deal)}
+
+/* Pasos: título completo en todo el ancho, sin recorte */
+@media (max-width:979px){.steps>div:first-child{grid-column:1/-1}}
+.steps__title{font-size:1.5rem;line-height:1.2;font-weight:500}
+.step h3{font-size:1rem;font-weight:500}
+.step p{font-size:.92rem}
+.step__n{width:44px;height:44px;font-size:1.1rem}
+.step__ico{width:20px;height:20px;color:var(--accent);vertical-align:-4px;margin-right:6px}
+
+/* Detalle como pop up centrado, con margen alrededor y scroll interno */
+.modal#dlgProduct{display:flex;align-items:center;justify-content:center;padding:20px 14px}
+.modal#dlgProduct .panel--product{width:min(100%,520px);max-height:calc(100dvh - 40px);border-radius:28px;overflow-y:auto;overflow-x:hidden;background:var(--bg);box-shadow:0 50px 90px -40px rgb(0 0 0/.55)}
+@media (max-width:699px){.modal#dlgProduct{padding:16px 12px}.modal#dlgProduct .panel--product{width:min(100%,520px);max-height:calc(100dvh - 32px);border-radius:28px}}
+.pd__name{font-size:24px;font-weight:500}
+.pd__price{font-size:20px;font-weight:600}
+.pd__price .was{font-size:.8rem}
+.pd__desc{font-size:.92rem}
+.pd legend,.pd .lbl{font-size:.72rem;font-weight:600}
+.choice span{min-height:44px;font-size:.92rem}
+.pd__full{display:inline-flex;align-items:center;gap:6px;font-size:.75rem}
+.pd__count{font-size:.75rem}
+.pd__thumbs button{width:56px;height:56px}
+
+/* Bolsa, formulario y pie, en pequeño */
+.panel__title{font-size:22px;font-weight:500}
+.panel__sub{font-size:.92rem}
+.order-panel h2{font-size:17px;font-weight:600}
+.opt-group legend{font-size:.92rem}
+.opt-radio{font-size:.92rem;min-height:44px}
+.delivery-cards strong{display:flex;align-items:center;gap:8px;font-size:1rem;font-weight:600}
+.delivery-cards strong .icon{color:var(--accent)}
+.delivery-cards small{font-size:.88rem}
+.delivery-cards label{padding:12px 14px}
+.line__name{font-size:.98rem}
+.line__img{width:60px;height:76px}
+.total strong{font-size:1.25rem}
+.order-total{font-size:1rem}
+.order-total strong{font-size:1.25rem}
+.qty output{font-size:16px}
+.backbtn{font-size:15px}
+.bag__empty{font-size:1.05rem}
+.notice{font-size:.92rem}
+.footer .logo{font-size:20px;font-weight:500}
+.footer h3{font-size:.95rem}
+.footer li button{font-size:.92rem}
+.footer .linkbtn{display:inline-flex;align-items:center;gap:8px}
+.footer__say{font-size:.92rem}
+.opt strong{font-size:1.05rem}
+.opt small{font-size:.88rem}
 </style>
 </head>
 <body>
@@ -818,7 +931,7 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
           <span class="ln" style="--i:1"><span><em>van contigo.</em></span></span>
         </h1>
         <p class="hero__lead" data-rise style="--i:4">Encuentra esa prenda que te encanta y los detalles que la hacen especial. Elige tu color, encuentra tu talla y hazlo tuyo.</p>
-        <p class="hero__cta" data-rise style="--i:5"><a class="btn" href="#coleccion" data-go="coleccion">Explorar colección <svg class="icon icon--go" aria-hidden="true"><use href="#i-go"/></svg></a><a class="btn btn--ghost" href="#como-funciona" data-go="como-funciona">Cómo funciona</a></p>
+        <p class="hero__cta" data-rise style="--i:5"><a class="btn" href="#coleccion" data-go="coleccion">Explorar colección <svg class="icon icon--go" aria-hidden="true"><use href="#i-go"/></svg></a><a class="btn btn--ghost" href="#como-funciona" data-go="como-funciona"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>Cómo funciona</a></p>
       </div>
 
       <div class="fan hero-arch" id="fan">
@@ -849,9 +962,9 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
 
     <section class="catalog" id="coleccion" aria-label="Colección">
       <div class="tools reveal" style="--d:.08s">
-        <button class="chip chip--only" id="onlyOffers" type="button" aria-pressed="false">Solo ofertas</button>
+        <button class="chip chip--only" id="onlyOffers" type="button" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>Solo ofertas</button>
         <label class="sortrow"><span>Ordenar</span><span class="sortselect"><select id="sortSelect" aria-label="Ordenar"><option value="destacados">Relevancia</option><option value="menor">Menor precio</option><option value="mayor">Mayor precio</option></select><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></span></label>
-        <button class="linkbtn tools__more" id="moreFilters" type="button" aria-expanded="false">Buscar y categorías</button>
+        <button class="linkbtn tools__more" id="moreFilters" type="button" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Buscar y categorías</button>
         <div class="tools__extra" id="toolsExtra" hidden>
           <div class="search" role="search">
             <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
@@ -874,17 +987,17 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
       </div>
       <div class="step reveal" style="--d:.1s">
         <span class="step__n" aria-hidden="true">01</span>
-        <h3>Elige tus favoritos</h3>
+        <h3><svg class="icon step__ico" aria-hidden="true"><use href="#i-spark"/></svg>Elige tus favoritos</h3>
         <p>Selecciona color, talla y cantidad.</p>
       </div>
       <div class="step reveal" style="--d:.2s">
         <span class="step__n" aria-hidden="true">02</span>
-        <h3>Solicita tu pedido</h3>
+        <h3><svg class="icon step__ico" aria-hidden="true"><use href="#i-go"/></svg>Solicita tu pedido</h3>
         <p>Deja tus datos para recoger o solicitar envío.</p>
       </div>
       <div class="step reveal" style="--d:.3s">
         <span class="step__n" aria-hidden="true">03</span>
-        <h3>Atención de la tienda</h3>
+        <h3><svg class="icon step__ico" aria-hidden="true"><use href="#i-heart"/></svg>Atención de la tienda</h3>
         <p>La tienda revisa y confirma tu solicitud. No se cobra en esta web.</p>
       </div>
     </section>
@@ -901,8 +1014,8 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
         <ul id="footCats"></ul>
       </div>
       <div>
-        <h3>Pedidos</h3><a class="linkbtn" href="solicitud.html">Solicitar artículo de redes</a>
-        <button class="linkbtn" id="recuperar-pedido" type="button" data-track-last>Ver mi último pedido</button>
+        <h3>Pedidos</h3><a class="linkbtn" href="solicitud.html"><svg class="icon" aria-hidden="true"><use href="#i-go"/></svg>Solicitar artículo de redes</a>
+        <button class="linkbtn" id="recuperar-pedido" type="button" data-track-last><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Ver mi último pedido</button>
         <p class="footer__note">Enviar una solicitud no reserva existencias. La tienda confirmará tu pedido.</p>
       </div>
     </div>
@@ -1176,7 +1289,7 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
   const media = (src, alt = '') => `<span class="ph" aria-hidden="true">YD</span>${src ? `<img data-foto src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async">` : ''}`;
   const puntos = p => p.sinColor ? '' : `<span class="dots" aria-hidden="true">${p.colores.slice(0, 6).map(c => `<i class="dot" style="--c:${tono(c.nombre)}"></i>`).join('')}</span>`;
   const etiquetaPrecio = p => {
-    if (p.enOferta && p.ofertaUniforme) return `${precio(p.precioMin)}<span class="was"><span class="sr">Antes </span>${precio(p.normalMin)}</span>`;
+    if (p.enOferta && p.ofertaUniforme) return `<span class="now">${precio(p.precioMin)}</span><span class="was"><span class="sr">Antes </span>${precio(p.normalMin)}</span>`;
     return p.precioMin === p.precioMax ? precio(p.precioMin) : `<span class="desde">Desde</span>${precio(p.precioMin)}`;
   };
   const sello = (pct, hasta = false, cls = 'deal') => pct > 0 ? `<span class="${cls}">${hasta ? '<span class="deal__hasta">Hasta\u00a0</span>' : ''}\u2212${pct}\u202f% OFERTA</span>` : '';
@@ -1227,8 +1340,8 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
           ${p.enOferta && ahorro > 0 ? `<p class="saving">Ahorras ${precio(ahorro)}</p>` : ''}
           ${meta}
           <div class="card__actions">
-            <button class="btn card__cta" type="button" data-add="${esc(p.id)}" ${quedan < 1 ? 'disabled' : ''}>Agregar</button>
-            <button class="btn btn--ghost card__view" type="button" data-open="${esc(p.id)}">Ver</button>
+            <button class="btn card__cta" type="button" data-add="${esc(p.id)}" ${quedan < 1 ? 'disabled' : ''}><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Agregar</button>
+            <button class="btn btn--ghost card__view" type="button" data-open="${esc(p.id)}"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Ver</button>
           </div>
         </div>
       </article>`;
@@ -1464,7 +1577,7 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
       const nueva=images[sel.photo]||'';
       const total=images.length;
       $('#pdMedia').innerHTML=media(nueva,`${p.nombre}${p.sinColor?'':', color '+c.nombre}`)
-        +(nueva?`<button type="button" class="pd__full" data-full>Ver completa</button>`:'')
+        +(nueva?`<button type="button" class="pd__full" data-full><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Ver completa</button>`:'')
         +(total?`<span class="pd__count" aria-live="polite">${sel.photo+1} / ${total}</span>`:'')
         +(total>1?`<button type="button" class="pd__nav pd__nav--prev" data-photo="-1" aria-label="Foto anterior"><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button><button type="button" class="pd__nav pd__nav--next" data-photo="1" aria-label="Foto siguiente"><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button>`:'');
       marcarFotosListas($('#pdMedia'));
@@ -1487,7 +1600,7 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
     sel.cant = Math.max(1, Math.min(sel.cant, Math.max(quedan, 1)));
     const pctV = Math.round((1 - v.precio / v.normal) * 100);
     $('#pdPrice').innerHTML = v.oferta
-      ? `${precio(v.precio)}<span class="was"><span class="sr">Antes </span>${precio(v.normal)}</span><span class="saving">\u2212${pctV}\u202f% · Ahorras ${precio(v.normal - v.precio)}</span>${terminaEn(v.fin) ? `<span class="ends">${terminaEn(v.fin)}</span>` : ''}`
+      ? `<span class="now">${precio(v.precio)}</span><span class="was"><span class="sr">Antes </span>${precio(v.normal)}</span><span class="saving">\u2212${pctV}\u202f% · Ahorras ${precio(v.normal - v.precio)}</span>${terminaEn(v.fin) ? `<span class="ends">${terminaEn(v.fin)}</span>` : ''}`
       : precio(v.precio);
     $('#pdCant').textContent = sel.cant;
     $('[data-q="-1"]', pd).disabled = sel.cant <= 1;
@@ -1496,9 +1609,9 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
       : plural(v.stock, 'unidad disponible', 'unidades disponibles') + (mias ? ` · ${mias} en tu bolsa` : '');
     const boton = $('#pdAdd');
     boton.disabled = quedan < 1;
-    boton.textContent = v.stock < 1 ? 'Agotada'
-      : quedan < 1 ? 'Ya tienes todas las disponibles'
-      : `Añadir a mi bolsa · ${precio(v.precio * sel.cant)}`;
+    if (v.stock < 1) boton.textContent = 'Agotada';
+    else if (quedan < 1) boton.textContent = 'Ya tienes todas las disponibles';
+    else boton.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Añadir a mi bolsa · ${precio(v.precio * sel.cant)}`;
   }
 
   function refrescarDetalle() {
@@ -1646,7 +1759,7 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
     const abierto = extra.hidden;
     extra.hidden = !abierto;
     btn.setAttribute('aria-expanded', String(abierto));
-    btn.textContent = abierto ? 'Ocultar búsqueda y categorías' : 'Buscar y categorías';
+    btn.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>' + (abierto ? 'Ocultar búsqueda y categorías' : 'Buscar y categorías');
   });
 
   /* ══════════ Navegación suave ══════════ */
@@ -1765,8 +1878,8 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
       </div></fieldset>
       <label>Nombre o enlace de tu perfil de Messenger<input name="profile_name" maxlength="120"></label>
       <fieldset class="opt-group"><legend>¿Cómo recibes tu pedido?</legend><div class="delivery-cards">
-        <label><input type="radio" name="delivery_method" value="pickup" checked> <span class="delivery-text"><strong>Recoger en tienda</strong><small>Pasas por tu pedido cuando la tienda lo confirme.</small></span></label>
-        <label><input type="radio" name="delivery_method" value="shipping"> <span class="delivery-text"><strong>Envío a domicilio</strong><small>La tienda te confirma el costo de envío.</small></span></label>
+        <label><input type="radio" name="delivery_method" value="pickup" checked> <span class="delivery-text"><strong><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Recoger en tienda</strong><small>Pasas por tu pedido cuando la tienda lo confirme.</small></span></label>
+        <label><input type="radio" name="delivery_method" value="shipping"> <span class="delivery-text"><strong><svg class="icon" aria-hidden="true"><use href="#i-go"/></svg>Envío a domicilio</strong><small>La tienda te confirma el costo de envío.</small></span></label>
       </div></fieldset>
       <div id="shippingFields" hidden><label>Localidad<input name="locality" maxlength="120" autocomplete="address-level2"></label><label>Dirección<input name="street" maxlength="250" autocomplete="street-address"></label><label>Referencia del domicilio<input name="reference" maxlength="500"></label></div>
       <label>Qué artículo deseas / referencia de publicación<textarea name="customer_note" maxlength="1000" ${social?'required':''}></textarea></label>
