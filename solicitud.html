@@ -721,6 +721,17 @@ strong,b{font-weight:600}
 .footer .logo{font-size:22px;font-weight:500}
 .footer li button{font-size:1rem;font-weight:600}
 </style>
+<style id="terra-v3-6">
+/* Terra v3.6 · iconos en el formulario de solicitud (mismos que en el index). */
+.order-panel label>.icon{width:1.05em;height:1.05em;vertical-align:-2px;margin-right:6px;color:var(--accent)}
+
+/* ───────── Terra v3.6b · Logo como el interactivo ─────────
+   Mismo ajuste que en el index: logo a 30 px con ls .01em (peso 600 por la
+   regla de Carlos) y subtítulo a 11.5 px en gris suave. */
+.logo{font-size:clamp(1.5rem,6.5vw,1.9rem);letter-spacing:.01em}
+.logo__sub{font-size:.72rem;color:var(--ink-soft)}
+.footer .logo{font-size:1.5rem}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -741,7 +752,13 @@ strong,b{font-weight:600}
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15M6.500 13.500 12 19l5.500-5.500"/></symbol>
   <symbol id="i-dot-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-infinity" viewBox="0 0 24 24"><path d="M6.5 15.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5c3 0 4 3.5 5.5 3.5 1.5 0 2.5-3.5 5.5-3.5 1.9 0 3.5 1.6 3.5 3.5s-1.6 3.5-3.5 3.5c-3 0-4-3.5-5.5-3.5-1.5 0-2.5 3.5-5.5 3.5z"/></symbol>
-</svg>
+
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20c1.2-3.6 4-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.8 3.5 9 3l1.8 4.2-2 1.6c.9 2.3 2.9 4.3 5.2 5.2l1.6-2L19.8 14l-.5 2.2c-.3 1.2-1.3 2-2.5 2C9.6 18.2 5.8 14.4 5.8 7.2c0-1.2.8-2.2 2-2.5z" transform="rotate(0)"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.4-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.6 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M4 4h7l9 9-7 7-9-9z"/><circle cx="8.5" cy="8.5" r="1.4" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5.5 8h13l-1.2 11a2 2 0 0 1-2 1.8H8.7a2 2 0 0 1-2-1.8z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></symbol></svg>
 <div class="page">
   <header class="header" id="header">
     <div class="header__bar">
@@ -761,14 +778,14 @@ strong,b{font-weight:600}
       <p id="retryNote" class="note" hidden>Hay un envío pendiente de comprobar. Se reenviará la misma solicitud para evitar duplicados.</p>
 
       <form id="publicOrderForm">
-        <label>Nombre<input name="customer_name" required maxlength="120" autocomplete="name"></label>
-        <label>Teléfono / WhatsApp *<input name="customer_phone" type="tel" required minlength="10" maxlength="25" autocomplete="tel" placeholder="10 dígitos"></label>
+        <label><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>Nombre<input name="customer_name" required maxlength="120" autocomplete="name"></label>
+        <label><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Teléfono / WhatsApp *<input name="customer_phone" type="tel" required minlength="10" maxlength="25" autocomplete="tel" placeholder="10 dígitos"></label>
         <fieldset class="opt-group"><legend>Contacto preferido</legend><div class="radio-pills">
           <label class="opt-radio"><input type="radio" name="contact_method" value="whatsapp" checked> <span>WhatsApp</span></label>
           <label class="opt-radio"><input type="radio" name="contact_method" value="messenger"> <span>Messenger</span></label>
           <label class="opt-radio"><input type="radio" name="contact_method" value="phone"> <span>Llamada</span></label>
         </div></fieldset>
-        <label>Nombre o enlace de tu perfil de Messenger<input name="profile_name" maxlength="120"></label>
+        <label><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Nombre o enlace de tu perfil de Messenger<input name="profile_name" maxlength="120"></label>
         <fieldset style="border:0;margin:20px 0;padding:0">
           <legend style="font-weight:600">¿Cómo recibes tu pedido? *</legend>
           <div class="delivery-cards">
@@ -777,11 +794,11 @@ strong,b{font-weight:600}
           </div>
         </fieldset>
         <div id="shippingFields" hidden>
-          <label>Localidad<input name="locality" maxlength="120" autocomplete="address-level2"></label>
-          <label>Dirección<input name="street" maxlength="250" autocomplete="street-address"></label>
-          <label>Referencia del domicilio<input name="reference" maxlength="500"></label>
+          <label><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Localidad<input name="locality" maxlength="120" autocomplete="address-level2"></label>
+          <label><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Dirección<input name="street" maxlength="250" autocomplete="street-address"></label>
+          <label><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg>Referencia del domicilio<input name="reference" maxlength="500"></label>
         </div>
-        <label>Qué artículo deseas / notas para la tienda<textarea name="customer_note" maxlength="1000" required placeholder="Ej. Vestido Floral · Talla L. Lo recojo el sábado por la mañana"></textarea></label>
+        <label><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg>Qué artículo deseas / notas para la tienda<textarea name="customer_note" maxlength="1000" required placeholder="Ej. Vestido Floral · Talla L. Lo recojo el sábado por la mañana"></textarea></label>
         <label class="consent"><input name="consent" type="checkbox" required> Autorizo a Yuli Dzul Shop a usar estos datos para atender mi pedido y contactarme por el medio elegido.</label>
       </form>
       <div id="orderCaptcha"></div>

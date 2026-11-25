@@ -943,6 +943,100 @@ strong,b{font-weight:600}
    solo se desvanece y el hueco queda fijo en 52 px. */
 .tools.reveal{translate:0 0}
 </style>
+<style id="terra-v3-6">
+/* Terra v3.6 · pop up de Ordenar con diseño e iconos, tarjeta más corta, iconos en el formulario */
+
+/* (1) Ordenar: el botón sustituye al select nativo. El .sortselect viejo era un <span>
+   con un <select> dentro; ahora es un <button> con el mismo aspecto de píldora. */
+.sortselect{display:flex;align-items:center;gap:10px;flex:1;min-width:0;min-height:48px;border:1px solid var(--line);border-radius:99px;background:var(--surface);padding:0 16px 0 20px;font:inherit;font-size:.95rem;font-weight:600;color:var(--heading);cursor:pointer;text-align:left}
+.sortselect .icon{color:var(--ink-soft)}
+.sortselect #sortValue{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* El pop up usa el panel Terra (.panel) y las opciones .opt que ya existían en el CSS base:
+   solo se ajustan a letra pequeña y sin bold, como en el resto de la web. */
+.sort-panel{padding:22px}
+.sort-panel .panel__title{font-size:22px;font-weight:500}
+.sort-panel .opt{padding:14px 16px;margin-top:10px}
+.sort-panel .opt:first-of-type{margin-top:16px}
+.sort-panel .opt strong{font-size:1rem;font-weight:500}
+.sort-panel .opt small{font-size:.88rem}
+.sort-panel .opt__ico{color:var(--accent)}
+.sort-panel .opt__ico .icon{width:1.25rem;height:1.25rem}
+.sort-panel .opt__check .icon{width:1.25rem;height:1.25rem}
+
+/* (2) Tarjeta más corta: menos espaciado en foto, cuerpo, gaps y botones.
+   Antes (v3.5, móvil ~390 px): foto 1/1.06 (~163 px), cuerpo 16/16/18 gap 7,
+   botones 46 + 40 px con gap 6. Ahora: foto 1/1.12 (~154 px), cuerpo 10/12/12 gap 4,
+   botones 42 + 36 px con gap 5. La tarjeta baja ~38 px (de ~340 px a ~302 px
+   con oferta y nombre en 1 línea), sin recortar nada. */
+.card__media{aspect-ratio:1/1.12}
+.card__body{padding:10px 12px 12px;gap:4px}
+.card__name{line-height:1.2}
+.card__body .price{line-height:1.2}
+.card__meta{font-size:.82rem}
+.card__actions{margin-top:4px;gap:5px}
+.card__media .deal{padding:.4em .8em}
+@media (max-width:699px){
+  .card__actions .card__cta{min-height:42px}
+  .card__actions .card__view{min-height:36px}
+  .grid{gap:12px}
+}
+
+/* (3) Iconos en el formulario del pedido y en las tarjetas del hero. */
+.order-panel label>.icon{width:1.05em;height:1.05em;vertical-align:-2px;margin-right:6px;color:var(--accent)}
+.hero-card__ico{width:1.4rem;height:1.4rem;color:var(--accent);margin-bottom:8px}
+
+/* (4) La "g" cortada del título del hero: line-height .98 + la máscara overflow:hidden
+   de .ln recortaban los descendentes (g, q, j, p, y) de Playfair itálica. Con 1.15
+   y más aire abajo en la máscara, los descendentes se ven completos. */
+.hero__title{line-height:1.15}
+.hero__title .ln{padding:.08em .12em .35em 0;margin:-.08em 0 -.35em}
+
+/* ───────── Terra v3.6b · Fuentes, bolsa y tarjeta vs interactivo ─────────
+   Acercamiento al interactivo sin subir pesos ni agrandar la letra:
+   misma familia (Playfair + Nunito), tamaños un poco más cerca. */
+
+/* Fuentes: logo como el interactivo (30 px, ls .01em; peso se queda en 600
+   por la regla de Carlos, el interactivo usa 700), subtítulo a 11.5 px en
+   gris suave, tarjetas del hero con título en tinta y texto a 15 px. */
+.logo{font-size:clamp(1.5rem,6.5vw,1.9rem);letter-spacing:.01em}
+.logo__sub{font-size:.72rem;color:var(--ink-soft)}
+.hero-card h3{font-size:1.06rem;color:var(--ink)}
+.hero-card p{font-size:.95rem;line-height:1.45}
+.chip--only{border-width:1.5px}
+.sortrow>span:first-child{font-size:.98rem}
+.footer .logo{font-size:1.5rem}
+
+/* Bolsa: botón terracota como el interactivo (fondo --accent, sombra suave),
+   contador siempre en píldora crema con número en tinta, líneas con nombre
+   a 16 px y precio en tinta, total con raya arriba como el interactivo. */
+.bagbtn{background:var(--accent);font-size:.98rem;gap:10px;padding:0 12px 0 20px;min-height:48px;box-shadow:0 6px 16px rgba(180,101,47,.28)}
+.bagbtn__n{background:#FFF7EA;color:var(--ink);min-width:27px;height:27px;font-size:.9rem}
+.bagbtn.has-items .bagbtn__n{background:#FFF7EA;color:var(--ink)}
+.line__name{font-size:1.02rem;line-height:1.25}
+.line__top .price{color:var(--ink);font-size:1.02rem}
+.total{font-size:1.15rem;border-top:1.5px solid var(--line);padding-top:10px;margin-top:4px}
+.total strong{font-size:1.25rem}
+
+/* Tarjeta: blanca como el interactivo (antes crema #FFFBF5) y sombra suave;
+   pill de oferta y etiqueta con las medidas del interactivo (la oferta se
+   queda en negro metálico por decisión de Carlos); nombre a 16 px, precio
+   con el gap del interactivo, tachado a 14 px, meta a 14 px con puntos de
+   18 px, botones en píldora (radio 999) como el interactivo. La foto se
+   queda en 1/1.12 y los botones apilados (v3.6, tarjeta más corta). */
+.card{background:#FFFFFF;box-shadow:0 4px 18px rgba(122,67,38,.08)}
+.card__body{padding:12px 14px 14px;gap:5px}
+.card__name{font-size:1rem;line-height:1.25}
+.card__body .price{gap:3px 9px}
+.card__body .price .was{font-size:14px}
+.card__meta{font-size:.88rem;gap:8px}
+.card__meta .dot{width:18px;height:18px}
+.saving{font-size:.88rem}
+.deal{font-size:.84rem;padding:.5em .9em;letter-spacing:.02em}
+.card__media .deal{padding:.5em .9em}
+.tag{font-size:.78rem;padding:.5em .8em;border-radius:9px;letter-spacing:.14em}
+.card__actions{gap:6px;margin-top:6px;padding-top:2px}
+.card__actions .btn{border-radius:999px}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -963,7 +1057,13 @@ strong,b{font-weight:600}
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15M6.500 13.500 12 19l5.500-5.500"/></symbol>
   <symbol id="i-dot-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-infinity" viewBox="0 0 24 24"><path d="M6.5 15.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5c3 0 4 3.5 5.5 3.5 1.5 0 2.5-3.5 5.5-3.5 1.9 0 3.5 1.6 3.5 3.5s-1.6 3.5-3.5 3.5c-3 0-4-3.5-5.5-3.5-1.5 0-2.5 3.5-5.5 3.5z"/></symbol>
-</svg>
+
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20c1.2-3.6 4-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.8 3.5 9 3l1.8 4.2-2 1.6c.9 2.3 2.9 4.3 5.2 5.2l1.6-2L19.8 14l-.5 2.2c-.3 1.2-1.3 2-2.5 2C9.6 18.2 5.8 14.4 5.8 7.2c0-1.2.8-2.2 2-2.5z" transform="rotate(0)"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.4-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.6 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M4 4h7l9 9-7 7-9-9z"/><circle cx="8.5" cy="8.5" r="1.4" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5.5 8h13l-1.2 11a2 2 0 0 1-2 1.8H8.7a2 2 0 0 1-2-1.8z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></symbol></svg>
 
 <div class="page">
 
@@ -975,7 +1075,7 @@ strong,b{font-weight:600}
         <a href="#como-funciona" data-go="como-funciona">Cómo funciona</a>
       </nav>
       <button class="bagbtn" id="bagBtn" type="button" aria-haspopup="dialog">
-        Mi bolsa <span class="bagbtn__n" id="bagCount">0</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg>Mi bolsa <span class="bagbtn__n" id="bagCount">0</span>
         <span class="sr" id="bagCountText">artículos en tu bolsa</span>
       </button>
     </div>
@@ -1007,15 +1107,15 @@ strong,b{font-weight:600}
 
       <div class="hero-cards">
         <div class="hero-card">
-          <h3>A tu elección</h3>
+          <svg class="icon hero-card__ico" aria-hidden="true"><use href="#i-spark"/></svg><h3>A tu elección</h3>
           <p>Selecciona color, talla y cantidad en cada artículo.</p>
         </div>
         <div class="hero-card">
-          <h3>Recoge o recibe</h3>
+          <svg class="icon hero-card__ico" aria-hidden="true"><use href="#i-home"/></svg><h3>Recoge o recibe</h3>
           <p>Pasa por tu pedido a tienda o solicita envío a domicilio.</p>
         </div>
         <div class="hero-card">
-          <h3>Atención personal</h3>
+          <svg class="icon hero-card__ico" aria-hidden="true"><use href="#i-heart"/></svg><h3>Atención personal</h3>
           <p>Te confirmamos tu pedido y resolvemos tus dudas de forma personal.</p>
         </div>
       </div>
@@ -1024,7 +1124,7 @@ strong,b{font-weight:600}
     <section class="catalog" id="coleccion" aria-label="Colección">
       <div class="tools reveal" style="--d:.08s">
         <button class="chip chip--only" id="onlyOffers" type="button" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>Solo ofertas</button>
-        <label class="sortrow"><span>Ordenar</span><span class="sortselect"><select id="sortSelect" aria-label="Ordenar"><option value="destacados">Relevancia</option><option value="menor">Menor precio</option><option value="mayor">Mayor precio</option></select><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></span></label>
+        <div class="sortrow"><span>Ordenar</span><button class="sortselect" id="sortBtn" type="button" aria-haspopup="dialog" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-sort"/></svg><span id="sortValue">Relevancia</span><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button></div>
         <button class="linkbtn tools__more" id="moreFilters" type="button" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Buscar y categorías</button>
         <div class="tools__extra" id="toolsExtra" hidden>
           <div class="search" role="search">
@@ -1107,6 +1207,24 @@ strong,b{font-weight:600}
   <div class="panel panel--product">
     <button class="close backbtn" type="button" data-close aria-label="Volver"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg><span>Volver</span></button>
     <div class="pd" id="pd"></div>
+  </div>
+</dialog>
+
+<!-- Ordenar: pop up propio con diseño Terra, no el menú nativo del sistema -->
+<dialog class="modal" id="dlgSort" aria-labelledby="sortTitle">
+  <div class="panel sort-panel">
+    <div class="panel__head">
+      <div>
+        <p class="eyebrow">Colección</p>
+        <h2 class="panel__title" id="sortTitle">Ordenar</h2>
+      </div>
+      <button class="close backbtn" type="button" data-close aria-label="Volver"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg><span>Volver</span></button>
+    </div>
+    <div role="radiogroup" aria-label="Ordenar por">
+      <button class="opt" type="button" data-sort="destacados" role="radio" aria-checked="true"><span class="opt__ico"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg></span><span><strong>Relevancia</strong><small>Los más recientes primero</small></span><span class="opt__check"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span></button>
+      <button class="opt" type="button" data-sort="menor" role="radio" aria-checked="false"><span class="opt__ico"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></span><span><strong>Menor precio</strong><small>Del precio más bajo al más alto</small></span><span class="opt__check"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span></button>
+      <button class="opt" type="button" data-sort="mayor" role="radio" aria-checked="false"><span class="opt__ico"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></span><span><strong>Mayor precio</strong><small>Del precio más alto al más bajo</small></span><span class="opt__check"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span></button>
+    </div>
   </div>
 </dialog>
 
@@ -1811,11 +1929,25 @@ strong,b{font-weight:600}
   });
   $('#qClear').addEventListener('click', () => { const q = $('#q'); q.value = ''; estado.q = ''; $('#qClear').hidden = true; pintarRejilla(); q.focus(); });
 
-  /* Ordenar: select nativo "Relevancia", como en la captura del interactivo */
-  $('#sortSelect').addEventListener('change', e => {
-    estado.orden = e.target.value;
-    pintarRejilla();
+  /* Ordenar: pop up propio con diseño Terra (no el menú nativo del sistema).
+     Las opciones son las mismas de antes: Relevancia, Menor precio, Mayor precio. */
+  const SORT_LABELS = { destacados: 'Relevancia', menor: 'Menor precio', mayor: 'Mayor precio' };
+  function pintarOrden() {
+    $('#sortValue').textContent = SORT_LABELS[estado.orden] || 'Relevancia';
+    $$('#dlgSort .opt').forEach(b => b.setAttribute('aria-checked', String(b.dataset.sort === estado.orden)));
+  }
+  $('#sortBtn').addEventListener('click', () => {
+    pintarOrden();
+    $('#sortBtn').setAttribute('aria-expanded', 'true');
+    abrir($('#dlgSort'));
   });
+  $$('#dlgSort .opt').forEach(b => b.addEventListener('click', () => {
+    estado.orden = b.dataset.sort;
+    pintarOrden();
+    pintarRejilla();
+    cerrar($('#dlgSort'));
+  }));
+  $('#dlgSort').addEventListener('close', () => $('#sortBtn').setAttribute('aria-expanded', 'false'));
   /* Solo ofertas: chip principal, como en la captura */
   $('#onlyOffers').addEventListener('click', () => {
     elegirCat(estado.cat === 'ofertas' ? 'todo' : 'ofertas');
@@ -1936,23 +2068,23 @@ strong,b{font-weight:600}
     oc.innerHTML=`<p class="eyebrow">Tus favoritos</p><h2>${retry?'Retomar solicitud':'Solicitar pedido'}</h2>
       <p>La tienda confirmará disponibilidad. No se realiza ningún cobro aquí. El envío, si lo solicitas, se acuerda por separado.</p>
       ${retry?'<p>Hay un envío pendiente de comprobar. Se reenviará la misma solicitud para evitar duplicados.</p>':`<form id="publicOrderForm">
-      <label>Nombre<input name="customer_name" required maxlength="120" autocomplete="name"></label>
-      <label>Teléfono, también para recoger<input name="customer_phone" type="tel" required minlength="10" maxlength="25" autocomplete="tel"></label>
+      <label><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>Nombre<input name="customer_name" required maxlength="120" autocomplete="name"></label>
+      <label><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Teléfono, también para recoger<input name="customer_phone" type="tel" required minlength="10" maxlength="25" autocomplete="tel"></label>
       <fieldset class="opt-group"><legend>Contacto preferido</legend><div class="radio-pills">
         <label class="opt-radio"><input type="radio" name="contact_method" value="whatsapp" checked> <span>WhatsApp</span></label>
         <label class="opt-radio"><input type="radio" name="contact_method" value="messenger"> <span>Messenger</span></label>
         <label class="opt-radio"><input type="radio" name="contact_method" value="phone"> <span>Llamada</span></label>
       </div></fieldset>
-      <label>Nombre o enlace de tu perfil de Messenger<input name="profile_name" maxlength="120"></label>
+      <label><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Nombre o enlace de tu perfil de Messenger<input name="profile_name" maxlength="120"></label>
       <fieldset class="opt-group"><legend>¿Cómo recibes tu pedido?</legend><div class="delivery-cards">
         <label><input type="radio" name="delivery_method" value="pickup" checked> <span class="delivery-text"><strong><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Recoger en tienda</strong><small>Pasas por tu pedido cuando la tienda lo confirme.</small></span></label>
         <label><input type="radio" name="delivery_method" value="shipping"> <span class="delivery-text"><strong><svg class="icon" aria-hidden="true"><use href="#i-go"/></svg>Envío a domicilio</strong><small>La tienda te confirma el costo de envío.</small></span></label>
       </div></fieldset>
-      <div id="shippingFields" hidden><label>Localidad<input name="locality" maxlength="120" autocomplete="address-level2"></label><label>Dirección<input name="street" maxlength="250" autocomplete="street-address"></label><label>Referencia del domicilio<input name="reference" maxlength="500"></label></div>
-      <label>Qué artículo deseas / referencia de publicación<textarea name="customer_note" maxlength="1000" ${social?'required':''}></textarea></label>
+      <div id="shippingFields" hidden><label><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Localidad<input name="locality" maxlength="120" autocomplete="address-level2"></label><label><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Dirección<input name="street" maxlength="250" autocomplete="street-address"></label><label><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg>Referencia del domicilio<input name="reference" maxlength="500"></label></div>
+      <label><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg>Qué artículo deseas / referencia de publicación<textarea name="customer_note" maxlength="1000" ${social?'required':''}></textarea></label>
       <label class="consent"><input name="consent" type="checkbox" required> Autorizo a Yuli Dzul Shop a usar estos datos para atender mi pedido y contactarme por el medio elegido.</label>
       ${social?'<p>La tienda elegirá contigo el artículo y su precio.</p>':`<p class="order-total"><span>Total a confirmar</span><strong>${precio(subtotal())}</strong></p><p class="fine">Al enviar, la tienda recibe tu solicitud con el detalle de tu bolsa y te confirma disponibilidad y pago.</p>`}
-      </form>`}<div id="orderCaptcha"></div><p id="orderStatus" role="status" aria-live="polite"></p><button class="btn btn--block" id="sendPublicOrder">${retry?'Reintentar misma solicitud':'Enviar solicitud'}</button>`;
+      </form>`}<div id="orderCaptcha"></div><p id="orderStatus" role="status" aria-live="polite"></p><button class="btn btn--block" id="sendPublicOrder"><svg class="icon" aria-hidden="true"><use href="#i-go"/></svg>${retry?'Reintentar misma solicitud':'Enviar solicitud'}</button>`;
     abrir(od);captcha('submit');
     const form=$('#publicOrderForm',od);
     if(form){
