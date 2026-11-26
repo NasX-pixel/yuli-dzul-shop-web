@@ -1605,6 +1605,43 @@ strong,b{font-weight:600}
 .card__actions{padding-top:4px;gap:4px}
 </style>
 
+<style id="terra-v3-13">
+/* Terra v3.13 · etiquetas más chicas + hueco nombre→insignia cerrado
+   (reporte de Carlos con la v3.12 viva, tema Navidad).
+   (1) ETIQUETAS SOBRE LA FOTO: la pill de oferta (.deal) y la etiqueta
+   de categoría (.tag) tapaban mucho de la foto en celular (la foto
+   mide ~167 px de ancho y la pill ~121 px, la etiqueta ~121 px).
+   Se achican ~20% en las 7 temáticas (son reglas del cuerpo base,
+   no de un tema): .deal .84rem (13.44 px, padding efectivo 6.7/12.1 px)
+   -> .72rem/5px 10px y
+   .tag .78rem/8px 13px -> .66rem/5px 9px con menos tracking.
+   La pill CONSERVA su estilo: mismo negro metálico con efecto
+   (bloque v3.4), mismo texto, misma posición (arriba a la izquierda),
+   mismo radio; solo es más chica. La etiqueta igual: mismo fondo
+   blanco, misma posición (abajo a la izquierda), solo más chica.
+   (2) HUECO NOMBRE→INSIGNIA: el nombre reserva 2 líneas (2.3em)
+   para que las columnas queden parejas, y con un nombre de 1 línea
+   quedaban ~18.5 px vacíos entre el nombre y la insignia (medido
+   en Chrome real). La reserva SE QUEDA (si se quita, las tarjetas de
+   la misma fila se descuadran), pero el nombre ahora se centra
+   verticalmente dentro de su renglón reservado: el hueco
+   nombre→insignia baja a ~10 px y el aire que sobra queda repartido
+   arriba del nombre. Además el nombre pasa a 15px/1.1 con reserva
+   2.4em (= 2 líneas exactas más el aire del botón, para que un
+   nombre de 2 líneas quepa sin traslapar el renglón de la insignia)
+   y el hueco del cuerpo a 2 px.
+   El renglón de insignia baja de 26 a 24 px (la insignia mide ~23 px).
+   Nada de esto toca el banner (v3.12 intacto), los botones, el
+   precio, la oferta ni las alturas fijas: las tarjetas siguen del
+   mismo alto y las columnas parejas. */
+.card__media .deal{font-size:.72rem;padding:5px 10px}
+.tag{font-size:.66rem;padding:5px 9px;letter-spacing:.10em}
+.card__body{gap:2px}
+.card__name{display:flex;align-items:center;font-size:15px;line-height:1.1;min-height:2.4em}
+.card__season{min-height:24px}
+</style>
+
+
 
 </head>
 <body>
@@ -1856,7 +1893,7 @@ strong,b{font-weight:600}
      Los productos del probador NO vienen aquí: el catálogo sigue siendo
      el real de Supabase. La pill de oferta (.deal) no se toca. */
   const TEMATICAS = {
-    'terra': { nombre: 'Terra', mark: 'spark', heroIcons: ['leaf','flower','sun'], steps: ['spark','go','heart'], btnIcon: 'bag', bagIcon: 'bag', soloIcon: 'spark', insignia: { icon: 'leaf', texto: 'Hecho a mano' }, logro: 'Hechos a mano, hechos con amor', fx: { icon: 'leaf', n: 8, tipo: 'fall' },
+    'terra': { nombre: 'Terra', mark: 'spark', heroIcons: ['leaf','flower','sun'], steps: ['spark','go','heart'], btnIcon: 'bag', bagIcon: 'bag', soloIcon: 'spark', insignia: { icon: 'leaf', texto: 'Importado' }, logro: 'Hechos a mano, hechos con amor', fx: { icon: 'leaf', n: 8, tipo: 'fall' },
       banner: 'Boutique cálida, todo el año', bannerSub: 'Ropa · Bisutería · Temporada',
       eyebrow: 'Ropa · Bisutería · Temporada',
       titulo: 'Colores que <em>van contigo.</em>',
