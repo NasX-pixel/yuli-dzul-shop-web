@@ -1872,6 +1872,13 @@ strong,b{font-weight:600}
   html.theme-swap .chip,html.theme-swap .chip--only{transition:background .45s ease,color .45s ease,box-shadow .3s,translate .3s var(--ease),border-color .45s ease}
   html.theme-swap .header__bar{transition:box-shadow .35s,padding .35s var(--ease),background-color .45s ease,border-color .45s ease}
   html.theme-swap .season-banner{animation:bannerFade .45s ease}
+/* v3.21 · Velo neutro anti-parpadeo: en primera visita (sin tema guardado) la página
+   no pinta ningún tema hasta que responde la tienda (RPC); el velo crema neutro cubre
+   ese instante y se desvanece al aplicar el tema. Con tema guardado o sin JS nunca aparece. */
+.theme-veil{position:fixed;inset:0;z-index:200;background:#FBF2E1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#33241C;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility 0s linear .35s}
+.theme-veil p{margin:0;font-size:.95rem}
+.theme-veil p:first-child{font-size:1rem;letter-spacing:.16em;text-transform:uppercase}
+html.theme-pending .theme-veil{opacity:1;visibility:visible;pointer-events:auto;transition:none}
   @keyframes bannerFade{from{opacity:.3}to{opacity:1}}
 }
 
@@ -1974,6 +1981,7 @@ strong,b{font-weight:600}
 
 </head>
 <body>
+<div class="theme-veil" aria-hidden="true"><p>Yuli Dzul Shop</p><p>Cargando…</p></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.600 11.100 11.100 6.600 12 0z"/></symbol>
   <symbol id="i-go" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
@@ -2337,7 +2345,7 @@ strong,b{font-weight:600}
     'aniversario': { nombre: 'Aniversario', mark: 'cake', heroIcons: ['cake','balloon','gift'], steps: ['cake','balloon','heart'], btnIcon: 'cake', bagIcon: 'balloon', soloIcon: 'cake', insignia: { icon: 'cake', texto: '{N}.º Aniversario' }, logro: 'Celebrando {N} {AÑOS} contigo', fx: { icon: 'balloon', n: 10, tipo: 'rise' },
       banner: '{N}.º Aniversario · Gracias por estar', bannerSub: 'Desde el 10 de mayo de 2025 · Solo por temporada',
       eyebrow: 'Aniversario · Gracias por estar',
-      titulo: 'Ya son {N} {AÑOS} <em>contigo.</em>',
+      titulo: 'Ya {ES} {N} {AÑOS} <em>contigo.</em>',
       lead: 'La boutique cumple {N} {AÑOS} gracias a ti: artículos seleccionados con precio especial para celebrar, solo por temporada.',
       micro: 'Precios de aniversario en artículos marcados con la pill de oferta.',
       trust: ['Precios de aniversario', 'Recoge o solicita envío', 'Atención personal'],
@@ -2530,8 +2538,9 @@ strong,b{font-weight:600}
      de 270 ms que dejaba el diálogo abierto pero invisible (trabado). */
   const cierresPendientes = new WeakMap();
   function abrir(d) {
-    const pendiente = cierresPendientes.get(d);
-    if (pendiente) { clearTimeout(pendiente.timer); cierresPendientes.delete(d); pendiente.resolver(); }
+    /* v3.21 · Si este diálogo se está cerrando, el toque se ignora: antes cancelaba
+       el cierre y el diálogo reaparecía a mitad del desvanecido (~270 ms). */
+    if (cierresPendientes.has(d)) return;
     if (d.open) { d.classList.add('is-in'); return; }
     ocultarAviso();
     d.showModal();
@@ -3339,7 +3348,7 @@ strong,b{font-weight:600}
      sigue diciendo 1.º). Nunca baja de 1. Los textos del tema usan
      el marcador {N}, que se reemplaza por ese número al pintar. */
   const aniversarioNum = () => { const hoy = new Date(); let n = hoy.getFullYear() - 2025; if (hoy.getMonth() < 4 || (hoy.getMonth() === 4 && hoy.getDate() < 10)) n -= 1; return Math.max(1, n); };
-  const resolverTema = T => { const n = aniversarioNum(); const anios = n === 1 ? 'año' : 'años'; const r = s => typeof s === 'string' ? s.replaceAll('{N}', String(n)).replaceAll('{AÑOS}', anios) : s; const c = { ...T }; ['banner', 'bannerSub', 'eyebrow', 'titulo', 'lead', 'micro', 'logro', 'catEyebrow', 'catTitulo', 'fanEyebrow', 'footerSay'].forEach(k => { if (c[k]) c[k] = r(c[k]); }); if (c.insignia) c.insignia = { ...c.insignia, texto: r(c.insignia.texto) }; if (c.trust) c.trust = c.trust.map(r); if (c.cards) c.cards = c.cards.map(x => ({ ...x, t: r(x.t), p: r(x.p) })); return c; };
+  const resolverTema = T => { const n = aniversarioNum(); const anios = n === 1 ? 'año' : 'años'; const es = n === 1 ? 'es' : 'son'; const r = s => typeof s === 'string' ? s.replaceAll('{N}', String(n)).replaceAll('{AÑOS}', anios).replaceAll('{ES}', es) : s; const c = { ...T }; ['banner', 'bannerSub', 'eyebrow', 'titulo', 'lead', 'micro', 'logro', 'catEyebrow', 'catTitulo', 'fanEyebrow', 'footerSay'].forEach(k => { if (c[k]) c[k] = r(c[k]); }); if (c.insignia) c.insignia = { ...c.insignia, texto: r(c.insignia.texto) }; if (c.trust) c.trust = c.trust.map(r); if (c.cards) c.cards = c.cards.map(x => ({ ...x, t: r(x.t), p: r(x.p) })); return c; };
   const temaDatos = () => resolverTema(TEMATICAS[document.documentElement.dataset.season] || TEMATICAS.terra);
   function pintarFX() {
     const layer = document.getElementById('fxLayer'); if (!layer) return;
@@ -3411,16 +3420,21 @@ strong,b{font-weight:600}
 (()=>{
  const themes={'normal':1,'terra':1,'buen-fin':1,'hot-sale':1,'black-friday':1,'navidad':1,'san-valentin':1,'dia-madres':1,'cyber-monday':1,'aniversario':1};
  const root=document.documentElement, counter=document.getElementById('webVisits');
- function apply(theme){if(!Object.hasOwn(themes,theme))theme='terra';const visual=theme==='normal'?'terra':theme;if(root.dataset.season!==visual&&!matchMedia('(prefers-reduced-motion: reduce)').matches){root.classList.add('theme-swap');clearTimeout(root._tsT);root._tsT=setTimeout(()=>root.classList.remove('theme-swap'),520);}root.dataset.season=visual;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';if(window.__yuliAplicarTema)window.__yuliAplicarTema(visual);}
+ function apply(theme){if(!Object.hasOwn(themes,theme))theme='terra';const visual=theme==='normal'?'terra':theme;if(root.dataset.season!==visual&&!matchMedia('(prefers-reduced-motion: reduce)').matches){root.classList.add('theme-swap');clearTimeout(root._tsT);root._tsT=setTimeout(()=>root.classList.remove('theme-swap'),520);}root.dataset.season=visual;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';root.classList.remove('theme-pending');if(window.__yuliAplicarTema)window.__yuliAplicarTema(visual);}
  try{localStorage.removeItem('yuli-web-theme-manual-v1');}catch{} /* Eleccion manual vieja: se borra, la tematica la manda solo la tienda. */
- try{apply(localStorage.getItem('yuli-web-theme-v1')||'terra');}catch{apply('terra');}
+ /* v3.21 · Anti-parpadeo: con tema guardado se pinta de inmediato (como siempre, sin velo);
+    en primera visita no se pinta ningún tema hasta que responda la tienda: el velo neutro
+    cubre la página y se quita al aplicar el tema. Si la tienda no responde, se cae a Terra. */
+ let temaGuardado=null;try{temaGuardado=localStorage.getItem('yuli-web-theme-v1');}catch{}
+ if(temaGuardado&&Object.hasOwn(themes,temaGuardado)){try{apply(temaGuardado);}catch{apply('terra');}}
+ else{root.classList.add('theme-pending');setTimeout(()=>{if(root.classList.contains('theme-pending'))apply('terra');},3500);/* Respaldo: si el RPC tarda más de 3.5 s, se muestra Terra en vez de dejar el velo. */}
  let busy=false;
  async function refresh(count=false){
   if(busy)return;busy=true;
   let key=null;
   if(count){try{const day=new Date().toISOString().slice(0,10);let visit=JSON.parse(localStorage.getItem('yuli-web-visit-v1')||'null');if(!visit||visit.day!==day||!/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i.test(visit.key)){visit={day,key:crypto.randomUUID()};localStorage.setItem('yuli-web-visit-v1',JSON.stringify(visit));}key=visit.key;}catch{}}
   try{const res=await fetch('https://xrhbtkwwmfdhisuiexpf.supabase.co/rest/v1/rpc/'+(key?'shop_web_visit':'shop_web_info'),{method:'POST',headers:{apikey:'sb_publishable_smiua9QVJl9HzNhpgtyKpg_hWW1cs6B','Content-Type':'application/json'},body:JSON.stringify(key?{p_key:key}:{}),signal:AbortSignal.timeout(12000)});if(!res.ok)throw Error('unavailable');const data=await res.json();if(!data||!Object.hasOwn(themes,data.theme)||!Number.isSafeInteger(data.visits)||data.visits<0)throw Error('invalid');apply(data.theme); /* La tematica la manda solo la tienda (Supabase); el visitante no elige. */if(counter)counter.textContent='Visitas: '+data.visits.toLocaleString('es-MX');}
-  catch{if(counter)counter.textContent='Visitas: —';}
+  catch{if(counter)counter.textContent='Visitas: —';if(root.classList.contains('theme-pending'))apply('terra');/* v3.21 · Sin conexión: se cae a Terra y se quita el velo. */}
   finally{busy=false;}
  }
  refresh(true);setInterval(()=>{if(!document.hidden)refresh(false);},60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh(true);});window.addEventListener('online',()=>refresh(true));

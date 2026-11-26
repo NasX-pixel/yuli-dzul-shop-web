@@ -228,6 +228,13 @@ img[data-foto]{position:relative;z-index:1;opacity:0;transition:opacity .6s var(
 
 .web-visits{display:block;font-variant-numeric:tabular-nums}
 
+/* v3.21 · Velo neutro anti-parpadeo (igual que en index): en primera visita la página
+   no pinta ningún tema hasta que responde la tienda; el velo cubre ese instante. */
+.theme-veil{position:fixed;inset:0;z-index:200;background:#FBF2E1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#33241C;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility 0s linear .35s}
+.theme-veil p{margin:0;font-size:.95rem}
+.theme-veil p:first-child{font-size:1rem;letter-spacing:.16em;text-transform:uppercase}
+html.theme-pending .theme-veil{opacity:1;visibility:visible;pointer-events:auto;transition:none}
+
 </style>
 <style id="yuli-scroll-fix">
 .order-panel {
@@ -546,6 +553,7 @@ strong,b{font-weight:600}
 
 </head>
 <body>
+<div class="theme-veil" aria-hidden="true"><p>Yuli Dzul Shop</p><p>Cargando…</p></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 0c.9 6.6 5.4 11.1 12 12-6.6.9-11.1 5.4-12 12-.9-6.6-5.4-11.1-12-12C6.600 11.100 11.100 6.600 12 0z"/></symbol>
   <symbol id="i-go" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
@@ -662,7 +670,7 @@ strong,b{font-weight:600}
 
 
   /* ── Envio: misma logica que index.html openOrder(false/true) ── */
-  let sendingOrder = false, captchaWidget = null, captchaProof = '';
+  let sendingOrder = false, captchaWidget = null, captchaProof = '', captchaFailed = false;
   let pendingRequest = null;
   try { pendingRequest = JSON.parse(sessionStorage.getItem(pendingKey) || 'null'); } catch (e) {}
   const form = $('#publicOrderForm'), statusEl = $('#orderStatus'), sendBtn = $('#sendPublicOrder');
@@ -678,7 +686,8 @@ strong,b{font-weight:600}
       });
       if (captchaWidget !== null) window.turnstile.remove(captchaWidget);
       captchaWidget = window.turnstile.render($('#orderCaptcha'), { sitekey: ORDER_SITE_KEY, action, callback: t => { captchaProof = t; }, 'expired-callback': () => { captchaProof = ''; } });
-    } catch (e) { statusEl.textContent = 'No se pudo cargar la verificación. Comprueba tu conexión.'; }
+      captchaFailed = false;
+    } catch (e) { captchaFailed = true; statusEl.textContent = 'No se pudo cargar la verificación. Comprueba tu conexión y toca Enviar para intentarlo de nuevo.'; }
   }
   async function requestOrder(payload) {
     if (!captchaProof) throw Error('Completa la verificación de seguridad.');
@@ -716,7 +725,11 @@ strong,b{font-weight:600}
       if (sendingOrder) return;
       if (!pendingRequest) {
         if (!form.reportValidity()) return;
-        if (!captchaProof) { statusEl.textContent = 'Completa la verificación de seguridad.'; return; }
+        if (!captchaProof) {
+          if (captchaFailed) { statusEl.textContent = 'No se pudo cargar la verificación. Comprueba tu conexión y toca Enviar para intentarlo de nuevo.'; captcha('submit'); }
+          else statusEl.textContent = 'Completa la verificación de seguridad.';
+          return;
+        }
         const details = Object.fromEntries(new FormData(form)); details.consent = form.elements.consent.checked;
         const source = params.get('origen'); details.source = ['facebook', 'whatsapp'].includes(source) ? source : 'web';
         const lines = []; // Formulario de redes: la tienda elige contigo el articulo y su precio.
@@ -731,7 +744,7 @@ strong,b{font-weight:600}
         sessionStorage.removeItem(pendingKey); pendingRequest = null;
         receipt(result.order_number, token);
       } catch (e) {
-        statusEl.textContent = e.message || 'Conexión interrumpida. Reintenta la misma solicitud.';
+        statusEl.textContent = captchaFailed ? 'No se pudo cargar la verificación. Comprueba tu conexión y toca Enviar para intentarlo de nuevo.' : (e.message || 'Conexión interrumpida. Reintenta la misma solicitud.');
         if (e.definitive) { sessionStorage.removeItem(pendingKey); pendingRequest = null; statusEl.textContent += ' Cierra y vuelve a abrir para corregir.'; sendBtn.hidden = true; }
         else sendBtn.textContent = 'Reintentar misma solicitud';
         await captcha('submit');
@@ -753,16 +766,20 @@ strong,b{font-weight:600}
  /* Aniversario: el número se calcula solo desde la fundación (10 de mayo de 2025). */
  const anivNum=()=>{const h=new Date();let n=h.getFullYear()-2025;if(h.getMonth()<4||(h.getMonth()===4&&h.getDate()<10))n-=1;return Math.max(1,n);};
  const root=document.documentElement, counter=document.getElementById('webVisits');
- function apply(theme){if(!Object.hasOwn(themes,theme))theme='terra';const visual=theme==='normal'?'terra':theme;root.dataset.season=visual;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';el.querySelector('[data-season-label]').textContent=BANNERS[visual][0].replaceAll('{N}',String(anivNum()));el.querySelector('[data-season-mark]').innerHTML='<svg class="icon" aria-hidden="true"><use href="#'+BANNERS[visual][1]+'"/></svg>';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';}
+ function apply(theme){if(!Object.hasOwn(themes,theme))theme='terra';const visual=theme==='normal'?'terra':theme;root.dataset.season=visual;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';el.querySelector('[data-season-label]').textContent=BANNERS[visual][0].replaceAll('{N}',String(anivNum()));el.querySelector('[data-season-mark]').innerHTML='<svg class="icon" aria-hidden="true"><use href="#'+BANNERS[visual][1]+'"/></svg>';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';root.classList.remove('theme-pending');}
  try{localStorage.removeItem('yuli-web-theme-manual-v1');}catch{} /* Eleccion manual vieja: se borra, la tematica la manda solo la tienda. */
- try{apply(localStorage.getItem('yuli-web-theme-v1')||'terra');}catch{apply('terra');}
+ /* v3.21 · Anti-parpadeo (igual que en index): con tema guardado se pinta de inmediato;
+    en primera visita el velo neutro cubre la página hasta que responda la tienda. */
+ let temaGuardado=null;try{temaGuardado=localStorage.getItem('yuli-web-theme-v1');}catch{}
+ if(temaGuardado&&Object.hasOwn(themes,temaGuardado)){try{apply(temaGuardado);}catch{apply('terra');}}
+ else{root.classList.add('theme-pending');setTimeout(()=>{if(root.classList.contains('theme-pending'))apply('terra');},3500);/* Respaldo: si el RPC tarda más de 3.5 s, se muestra Terra en vez de dejar el velo. */}
  let busy=false;
  async function refresh(count=false){
   if(busy)return;busy=true;
   let key=null;
   if(count){try{const day=new Date().toISOString().slice(0,10);let visit=JSON.parse(localStorage.getItem('yuli-web-visit-v1')||'null');if(!visit||visit.day!==day||!/^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i.test(visit.key)){visit={day,key:crypto.randomUUID()};localStorage.setItem('yuli-web-visit-v1',JSON.stringify(visit));}key=visit.key;}catch{}}
   try{const res=await fetch('https://xrhbtkwwmfdhisuiexpf.supabase.co/rest/v1/rpc/'+(key?'shop_web_visit':'shop_web_info'),{method:'POST',headers:{apikey:'sb_publishable_smiua9QVJl9HzNhpgtyKpg_hWW1cs6B','Content-Type':'application/json'},body:JSON.stringify(key?{p_key:key}:{}),signal:AbortSignal.timeout(12000)});if(!res.ok)throw Error('unavailable');const data=await res.json();if(!data||!Object.hasOwn(themes,data.theme)||!Number.isSafeInteger(data.visits)||data.visits<0)throw Error('invalid');apply(data.theme); /* La tematica la manda solo la tienda (Supabase); el visitante no elige. */if(counter)counter.textContent='Visitas: '+data.visits.toLocaleString('es-MX');}
-  catch{if(counter)counter.textContent='Visitas: —';}
+  catch{if(counter)counter.textContent='Visitas: —';if(root.classList.contains('theme-pending'))apply('terra');/* v3.21 · Sin conexión: se cae a Terra y se quita el velo. */}
   finally{busy=false;}
  }
  refresh(true);setInterval(()=>{if(!document.hidden)refresh(false);},60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh(true);});window.addEventListener('online',()=>refresh(true));
