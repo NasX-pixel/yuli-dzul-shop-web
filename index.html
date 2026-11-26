@@ -1829,6 +1829,42 @@ strong,b{font-weight:600}
 .count .linkbtn .icon{width:1em;height:1em}
 </style>
 
+<style id="terra-v3-18">
+/* Terra v3.18 · Tarjeta más corta con puntos de color, pasos sin media columna vacía, hero deslizable que sí llega al final, y aire parejo.
+   (1) TARJETA MÁS CORTA: el botón "Ver" se quita del todo. No hacía falta: toda la tarjeta ya abre el detalle (el nombre lleva un
+       recubrimiento invisible sobre toda la tarjeta y la foto también abre, ver (1b)). Solo queda "Agregar". La tarjeta baja ~30 px.
+   (1b) FOTO CLICABLE: la foto de la tarjeta abre el detalle (con teclado: Enter o Espacio sobre la foto). El nombre sigue abriendo.
+   (2) PUNTOS DE COLOR: renglón propio de puntos, con altura fija reservada (20 px) para que TODAS las tarjetas midan lo mismo tengan
+       colores o no. Si el producto no tiene colores (p. ej. el Santa, "Sin color"), el renglón queda vacío con su altura reservada.
+       El punto elegido lleva un anillo; al pulsar "Agregar" se usa ese color (y la foto de la tarjeta cambia a la de ese color).
+       Los puntos de color ya no van dentro del renglón de tallas: ese renglón queda solo para las tallas.
+   (3) PASOS EN CELULAR: el paso 03 ocupaba solo media columna y dejaba la otra mitad vacía (se veía una caja enorme medio vacía).
+       Ahora el paso 03 ocupa todo el ancho en celular/tableta y la sección se acorta. En PC (4 columnas) se queda como está.
+   (4) HERO DESLIZABLE: la última tarjeta no podía quedar alineada a la izquierda porque el recorrido se acababa antes
+       (se quedaba cortada a la mitad con un trozo de la anterior, como en la captura de Carlos). Un espaciador al final
+       deja llegar hasta el final: cada tarjeta queda completa a la izquierda al deslizar.
+   (5) PIE: las categorías quedan un poco más juntas (de ~41 px a ~36 px entre renglones).
+   (6) TARJETA: botón Agregar a 40 px en celular y el pie del cuerpo de la tarjeta de 8 a 4 px. La foto NO se toca.
+       (Ojo: el padding de la tarjeta ya era 0 por una regla anterior; no se le pone padding abajo.) */
+.card__media{cursor:pointer}
+.card__media:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.card__colors{position:relative;z-index:1;display:flex;align-items:center;gap:7px;width:100%;min-height:20px;margin:0}
+.card__colors .dot{appearance:none;-webkit-appearance:none;padding:0;width:16px;height:16px;cursor:pointer}
+.card__colors .dot[aria-pressed="true"]{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--ink)}
+.card__colors .dot:disabled{opacity:.35;cursor:not-allowed}
+.footer li button{padding:.3em 0}
+@media (max-width:979px){
+  .steps .step:last-child{grid-column:1/-1}
+  .steps{padding:22px;row-gap:28px}
+}
+@media (max-width:699px){
+  .hero-cards::after{content:"";flex:0 0 22%}
+  .card__body{padding-bottom:4px}
+  .card__actions{margin-top:2px}
+  .card__actions .card__cta{min-height:40px}
+}
+</style>
+
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2198,7 +2234,7 @@ strong,b{font-weight:600}
   const foto = ruta => typeof ruta === 'string' && ruta && !ruta.includes('..')
     ? FOTOS + ruta.split('/').map(encodeURIComponent).join('/') : '';
 
-  const estado = { catalogo: null, variantes: new Map(), at: 0, origen: '', cat: 'todo', q: '', orden: 'destacados', bolsa: [], cargando: false };
+  const estado = { catalogo: null, variantes: new Map(), at: 0, origen: '', cat: 'todo', q: '', orden: 'destacados', bolsa: [], cargando: false, colorSel: {} };
 
   /* ══════════ Catálogo: de Supabase al formato de la página ══════════ */
   function ordenTalla(a, b) {
@@ -2391,7 +2427,13 @@ strong,b{font-weight:600}
     $$('img[data-foto]', raiz).forEach(img => { if (img.complete && img.naturalWidth) img.classList.add('is-loaded'); });
   }
   const media = (src, alt = '') => `<span class="ph" aria-hidden="true">YD</span>${src ? `<img data-foto src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async">` : ''}`;
-  const puntos = p => p.sinColor ? '' : `<span class="dots" aria-hidden="true">${p.colores.slice(0, 6).map(c => `<i class="dot" style="--c:${tono(c.nombre)}"></i>`).join('')}</span>`;
+  /* v3.18 · Color elegido en la tarjeta (por producto). Por defecto, el primer color con existencias, igual que el detalle. */
+  const colorElegido = p => {
+    const id = estado.colorSel[p.id];
+    return p.colores.find(c => c.id === id && c.variantes.some(v => libres(v.id) > 0))
+      || p.colores.find(c => c.variantes.some(v => libres(v.id) > 0))
+      || p.colores[0];
+  };
   const etiquetaPrecio = p => {
     if (p.enOferta && p.ofertaUniforme) return `<span class="now">${precio(p.precioMin)}</span><span class="was"><span class="sr">Antes </span>${precio(p.normalMin)}</span>`;
     return p.precioMin === p.precioMax ? precio(p.precioMin) : `<span class="desde">Desde</span>${precio(p.precioMin)}`;
@@ -2423,7 +2465,7 @@ strong,b{font-weight:600}
 
   function tarjeta(p, i) {
     const T = TEMATICAS[document.documentElement.dataset.season] || TEMATICAS.terra;
-    const unica = p.colores.length === 1 && p.colores[0].variantes.length === 1 ? p.colores[0].variantes[0] : null;
+    const sel = colorElegido(p);
     const quedan = p.colores.flatMap(c => c.variantes).reduce((a, v) => a + libres(v.id), 0);
     const tallas = [...new Set(p.colores.flatMap(c => c.variantes.map(v => v.talla)))].sort(ordenTalla);
     const ahorro = Math.max(0, ...p.colores.flatMap(c => c.variantes).filter(v => v.oferta).map(v => v.normal - v.precio));
@@ -2431,15 +2473,20 @@ strong,b{font-weight:600}
     // Forma corta en la tarjeta ("2 días", "1 día", "5 h"): la forma larga ("Quedan 2 días") no cabe en una línea en celular. En la última hora ("Últimos minutos") no se pone nada en la tarjeta; el detalle sí muestra el texto completo.
     const diasLargo = Number.isFinite(finOferta) ? terminaEn(finOferta).replace(' de oferta', '') : '';
     const diasTxt = diasLargo && diasLargo !== 'Últimos minutos' ? diasLargo.replace(/^Quedan? /, '') : '';
+    // v3.18 · Renglón de puntos de color con altura fija reservada: siempre se pinta (vacío si el producto no tiene colores),
+    // para que todas las tarjetas midan lo mismo. El punto elegido lleva el anillo (aria-pressed).
+    const coloresRow = p.sinColor ? '' : p.colores.slice(0, 6).map(c => {
+      const sinUnidades = c.variantes.every(v => libres(v.id) < 1);
+      return `<button type="button" class="dot" style="--c:${tono(c.nombre)}" data-color="${esc(c.id)}" data-pid="${esc(p.id)}" aria-label="Color ${esc(c.nombre)}" aria-pressed="${c.id === sel.id}" ${sinUnidades ? 'disabled' : ''}></button>`;
+    }).join('');
+    // v3.18 · El renglón de tallas ya no lleva ni puntos ni "N colores": solo las tallas.
     const detalles = [];
-    if (!p.sinColor) detalles.push(plural(p.colores.length, 'color', 'colores'));
     if (tallas.length) detalles.push(tallas.join(' / '));
-    const meta = (puntos(p) || detalles.length)
-      ? `<p class="card__meta">${puntos(p)}${detalles.length ? `<span>${detalles.join(' · ')}</span>` : ''}</p>` : '';
+    const meta = detalles.length ? `<p class="card__meta"><span>${detalles.join(' · ')}</span></p>` : '';
     return `
       <article class="card" style="--i:${i}">
-        <div class="card__media">
-          ${media(p.imagen, p.nombre)}
+        <div class="card__media" role="button" tabindex="0" data-open="${esc(p.id)}" aria-label="Ver ${esc(p.nombre)}">
+          ${media(sel.imagen || p.imagen, p.nombre)}
           <span class="tag">${esc(CATEGORIAS[p.categoria])}</span>
           ${p.enOferta ? sello(p.descuento, !p.ofertaUniforme) : ''}
         </div>
@@ -2448,10 +2495,10 @@ strong,b{font-weight:600}
           <p class="card__season">${T.insignia ? `<span class="badge-season">${ico(T.insignia.icon)}${esc(T.insignia.texto)}</span>` : ''}</p>
           <p class="price">${etiquetaPrecio(p)}</p>
           <p class="card__save">${p.enOferta && ahorro > 0 ? `<span class="saving">Ahorras ${precio(ahorro)}</span>` : ''}${diasTxt ? `<span class="ends"> · ${diasTxt}</span>` : ''}</p>
+          <p class="card__colors" role="group" aria-label="Colores disponibles">${coloresRow}</p>
           ${meta}
           <div class="card__actions">
             <button class="btn card__cta" type="button" data-add="${esc(p.id)}" ${quedan < 1 ? 'disabled' : ''}><svg class="icon" aria-hidden="true"><use href="#i-${T.btnIcon || 'plus'}"/></svg>Agregar</button>
-            <button class="btn btn--ghost card__view" type="button" data-open="${esc(p.id)}"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Ver</button>
           </div>
         </div>
       </article>`;
@@ -2657,9 +2704,11 @@ strong,b{font-weight:600}
   const pd = $('#pd'), dlgProduct = $('#dlgProduct');
   let sel = null;
 
-  function abrirProducto(pid) {
+  function abrirProducto(pid, cid) {
     const p = (estado.catalogo || []).find(x => x.id === pid); if (!p) return;
-    const color = p.colores.find(c => c.variantes.some(v => libres(v.id) > 0)) || p.colores[0];
+    /* v3.18 · Si se viene de la tarjeta con un color elegido (punto), el detalle abre con ese color. */
+    const color = (cid && p.colores.find(c => c.id === cid && c.variantes.some(v => libres(v.id) > 0)))
+      || p.colores.find(c => c.variantes.some(v => libres(v.id) > 0)) || p.colores[0];
     const variante = color.variantes.find(v => libres(v.id) > 0) || color.variantes[0];
     sel = { pid, cid: color.id, vid: variante.id, cant: 1, photo: 0 };
     pd.innerHTML = `
@@ -2851,22 +2900,50 @@ strong,b{font-weight:600}
   }
   grid.addEventListener('click', e => {
     alClicColeccion(e);
+    /* v3.18 · Punto de color de la tarjeta: elige el color, marca el anillo y cambia la foto de la tarjeta a la de ese color. */
+    const dot = e.target.closest('[data-color]');
+    if (dot) {
+      const p = estado.catalogo.find(x => x.id === dot.dataset.pid);
+      if (!p) return;
+      estado.colorSel[p.id] = dot.dataset.color;
+      const sel = colorElegido(p);
+      const card = dot.closest('.card');
+      if (card) {
+        $$('.card__colors .dot', card).forEach(d => d.setAttribute('aria-pressed', String(d.dataset.color === sel.id)));
+        const img = card.querySelector('.card__media img[data-foto]');
+        if (img && sel.imagen) img.src = sel.imagen;
+      }
+      return;
+    }
     const mas = e.target.closest('[data-add]');
     if (mas) {
       const p = estado.catalogo.find(x => x.id === mas.dataset.add);
       if (!p) return;
-      const unica = p.colores.length === 1 && p.colores[0].variantes.length === 1 ? p.colores[0].variantes[0] : null;
-      if (!unica) return abrirProducto(p.id);
-      const caja = mas.closest('.card').querySelector('.card__media').getBoundingClientRect();
-      if (agregar(unica.id, 1)) {
-        volar(caja, p.imagen);
-        avisar(`${p.nombre} se añadió a tu bolsa`);
-        const nuevo = $(`[data-add="${CSS.escape(p.id)}"]`, grid); if (nuevo) nuevo.focus({ preventScroll: true });
+      /* v3.18 · Agregar usa el color elegido en la tarjeta: si ese color tiene una sola talla, se agrega directo;
+         si tiene varias tallas, se abre el detalle con ese color ya elegido. */
+      const color = colorElegido(p);
+      if (color.variantes.length === 1) {
+        const v = color.variantes[0];
+        const caja = mas.closest('.card').querySelector('.card__media').getBoundingClientRect();
+        if (agregar(v.id, 1)) {
+          volar(caja, color.imagen || p.imagen);
+          avisar(`${p.nombre} se añadió a tu bolsa`);
+          const nuevo = $(`[data-add="${CSS.escape(p.id)}"]`, grid); if (nuevo) nuevo.focus({ preventScroll: true });
+        }
+        return;
       }
-      return;
+      return abrirProducto(p.id, color.id);
     }
     const abre = e.target.closest('[data-open]');
-    if (abre) abrirProducto(abre.dataset.open);
+    if (abre) abrirProducto(abre.dataset.open, estado.colorSel[abre.dataset.open]);
+  });
+  /* v3.18 · La foto de la tarjeta también se abre con el teclado (Enter o Espacio). */
+  grid.addEventListener('keydown', e => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const med = e.target.closest('.card__media');
+    if (!med) return;
+    e.preventDefault();
+    abrirProducto(med.dataset.open, estado.colorSel[med.dataset.open]);
   });
   count.addEventListener('click', alClicColeccion);
   chips.addEventListener('click', e => { const c = e.target.closest('[data-cat]'); if (c) elegirCat(c.dataset.cat); });
