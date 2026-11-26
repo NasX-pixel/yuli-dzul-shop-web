@@ -1682,7 +1682,36 @@ strong,b{font-weight:600}
 .card__actions{padding-top:2px;gap:3px}
 </style>
 
-
+<style id="terra-v3-15">
+/* Terra v3.15 · detalle más apretado con foto más alta + logro de Terra + caché con caducidad
+   (reporte de Carlos con la v3.14 viva, tema Terra).
+   (1) DETALLE — FOTO MÁS ALTA: en celular la foto del detalle se veía
+   chaparra porque la última regla que la tocaba era la de terra-v3-2
+   (aspect-ratio 16/10.4 = alto 0.65 × ancho, ~222 px a 390 px). Ahora
+   en celular (max-width:699px) es 4/5 = alto 1.25 × ancho (~427 px):
+   el producto se ve más grande y, al ser más alta la caja, con
+   object-fit:cover se ve MÁS de la foto (no se recorta más). En
+   tableta/PC no se toca: ahí el detalle es de 2 columnas y la foto
+   ya mide 520 px de alto (min-height). El pop up sigue igual (520 px
+   máx, con scroll interno), así que la foto más alta solo empuja la
+   información hacia abajo dentro del pop up, sin tapar botones.
+   (2) DETALLE — ESPACIADO: se cierra el aire entre secciones sin
+   tocar nada de lo que Carlos pidió que se quede: info padding-top
+   24 -> 14 px, hueco entre secciones 16 -> 10 px, miniaturas
+   padding-top 10 -> 6 px, leyendas (TALLA/CANTIDAD) margin-bottom
+   10 -> 6 px, "Quedan N días de oferta" margin-top 6 -> 3 px y
+   #pdAdd margin-top 30 -> 14 px. Total ~-70 px de aire en la
+   información. Botones, selector de talla, control de cantidad,
+   stock, miniaturas, "Ver completa", contador 1/2 y cierre del
+   pop up intactos; el desvanecido al cerrar y su ventana de
+   ~270 ms NO se tocan. */
+@media (max-width:699px){.pd__media{aspect-ratio:4/5}}
+.pd__info{padding-top:14px;gap:10px}
+.pd__thumbs{padding-top:6px}
+.pd legend,.pd .lbl{margin-bottom:6px}
+.pd__price .ends{margin-top:3px}
+#pdAdd{margin-top:14px}
+</style>
 
 </head>
 <body>
@@ -1926,6 +1955,7 @@ strong,b{font-weight:600}
   const ETIQUETAS = { ...CATEGORIAS, ofertas: 'Solo ofertas' };
   const CLAVE_BOLSA = 'yuli-dzul-bolsa-v2';
   const CLAVE_CACHE = 'yuli-dzul-catalogo-v2-reservas';
+  const CACHE_MAX_MS = 24 * 60 * 60 * 1000; /* v3.15: la caché del catálogo caduca a las 24 h */
   const TALLAS = ['xxs', 'xs', 's', 'ch', 'm', 'g', 'l', 'xl', 'xxl', 'xxxl', 'unica'];
   const REFRESCO_MS = 2 * 60 * 1000;
 
@@ -1934,7 +1964,7 @@ strong,b{font-weight:600}
      Los productos del probador NO vienen aquí: el catálogo sigue siendo
      el real de Supabase. La pill de oferta (.deal) no se toca. */
   const TEMATICAS = {
-    'terra': { nombre: 'Terra', mark: 'spark', heroIcons: ['leaf','flower','sun'], steps: ['spark','go','heart'], btnIcon: 'bag', bagIcon: 'bag', soloIcon: 'spark', insignia: { icon: 'leaf', texto: 'Importado' }, logro: 'Hechos a mano, hechos con amor', fx: { icon: 'leaf', n: 8, tipo: 'fall' },
+    'terra': { nombre: 'Terra', mark: 'spark', heroIcons: ['leaf','flower','sun'], steps: ['spark','go','heart'], btnIcon: 'bag', bagIcon: 'bag', soloIcon: 'spark', insignia: { icon: 'leaf', texto: 'Importado' }, logro: 'Importado, elegido con amor', fx: { icon: 'leaf', n: 8, tipo: 'fall' },
       banner: 'Boutique cálida, todo el año', bannerSub: 'Ropa · Bisutería · Temporada',
       eyebrow: 'Ropa · Bisutería · Temporada',
       titulo: 'Colores que <em>van contigo.</em>',
@@ -2124,7 +2154,9 @@ strong,b{font-weight:600}
   function leerCache() {
     try {
       const c = JSON.parse(localStorage.getItem(CLAVE_CACHE) || 'null');
-      return c && Array.isArray(c.datos) && Number.isFinite(c.at) ? c : null;
+      if (!c || !Array.isArray(c.datos) || !Number.isFinite(c.at)) return null;
+      if (Date.now() - c.at > CACHE_MAX_MS) return null; /* v3.15: caché vencida (>24 h) se ignora, no revive productos eliminados */
+      return c;
     } catch (e) { return null; }
   }
   function guardarCache(datos, at) {
