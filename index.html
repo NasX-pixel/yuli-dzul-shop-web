@@ -1,13 +1,12 @@
 <!-- Yuli Dzul Shop - Diseno Terra v2 · Layout del interactivo, tal cual - Basado en el index.html real de https://nasx-pixel.github.io/yuli-dzul-shop-web/ - Se conservan Supabase, catalogo, bolsa, formulario, seguimiento y contacto. Cambios v2: SIN barra superior terracota (la pagina empieza directamente con la cabecera crema Yuli Dzul / SHOP · BOUTIQUE y Mi bolsa); hero con titular, 2 botones, checks, foto en arco con etiqueta de oferta y tarjetas A tu eleccion / Recoge o recibe; grid de 2 con Agregar a la bolsa y Ver; detalle con eyebrow, precio y Ahorras. Sin productos ni precios de muestra: todo sale de Supabase. Adaptativo a PC, tableta y celular. -->
 <!DOCTYPE html>
-<html lang="es" data-season="navidad">
+<html lang="es" data-season="terra">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Yuli Dzul Shop · Catálogo</title>
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://xrhbtkwwmfdhisuiexpf.supabase.co; connect-src https://xrhbtkwwmfdhisuiexpf.supabase.co; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'none'; form-action 'none'">
-<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#7C3A1E">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%237C3A1E'/%3E%3Cpath d='M32 12c1.400 10.300 8.700 17.600 20 20-11.300 2.400-18.600 9.700-20 20-1.400-10.300-8.700-17.600-20-20 11.300-2.400 18.600-9.700 20-20z' fill='%23D9BF8C'/%3E%3C/svg%3E">
 <meta name="description" content="Ropa, bisutería y artículos de temporada. Elige tu color, encuentra tu talla y prepara tu bolsa.">
@@ -42,7 +41,6 @@
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
-
 
 
 /* ───────── Base ───────── */
@@ -123,7 +121,7 @@ h1,h2,h3,p{margin:0}
 .fan__product .name{font-family:var(--font-display);font-weight:600;font-size:1.25rem;line-height:1.1}
 .fan__product .price{color:var(--gold);font-weight:600;font-variant-numeric:tabular-nums}
 .fan__product[hidden]{display:none}
-.fan__spark{position:absolute;right:4%;top:2%;font-size:2.1rem;color:var(--gold);animation:twinkle 6s ease-in-out infinite}
+
 @keyframes twinkle{0%,100%{scale:1;rotate:0deg;opacity:.9}50%{scale:.72;rotate:45deg;opacity:.55}}
 .is-ready .fan__product{rotate:3deg;transition-delay:.74s,0s,0s}
 @media (min-width:980px){
@@ -143,7 +141,7 @@ h1,h2,h3,p{margin:0}
 
 /* ───────── Colección ───────── */
 .catalog{padding:clamp(44px,7vw,92px) var(--gutter) 0}
-.catalog__title{font-family:var(--font-display);font-weight:400;font-size:clamp(2.1rem,1.5rem + 2.4vw,3.2rem);line-height:1.05;letter-spacing:-.015em;color:var(--heading);margin-top:10px}
+
 .tools{display:grid;gap:16px;margin-top:26px}
 .search{position:relative}
 .search>.icon{position:absolute;left:22px;top:50%;translate:0 -50%;color:var(--ink-soft);pointer-events:none}
@@ -157,11 +155,11 @@ h1,h2,h3,p{margin:0}
 .chip{min-height:50px;padding:0 22px;border:1px solid var(--line);border-radius:99px;background:var(--surface);font-size:1.05rem;transition:background .3s,color .3s,box-shadow .3s,translate .3s var(--ease),border-color .3s}
 .chip[aria-pressed="true"]{background:var(--chip-on);border-color:transparent;color:#fff;box-shadow:0 14px 24px -14px rgb(var(--shadow) / .75)}
 .chip:active{translate:0 1px}
-.sortbtn{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;min-height:58px;padding:0 24px;border:1px solid var(--line);border-radius:99px;background:var(--surface);color:var(--heading);font-size:1.1rem;transition:border-color .25s,background .25s}
-.sortbtn .icon{color:var(--ink-soft)}
+
+
 @media (hover:hover){
   .chip:not([aria-pressed="true"]):hover{border-color:var(--accent);color:var(--heading)}
-  .sortbtn:hover{border-color:var(--accent)}
+  
 }
 .count{color:var(--ink-soft);font-size:.98rem;display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px}
 @media (min-width:860px){
@@ -185,7 +183,7 @@ h1,h2,h3,p{margin:0}
 .card__open::after{content:"";position:absolute;inset:0;border-radius:30px}
 .card__open:focus-visible::after{outline:2px solid var(--accent);outline-offset:3px}
 .price{color:var(--gold);font-weight:600;font-size:1.16rem;font-variant-numeric:tabular-nums}
-.pill{display:inline-block;padding:.32em .85em;border-radius:99px;background:var(--surface-2);color:var(--accent);font-size:.84rem}
+
 .stock{font-size:.86rem;color:var(--ink-soft)}
 @media (hover:hover){
   .card:hover{translate:0 -5px;border-color:color-mix(in srgb,var(--accent) 35%,var(--line));box-shadow:0 30px 44px -30px rgb(var(--shadow) / .6)}
@@ -228,7 +226,7 @@ h1,h2,h3,p{margin:0}
 .modal.is-in .panel{translate:0 0;scale:1;opacity:1}
 .panel__head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
 .panel__title{font-family:var(--font-display);font-weight:400;font-size:clamp(2.2rem,1.8rem + 2vw,2.9rem);line-height:1.05;letter-spacing:-.015em;color:var(--heading);margin-top:8px}
-.panel__sub{margin-top:14px;color:var(--ink-soft)}
+
 .close{flex:none;display:grid;place-items:center;width:48px;height:48px;border:1px solid var(--line);border-radius:50%;background:var(--surface);transition:rotate .4s var(--spring),background .25s}
 @media (hover:hover){.close:hover{rotate:90deg;background:var(--surface-2)}}
 @media (min-width:700px){
@@ -335,7 +333,7 @@ img[data-foto].is-broken{display:none}
 .deal{position:absolute;left:10px;top:10px;z-index:2;display:inline-flex;align-items:center;padding:.34em .78em;border-radius:99px;font-size:.78rem;font-weight:600;letter-spacing:.01em;color:#FFF8F0;background:var(--accent);box-shadow:0 8px 16px -10px rgb(120 80 30 / .7)}
 .card__media .deal{top:10px;right:auto;bottom:auto;left:10px;max-width:calc(100% - 20px);white-space:nowrap}
 @media (max-width:699px){.card__media .deal__hasta{display:none}}
-.deal--inline{position:relative;right:auto;top:auto;vertical-align:middle;margin-left:.5em;font-size:.72rem}
+
 @keyframes sheen{0%,62%{background-position:100% 0}100%{background-position:-60% 0}}
 .ends{display:inline-block;font-size:.82rem;font-weight:600;color:var(--gold)}
 .pd__price .ends{display:block;margin-top:6px}
@@ -639,10 +637,8 @@ input,select,textarea{font:inherit;min-width:0}
   .card__body{padding:12px 5px 0}
   .card__name{font-size:1.2rem;line-height:1.18}
   .card__body .price{font-size:1.03rem}
-  .tag{left:7px;top:7px;font-size:.69rem;padding:.34em .65em}
-  .card__media .deal{left:7px;bottom:7px;max-width:calc(100% - 60px)}
   .search input{height:52px;font-size:1rem}
-  .sortbtn{min-height:50px;font-size:1rem}
+  
   .chip{padding-inline:14px;font-size:.94rem}
   .stock{font-size:.78rem}
   .panel,.order-panel{padding:18px}
@@ -662,7 +658,7 @@ input,select,textarea{font:inherit;min-width:0}
 </style>
 
 <style id="yuli-gallery-087">
-.pd__gallery{min-width:0}
+
 .pd__media{aspect-ratio:4/5;min-height:0;width:100%}
 .pd__media img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
 .full-photo{max-width:96vw;max-height:96dvh;width:fit-content;height:fit-content;padding:50px 0 0;border:0;background:transparent;overflow:auto}
@@ -682,10 +678,10 @@ input,select,textarea{font:inherit;min-width:0}
 .logo__sub{font-family:var(--font-body);font-size:.62rem;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--accent)}
 .footer .logo__sub{color:rgb(255 255 255 / .65)}
 
-/* Hero: orden en movil como en la captura (texto, checks, foto en arco) */
+/* Hero: orden en movil (texto, foto en arco, checks) — la foto sube antes de los checks solo en movil; en PC queda como el interactivo */
 .hero__copy{order:1}
-.hero .trust{order:2}
-.hero .fan{order:3}
+.hero .fan{order:2}
+.hero .trust{order:3}
 @media (min-width:980px){
   .hero__copy{order:1}
   .hero .fan{order:2}
@@ -705,7 +701,7 @@ input,select,textarea{font:inherit;min-width:0}
 /* Foto en arco: la foto del articulo mas reciente de Supabase */
 .fan{display:block;position:relative;width:min(100%,540px);margin-inline:auto;animation:archIn 1s var(--ease) backwards .35s}
 @keyframes archIn{from{opacity:0;translate:0 26px}}
-.fan__spark{display:none}
+
 .fan__product{position:relative;left:auto;top:auto;width:100%;margin:0;padding:0;border:0;background:transparent;box-shadow:none;rotate:0deg !important;translate:0 0 !important}
 .fan__product .media{border-radius:999px 999px 28px 28px;aspect-ratio:922 / 680;box-shadow:0 36px 60px -30px rgb(var(--shadow) / .6)}
 .fan__product .media img{object-fit:cover;object-position:50% 30%}
@@ -888,7 +884,7 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
 .card__name .card__open{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:left}
 
 /* (C) Bold, tal cual el interactivo */
-.catalog__title{font-weight:600}
+
 .steps__title{font-weight:600}
 .panel__title{font-weight:600;font-size:29px}
 .pd__name{font-weight:600;font-size:40px}
@@ -898,7 +894,7 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
 .bagbtn{font-weight:600}
 .chip,.chip--only{font-weight:600}
 .sortselect select{font-weight:600}
-.sortbtn{font-weight:600}
+
 .choice input:checked+span{font-weight:600}
 .opt-radio{font-weight:600}
 .delivery-cards strong{font-weight:600}
@@ -959,7 +955,7 @@ strong,b{font-weight:600}
 .hero__title{font-size:2.4rem;font-weight:500}
 .logo{font-size:1.3rem;font-weight:500}
 .eyebrow{font-size:.72rem;font-weight:600}
-.catalog__title{font-size:1.5rem;font-weight:500}
+
 .bagbtn{font-size:.95rem;min-height:46px}
 .btn{font-size:.95rem;min-height:52px}
 .hero__cta .btn{min-height:52px}
@@ -1018,7 +1014,7 @@ strong,b{font-weight:600}
 
 /* Bolsa, formulario y pie, en pequeño */
 .panel__title{font-size:22px;font-weight:500}
-.panel__sub{font-size:.92rem}
+
 .order-panel h2{font-size:17px;font-weight:600}
 .opt-group legend{font-size:.92rem}
 .opt-radio{font-size:.92rem;min-height:44px}
@@ -1447,7 +1443,7 @@ strong,b{font-weight:600}
 [data-season="navidad"] .fx{--fx-color:#DCE8DF;--fx-anim:fxFall;--fx-op:.9;filter:drop-shadow(0 1px 1px rgb(0 0 0/.18))}
 [data-season="san-valentin"] .fx{--fx-color:#9A385C;--fx-anim:fxRise;--fx-op:.65}
 [data-season="dia-madres"] .fx{--fx-color:#C98A9B;--fx-anim:fxFall;--fx-op:.65}
-.no-fx .fx-layer{display:none}
+
 @media (prefers-reduced-motion:reduce){.fx-layer{display:none}}
 
 /* ── BLOQUE V4-C · Insignia en el cuerpo (NO sobre la foto) ──
@@ -1713,6 +1709,28 @@ strong,b{font-weight:600}
 #pdAdd{margin-top:14px}
 </style>
 
+<style id="terra-v3-16">
+/* Terra v3.16 · Auditoría completa: parpadeo de tema, bolsa, botón fijo, ahorro con días, hueco nombre→insignia, hero en celular, limpieza
+   (1) TARJETA — AHORRO CON DÍAS EN LA MISMA LÍNEA: "Ahorras $500 · 2 días" va en el renglón fijo de ahorro que ya existía, sin renglón nuevo y sin tocar la pill de oferta. La forma corta ("2 días", "1 día", "5 h") y la letra chica (ahorro .8rem, días .7rem) hacen que quepa en una línea en celular a 390 px y a 360 px (verificado en Chrome real con las fuentes reales). En la última hora no se pone nada en la tarjeta; el detalle sí muestra "Últimos minutos de oferta". Guarda: si algún producto futuro (ahorro grande, muchos días) se saliera de la tarjeta, se quita solo la parte de días y queda "Ahorras $X": el texto nunca se corta a la mitad ni la tarjeta se alarga.
+   (2) TARJETA — HUECO NOMBRE→INSIGNIA: el nombre sigue reservando 2 líneas (2.4em, SE QUEDA) pero ahora se apoya abajo de su renglón en vez de centrarse: el hueco visible baja de ~9 px a ~1.5 px sin cambiar la altura de la tarjeta y sin tocar la reserva. Con un nombre de 2 líneas queda el mismo aire que hoy (0.3 px libres).
+   (3) DETALLE — BOTÓN FIJO: en celular el pie del detalle (botón Añadir + nota) queda fijo abajo del pop up con position:sticky, así el botón siempre se ve sin bajar. La foto alta de 425 px SE QUEDA.
+   (4) HERO EN CELULAR — BOTONES EN UNA LÍNEA: letra y relleno un poco menores solo en celular, sin partir el texto.
+   (5) PIE — AVISO EN PÁGINA: el aviso de "Ver mi último pedido" sin pedido guardado ya no es un alert() del navegador, es un renglón dentro del pie. */
+.card__name{align-items:flex-end}
+.card__save{flex-wrap:nowrap}
+.card__save .saving{white-space:nowrap;font-size:.8rem}
+.card__save .ends{font-size:.7rem;line-height:1.2;color:var(--ink-soft);white-space:nowrap}
+.track-note{margin-top:10px;font-size:.88rem;color:var(--ink-soft)}
+@media (max-width:699px){
+  .hero__cta{gap:8px}
+  .hero__cta .btn{white-space:nowrap;font-size:.85rem;padding-inline:12px;gap:.45em}
+  .hero__cta .btn .icon{width:1.05em;height:1.05em}
+  .pd__foot{position:sticky;bottom:0;z-index:2;margin:14px -20px -28px;padding:12px 20px 16px;background:var(--bg);box-shadow:0 -14px 20px -12px rgb(0 0 0/.25)}
+  .pd__foot #pdAdd{margin-top:0}
+  .pd__foot .fine{margin-top:8px}
+}
+</style>
+
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1873,6 +1891,7 @@ strong,b{font-weight:600}
       <div>
         <h3>Pedidos</h3><a class="linkbtn" href="solicitud.html"><svg class="icon" aria-hidden="true"><use href="#i-go"/></svg>Solicitar artículo de redes</a>
         <button class="linkbtn" id="recuperar-pedido" type="button" data-track-last><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Ver mi último pedido</button>
+        <p class="track-note" id="trackNote" role="status" hidden></p>
         <p class="footer__note">Enviar una solicitud no reserva existencias. La tienda confirmará tu pedido.</p>
       </div>
     </div>
@@ -2308,6 +2327,10 @@ strong,b{font-weight:600}
     const quedan = p.colores.flatMap(c => c.variantes).reduce((a, v) => a + libres(v.id), 0);
     const tallas = [...new Set(p.colores.flatMap(c => c.variantes.map(v => v.talla)))].sort(ordenTalla);
     const ahorro = Math.max(0, ...p.colores.flatMap(c => c.variantes).filter(v => v.oferta).map(v => v.normal - v.precio));
+    const finOferta = Math.min(...p.colores.flatMap(c => c.variantes).filter(v => v.oferta && v.fin).map(v => v.fin));
+    // Forma corta en la tarjeta ("2 días", "1 día", "5 h"): la forma larga ("Quedan 2 días") no cabe en una línea en celular. En la última hora ("Últimos minutos") no se pone nada en la tarjeta; el detalle sí muestra el texto completo.
+    const diasLargo = Number.isFinite(finOferta) ? terminaEn(finOferta).replace(' de oferta', '') : '';
+    const diasTxt = diasLargo && diasLargo !== 'Últimos minutos' ? diasLargo.replace(/^Quedan? /, '') : '';
     const detalles = [];
     if (!p.sinColor) detalles.push(plural(p.colores.length, 'color', 'colores'));
     if (tallas.length) detalles.push(tallas.join(' / '));
@@ -2324,7 +2347,7 @@ strong,b{font-weight:600}
           <h3 class="card__name"><button class="card__open" type="button" data-open="${esc(p.id)}">${esc(p.nombre)}</button></h3>
           <p class="card__season">${T.insignia ? `<span class="badge-season">${ico(T.insignia.icon)}${esc(T.insignia.texto)}</span>` : ''}</p>
           <p class="price">${etiquetaPrecio(p)}</p>
-          <p class="card__save">${p.enOferta && ahorro > 0 ? `<span class="saving">Ahorras ${precio(ahorro)}</span>` : ''}</p>
+          <p class="card__save">${p.enOferta && ahorro > 0 ? `<span class="saving">Ahorras ${precio(ahorro)}</span>` : ''}${diasTxt ? `<span class="ends"> · ${diasTxt}</span>` : ''}</p>
           ${meta}
           <div class="card__actions">
             <button class="btn card__cta" type="button" data-add="${esc(p.id)}" ${quedan < 1 ? 'disabled' : ''}><svg class="icon" aria-hidden="true"><use href="#i-${T.btnIcon || 'plus'}"/></svg>Agregar</button>
@@ -2388,7 +2411,22 @@ strong,b{font-weight:600}
     if (!animar) $$('.card,.empty', grid).forEach(c => { c.style.animation = 'none'; });
     marcarFotosListas(grid);
     pintarConteo();
+    ajustarAhorro();
   }
+
+  // Guarda del renglón de ahorro (v3.16): si en algún producto "Ahorras $X · N días" se sale de la tarjeta (ahorro grande, muchos días, celular angosto), se quita solo la parte de días y queda "Ahorras $X". El texto nunca se corta a la mitad ni la tarjeta se alarga. Se revisa al pintar la rejilla, cuando terminan de cargar las fuentes y al cambiar el tamaño de la ventana.
+  function ajustarAhorro() {
+    $$('.card', grid).forEach(card => {
+      const save = card.querySelector('.card__save');
+      const ends = card.querySelector('.card__save .ends');
+      if (!save || !ends) return;
+      const cr = card.getBoundingClientRect();
+      if (cr.width > 0 && save.getBoundingClientRect().right > cr.right - 2) ends.remove();
+    });
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustarAhorro);
+  let relojAhorro;
+  window.addEventListener('resize', () => { clearTimeout(relojAhorro); relojAhorro = setTimeout(ajustarAhorro, 150); });
 
   function categoriasVisibles() {
     const hay = new Set((estado.catalogo || []).map(p => p.categoria));
@@ -2546,8 +2584,10 @@ strong,b{font-weight:600}
             <span class="stock" id="pdStock"></span>
           </div>
         </div>
-        <button class="btn btn--block" type="button" id="pdAdd"></button>
-        <p class="fine">La bolsa no reserva existencias.</p>
+        <div class="pd__foot">
+          <button class="btn btn--block" type="button" id="pdAdd"></button>
+          <p class="fine">La bolsa no reserva existencias.</p>
+        </div>
       </div>`;
     pintarDetalle(true);
     abrir(dlgProduct);
@@ -2917,7 +2957,8 @@ strong,b{font-weight:600}
         const token=pendingRequest.token;const result=await requestOrder(pendingRequest);
         try{localStorage.setItem('yuli-last-tracking',token);}catch{}
         sessionStorage.removeItem(pendingKey);pendingRequest=null;receipt(result.order_number,token);
-        // Keep the bag intact; customer may still want to review it.
+        // La bolsa se vacía al confirmar el pedido: si no, el cliente podría volver a enviar el mismo pedido.
+        estado.bolsa = []; guardarBolsa(); pintarBolsa(true); pintarRejilla(false);
       }catch(e){
         $('#orderStatus',od).textContent=e.message||'Conexión interrumpida. Reintenta la misma solicitud.';
         if(e.definitive){sessionStorage.removeItem(pendingKey);pendingRequest=null;$('#orderStatus',od).textContent+=' Cierra y vuelve a abrir para corregir.';$('#sendPublicOrder',od).hidden=true;}
@@ -2949,7 +2990,11 @@ strong,b{font-weight:600}
   $$('[data-track-last]').forEach(b => b.addEventListener('click', () => {
     let token = null;
     try { token = localStorage.getItem('yuli-last-tracking'); } catch (e) { /* sin almacenamiento */ }
-    if (!/^[0-9a-f]{64}$/.test(token || '')) { alert('No se encontró un enlace guardado en este navegador.'); return; }
+    if (!/^[0-9a-f]{64}$/.test(token || '')) {
+      const nota = b.parentElement.querySelector('.track-note') || document.getElementById('trackNote');
+      if (nota) { nota.textContent = 'No se encontró un enlace guardado en este navegador.'; nota.hidden = false; clearTimeout(nota._t); nota._t = setTimeout(() => { nota.hidden = true; }, 6000); }
+      return;
+    }
     const hash = '#seguimiento=' + token;
     if (location.hash === hash) location.reload(); else location.hash = hash;
   }));
@@ -2988,11 +3033,10 @@ strong,b{font-weight:600}
     else goal.hidden = true;
   }
   function aplicarTemaVisual(clave) {
-    const vis = TEMATICAS[clave] ? clave : 'navidad';
+    const vis = TEMATICAS[clave] ? clave : 'terra';
     const T = TEMATICAS[vis];
     const repetida = temaAplicado === vis;
     temaAplicado = vis;
-    document.documentElement.dataset.season = vis; // El gancho manda solo: tarjetas y FX leen el tema de aquí
     document.querySelectorAll('[data-season-mark]').forEach(el => { el.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-${T.mark}"/></svg>`; });
     document.querySelectorAll('[data-season-label]').forEach(el => { el.textContent = T.banner; });
     const eyebrow = document.querySelector('.hero__copy .eyebrow'); if (eyebrow) eyebrow.textContent = T.eyebrow;
@@ -3033,9 +3077,9 @@ strong,b{font-weight:600}
 (()=>{
  const themes={'normal':1,'terra':1,'buen-fin':1,'hot-sale':1,'black-friday':1,'navidad':1,'san-valentin':1,'dia-madres':1};
  const root=document.documentElement, counter=document.getElementById('webVisits');
- function apply(theme){if(!Object.hasOwn(themes,theme))theme='navidad';const visual=theme==='normal'?'terra':theme;root.dataset.season=visual;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';if(window.__yuliAplicarTema)window.__yuliAplicarTema(visual);}
+ function apply(theme){if(!Object.hasOwn(themes,theme))theme='terra';const visual=theme==='normal'?'terra':theme;root.dataset.season=visual;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';if(window.__yuliAplicarTema)window.__yuliAplicarTema(visual);}
  try{localStorage.removeItem('yuli-web-theme-manual-v1');}catch{} /* Eleccion manual vieja: se borra, la tematica la manda solo la tienda. */
- try{apply(localStorage.getItem('yuli-web-theme-v1')||'navidad');}catch{apply('navidad');}
+ try{apply(localStorage.getItem('yuli-web-theme-v1')||'terra');}catch{apply('terra');}
  let busy=false;
  async function refresh(count=false){
   if(busy)return;busy=true;
