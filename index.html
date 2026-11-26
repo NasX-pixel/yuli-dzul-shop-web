@@ -1865,6 +1865,42 @@ strong,b{font-weight:600}
 }
 </style>
 
+<style id="terra-v3-19">
+/* Terra v3.19 · Botón Agregar separado de la costura, "Ver detalles ›" en su propio renglón, pie alineado, icono en "Actualizar" y título nuevo de "Cómo funciona".
+   (1) AGREGAR LEJOS DE LA COSTURA (celular): medido en Chrome real a 390 px (v3.18, Navidad): el botón terminaba ~1 px POR ENCIMA de la
+       costura punteada (el cuerpo solo dejaba 4 px bajo el botón y la costura va 7 px por dentro del borde). Se sube el relleno inferior del
+       cuerpo de 4 a 12 px (+8) y se ceden esos 8 px dentro del cuerpo sin tocar la foto ni el nombre: relleno superior 6 -> 4 px (-2),
+       renglón de colores min-height 20 -> 18 px (-2, los puntos miden 16 px), relleno superior de acciones 2 -> 0 (-2) y botón Agregar
+       40 -> 38 px de alto en celular (-2). La tarjeta NO crece por este punto. El hueco entre renglones del cuerpo (1.5 px) NO se toca:
+       con 1 px un nombre de 2 líneas tocaba la insignia (v3.14, medido). En Buen Fin la costura va 6 px por dentro: queda ~+8 px de aire.
+   (2) "VER DETALLES ›": enlace de texto en su propio renglón dentro del cuerpo, justo arriba del botón Agregar, con letras chicas pero
+       legibles (.82rem). Sin pastilla y sin nada sobre la foto (con la pill de oferta y la etiqueta de temporada serían 3 elementos tapando
+       la foto). Abre el detalle con el mismo mecanismo que el nombre y la foto (data-open). position:relative;z-index:1 es obligatorio:
+       el nombre lleva un recubrimiento invisible (::after, inset:0) sobre toda la tarjeta y sin z-index el enlace no recibiría el clic
+       (los puntos de color ya usan ese mismo truco). La tarjeta crece solo ese renglón (~20 px).
+       Efecto de presionado suave en toda la tarjeta al tocarla (translate 0 1px, transición rápida .15s, sin movimiento reducido).
+   (3) "VER MI ÚLTIMO PEDIDO" IGUAL QUE SU HERMANO: una regla vieja (.footer #recuperar-pedido, display:block) le ganaba a la de
+       .footer .linkbtn (inline-flex) y dejaba la lupita desalineada; y su color oscuro fuerte (var(--ink)) se leía como negritas al lado
+       del hermano (var(--ink-soft)). Ahora: en línea con el icono centrado, mismo color suave y mismo peso que el hermano (medido: 400).
+   (4) "ACTUALIZAR" CON ICONO: símbolo nuevo i-refresh (flecha circular, mismo trazo 1.7) en el botón del contador, y también en
+       "Reintentar" (es el mismo botón en su estado sin conexión). El icono ya se alineaba solo por .count .linkbtn.
+   (5) TÍTULO DE "CÓMO FUNCIONA": "De tu bolsa a tus manos." -> "De la tienda a tus manos." (mismo ritmo y sentido, sin el eco de
+       "hecho a mano"). Solo aparece en este lugar de la web. */
+@media (max-width:699px){
+  .card__body{padding:4px 12px 12px}
+  .card__colors{min-height:18px}
+  .card__actions{padding-top:0}
+  .card__actions .card__cta{min-height:38px}
+}
+.card__details{display:block;position:relative;z-index:1;padding:2px 0 0;background:none;border:0;cursor:pointer;text-align:left;font:inherit;font-size:.82rem;line-height:1.35;color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px}
+.card__details:hover{color:var(--heading)}
+.card{transition:translate .15s ease,box-shadow .4s var(--ease),border-color .3s}
+@media (prefers-reduced-motion:no-preference){
+  .card:active{translate:0 1px}
+}
+.footer #recuperar-pedido{display:inline-flex;align-items:center;gap:8px;color:var(--ink-soft)!important;font-weight:400}
+</style>
+
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1898,6 +1934,7 @@ strong,b{font-weight:600}
   <symbol id="i-cup" viewBox="0 0 24 24"><path d="M5 9.5h11V15a4 4 0 0 1-4 4h-3a4 4 0 0 1-4-4z"/><path d="M16 10.5h1.4a2.6 2.6 0 0 1 0 5.2H16"/><path d="M12 15.6s-2.1-1.3-2.1-2.8c0-.9.7-1.5 1.4-1.5.3 0 .6.1.7.4.1-.3.4-.4.7-.4.7 0 1.4.6 1.4 1.5 0 1.5-2.1 2.8-2.1 2.8z" fill="currentColor" stroke="none"/><path d="M8.2 6.4c0-1.1.9-1.3.9-2.4M12.2 6.4c0-1.1.9-1.3.9-2.4" stroke-width="1.4"/></symbol>
   <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M4 8.2A2.2 2.2 0 0 1 6.2 6h11.6A2.2 2.2 0 0 1 20 8.2v2.3a2.4 2.4 0 0 0 0 4.8v2.3a2.2 2.2 0 0 1-2.2 2.2H6.2A2.2 2.2 0 0 1 4 17.6v-2.3a2.4 2.4 0 0 0 0-4.8z"/><path d="M14.5 8.5v.01M14.5 12v.01M14.5 15.5v.01" stroke-width="2.6"/><path d="M8.8 10.2l.7 1.5 1.6.2-1.2 1.1.3 1.6-1.4-.8-1.4.8.3-1.6-1.2-1.1 1.6-.2z" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 8.5V13l3.2 2"/><path d="M12 5V3.4M9.8 3.4h4.4" stroke-width="1.4"/><path d="M17.8 4.6l.5 1.1 1.1.5-1.1.5-.5 1.1-.5-1.1-1.1-.5 1.1-.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></symbol>
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.8c.3 1 .3 1.9 0 2.8M12 18.4c.3.9.3 1.8 0 2.8M2.8 12c1 .3 1.9.3 2.8 0M18.4 12c.9.3 1.8.3 2.8 0M5.2 5.2c.9.6 1.6 1.3 2.1 2.1M16.7 16.7c.9.6 1.6 1.3 2.1 2.1M18.8 5.2c-.9.6-1.6 1.3-2.1 2.1M7.3 16.7c-.9.6-1.6 1.3-2.1 2.1" stroke-width="1.5"/></symbol>
   <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5.5 19C5.5 10.5 10.5 5.5 19 5.5c0 8.5-5 13.5-13.5 13.5z"/><path d="M5.5 19c2.8-5.6 6.6-9 10.8-11.2"/><path d="M11 14.5c.4-1.6 1.2-2.9 2.4-3.9M13.8 11.7c.2-1.3.8-2.4 1.8-3.2" stroke-width="1.4"/><circle cx="18.6" cy="5.9" r=".9" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13.5" rx="2"/><path d="m4.2 7.4 7.8 5.6 7.8-5.6"/><path d="M12 16.4s-2.4-1.5-2.4-3.2c0-1 .8-1.7 1.6-1.7.4 0 .7.2.8.5.1-.3.4-.5.8-.5.8 0 1.6.7 1.6 1.7 0 1.7-2.4 3.2-2.4 3.2z" fill="currentColor" stroke="none"/></symbol>
@@ -1994,7 +2031,7 @@ strong,b{font-weight:600}
     <section class="steps" id="como-funciona" aria-labelledby="stepsTitle">
       <div class="reveal">
         <p class="eyebrow eyebrow--soft">Fácil, a tu manera</p>
-        <h2 class="steps__title" id="stepsTitle">De tu bolsa a tus manos.</h2>
+        <h2 class="steps__title" id="stepsTitle">De la tienda a tus manos.</h2>
       </div>
       <div class="step reveal" style="--d:.1s">
         <span class="step__n" aria-hidden="true">01</span>
@@ -2497,6 +2534,7 @@ strong,b{font-weight:600}
           <p class="card__save">${p.enOferta && ahorro > 0 ? `<span class="saving">Ahorras ${precio(ahorro)}</span>` : ''}${diasTxt ? `<span class="ends"> · ${diasTxt}</span>` : ''}</p>
           <p class="card__colors" role="group" aria-label="Colores disponibles">${coloresRow}</p>
           ${meta}
+          <button class="card__details" type="button" data-open="${esc(p.id)}" aria-label="Ver detalles de ${esc(p.nombre)}">Ver detalles <span aria-hidden="true">›</span></button>
           <div class="card__actions">
             <button class="btn card__cta" type="button" data-add="${esc(p.id)}" ${quedan < 1 ? 'disabled' : ''}><svg class="icon" aria-hidden="true"><use href="#i-${T.btnIcon || 'plus'}"/></svg>Agregar</button>
           </div>
@@ -2532,8 +2570,8 @@ strong,b{font-weight:600}
     let texto = plural(lista.length, 'artículo', 'artículos');
     if (estado.cat !== 'todo') texto += ' en ' + ETIQUETAS[estado.cat];
     const fuente = estado.cargando ? '<span>Actualizando…</span>'
-      : estado.origen === 'vivo' ? `<span>Actualizado a las ${hora(estado.at)}</span><button class="linkbtn" type="button" data-retry>Actualizar</button>`
-      : `<span class="is-off">Sin conexión · catálogo guardado de las ${hora(estado.at)}</span><button class="linkbtn" type="button" data-retry>Reintentar</button>`;
+      : estado.origen === 'vivo' ? `<span>Actualizado a las ${hora(estado.at)}</span><button class="linkbtn" type="button" data-retry>${ico('refresh')}Actualizar</button>`
+      : `<span class="is-off">Sin conexión · catálogo guardado de las ${hora(estado.at)}</span><button class="linkbtn" type="button" data-retry>${ico('refresh')}Reintentar</button>`;
     count.innerHTML = `<span>${texto}</span>${fuente}${sinFiltros ? '' : `<button class="linkbtn" type="button" data-reset>${ico('x')}Quitar filtros</button>`}`;
   }
 
