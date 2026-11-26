@@ -516,7 +516,17 @@ img[data-foto].is-broken{display:none}
 [data-season="dia-madres"] .fan__product .media{border-radius:58% 42% 55% 45% / 48% 52% 48% 52%}
 [data-season="dia-madres"] .season-decor{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg fill='%238D4C59' fill-opacity='.1'%3E%3Ccircle cx='118' cy='34' r='7'/%3E%3Ccircle cx='130' cy='44' r='7'/%3E%3Ccircle cx='106' cy='44' r='7'/%3E%3Ccircle cx='118' cy='52' r='7'/%3E%3C/g%3E%3Ccircle cx='118' cy='43' r='4' fill='%23A47B4B' fill-opacity='.18'/%3E%3C/svg%3E")}
 [data-season="dia-madres"] .hero-card{background:#F2E3DB}
-[data-season="black-friday"] .season-banner{border-block:3px double var(--gold);letter-spacing:.1em;background:linear-gradient(115deg,transparent 75%,#decbaa55 75% 78%,transparent 78%),var(--wash)}
+[data-season="black-friday"] .season-banner{border-block:3px double var(--gold);letter-spacing:.1em}
+/* v3.12 · BANNER LEGIBLE: esta regla tapaba el fondo oscuro del banner
+   (--banner-bg: #292421, negro) con el wash claro #EAE1D0, pero la tinta
+   seguía siendo crema #F5EDD8: contraste 1.11:1, no se leía nada. Sin el
+   fondo de aquí, el banner vuelve a ser negro con letras crema
+   (10.90:1). La forma de moño, el filete dorado y la paleta no cambian. */
+/* v3.12 · Marca del banner legible: el dorado casi no se veía sobre el
+   fondo claro de Terra (1.77:1) ni sobre el vino de Buen Fin (1.45:1).
+   Se usa un dorado oscuro en Terra y un dorado claro en Buen Fin. */
+[data-season="terra"] .season-mark{color:#7C5A33}
+[data-season="buen-fin"] .season-mark{color:#E9C98A}
 [data-season="navidad"] .season-banner{background:radial-gradient(circle at 12% 35%,#c8a66d 0 2px,transparent 3px),radial-gradient(circle at 83% 65%,#c8a66d 0 2px,transparent 3px),var(--wash)}
 [data-season="dia-madres"] .season-banner:before{content:"";position:absolute;inset:-40px 8% -40px auto;width:90px;border:10px double #be928a55;border-radius:50%;transform:rotate(30deg);z-index:-1}
 .store-location{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border:1px solid currentColor;border-radius:16px;padding:12px 18px;color:inherit;text-decoration:none;margin-top:14px;font-weight:600}
@@ -1557,6 +1567,42 @@ strong,b{font-weight:600}
 .card__save{display:flex;align-items:center;min-height:20px;margin:0}
 .card__body .price{white-space:nowrap}
 .card__actions{margin-top:auto;padding-top:6px}
+</style>
+
+<style id="terra-v3-12">
+/* Terra v3.12 · banner legible + tarjeta más corta (reporte de Carlos).
+   (1) BANNER: ver la regla de Black Friday arriba (línea del filete
+   dorado): se quitó el fondo claro que tapaba el negro del banner.
+   (2) TARJETA COMPACTA: la tarjeta se veía larga (~430 px en móvil).
+   Se recorta ~50 px sin tocar nada de lo que Carlos pidió que se
+   quede: la pill de oferta (.deal) NO se toca, los botones siguen
+   apilados y tocables (42 + 36 px en móvil), las alturas fijas se
+   conservan (nombre a 2 líneas, insignia y ahorro en renglón fijo)
+   para que todas las tarjetas sigan del mismo alto y las columnas
+   parejas, y la letra sigue pequeña y sin bold (400/500/600).
+   Foto: el aspect-ratio viejo "1/1.12" NO acortaba la foto: en CSS
+   aspect-ratio es ancho/alto, así que 1/1.12 = alto ×1.12 (la foto
+   medía ~181 px, más alta que cuadrada). Ahora "1.1/1" = alto =
+   ancho/1.1 (~147 px en móvil): más corta que antes sin recortar
+   tanto el producto (con 1.25/1 se le cortaba el tercio de abajo
+   al Inflable Santa). El min-height:0 deja que el flex la acorte
+   sin que el mínimo automático la estire. La imagen sigue llenando
+   la foto con object-fit:cover.
+   Cuerpo 12/14/14 gap 5 -> 8/12/10 gap 3; nombre 2.6em -> 2.3em;
+   renglones de insignia/ahorro/meta más bajos; acciones con menos
+   aire arriba. El precio NO se toca (19 px en móvil, 25 px en
+   tableta/PC, como estaba).
+   Vale para las 7 temáticas y las 3 vistas: las reglas son del
+   cuerpo base de la tarjeta, no de un tema. */
+.card__media{aspect-ratio:1.1/1;min-height:0}
+.card__body{padding:8px 12px 10px;gap:3px}
+.card__name{font-size:16px;line-height:1.15;min-height:2.3em}
+.card__season{min-height:26px}
+.badge-season{line-height:1.3}
+.card__save{min-height:18px}
+.saving{font-size:.88rem;line-height:1.2}
+.card__meta{font-size:.8rem;line-height:1.25}
+.card__actions{padding-top:4px;gap:4px}
 </style>
 
 

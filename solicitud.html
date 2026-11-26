@@ -23,6 +23,8 @@
   --ink:#33241C; --ink-soft:#7A6A5E; --heading:#7C3A1E; --accent:#B4652F; --terra:#B4652F; --terra-dark:#96501F; --gold:#B98A4A;
   --line:#E8D5C2; --ring:#D9B48F; --band:#3B2318; --band-2:#4A2C1C; --on-band:#FFF3E6;
   --btn-solid:#7C3A1E; --btn-a:#8A4423; --btn-b:#B4652F; --on-btn:#FFF8F0; --chip-on:#B4652F;
+  /* v3.12 · el banner usaba --banner-bg/--banner-ink pero nadie las definía aquí: salía sin fondo de temporada. Valores iguales a los del index. */
+  --banner-bg:linear-gradient(120deg,#F6E3D3,#F3D9BE); --banner-ink:#7C3A1E;
   --steps-b:#F7EAD8; --shadow:74 24 46; --backdrop:rgb(70 44 56 / .58);
   --sw-vino:#7C3A1E; --sw-malva:#8A4A66; --sw-rosa:#EBD3DE;
 
@@ -370,26 +372,35 @@ img[data-foto].is-broken{display:none}
 /* Yuli 0.8.9: temas de temporada, siempre claros. Sin ofertas ficticias. */
 :root[data-season="buen-fin"]{--bg:#fff7f3;--wash:#f8ded9;--heading:#93252d;--accent:#ac3439;--gold:#ab7650;--btn-solid:#93252d;--btn-a:#93252d;--btn-b:#b83c42;--chip-on:#93252d;--band:#4d2325;--band-2:#59262a;--surface:#fffcf9;--surface-2:#f6e2df;--frame:#f8e7e0;--line:#e8c9c4;--ring:#c98f89;--steps-b:#fae9e3
   --btn-a:#93252d; --btn-b:#b83c42; --band:#4d2325; --band-2:#59262a; --steps-b:#fae9e3;
+  --banner-bg:linear-gradient(115deg,#93252D,#B83C42); --banner-ink:#FFF3EC;
 }
 :root[data-season="hot-sale"]{--bg:#fff7ed;--wash:#ffe1c9;--heading:#98301a;--accent:#ad391d;--gold:#a66b2d;--btn-solid:#98301a;--btn-a:#98301a;--btn-b:#b94623;--chip-on:#a5361b;--band:#57291c;--band-2:#68311e;--surface:#fffcf6;--surface-2:#ffe9d4;--frame:#ffead7;--line:#eed0b6;--ring:#cb9670;--steps-b:#fff0dc
   --btn-a:#98301a; --btn-b:#b94623; --band:#57291c; --band-2:#68311e; --steps-b:#fff0dc;
+  --banner-bg:radial-gradient(ellipse at 88% 140%,#F3B98B 0 20%,transparent 21%),linear-gradient(115deg,#FFE1C9,#FFD3AC); --banner-ink:#7C2713;
 }
 :root[data-season="black-friday"]{--bg:#faf7f0;--wash:#eae1d0;--heading:#292421;--accent:#665035;--gold:#947044;--btn-solid:#292421;--btn-a:#292421;--btn-b:#544536;--chip-on:#39312b;--band:#292421;--band-2:#332b24;--surface:#fffdf7;--surface-2:#ece5d8;--frame:#eee8dc;--line:#d9cdb9;--ring:#b09b7b;--steps-b:#f0e8d8
   --btn-a:#292421; --btn-b:#544536; --band:#292421; --band-2:#332b24; --steps-b:#f0e8d8;
+  --banner-bg:linear-gradient(115deg,#292421 78%,#3A3128); --banner-ink:#F5EDD8;
 }
 :root[data-season="navidad"]{--bg:#fff9ed;--wash:#e4ebdf;--heading:#245943;--accent:#9a3540;--gold:#aa7b37;--btn-solid:#245943;--btn-a:#245943;--btn-b:#3b6e55;--chip-on:#245943;--band:#203e32;--band-2:#294b3b;--surface:#fffdf6;--surface-2:#e8eddf;--frame:#edeadd;--line:#d2dece;--ring:#a5b79d;--steps-b:#f1eddb
   --btn-a:#245943; --btn-b:#3b6e55; --band:#203e32; --band-2:#294b3b; --steps-b:#f1eddb;
+  --banner-bg:radial-gradient(circle at 12% 30%,#E9CD8F 0 3px,transparent 4px),radial-gradient(circle at 84% 62%,#E9CD8F 0 3px,transparent 4px),radial-gradient(circle at 55% 18%,#E9CD8F 0 2px,transparent 3px),linear-gradient(115deg,#E4EBDF,#D8E4CE); --banner-ink:#245943;
 }
 :root[data-season="san-valentin"]{--bg:#fff5f7;--wash:#f5dfe8;--heading:#8d3152;--accent:#9a385c;--gold:#a37959;--btn-solid:#8d3152;--btn-a:#8d3152;--btn-b:#a84a69;--chip-on:#8d3152;--band:#512738;--band-2:#622b41;--surface:#fffbfc;--surface-2:#f4e2e9;--frame:#f5e6ec;--line:#e7cbd5;--ring:#c992a6;--steps-b:#f7e9ed
   --btn-a:#8d3152; --btn-b:#a84a69; --band:#512738; --band-2:#622b41; --steps-b:#f7e9ed;
+  --banner-bg:linear-gradient(115deg,#F5DFE8,#EFC9D8); --banner-ink:#8D3152;
 }
 :root[data-season="dia-madres"]{--bg:#fff8f0;--wash:#f0e1d6;--heading:#785132;--accent:#8d4c59;--gold:#a47b4b;--btn-solid:#785132;--btn-a:#785132;--btn-b:#946747;--chip-on:#785132;--band:#49342a;--band-2:#594036;--surface:#fffdf8;--surface-2:#f2e3db;--frame:#f3e7db;--line:#e2d0c0;--ring:#c3a78a;--steps-b:#f7ebdf
   --btn-a:#785132; --btn-b:#946747; --band:#49342a; --band-2:#594036; --steps-b:#f7ebdf;
+  --banner-bg:linear-gradient(115deg,#F0E1D6,#EAD3C2); --banner-ink:#785132;
 }
 .season-banner{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:12px;padding:20px 30px 26px;background:var(--banner-bg);color:var(--banner-ink);text-align:center}
 .season-banner[hidden]{display:none}
 .season-banner span{font-family:var(--font-display);font-size:clamp(1.05rem,2.6vw,1.45rem);letter-spacing:.03em;line-height:1.25}
 .season-mark{display:inline-flex;align-items:center;color:var(--gold);flex:none}
+/* v3.12 · marca del banner legible (igual que en el index): el dorado casi no se veía en Terra (1.77:1) ni en Buen Fin (1.45:1). */
+[data-season="terra"] .season-mark{color:#7C5A33}
+[data-season="buen-fin"] .season-mark{color:#E9C98A}
 .season-mark .icon{width:1.5rem;height:1.5rem}
 [data-season="terra"] .season-banner{clip-path:ellipse(130% 100% at 50% 0);padding-bottom:34px}
 [data-season="buen-fin"] .season-banner{clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),0 100%);padding-bottom:32px}
