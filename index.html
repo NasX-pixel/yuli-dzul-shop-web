@@ -514,6 +514,57 @@ img[data-foto].is-broken{display:none}
 [data-season="dia-madres"] .fan__product .media{border-radius:58% 42% 55% 45% / 48% 52% 48% 52%}
 [data-season="dia-madres"] .season-decor{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg fill='%238D4C59' fill-opacity='.1'%3E%3Ccircle cx='118' cy='34' r='7'/%3E%3Ccircle cx='130' cy='44' r='7'/%3E%3Ccircle cx='106' cy='44' r='7'/%3E%3Ccircle cx='118' cy='52' r='7'/%3E%3C/g%3E%3Ccircle cx='118' cy='43' r='4' fill='%23A47B4B' fill-opacity='.18'/%3E%3C/svg%3E")}
 [data-season="dia-madres"] .hero-card{background:#F2E3DB}
+
+/* ──────────────────────────────────────────────────────────────────
+   TEMÁTICA: CYBER MONDAY (v3.20) — Azul eléctrico y violeta ciber.
+   Qué cambia: paleta índigo/cian neón sobre fondo claro (distinta
+   del negro/dorado de Black Friday); banner con borde inferior
+   ESCALONADO (barras de señal digitales, como píxeles que suben);
+   arco del hero asimétrico tipo pantalla; decoración de circuito
+   tenue (nodos y pistas); botones índigo con texto cian claro.
+   Es un evento SOLO EN LÍNEA: todo el texto lo dice así.
+   ────────────────────────────────────────────────────────────────── */
+:root[data-season="cyber-monday"]{
+  --bg:#EEF2FF; --bg-soft:#E0E8FF; --wash:#D8E2FF; --surface:#FFFFFF; --surface-2:#E6EDFF; --frame:#E2E9FB;
+  --ink:#1F2440; --ink-soft:#4B5170; --muted:#8B91B0; --heading:#1E2A78; --accent:#2E4BE0; --terra:#1E2A78; --terra-dark:#16205C; --gold:#00B8D4;
+  --line:#C7D2F5; --line-soft:#DAE2FA; --ring:#8FA3F0; --btn-solid:#1E2A78; --chip-on:#1E2A78; --on-btn:#EAF6FF;
+  --banner-bg:radial-gradient(circle at 12% 30%,#3ED6F2 0 2px,transparent 3px),radial-gradient(circle at 84% 62%,#3ED6F2 0 2px,transparent 3px),radial-gradient(circle at 55% 18%,#3ED6F2 0 2px,transparent 3px),linear-gradient(115deg,#141B45,#232B6B 62%,#2E3A8C); --banner-ink:#D9F7FF;
+  --hero-art-a:#DCE6FF; --hero-art-b:#7C93F5; --hero-art-c:#1E2A78;
+  --shadow:30 40 120;
+
+  --btn-a:#1e2a78; --btn-b:#2e4be0; --band:#141B45; --band-2:#1D2658; --steps-b:#E8EEFF;
+}
+[data-season="cyber-monday"] .season-banner{clip-path:polygon(0 0,100% 0,100% 100%,82% 100%,82% calc(100% - 8px),64% calc(100% - 8px),64% calc(100% - 16px),46% calc(100% - 16px),46% calc(100% - 24px),28% calc(100% - 24px),28% calc(100% - 32px),0 calc(100% - 32px));padding-bottom:50px}
+[data-season="cyber-monday"] .fan__product .media{border-radius:24px 8px 24px 8px}
+[data-season="cyber-monday"] .season-decor{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cg fill='none' stroke='%231E2A78' stroke-opacity='.12' stroke-width='1.6'%3E%3Cpath d='M20 30h30v30M100 20v40h30M40 110h40v20M120 100v30'/%3E%3C/g%3E%3Cg fill='%232E4BE0' fill-opacity='.14'%3E%3Crect x='16' y='26' width='8' height='8' rx='1'/%3E%3Crect x='96' y='16' width='8' height='8' rx='1'/%3E%3Crect x='116' y='96' width='8' height='8' rx='1'/%3E%3Crect x='76' y='106' width='8' height='8' rx='1'/%3E%3C/g%3E%3C/svg%3E")}
+[data-season="cyber-monday"] .hero-card{background:#E6EDFF}
+
+/* ──────────────────────────────────────────────────────────────────
+   TEMÁTICA: ANIVERSARIO (v3.20) — Pastel festivo, rosa/beige/lila.
+   Qué cambia: paleta pastel (rosa pastel, beige, lila y durazno
+   pastel) con tinta ciruela oscura para que el texto se lea, y
+   DORADO APAGADO solo como acento y con medida (filete fino del
+   marco de la tarjeta, marca del banner, llamitas del pastel y
+   dos puntos del confeti): nunca dorado brillante ni saturado,
+   los pasteles mandan.
+   El NÚMERO del aniversario NO se escribe fijo: se calcula solo
+   en JS desde la fundación (10 de mayo de 2025) y aparece en el
+   banner, la insignia y el logro (ver resolverTema en el script).
+   ────────────────────────────────────────────────────────────────── */
+:root[data-season="aniversario"]{
+  --bg:#FFF7F5; --bg-soft:#FDEFEA; --wash:#FBE7E2; --surface:#FFFEFC; --surface-2:#FBEFE9; --frame:#F6E8E2;
+  --ink:#4A3230; --ink-soft:#7A5A55; --muted:#B59A92; --heading:#A34A63; --accent:#B4506E; --terra:#A34A63; --terra-dark:#83405A; --gold:#B08D4F;
+  --line:#EBD3CB; --line-soft:#F2DED6; --ring:#D9A8B4; --btn-solid:#A34A63; --chip-on:#A34A63; --on-btn:#FFF3F0;
+  --banner-bg:linear-gradient(115deg,#FBDCE4,#FDEBD7 45%,#E9DEF7); --banner-ink:#7A2E4D;
+  --hero-art-a:#FBE3E8; --hero-art-b:#E8B7C8; --hero-art-c:#A34A63;
+  --shadow:140 70 90;
+
+  --btn-a:#a34a63; --btn-b:#c96a86; --band:#6E2A45; --band-2:#7A3350; --steps-b:#FDEFEA;
+}
+[data-season="aniversario"] .season-banner{clip-path:polygon(0 0,100% 0,100% 100%,90% calc(100% - 18px),80% 100%,70% calc(100% - 18px),60% 100%,50% calc(100% - 18px),40% 100%,30% calc(100% - 18px),20% 100%,10% calc(100% - 18px),0 100%);padding-bottom:36px}
+[data-season="aniversario"] .fan__product .media{border-radius:50% 50% 26px 26px / 38% 38% 26px 26px}
+[data-season="aniversario"] .season-decor{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cg fill='%23C96A86' fill-opacity='.13'%3E%3Ccircle cx='24' cy='26' r='5'/%3E%3Ccircle cx='120' cy='40' r='4'/%3E%3Ccircle cx='70' cy='100' r='5'/%3E%3Ccircle cx='130' cy='120' r='4'/%3E%3C/g%3E%3Cg fill='%23A98BD9' fill-opacity='.13'%3E%3Crect x='52' y='18' width='9' height='9' rx='2' transform='rotate(20 56 22)'/%3E%3Crect x='100' y='86' width='9' height='9' rx='2' transform='rotate(-15 104 90)'/%3E%3C/g%3E%3Cg fill='%237DB8A6' fill-opacity='.13'%3E%3Crect x='30' y='80' width='9' height='9' rx='2' transform='rotate(35 34 84)'/%3E%3Ccircle cx='96' cy='130' r='4'/%3E%3C/g%3E%3Cg fill='%23B08D4F' fill-opacity='.16'%3E%3Ccircle cx='48' cy='58' r='3'/%3E%3Ccircle cx='112' cy='60' r='3'/%3E%3C/g%3E%3C/svg%3E")}
+[data-season="aniversario"] .hero-card{background:#FBEFE9}
 [data-season="black-friday"] .season-banner{border-block:3px double var(--gold);letter-spacing:.1em}
 /* v3.12 · BANNER LEGIBLE: esta regla tapaba el fondo oscuro del banner
    (--banner-bg: #292421, negro) con el wash claro #EAE1D0, pero la tinta
@@ -525,6 +576,8 @@ img[data-foto].is-broken{display:none}
    Se usa un dorado oscuro en Terra y un dorado claro en Buen Fin. */
 [data-season="terra"] .season-mark{color:#7C5A33}
 [data-season="buen-fin"] .season-mark{color:#E9C98A}
+[data-season="cyber-monday"] .season-mark{color:#3ED6F2}
+[data-season="aniversario"] .season-mark{color:#7A5F28}
 [data-season="navidad"] .season-banner{background:radial-gradient(circle at 12% 35%,#c8a66d 0 2px,transparent 3px),radial-gradient(circle at 83% 65%,#c8a66d 0 2px,transparent 3px),var(--wash)}
 [data-season="dia-madres"] .season-banner:before{content:"";position:absolute;inset:-40px 8% -40px auto;width:90px;border:10px double #be928a55;border-radius:50%;transform:rotate(30deg);z-index:-1}
 .store-location{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border:1px solid currentColor;border-radius:16px;padding:12px 18px;color:inherit;text-decoration:none;margin-top:14px;font-weight:600}
@@ -1436,6 +1489,7 @@ strong,b{font-weight:600}
 @keyframes fxFall{0%{transform:translate3d(0,-6vh,0) rotate(0deg);opacity:0}8%{opacity:var(--fx-op,.8)}85%{opacity:var(--fx-op,.8)}100%{transform:translate3d(var(--fx-drift,18px),108vh,0) rotate(320deg);opacity:0}}
 @keyframes fxRise{0%{transform:translate3d(0,4vh,0) scale(.7);opacity:0}12%{opacity:var(--fx-op,.75)}88%{opacity:var(--fx-op,.75)}100%{transform:translate3d(var(--fx-drift,-14px),-108vh,0) scale(1.05);opacity:0}}
 @keyframes fxTwinkle{0%,100%{transform:scale(.55) rotate(0deg);opacity:.15}50%{transform:scale(1.15) rotate(40deg);opacity:.9}}
+@keyframes fxBlink{0%{transform:translate3d(0,-6vh,0);opacity:0}10%{opacity:var(--fx-op,.85)}28%{opacity:.15}45%{opacity:var(--fx-op,.85)}62%{opacity:.2}80%{opacity:var(--fx-op,.85)}100%{transform:translate3d(var(--fx-drift,18px),108vh,0);opacity:0}}
 [data-season="terra"] .fx{--fx-color:#8A6B3F;--fx-anim:fxFall;--fx-op:.5}
 [data-season="buen-fin"] .fx{--fx-color:#93252D;--fx-anim:fxFall;--fx-op:.65}
 [data-season="hot-sale"] .fx{--fx-color:#C1441B;--fx-anim:fxFall;--fx-op:.65}
@@ -1443,6 +1497,8 @@ strong,b{font-weight:600}
 [data-season="navidad"] .fx{--fx-color:#DCE8DF;--fx-anim:fxFall;--fx-op:.9;filter:drop-shadow(0 1px 1px rgb(0 0 0/.18))}
 [data-season="san-valentin"] .fx{--fx-color:#9A385C;--fx-anim:fxRise;--fx-op:.65}
 [data-season="dia-madres"] .fx{--fx-color:#C98A9B;--fx-anim:fxFall;--fx-op:.65}
+[data-season="cyber-monday"] .fx{--fx-color:#7C93F5;--fx-anim:fxBlink;--fx-op:.85}
+[data-season="aniversario"] .fx{--fx-color:#C96A86;--fx-anim:fxRise;--fx-op:.7}
 
 @media (prefers-reduced-motion:reduce){.fx-layer{display:none}}
 
@@ -1461,6 +1517,8 @@ strong,b{font-weight:600}
 [data-season="navidad"] .badge-season{border:1.5px solid #245943}
 [data-season="san-valentin"] .badge-season{border:1.5px solid #E7CBD5}
 [data-season="dia-madres"] .badge-season{border:1.5px solid #E2D0C0}
+[data-season="cyber-monday"] .badge-season{border:1.5px solid #8FA3F0}
+[data-season="aniversario"] .badge-season{border:1.5px solid #D9A8B4}
 .pd__season{margin:0;display:flex}
 .season-achievement{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px dashed var(--ring);border-radius:18px;background:var(--surface-2);color:var(--heading);font-size:.92rem;font-weight:600;line-height:1.4}
 .season-achievement .icon{flex:none;width:1.25rem;height:1.25rem;color:var(--accent);margin-top:1px}
@@ -1530,6 +1588,19 @@ strong,b{font-weight:600}
 [data-season="dia-madres"] .card__media{border-bottom-left-radius:44% 10%;border-bottom-right-radius:44% 10%}
 [data-season="dia-madres"] .card__media::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='%238D4C59'%3E%3Ccircle cx='12' cy='6' r='3'/%3E%3Ccircle cx='17.5' cy='10' r='3'/%3E%3Ccircle cx='15.5' cy='16.5' r='3'/%3E%3Ccircle cx='8.5' cy='16.5' r='3'/%3E%3Ccircle cx='6.5' cy='10' r='3'/%3E%3C/g%3E%3Ccircle cx='12' cy='12' r='2.4' fill='%23A47B4B'/%3E%3C/svg%3E")}
 [data-season="dia-madres"] .card__media::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='11' r='4' fill='%23A47B4B'/%3E%3Cpath d='M12 15v6' stroke='%238D4C59' stroke-width='1.6'/%3E%3C/svg%3E")}
+/* Cyber Monday · Borde de circuito: marco índigo + perforación
+   punteada por dentro (como nodos de circuito) + cursor y chip en
+   las esquinas de la foto. Distinto del punteado de Buen Fin
+   (guiones) y del de Navidad (filete dorado): aquí son PUNTOS. */
+[data-season="cyber-monday"] .card{border:1.5px solid #B9C6F7;outline:1.5px dotted #2E4BE0;outline-offset:-6px}
+[data-season="cyber-monday"] .card__media::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5.5 3.8 18.8 11.6l-5.2 1.4-2.4 5.4z' fill='%232E4BE0'/%3E%3Cpath d='M20 3.5l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5z' fill='%2300B8D4'/%3E%3C/svg%3E")}
+[data-season="cyber-monday"] .card__media::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='7' y='7' width='10' height='10' rx='2' fill='none' stroke='%232E4BE0' stroke-width='2'/%3E%3Crect x='10.2' y='10.2' width='3.6' height='3.6' rx='1' fill='%2300B8D4'/%3E%3Cpath d='M9.5 7V3.5M14.5 7V3.5M9.5 20.5V17M14.5 20.5V17M7 9.5H3.5M7 14.5H3.5M20.5 9.5H17M20.5 14.5H17' stroke='%232E4BE0' stroke-width='2'/%3E%3C/svg%3E")}
+/* Aniversario · Borde de fiesta pastel: marco rosa pastel + filete
+   DORADO APAGADO fino por dentro (como listón dorado, con medida)
+   + pastel y globo en las esquinas de la foto. */
+[data-season="aniversario"] .card{border:1.5px solid #E8C9D4;outline:1px solid #C8A96A;outline-offset:-6px}
+[data-season="aniversario"] .card__media::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3.5 12h17V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3.5 19z' fill='%23B4506E'/%3E%3Cpath d='M3.5 12.5c2.8 1.8 5.7 1.8 8.5 0s5.7-1.8 8.5 0' stroke='%23FBEFE9' stroke-width='1.4' fill='none'/%3E%3Cpath d='M8 9.5V6.5M12 9.5V6M16 9.5V6.5' stroke='%23B4506E' stroke-width='1.8'/%3E%3Cpath d='M8 2.8c.7.8.7 1.6 0 2.2-.7-.6-.7-1.4 0-2.2zM12 2.3c.7.8.7 1.6 0 2.2-.7-.6-.7-1.4 0-2.2zM16 2.8c.7.8.7 1.6 0 2.2-.7-.6-.7-1.4 0-2.2z' fill='%23C9A24B'/%3E%3C/svg%3E")}
+[data-season="aniversario"] .card__media::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3.5c3.6 0 6 2.6 6 5.8 0 3.9-3.4 6.7-6 8.2-2.6-1.5-6-4.3-6-8.2 0-3.2 2.4-5.8 6-5.8z' fill='%23C96A86'/%3E%3Cpath d='M10.8 17.6h2.4l-1.2 1.8z' fill='%23B4506E'/%3E%3Cpath d='M12 19.5c-1.2 1 1.2 1.8 0 2.8' stroke='%23B4506E' stroke-width='1.4' fill='none'/%3E%3C/svg%3E")}
 </style>
 
 <style id="tematicas-v3-11">
@@ -1946,7 +2017,11 @@ strong,b{font-weight:600}
   <symbol id="i-percent" viewBox="0 0 24 24"><path d="M18.5 5.5c-.8 1-1.8 2-2.9 2.9-1 .9-2 1.8-2.9 2.9-.9 1-1.8 2-2.6 3.1-.8 1-1.5 2.1-2 3.1"/><circle cx="7.6" cy="7.6" r="2.7"/><circle cx="16.4" cy="16.4" r="2.7"/></symbol>
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9.5 7V4.5A1.5 1.5 0 0 1 11 3h2a1.5 1.5 0 0 1 1.5 1.5V7M6.5 7l.8 11.2A2 2 0 0 0 9.3 20h5.4a2 2 0 0 0 2-1.8L17.5 7"/><path d="M10 11v6M14 11v6"/></symbol>
-  <symbol id="i-gem" viewBox="0 0 24 24"><path d="M7 4.5h10l3.2 4.6L12 19.5 3.8 9.1z"/><path d="M3.8 9.1h16.4M12 19.5 8.6 9.1 12 4.5l3.4 4.6L12 19.5"/><path d="M12 7.2l.5 1.1 1.1.5-1.1.5-.5 1.1-.5-1.1-1.1-.5 1.1-.5z" fill="currentColor" stroke="none"/></symbol></svg>
+  <symbol id="i-gem" viewBox="0 0 24 24"><path d="M7 4.5h10l3.2 4.6L12 19.5 3.8 9.1z"/><path d="M3.8 9.1h16.4M12 19.5 8.6 9.1 12 4.5l3.4 4.6L12 19.5"/><path d="M12 7.2l.5 1.1 1.1.5-1.1.5-.5 1.1-.5-1.1-1.1-.5 1.1-.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-click" viewBox="0 0 24 24"><path d="M5.5 3.8 18.8 11.6l-5.2 1.4-2.4 5.4z"/><path d="M20 3.5l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/><rect x="10.2" y="10.2" width="3.6" height="3.6" rx="1"/><path d="M9.5 7V3.5M14.5 7V3.5M9.5 20.5V17M14.5 20.5V17M7 9.5H3.5M7 14.5H3.5M20.5 9.5H17M20.5 14.5H17"/></symbol>
+  <symbol id="i-cake" viewBox="0 0 24 24"><path d="M3.5 12h17V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3.5 19z"/><path d="M3.5 12.5c2.8 1.8 5.7 1.8 8.5 0s5.7-1.8 8.5 0"/><path d="M8 9.5V6.5M12 9.5V6M16 9.5V6.5"/><path d="M8 2.8c.7.8.7 1.6 0 2.2-.7-.6-.7-1.4 0-2.2zM12 2.3c.7.8.7 1.6 0 2.2-.7-.6-.7-1.4 0-2.2zM16 2.8c.7.8.7 1.6 0 2.2-.7-.6-.7-1.4 0-2.2z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-balloon" viewBox="0 0 24 24"><path d="M12 3.5c3.6 0 6 2.6 6 5.8 0 3.9-3.4 6.7-6 8.2-2.6-1.5-6-4.3-6-8.2 0-3.2 2.4-5.8 6-5.8z"/><path d="M8.5 7c-.6 1-.9 2-.9 3" stroke-width="1.4"/><path d="M10.8 17.6h2.4l-1.2 1.8z" fill="currentColor" stroke="none"/><path d="M12 19.5c-1.2 1 1.2 1.8 0 2.8"/></symbol></svg>
 
 <div class="page">
   <div class="season-decor" aria-hidden="true"></div>
@@ -2245,7 +2320,33 @@ strong,b{font-weight:600}
         { icon: 'home', t: 'Recoge o recibe', p: 'Pasa por tu pedido a tienda o solicita envío a domicilio.' },
         { icon: 'heart', t: 'Con una nota tuya', p: 'Agrega tu mensaje en las notas y la tienda lo incluye.' }],
       catEyebrow: 'Día de las Madres', catTitulo: 'Bonito, como mamá', fanEyebrow: 'Para mamá · Favorito',
-      footerSay: 'Para mamá, con todo el cariño.' }
+      footerSay: 'Para mamá, con todo el cariño.' },
+    'cyber-monday': { nombre: 'Cyber Monday', mark: 'chip', heroIcons: ['click','chip','bolt'], steps: ['click','chip','heart'], btnIcon: 'click', bagIcon: 'chip', soloIcon: 'click', insignia: { icon: 'click', texto: 'Cyber Monday' }, logro: 'Solo en línea, solo hoy', fx: { icon: 'click', n: 10, tipo: 'blink' },
+      banner: 'Cyber Monday · Solo en línea, solo hoy', bannerSub: 'Lunes 30 de noviembre · Solo por internet',
+      eyebrow: 'Cyber Monday · Solo en línea',
+      titulo: 'Un clic <em>y es tuyo.</em>',
+      lead: 'Llegó el Cyber Monday: artículos seleccionados con precio especial, solo por internet y solo este lunes. Si te gusta, no lo pienses mucho.',
+      micro: 'Las ofertas del Cyber Monday son solo en línea y duran un día.',
+      trust: ['Solo en línea, solo hoy', 'Recoge o solicita envío', 'Atención personal'],
+      cards: [
+        { icon: 'click', t: 'Solo en línea', p: 'Las ofertas del Cyber Monday son solo por internet.' },
+        { icon: 'home', t: 'Recoge o recibe', p: 'Pasa por tu pedido a tienda o solicita envío a domicilio.' },
+        { icon: 'chip', t: 'Un día, un clic', p: 'El stock que ves es el real de la tienda.' }],
+      catEyebrow: 'Cyber Monday', catTitulo: 'Solo en línea, solo hoy', fanEyebrow: 'Cyber Monday · Destacado',
+      footerSay: 'Cyber Monday: un clic y es tuyo.' },
+    'aniversario': { nombre: 'Aniversario', mark: 'cake', heroIcons: ['cake','balloon','gift'], steps: ['cake','balloon','heart'], btnIcon: 'cake', bagIcon: 'balloon', soloIcon: 'cake', insignia: { icon: 'cake', texto: '{N}.º Aniversario' }, logro: 'Celebrando {N} {AÑOS} contigo', fx: { icon: 'balloon', n: 10, tipo: 'rise' },
+      banner: '{N}.º Aniversario · Gracias por estar', bannerSub: 'Desde el 10 de mayo de 2025 · Solo por temporada',
+      eyebrow: 'Aniversario · Gracias por estar',
+      titulo: 'Ya son {N} {AÑOS} <em>contigo.</em>',
+      lead: 'La boutique cumple {N} {AÑOS} gracias a ti: artículos seleccionados con precio especial para celebrar, solo por temporada.',
+      micro: 'Precios de aniversario en artículos marcados con la pill de oferta.',
+      trust: ['Precios de aniversario', 'Recoge o solicita envío', 'Atención personal'],
+      cards: [
+        { icon: 'cake', t: 'Precios de aniversario', p: 'Busca la pill negra de oferta en cada artículo participante.' },
+        { icon: 'home', t: 'Recoge o recibe', p: 'Pasa por tu pedido a tienda o solicita envío a domicilio.' },
+        { icon: 'balloon', t: 'Gracias por estar', p: 'El stock que ves es el real de la tienda.' }],
+      catEyebrow: 'Aniversario', catTitulo: '{N} {AÑOS} contigo', fanEyebrow: 'Aniversario · Favorito',
+      footerSay: 'Aniversario: {N} {AÑOS}, gracias por estar.' }
   };
 
   /* Mismos tonos que las muestras de color de la app. */
@@ -2501,7 +2602,7 @@ strong,b{font-weight:600}
   }
 
   function tarjeta(p, i) {
-    const T = TEMATICAS[document.documentElement.dataset.season] || TEMATICAS.terra;
+    const T = temaDatos();
     const sel = colorElegido(p);
     const quedan = p.colores.flatMap(c => c.variantes).reduce((a, v) => a + libres(v.id), 0);
     const tallas = [...new Set(p.colores.flatMap(c => c.variantes.map(v => v.talla)))].sort(ordenTalla);
@@ -2652,7 +2753,7 @@ strong,b{font-weight:600}
 
   function pintarBolsa(brinco = false) {
     const n = totalPiezas();
-    const T = TEMATICAS[document.documentElement.dataset.season] || TEMATICAS.terra;
+    const T = temaDatos();
     actualizarLogro();
     bagCount.textContent = n;
     bagBtn.classList.toggle('has-items', n > 0);
@@ -2790,7 +2891,7 @@ strong,b{font-weight:600}
 
   function pintarDetalle(foto) {
     const p = (estado.catalogo || []).find(x => x.id === sel.pid);
-    const T = TEMATICAS[document.documentElement.dataset.season] || TEMATICAS.terra;
+    const T = temaDatos();
     const c = p.colores.find(x => x.id === sel.cid) || p.colores[0];
     const v = c.variantes.find(x => x.id === sel.vid) || c.variantes[0];
     sel.cid = c.id; sel.vid = v.id;
@@ -3230,7 +3331,16 @@ strong,b{font-weight:600}
      El título se escribe en las 2 líneas .ln de la v3.8: la estructura y el
      CSS no se tocan, así que la "g" sigue sin cortarse. */
   let temaAplicado = null;
-  const temaDatos = () => TEMATICAS[document.documentElement.dataset.season] || TEMATICAS.terra;
+  /* Aniversario: el número se calcula SOLO desde la fundación de la
+     tienda (10 de mayo de 2025), no se escribe fijo. Si hoy ya pasó
+     el 10 de mayo, el número es año actual − 2025 (en mayo de 2027
+     sale 2, en 2028 sale 3); si todavía no llega el 10 de mayo, es
+     un año menos, para no adelantar el aniversario (en abril de 2027
+     sigue diciendo 1.º). Nunca baja de 1. Los textos del tema usan
+     el marcador {N}, que se reemplaza por ese número al pintar. */
+  const aniversarioNum = () => { const hoy = new Date(); let n = hoy.getFullYear() - 2025; if (hoy.getMonth() < 4 || (hoy.getMonth() === 4 && hoy.getDate() < 10)) n -= 1; return Math.max(1, n); };
+  const resolverTema = T => { const n = aniversarioNum(); const anios = n === 1 ? 'año' : 'años'; const r = s => typeof s === 'string' ? s.replaceAll('{N}', String(n)).replaceAll('{AÑOS}', anios) : s; const c = { ...T }; ['banner', 'bannerSub', 'eyebrow', 'titulo', 'lead', 'micro', 'logro', 'catEyebrow', 'catTitulo', 'fanEyebrow', 'footerSay'].forEach(k => { if (c[k]) c[k] = r(c[k]); }); if (c.insignia) c.insignia = { ...c.insignia, texto: r(c.insignia.texto) }; if (c.trust) c.trust = c.trust.map(r); if (c.cards) c.cards = c.cards.map(x => ({ ...x, t: r(x.t), p: r(x.p) })); return c; };
+  const temaDatos = () => resolverTema(TEMATICAS[document.documentElement.dataset.season] || TEMATICAS.terra);
   function pintarFX() {
     const layer = document.getElementById('fxLayer'); if (!layer) return;
     const T = temaDatos();
@@ -3258,7 +3368,7 @@ strong,b{font-weight:600}
   }
   function aplicarTemaVisual(clave) {
     const vis = TEMATICAS[clave] ? clave : 'terra';
-    const T = TEMATICAS[vis];
+    const T = resolverTema(TEMATICAS[vis]);
     const repetida = temaAplicado === vis;
     temaAplicado = vis;
     document.querySelectorAll('[data-season-mark]').forEach(el => { el.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-${T.mark}"/></svg>`; });
@@ -3299,7 +3409,7 @@ strong,b{font-weight:600}
 
 /* Apariencia y visitas públicas. No lee ni escribe precios, bolsa ni pedidos. */
 (()=>{
- const themes={'normal':1,'terra':1,'buen-fin':1,'hot-sale':1,'black-friday':1,'navidad':1,'san-valentin':1,'dia-madres':1};
+ const themes={'normal':1,'terra':1,'buen-fin':1,'hot-sale':1,'black-friday':1,'navidad':1,'san-valentin':1,'dia-madres':1,'cyber-monday':1,'aniversario':1};
  const root=document.documentElement, counter=document.getElementById('webVisits');
  function apply(theme){if(!Object.hasOwn(themes,theme))theme='terra';const visual=theme==='normal'?'terra':theme;if(root.dataset.season!==visual&&!matchMedia('(prefers-reduced-motion: reduce)').matches){root.classList.add('theme-swap');clearTimeout(root._tsT);root._tsT=setTimeout(()=>root.classList.remove('theme-swap'),520);}root.dataset.season=visual;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';if(window.__yuliAplicarTema)window.__yuliAplicarTema(visual);}
  try{localStorage.removeItem('yuli-web-theme-manual-v1');}catch{} /* Eleccion manual vieja: se borra, la tematica la manda solo la tienda. */
