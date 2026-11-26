@@ -1,6 +1,6 @@
 <!-- Yuli Dzul Shop - Diseno Terra v2 · Layout del interactivo, tal cual - Basado en el index.html real de https://nasx-pixel.github.io/yuli-dzul-shop-web/ - Se conservan Supabase, catalogo, bolsa, formulario, seguimiento y contacto. Cambios v2: SIN barra superior terracota (la pagina empieza directamente con la cabecera crema Yuli Dzul / SHOP · BOUTIQUE y Mi bolsa); hero con titular, 2 botones, checks, foto en arco con etiqueta de oferta y tarjetas A tu eleccion / Recoge o recibe; grid de 2 con Agregar a la bolsa y Ver; detalle con eyebrow, precio y Ahorras. Sin productos ni precios de muestra: todo sale de Supabase. Adaptativo a PC, tableta y celular. -->
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-season="navidad">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -26,6 +26,9 @@
   --btn-solid:#7C3A1E; --btn-a:#8A4423; --btn-b:#B4652F; --on-btn:#FFF8F0; --chip-on:#B4652F;
   --steps-b:#F7EAD8; --shadow:74 24 46; --backdrop:rgb(70 44 56 / .58);
   --sw-vino:#7C3A1E; --sw-malva:#8A4A66; --sw-rosa:#EBD3DE;
+  --bg-soft:#F6E9D2; --muted:#97816C; --line-soft:#F0E3CB;
+  --banner-bg:linear-gradient(120deg,#F6E3D3,#F3D9BE); --banner-ink:#7C3A1E;
+  --hero-art-a:#F3DFC2; --hero-art-b:#DFAF7E; --hero-art-c:#B4652F;
 
   --font-display:"Playfair Display",Georgia,serif;
   --font-body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -48,7 +51,7 @@ html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 104px);-webkit-text-
 html.is-locked{overflow:hidden}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:1rem;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
-.page{overflow-x:clip;background:radial-gradient(95vw 780px at -12% 300px,var(--wash) 0%,transparent 68%) no-repeat}
+.page{position:relative;overflow-x:clip;background:radial-gradient(95vw 780px at -12% 300px,var(--wash) 0%,transparent 68%) no-repeat}
 img{display:block;max-width:100%}
 button,input{font:inherit;color:inherit}
 button{cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -348,19 +351,171 @@ img[data-foto].is-broken{display:none}
 }
 .order-panel{padding:clamp(20px,5vw,44px);max-width:640px;margin:auto}.order-panel h2{margin:10px 0}.order-panel p{margin:8px 0}.order-panel label{display:block;margin:10px 0}.order-panel input:not([type=checkbox]):not([type=radio]),.order-panel select,.order-panel textarea{display:block;width:100%;padding:14px;border:1px solid var(--line,#c9abb9);border-radius:16px;background:transparent;color:inherit;font:inherit;margin-top:8px}.order-panel select option{color:#351126;background:#fffaf3}.order-panel .consent{display:flex;gap:12px;align-items:flex-start}.order-panel .btn{margin:10px 0}.order-panel [hidden]{display:none!important}
 /* Terra: tableta 768px - catalogo 3 columnas, hero en 2 columnas a partir de 860px, bolsa lateral */
-@media (min-width:768px) and (max-width:1023px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* Yuli 0.8.9 · Temáticas Pro v4: tokens + forma del banner + arco del hero
+   + decoración, trasplantados del probador (tematicas-pro-v4). */
+/* ════════════════════════════════════════════════════════════════════
+   BLOQUES DE TEMÁTICA · Cada bloque es autónomo y trasplantable:
+   tokens + forma del banner + forma del arco del hero + decoración +
+   acentos de tarjeta y bolsa. Los TEXTOS de cada temática viven en el
+   objeto TEMATICAS del script (banner, hero, tarjetas del hero).
+   ════════════════════════════════════════════════════════════════════ */
 
-/* Yuli 0.8.9: temas de temporada, siempre claros. Sin ofertas ficticias. */
-:root[data-season="buen-fin"]{--bg:#fff7f3;--wash:#f8ded9;--heading:#93252d;--accent:#ac3439;--gold:#ab7650;--btn-solid:#93252d;--btn-a:#93252d;--btn-b:#b83c42;--chip-on:#93252d;--band:#4d2325;--band-2:#59262a;--surface:#fffcf9;--surface-2:#f6e2df;--frame:#f8e7e0;--line:#e8c9c4;--ring:#c98f89;--steps-b:#fae9e3}
-:root[data-season="hot-sale"]{--bg:#fff7ed;--wash:#ffe1c9;--heading:#98301a;--accent:#ad391d;--gold:#a66b2d;--btn-solid:#98301a;--btn-a:#98301a;--btn-b:#b94623;--chip-on:#a5361b;--band:#57291c;--band-2:#68311e;--surface:#fffcf6;--surface-2:#ffe9d4;--frame:#ffead7;--line:#eed0b6;--ring:#cb9670;--steps-b:#fff0dc}
-:root[data-season="black-friday"]{--bg:#faf7f0;--wash:#eae1d0;--heading:#292421;--accent:#665035;--gold:#947044;--btn-solid:#292421;--btn-a:#292421;--btn-b:#544536;--chip-on:#39312b;--band:#292421;--band-2:#332b24;--surface:#fffdf7;--surface-2:#ece5d8;--frame:#eee8dc;--line:#d9cdb9;--ring:#b09b7b;--steps-b:#f0e8d8}
-:root[data-season="navidad"]{--bg:#fff9ed;--wash:#e4ebdf;--heading:#245943;--accent:#9a3540;--gold:#aa7b37;--btn-solid:#245943;--btn-a:#245943;--btn-b:#3b6e55;--chip-on:#245943;--band:#203e32;--band-2:#294b3b;--surface:#fffdf6;--surface-2:#e8eddf;--frame:#edeadd;--line:#d2dece;--ring:#a5b79d;--steps-b:#f1eddb}
-:root[data-season="san-valentin"]{--bg:#fff5f7;--wash:#f5dfe8;--heading:#8d3152;--accent:#9a385c;--gold:#a37959;--btn-solid:#8d3152;--btn-a:#8d3152;--btn-b:#a84a69;--chip-on:#8d3152;--band:#512738;--band-2:#622b41;--surface:#fffbfc;--surface-2:#f4e2e9;--frame:#f5e6ec;--line:#e7cbd5;--ring:#c992a6;--steps-b:#f7e9ed}
-:root[data-season="dia-madres"]{--bg:#fff8f0;--wash:#f0e1d6;--heading:#785132;--accent:#8d4c59;--gold:#a47b4b;--btn-solid:#785132;--btn-a:#785132;--btn-b:#946747;--chip-on:#785132;--band:#49342a;--band-2:#594036;--surface:#fffdf8;--surface-2:#f2e3db;--frame:#f3e7db;--line:#e2d0c0;--ring:#c3a78a;--steps-b:#f7ebdf}
-.season-banner{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:14px;padding:16px 24px;background:var(--wash);color:var(--heading);border-block:1px solid var(--line);text-align:center}
-.season-banner[hidden]{display:none}.season-banner span{font-family:var(--font-display);font-size:clamp(1.3rem,3vw,1.8rem);letter-spacing:.04em}.season-mark{font-style:normal;font-size:1.6rem;color:var(--gold)}
-[data-season="buen-fin"] .season-banner:before{content:"";position:absolute;inset:-80px auto -80px 7%;width:58px;transform:rotate(30deg);border-inline:12px solid var(--heading);opacity:.12;z-index:-1}
-[data-season="hot-sale"] .season-banner{background:radial-gradient(ellipse at 90% 130%,#f3b98b 0 18%,transparent 19% 28%,#f5c9a7 29% 40%,transparent 41%),var(--wash)}
+/* ──────────────────────────────────────────────────────────────────
+   TEMÁTICA: TERRA (base) — Boutique cálida, la identidad de siempre.
+   Qué cambia: paleta crema/terracota/dorado; banner con borde inferior
+   en ARCO suave (curva); arco del hero clásico redondeado; decoración
+   de destellos dorados muy sutiles; tarjetas del hero en arena.
+   ────────────────────────────────────────────────────────────────── */
+:root[data-season="terra"]{
+  --bg:#FBF2E1; --bg-soft:#F6E9D2; --wash:#F6E3D3; --surface:#FFFDF8; --surface-2:#FDF3E3; --frame:#EFE9DC;
+  --ink:#2E2019; --ink-soft:#5C4634; --muted:#97816C; --heading:#7C3A1E; --accent:#B4652F; --terra:#B4652F; --terra-dark:#96501F; --gold:#C9A24B;
+  --line:#EBDCC0; --line-soft:#F0E3CB; --ring:#D9B48F; --btn-solid:#B4652F; --chip-on:#B4652F;
+  --banner-bg:linear-gradient(120deg,#F6E3D3,#F3D9BE); --banner-ink:#7C3A1E;
+  --hero-art-a:#F3DFC2; --hero-art-b:#DFAF7E; --hero-art-c:#B4652F;
+
+  --btn-a:#8A4423; --btn-b:#B4652F; --band:#3B2318; --band-2:#4A2C1C; --steps-b:#F7EAD8;
+}
+[data-season="terra"] .season-banner{clip-path:ellipse(130% 100% at 50% 0);padding-bottom:34px}
+[data-season="terra"] .fan__product .media{border-radius:290px 290px 26px 26px}
+[data-season="terra"] .season-decor{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cpath d='M70 18c1 6 4 9 10 10-6 1-9 4-10 10-1-6-4-9-10-10 6-1 9-4 10-10z' fill='%23C9A24B' fill-opacity='.14'/%3E%3C/svg%3E")}
+
+/* ──────────────────────────────────────────────────────────────────
+   TEMÁTICA: BUEN FIN — Vino y rojo de ofertas, energía de remate.
+   Qué cambia: paleta vino/crema; banner en DIAGONAL (corte inclinado
+   abajo, como cinta de remate) con franjas laterales; arco del hero
+   asimétrico inclinado; decoración de confeti tenue; el chip de
+   ofertas y los botones toman el vino de la temporada.
+   ────────────────────────────────────────────────────────────────── */
+:root[data-season="buen-fin"]{
+  --bg:#FFF7F3; --bg-soft:#F8E3DF; --wash:#F8DED9; --surface:#FFFCF9; --surface-2:#F6E2DF; --frame:#F8E7E0;
+  --ink:#332124; --ink-soft:#6E4A4D; --muted:#A97F7C; --heading:#93252D; --accent:#AC3439; --terra:#93252D; --terra-dark:#7A1D24; --gold:#AB7650;
+  --line:#E8C9C4; --line-soft:#F0D8D3; --ring:#C98F89; --btn-solid:#93252D; --chip-on:#93252D;
+  --banner-bg:linear-gradient(115deg,#93252D,#B83C42); --banner-ink:#FFF3EC;
+  --hero-art-a:#F6D9CE; --hero-art-b:#D98A80; --hero-art-c:#93252D;
+  --shadow:90 30 35;
+
+  --btn-a:#93252d; --btn-b:#b83c42; --band:#4d2325; --band-2:#59262a; --steps-b:#fae9e3;
+}
+[data-season="buen-fin"] .season-banner{clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),0 100%);padding-bottom:32px}
+[data-season="buen-fin"] .season-banner::before,[data-season="buen-fin"] .season-banner::after{content:"";position:absolute;top:-30px;bottom:-30px;width:44px;border-inline:10px solid rgb(255 243 236/.22);transform:rotate(24deg)}
+[data-season="buen-fin"] .season-banner::before{left:6%}
+[data-season="buen-fin"] .season-banner::after{right:6%}
+[data-season="buen-fin"] .fan__product .media{border-radius:210px 290px 26px 70px}
+[data-season="buen-fin"] .season-decor{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect x='18' y='20' width='10' height='4' rx='2' fill='%2393252D' fill-opacity='.12' transform='rotate(30 23 22)'/%3E%3Ccircle cx='86' cy='70' r='4' fill='%23AB7650' fill-opacity='.16'/%3E%3Crect x='60' y='100' width='10' height='4' rx='2' fill='%23AC3439' fill-opacity='.12' transform='rotate(-24 65 102)'/%3E%3C/svg%3E")}
+[data-season="buen-fin"] .hero-card{background:#F8E3DF}
+
+/* ──────────────────────────────────────────────────────────────────
+   TEMÁTICA: HOT SALE — Naranja encendido, sensación de calor y prisa.
+   Qué cambia: paleta naranja/ámbar; banner con borde inferior en
+   ZIGZAG (dientes de sierra, como flama); arco del hero en gota
+   (redondo arriba, punta suave abajo); decoración de soles tenues;
+   acentos ámbar en pasos y anillos.
+   ────────────────────────────────────────────────────────────────── */
+:root[data-season="hot-sale"]{
+  --bg:#FFF7ED; --bg-soft:#FFE9D4; --wash:#FFE1C9; --surface:#FFFCF6; --surface-2:#FFE9D4; --frame:#FFEAD7;
+  --ink:#38221A; --ink-soft:#75503C; --muted:#B08A6C; --heading:#98301A; --accent:#AD391D; --terra:#98301A; --terra-dark:#7C2713; --gold:#A66B2D;
+  --line:#EED0B6; --line-soft:#F4DEC6; --ring:#CB9670; --btn-solid:#98301A; --chip-on:#A5361B;
+  --banner-bg:radial-gradient(ellipse at 88% 140%,#F3B98B 0 20%,transparent 21%),linear-gradient(115deg,#FFE1C9,#FFD3AC); --banner-ink:#7C2713;
+  --hero-art-a:#FFE3C2; --hero-art-b:#F2A65E; --hero-art-c:#C1441B;
+  --shadow:110 55 20;
+
+  --btn-a:#98301a; --btn-b:#b94623; --band:#57291c; --band-2:#68311e; --steps-b:#fff0dc;
+}
+[data-season="hot-sale"] .season-banner{clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),95% 100%,90% calc(100% - 12px),85% 100%,80% calc(100% - 12px),75% 100%,70% calc(100% - 12px),65% 100%,60% calc(100% - 12px),55% 100%,50% calc(100% - 12px),45% 100%,40% calc(100% - 12px),35% 100%,30% calc(100% - 12px),25% 100%,20% calc(100% - 12px),15% 100%,10% calc(100% - 12px),5% 100%,0 calc(100% - 12px));padding-bottom:30px}
+[data-season="hot-sale"] .fan__product .media{border-radius:999px 999px 999px 28px}
+[data-season="hot-sale"] .season-decor{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cg fill='none' stroke='%23AD391D' stroke-opacity='.12' stroke-width='2'%3E%3Ccircle cx='110' cy='36' r='10'/%3E%3Cpath d='M110 16v6M110 50v6M90 36h6M124 36h6M96 22l4 4M120 46l4 4M124 22l-4 4M100 46l-4 4'/%3E%3C/g%3E%3C/svg%3E")}
+[data-season="hot-sale"] .hero-card{background:#FFE9D4}
+
+/* ──────────────────────────────────────────────────────────────────
+   TEMÁTICA: BLACK FRIDAY — Negro y dorado, lujo sobrio.
+   Qué cambia: paleta hueso/negro/dorado; banner tipo MOÑO con esquinas
+   recortadas y doble filete dorado (nunca rectángulo simple); arco del
+   hero de líneas rectas y elegantes; decoración de rombos dorados;
+   botones negros con texto crema. Las ofertas siguen en negro metálico.
+   ────────────────────────────────────────────────────────────────── */
+:root[data-season="black-friday"]{
+  --bg:#FAF7F0; --bg-soft:#ECE5D8; --wash:#EAE1D0; --surface:#FFFDF7; --surface-2:#ECE5D8; --frame:#EEE8DC;
+  --ink:#292421; --ink-soft:#5C5348; --muted:#94876F; --heading:#292421; --accent:#665035; --terra:#292421; --terra-dark:#171310; --gold:#947044;
+  --line:#D9CDB9; --line-soft:#E4DAC6; --ring:#B09B7B; --btn-solid:#292421; --chip-on:#39312B; --on-btn:#F5EDD8;
+  --banner-bg:linear-gradient(115deg,#292421 78%,#3A3128); --banner-ink:#F5EDD8;
+  --hero-art-a:#EDE4D0; --hero-art-b:#B49B6D; --hero-art-c:#292421;
+  --shadow:40 32 20;
+
+  --btn-a:#292421; --btn-b:#544536; --band:#292421; --band-2:#332b24; --steps-b:#f0e8d8;
+}
+[data-season="black-friday"] .season-banner{clip-path:polygon(26px 0,calc(100% - 26px) 0,100% 50%,calc(100% - 26px) 100%,26px 100%,0 50%);margin-inline:10px;box-shadow:inset 0 0 0 2px #947044,inset 0 0 0 5px #292421,inset 0 0 0 6px #947044}
+[data-season="black-friday"] .fan__product .media{border-radius:110px 110px 4px 4px}
+[data-season="black-friday"] .season-decor{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='130'%3E%3Cpath d='M100 20 112 32 100 44 88 32z' fill='none' stroke='%23947044' stroke-opacity='.22' stroke-width='1.6'/%3E%3C/svg%3E")}
+[data-season="black-friday"] .hero-card{background:#ECE5D8}
+[data-season="black-friday"] .bagbtn{box-shadow:0 6px 16px rgba(30,25,20,.3)}
+
+/* ──────────────────────────────────────────────────────────────────
+   TEMÁTICA: NAVIDAD — Verde pino, rojo cálido y dorado.
+   Qué cambia: paleta pino/crema; banner con borde inferior de
+   FESTONES (ondas como nieve acumulada) y puntitos dorados de luces;
+   arco del hero clásico con "gorro" de nieve (borde blanco festoneado
+   arriba); decoración de copos tenues; acentos rojos en la marca.
+   ────────────────────────────────────────────────────────────────── */
+:root[data-season="navidad"]{
+  --bg:#FFF9ED; --bg-soft:#F1EDDB; --wash:#E4EBDF; --surface:#FFFDF6; --surface-2:#E8EDDF; --frame:#EDEADD;
+  --ink:#26332A; --ink-soft:#54624F; --muted:#93A189; --heading:#245943; --accent:#9A3540; --terra:#245943; --terra-dark:#1B4431; --gold:#AA7B37;
+  --line:#D2DECE; --line-soft:#E0E8D8; --ring:#A5B79D; --btn-solid:#245943; --chip-on:#245943;
+  --banner-bg:radial-gradient(circle at 12% 30%,#E9CD8F 0 3px,transparent 4px),radial-gradient(circle at 84% 62%,#E9CD8F 0 3px,transparent 4px),radial-gradient(circle at 55% 18%,#E9CD8F 0 2px,transparent 3px),linear-gradient(115deg,#E4EBDF,#D8E4CE); --banner-ink:#245943;
+  --hero-art-a:#EAF0E2; --hero-art-b:#9DBE9F; --hero-art-c:#245943;
+  --shadow:35 70 50;
+
+  --btn-a:#245943; --btn-b:#3b6e55; --band:#203e32; --band-2:#294b3b; --steps-b:#f1eddb;
+}
+[data-season="navidad"] .season-banner{clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),96% 100%,92% calc(100% - 10px),88% 100%,84% calc(100% - 10px),80% 100%,76% calc(100% - 10px),72% 100%,68% calc(100% - 10px),64% 100%,60% calc(100% - 10px),56% 100%,52% calc(100% - 10px),48% 100%,44% calc(100% - 10px),40% 100%,36% calc(100% - 10px),32% 100%,28% calc(100% - 10px),24% 100%,20% calc(100% - 10px),16% 100%,12% calc(100% - 10px),8% 100%,4% calc(100% - 10px),0 100%);padding-bottom:28px}
+[data-season="navidad"] .fan__product .media{border-radius:290px 290px 26px 26px}
+[data-season="navidad"] .fan__product .media::before{content:"";position:absolute;inset:0 0 auto;height:34px;z-index:2;background:radial-gradient(circle at 12px -6px,#FFFDF6 13px,transparent 14px),radial-gradient(circle at 48px -10px,#FFFDF6 15px,transparent 16px),radial-gradient(circle at 88px -6px,#FFFDF6 13px,transparent 14px);background-size:110px 34px;background-repeat:repeat-x;opacity:.95}
+[data-season="navidad"] .season-decor{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg stroke='%23245943' stroke-opacity='.14' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M34 22v24M22 34h24M26 26l16 16M42 26L26 42'/%3E%3C/g%3E%3Ccircle cx='120' cy='110' r='3' fill='%23AA7B37' fill-opacity='.2'/%3E%3C/svg%3E")}
+[data-season="navidad"] .hero-card{background:#E8EDDF}
+
+/* ──────────────────────────────────────────────────────────────────
+   TEMÁTICA: SAN VALENTÍN — Rosa y vino, para regalar.
+   Qué cambia: paleta rosa/vino; banner con MUESCA DE CORAZÓN al centro
+   del borde inferior; arco del hero redondeado tipo corazón (ancho
+   arriba, suave abajo); decoración de corazones tenues; acentos vino
+   en iconos del hero y en la marca del banner.
+   ────────────────────────────────────────────────────────────────── */
+:root[data-season="san-valentin"]{
+  --bg:#FFF5F7; --bg-soft:#F7E9ED; --wash:#F5DFE8; --surface:#FFFBFC; --surface-2:#F4E2E9; --frame:#F5E6EC;
+  --ink:#3A2230; --ink-soft:#75505F; --muted:#B58B9B; --heading:#8D3152; --accent:#9A385C; --terra:#8D3152; --terra-dark:#6E2440; --gold:#A37959;
+  --line:#E7CBD5; --line-soft:#F0DCE4; --ring:#C992A6; --btn-solid:#8D3152; --chip-on:#8D3152;
+  --banner-bg:linear-gradient(115deg,#F5DFE8,#EFC9D8); --banner-ink:#8D3152;
+  --hero-art-a:#FBE7EE; --hero-art-b:#E3A3B8; --hero-art-c:#8D3152;
+  --shadow:120 45 75;
+
+  --btn-a:#8d3152; --btn-b:#a84a69; --band:#512738; --band-2:#622b41; --steps-b:#f7e9ed;
+}
+[data-season="san-valentin"] .season-banner{clip-path:polygon(0 0,100% 0,100% 100%,54% 100%,50% calc(100% - 14px),46% 100%,0 100%);padding-bottom:32px}
+[data-season="san-valentin"] .fan__product .media{border-radius:50% 50% 46% 46% / 38% 38% 30% 30%}
+[data-season="san-valentin"] .season-decor{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cpath d='M112 96s-14-8.8-14-19.2c0-5.4 4-8.8 8.4-8.8 2.2 0 4.4 1.2 5.6 3 1.2-1.8 3.4-3 5.6-3 4.4 0 8.4 3.4 8.4 8.8C126 87.2 112 96 112 96z' fill='%239A385C' fill-opacity='.1'/%3E%3C/svg%3E")}
+[data-season="san-valentin"] .hero-card{background:#F4E2E9}
+
+/* ──────────────────────────────────────────────────────────────────
+   TEMÁTICA: DÍA DE LAS MADRES — Lila, rosa empolvado y dorado suave.
+   Qué cambia: paleta cálida floral; banner con borde inferior de
+   PÉTALOS grandes (festones amplios) y anillo floral tenue a la
+   derecha; arco del hero orgánico tipo pétalo; decoración de flores
+   tenues; tarjetas del hero en rosa empolvado.
+   ────────────────────────────────────────────────────────────────── */
+:root[data-season="dia-madres"]{
+  --bg:#FFF8F0; --bg-soft:#F7EBDF; --wash:#F0E1D6; --surface:#FFFDF8; --surface-2:#F2E3DB; --frame:#F3E7DB;
+  --ink:#38291F; --ink-soft:#6E5138; --muted:#B2947C; --heading:#785132; --accent:#8D4C59; --terra:#785132; --terra-dark:#5E3D24; --gold:#A47B4B;
+  --line:#E2D0C0; --line-soft:#EBDCCB; --ring:#C3A78A; --btn-solid:#785132; --chip-on:#785132;
+  --banner-bg:linear-gradient(115deg,#F0E1D6,#EAD3C2); --banner-ink:#785132;
+  --hero-art-a:#F9E9DC; --hero-art-b:#DFAF96; --hero-art-c:#8D4C59;
+  --shadow:110 70 45;
+
+  --btn-a:#785132; --btn-b:#946747; --band:#49342a; --band-2:#594036; --steps-b:#f7ebdf;
+}
+[data-season="dia-madres"] .season-banner{clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),93% 100%,86% calc(100% - 8px),79% 100%,72% calc(100% - 8px),65% 100%,58% calc(100% - 8px),51% 100%,44% calc(100% - 8px),37% 100%,30% calc(100% - 8px),23% 100%,16% calc(100% - 8px),9% 100%,2% calc(100% - 8px),0 calc(100% - 4px));padding-bottom:28px}
+[data-season="dia-madres"] .season-banner::before{content:"";position:absolute;top:-46px;right:7%;width:96px;height:96px;border:9px double rgb(141 76 89/.28);border-radius:50%;transform:rotate(30deg)}
+[data-season="dia-madres"] .fan__product .media{border-radius:58% 42% 55% 45% / 48% 52% 48% 52%}
+[data-season="dia-madres"] .season-decor{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg fill='%238D4C59' fill-opacity='.1'%3E%3Ccircle cx='118' cy='34' r='7'/%3E%3Ccircle cx='130' cy='44' r='7'/%3E%3Ccircle cx='106' cy='44' r='7'/%3E%3Ccircle cx='118' cy='52' r='7'/%3E%3C/g%3E%3Ccircle cx='118' cy='43' r='4' fill='%23A47B4B' fill-opacity='.18'/%3E%3C/svg%3E")}
+[data-season="dia-madres"] .hero-card{background:#F2E3DB}
 [data-season="black-friday"] .season-banner{border-block:3px double var(--gold);letter-spacing:.1em;background:linear-gradient(115deg,transparent 75%,#decbaa55 75% 78%,transparent 78%),var(--wash)}
 [data-season="navidad"] .season-banner{background:radial-gradient(circle at 12% 35%,#c8a66d 0 2px,transparent 3px),radial-gradient(circle at 83% 65%,#c8a66d 0 2px,transparent 3px),var(--wash)}
 [data-season="dia-madres"] .season-banner:before{content:"";position:absolute;inset:-40px 8% -40px auto;width:90px;border:10px double #be928a55;border-radius:50%;transform:rotate(30deg);z-index:-1}
@@ -1239,6 +1394,171 @@ strong,b{font-weight:600}
    atrapaba el gesto táctil en el panel y no lo dejaba pasar a la ventana. */
 .sortselect .icon{position:static;translate:none;flex:none}
 </style>
+<style id="tematicas-pro-v4">
+/* ════════════════════════════════════════════════════════════════════
+   TEMÁTICAS PRO v4 — BLOQUES NUEVOS (trasplantables, por tema)
+   ────────────────────────────────────────────────────────────────────
+   BLOQUE V4-A · ALTURA ESTRICTA: .card{height:100%}, nombre a 2
+   líneas con altura reservada, .card__season (insignia, altura fija)
+   y .card__save (ahorro, altura fija) presentes siempre, precio en
+   una sola línea, acciones al fondo. Van en el CSS base del
+   probador, junto a .card__body.
+   BLOQUE V4-B · ICONOS ORIGINALES: los 11 símbolos de temporada +
+   flor, llama, copo, corazón, porcentaje, etiqueta y gema fueron
+   REDIBUJADOS a mano para Yuli (trazo 1.7, 24×24, mismo estilo):
+   nada de iconos de catálogo. Los iconos se cambian desde JS
+   (objeto TEMATICAS: heroIcons, steps, btnIcon, bagIcon, soloIcon,
+   insignia), igual que en la v3.
+   BLOQUE V3-B · ANIMACIONES: capa .fx-layer con partículas SVG por
+   tema + interruptor .no-fx (solo del probador) + movimiento reducido.
+   (Se conserva tal cual de la v3.)
+   BLOQUE V4-C · INSIGNIA EN EL CUERPO: la pill .badge-season ya NO
+   va sobre la foto: va en el renglón fijo .card__season del cuerpo
+   de la tarjeta y en .pd__season del detalle. La pill de oferta
+   (.deal) queda INTACTA y SOLA sobre la foto: NINGUNA temática la
+   toca (se quitaron el clip-path de Buen Fin y el borde de Black
+   Friday que la modificaban en la v3).
+   BLOQUE V4-D · TARJETAS: marcos de temporada por tema en .card y
+   en .card__media, todos DENTRO del tamaño de la tarjeta
+   (border, outline interno, pseudo-elementos), sin sumar pixeles.
+   Black Friday: borde eléctrico animado (rayos) con degradado
+   dorado/negro + rayos SVG en las esquinas de la foto.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── BLOQUE V3-B · Animaciones relativas ── */
+.fx svg{display:block}
+@keyframes fxFall{0%{transform:translate3d(0,-6vh,0) rotate(0deg);opacity:0}8%{opacity:var(--fx-op,.8)}85%{opacity:var(--fx-op,.8)}100%{transform:translate3d(var(--fx-drift,18px),108vh,0) rotate(320deg);opacity:0}}
+@keyframes fxRise{0%{transform:translate3d(0,4vh,0) scale(.7);opacity:0}12%{opacity:var(--fx-op,.75)}88%{opacity:var(--fx-op,.75)}100%{transform:translate3d(var(--fx-drift,-14px),-108vh,0) scale(1.05);opacity:0}}
+@keyframes fxTwinkle{0%,100%{transform:scale(.55) rotate(0deg);opacity:.15}50%{transform:scale(1.15) rotate(40deg);opacity:.9}}
+[data-season="terra"] .fx{--fx-color:#8A6B3F;--fx-anim:fxFall;--fx-op:.5}
+[data-season="buen-fin"] .fx{--fx-color:#93252D;--fx-anim:fxFall;--fx-op:.65}
+[data-season="hot-sale"] .fx{--fx-color:#C1441B;--fx-anim:fxFall;--fx-op:.65}
+[data-season="black-friday"] .fx{--fx-color:#947044;--fx-anim:fxTwinkle;--fx-op:.9}
+[data-season="navidad"] .fx{--fx-color:#DCE8DF;--fx-anim:fxFall;--fx-op:.9;filter:drop-shadow(0 1px 1px rgb(0 0 0/.18))}
+[data-season="san-valentin"] .fx{--fx-color:#9A385C;--fx-anim:fxRise;--fx-op:.65}
+[data-season="dia-madres"] .fx{--fx-color:#C98A9B;--fx-anim:fxFall;--fx-op:.65}
+.no-fx .fx-layer{display:none}
+@media (prefers-reduced-motion:reduce){.fx-layer{display:none}}
+
+/* ── BLOQUE V4-C · Insignia en el cuerpo (NO sobre la foto) ──
+   La pill de temporada vive en el renglón fijo .card__season del
+   cuerpo de la tarjeta (o en .pd__season del detalle). Es una pill
+   en flujo normal: nunca se corta, nunca tapa la foto y nunca toca
+   la pill de oferta, que queda intacta y sola arriba a la izquierda.
+   Métricas compactas para que quepa en la tarjeta más angosta
+   (360 px): fuente .7rem, padding 4px 8px, icono .9rem, y textos
+   de insignia cortos (máximo 12 caracteres: "Buen Fin", "Hot
+   Sale", "Relámpago", "Navideña") para que nunca se corten. */
+.badge-season{position:static;display:inline-flex;align-items:center;gap:4px;max-width:100%;padding:4px 8px;border-radius:999px;background:var(--surface);color:var(--heading);font-size:.7rem;font-weight:600;letter-spacing:.02em;box-shadow:0 2px 8px rgb(0 0 0/.10);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge-season .icon{width:.9rem;height:.9rem;color:var(--accent)}
+[data-season="black-friday"] .badge-season{border:1px solid #947044}
+[data-season="navidad"] .badge-season{border:1.5px solid #245943}
+[data-season="san-valentin"] .badge-season{border:1.5px solid #E7CBD5}
+[data-season="dia-madres"] .badge-season{border:1.5px solid #E2D0C0}
+.pd__season{margin:0;display:flex}
+.season-achievement{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px dashed var(--ring);border-radius:18px;background:var(--surface-2);color:var(--heading);font-size:.92rem;font-weight:600;line-height:1.4}
+.season-achievement .icon{flex:none;width:1.25rem;height:1.25rem;color:var(--accent);margin-top:1px}
+
+/* ── BLOQUE V4-D · Tarjetas relativas a la temática ──
+   CADA temática tiene su propio efecto de borde/marco en la
+   tarjeta, DENTRO del tamaño (box-sizing:border-box): border,
+   outline con offset negativo, anillo con máscara (Hot Sale y
+   Black Friday) y motivos SVG en las esquinas de la foto
+   (.card__media::before arriba a la derecha, ::after abajo a la
+   derecha). La pill de oferta vive arriba a la IZQUIERDA y la
+   etiqueta abajo a la IZQUIERDA, así que los motivos nunca las
+   tocan. NADA suma pixeles por fuera: la altura de la tarjeta es
+   idéntica en las 7 temáticas y las 3 vistas.
+   LA PILL DE OFERTA (.deal) NO SE TOCA EN NINGUNA TEMÁTICA: se
+   quitaron el clip-path de Buen Fin y el borde dorado de Black
+   Friday que la modificaban en la v3. */
+@property --ring-a{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes ringSpin{to{--ring-a:360deg}}
+@keyframes motifSoft{0%,100%{opacity:.95;transform:translateY(0)}50%{opacity:.7;transform:translateY(-1.5px)}}
+/* Motivos de esquina: misma receta en las 7 temáticas. */
+[data-season] .card__media::before,[data-season] .card__media::after{content:"";position:absolute;z-index:3;background:no-repeat center/contain;pointer-events:none;filter:drop-shadow(0 1px 3px rgb(0 0 0/.35));animation:motifSoft 4s ease-in-out infinite}
+[data-season] .card__media::before{top:10px;right:10px;width:22px;height:22px}
+[data-season] .card__media::after{right:10px;bottom:10px;width:15px;height:15px;animation-delay:2s}
+/* Anillo animado (solo Hot Sale y Black Friday): degradado que gira
+   lento, dibujado SOLO en el borde (máscara de anillo de 2 px). */
+[data-season="hot-sale"] .card::before,[data-season="black-friday"] .card::before{content:"";position:absolute;inset:0;z-index:3;border-radius:28px;padding:2px;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none;animation:ringSpin 7s linear infinite}
+[data-season="hot-sale"] .card::before{background:conic-gradient(from var(--ring-a,0deg),#F2A65E,#C1441B 25%,#FFD98A 50%,#C1441B 75%,#F2A65E)}
+[data-season="black-friday"] .card::before{background:conic-gradient(from var(--ring-a,0deg),#947044,#292421 22%,#E3C078 50%,#292421 78%,#947044)}
+/* Terra · Borde de hojas/ramas sutil: marco arena + hoja de Yuli en
+   las esquinas de la foto. */
+[data-season="terra"] .card{border:1.5px solid #D9B48F}
+[data-season="terra"] .card__media::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4C10 4 5 10 5 20c10 0 15-5 15-16z' fill='%23B4652F'/%3E%3Cpath d='M5 20C9 14 13 10 19 5' stroke='%23FFF7EA' stroke-width='1.4' fill='none'/%3E%3C/svg%3E")}
+[data-season="terra"] .card__media::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4C10 4 5 10 5 20c10 0 15-5 15-16z' fill='%23C9A24B'/%3E%3C/svg%3E")}
+/* Buen Fin · Borde de etiquetas/tickets: marco vino + perforación
+   punteada por dentro (como boleto) + boleto y % en las esquinas. */
+[data-season="buen-fin"] .card{border:1.5px solid #E8C9C4;outline:1.5px dashed #93252D;outline-offset:-6px}
+[data-season="buen-fin"] .card__media::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2.5a2.5 2.5 0 0 0 0 5V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2.5a2.5 2.5 0 0 0 0-5z' fill='%2393252D'/%3E%3Cpath d='M14.5 8.5v.01M14.5 12v.01M14.5 15.5v.01' stroke='%23FFF7EA' stroke-width='2.4'/%3E%3C/svg%3E")}
+[data-season="buen-fin"] .card__media::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='8' cy='8' r='3.2' fill='%2393252D'/%3E%3Ccircle cx='16' cy='16' r='3.2' fill='%2393252D'/%3E%3Cpath d='M18.5 5.5 5.5 18.5' stroke='%2393252D' stroke-width='2.2'/%3E%3C/svg%3E")}
+/* Hot Sale · Borde de llamas / rayos de sol: anillo cálido animado
+   + llama y sol en las esquinas de la foto. */
+[data-season="hot-sale"] .card{border:1.5px solid #FFD3AC;box-shadow:0 4px 18px rgba(193,68,27,.14)}
+[data-season="hot-sale"] .card__media{border-bottom:2px solid #F2A65E}
+[data-season="hot-sale"] .card__media::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3c.9 3.2-2.3 5.2-2.3 8.2a2.5 2.5 0 0 0 5 .4c.7-1.1.6-2.6.4-3.8 1.9 1.6 2.9 3.5 2.9 5.6A6 6 0 0 1 6 13.6C6 9.3 10 6.4 12 3z' fill='%23C1441B'/%3E%3C/svg%3E")}
+[data-season="hot-sale"] .card__media::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4.5' fill='%23E8913A'/%3E%3Cpath d='M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5 5l2.1 2.1M16.9 16.9 19 19M19 5l-2.1 2.1M7.1 16.9 5 19' stroke='%23E8913A' stroke-width='2'/%3E%3C/svg%3E")}
+/* Black Friday · RAYOS EN EL BORDE: anillo eléctrico animado con
+   degradado dorado/negro que gira lento + dos rayos SVG dorados en
+   las esquinas de la foto. Sin saturar, sin crecer. */
+[data-season="black-friday"] .card{border:1.5px solid #947044}
+[data-season="black-friday"] .card__media{border-bottom:2px solid #947044}
+[data-season="black-friday"] .card__media::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M13 2 4.5 13.5H11L9.5 22 19 10h-6.5z' fill='%23E3C078'/%3E%3C/svg%3E")}
+[data-season="black-friday"] .card__media::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M13 2 4.5 13.5H11L9.5 22 19 10h-6.5z' fill='%23E3C078'/%3E%3C/svg%3E")}
+/* Navidad · Marco de luces navideñas en el borde: marco verde con
+   filete dorado punteado + guirnalda de luces y copo en las esquinas. */
+[data-season="navidad"] .card{border:2px solid #245943;outline:1px dashed #AA7B37;outline-offset:-7px}
+[data-season="navidad"] .card__media::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M2 7c6 5 14 5 20 0' stroke='%23AA7B37' stroke-width='1.6' fill='none'/%3E%3Ccircle cx='6' cy='9' r='2.2' fill='%239A3540'/%3E%3Ccircle cx='12' cy='10' r='2.2' fill='%23E9CD8F'/%3E%3Ccircle cx='18' cy='9' r='2.2' fill='%23245943'/%3E%3C/svg%3E")}
+[data-season="navidad"] .card__media::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3v18M4 7.5l16 9M20 7.5l-16 9' stroke='%23E9CD8F' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")}
+/* San Valentín · Borde de corazones: marco rosa + corazón y mini
+   corazón en las esquinas; la foto sigue con su curva de corazón. */
+[data-season="san-valentin"] .card{border:1.5px solid #E7CBD5}
+[data-season="san-valentin"] .card__media{border-bottom-left-radius:46% 12%;border-bottom-right-radius:46% 12%}
+[data-season="san-valentin"] .card__media::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 20.3S4.8 15.9 4.8 10.9c0-2.9 2.1-4.9 4.6-4.9 1.2 0 2.3.6 2.6 1.4.3-.8 1.4-1.4 2.6-1.4 2.5 0 4.6 2 4.6 4.9 0 5-7.2 9.4-7.2 9.4z' fill='%239A385C'/%3E%3C/svg%3E")}
+[data-season="san-valentin"] .card__media::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 20.3S4.8 15.9 4.8 10.9c0-2.9 2.1-4.9 4.6-4.9 1.2 0 2.3.6 2.6 1.4.3-.8 1.4-1.4 2.6-1.4 2.5 0 4.6 2 4.6 4.9 0 5-7.2 9.4-7.2 9.4z' fill='%23E7A8BC'/%3E%3C/svg%3E")}
+/* Día de las Madres · Borde de pétalos/flores: marco rosa empolvado
+   + flor y capullo en las esquinas; la foto sigue con su curva. */
+[data-season="dia-madres"] .card{border:1.5px solid #E2D0C0}
+[data-season="dia-madres"] .card__media{border-bottom-left-radius:44% 10%;border-bottom-right-radius:44% 10%}
+[data-season="dia-madres"] .card__media::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='%238D4C59'%3E%3Ccircle cx='12' cy='6' r='3'/%3E%3Ccircle cx='17.5' cy='10' r='3'/%3E%3Ccircle cx='15.5' cy='16.5' r='3'/%3E%3Ccircle cx='8.5' cy='16.5' r='3'/%3E%3Ccircle cx='6.5' cy='10' r='3'/%3E%3C/g%3E%3Ccircle cx='12' cy='12' r='2.4' fill='%23A47B4B'/%3E%3C/svg%3E")}
+[data-season="dia-madres"] .card__media::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='11' r='4' fill='%23A47B4B'/%3E%3Cpath d='M12 15v6' stroke='%238D4C59' stroke-width='1.6'/%3E%3C/svg%3E")}
+</style>
+
+<style id="tematicas-v3-11">
+/* Temáticas Pro v4 en la web real · piezas base del probador.
+   La pill de oferta (.deal) NO se toca en ninguna temática. */
+
+/* Banner de temporada: la FORMA cambia por temática (ver bloques TEMÁTICA) */
+.season-banner{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:12px;padding:20px 30px 26px;background:var(--banner-bg);color:var(--banner-ink);text-align:center}
+.season-banner span{font-family:var(--font-display);font-size:clamp(1.05rem,2.6vw,1.45rem);letter-spacing:.03em;line-height:1.25}
+.season-mark{display:inline-flex;align-items:center;color:var(--gold);flex:none}
+.season-mark .icon{width:1.5rem;height:1.5rem}
+
+/* Decoración de temporada (fondo tenue) y capa de partículas */
+.season-decor{position:absolute;inset:0;pointer-events:none;opacity:.5;z-index:0}
+.page>main,.page>footer,.page>.season-banner{position:relative;z-index:1}
+.fx-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:4}
+.fx{position:absolute;top:-9%;left:var(--x,50%);color:var(--fx-color,var(--gold));opacity:0;animation:var(--fx-anim,fxFall) var(--fx-dur,14s) linear var(--fx-delay,0s) infinite}
+.fx .icon{width:var(--fx-size,18px);height:var(--fx-size,18px)}
+
+/* Logro de temporada en el hero (se muestra solo con artículos en la bolsa) */
+.hero__goal{display:flex;align-items:center;gap:8px;font-size:.88rem;font-weight:600;color:var(--heading);padding:10px 14px;border:1px dashed var(--ring);border-radius:16px;background:var(--surface-2)}
+.hero__goal[hidden]{display:none}
+.hero__goal .icon{color:var(--accent)}
+
+/* v4 · ALTURA ESTRICTA: la tarjeta nunca crece ni se descuadra por tema.
+   Solo altura y fondo: el aspecto de la tarjeta sigue siendo el de la v3.10. */
+.card{height:100%}
+.card__body{flex:1}
+.card__name{min-height:2.6em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card__season{display:flex;align-items:center;min-height:28px;width:100%}
+.card__save{display:flex;align-items:center;min-height:20px;margin:0}
+.card__body .price{white-space:nowrap}
+.card__actions{margin-top:auto;padding-top:6px}
+</style>
+
 
 </head>
 <body>
@@ -1247,7 +1567,7 @@ strong,b{font-weight:600}
   <symbol id="i-go" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
   <symbol id="i-diamond" viewBox="0 0 24 24"><path d="M12 3 21 12 12 21 3 12z"/></symbol>
   <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9H4z"/></symbol>
-  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.6A3.900 3.900 0 0 1 12 8a3.900 3.900 0 0 1 7 2.400C19 15.600 12 20 12 20z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.3S4.8 15.9 4.8 10.9c0-2.9 2.1-4.9 4.6-4.9 1.2 0 2.3.6 2.6 1.4.3-.8 1.4-1.4 2.6-1.4 2.5 0 4.6 2 4.6 4.9 0 5-7.2 9.4-7.2 9.4z"/><path d="M18.8 2.8l.5 1.4 1.4.5-1.4.5-.5 1.4-.5-1.4-1.4-.5 1.4-.5z" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.500"/><path d="m16 16 4.500 4.500"/></symbol>
   <symbol id="i-sort" viewBox="0 0 24 24"><path d="M8 20V5M4.500 8.500 8 5l3.500 3.500M16 4v15M12.500 15.500 16 19l3.500-3.500"/></symbol>
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
@@ -1265,10 +1585,28 @@ strong,b{font-weight:600}
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.8 3.5 9 3l1.8 4.2-2 1.6c.9 2.3 2.9 4.3 5.2 5.2l1.6-2L19.8 14l-.5 2.2c-.3 1.2-1.3 2-2.5 2C9.6 18.2 5.8 14.4 5.8 7.2c0-1.2.8-2.2 2-2.5z" transform="rotate(0)"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.4-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.6 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></symbol>
-  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M4 4h7l9 9-7 7-9-9z"/><circle cx="8.5" cy="8.5" r="1.4" fill="currentColor" stroke="none"/></symbol>
-  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5.5 8h13l-1.2 11a2 2 0 0 1-2 1.8H8.7a2 2 0 0 1-2-1.8z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></symbol></svg>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M4 4h7.2L20 12.8a1.8 1.8 0 0 1 0 2.6l-4.6 4.6a1.8 1.8 0 0 1-2.6 0L4 11.2z"/><path d="M6.8 6.8h6M7 16.6l6.8-6.8" stroke-width="1.1" stroke-dasharray="1.8 2.2" opacity=".65"/><path d="M8.7 10.2S6.9 8.9 6.9 7.7c0-.7.6-1.2 1.2-1.2.3 0 .5.1.6.3.1-.2.3-.3.6-.3.6 0 1.2.5 1.2 1.2 0 1.2-1.8 2.5-1.8 2.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5.5 8h13l-1.2 11a2 2 0 0 1-2 1.8H8.7a2 2 0 0 1-2-1.8z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M4 10.5h16V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19z"/><path d="M12 10.5V20.5M4 14.5h16"/><path d="M12 10.5C8.6 10.5 6.6 9.2 6.4 7.2 6.2 5 8.6 4 10 5.4c1.2 1.2 2 5.1 2 5.1zm0 0c3.2-.3 4.9-1.7 4.9-3.6 0-1.9-2.2-2.7-3.5-1.4-.9.9-1.4 5-1.4 5z"/><path d="M18.6 3.2c.5.9.3 1.9-.5 2.4" stroke-width="1.4"/></symbol>
+  <symbol id="i-tree" viewBox="0 0 24 24"><path d="M12 2.6l.9 1.1c-.6.5-1.2.5-1.8 0z" fill="currentColor" stroke="none"/><path d="M12 4.2c1.6 1.9 3 3.6 3.4 5.2.3 1.2-.5 1.8-1.6 1.6-.5-.1-1-.5-1.3-1-.3.5-.8.9-1.3 1-1.1.2-1.9-.4-1.6-1.6.4-1.6 1.8-3.3 3.4-5.2z"/><path d="M12 10.2c2 2.2 3.7 4.1 4.2 5.9.3 1.3-.6 2-1.9 1.7-.6-.1-1.1-.6-1.5-1.2-.3.6-.9 1.1-1.6 1.2-1.3.3-2.2-.4-1.9-1.7.5-1.8 2.2-3.7 4.2-5.9z"/><path d="M12 16.6v4.4M9.4 21h5.2"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M12 3.4c1.1 0 1.9.7 1.9 1.7 0 .5-.2.9-.6 1.3M12 3.4c-1.1 0-1.9.7-1.9 1.7 0 .5.2.9.6 1.3"/><path d="M6.2 15.5v-4.6a5.8 5.8 0 0 1 11.6 0v4.6l1.4 2.3H4.8z"/><path d="M10.2 20.6a2 2 0 0 0 3.6 0"/><path d="M5.4 8.2c-.7-1.1-.6-2.4.2-3.4M18.6 8.2c.7-1.1.6-2.4-.2-3.4" stroke-width="1.4"/></symbol>
+  <symbol id="i-cup" viewBox="0 0 24 24"><path d="M5 9.5h11V15a4 4 0 0 1-4 4h-3a4 4 0 0 1-4-4z"/><path d="M16 10.5h1.4a2.6 2.6 0 0 1 0 5.2H16"/><path d="M12 15.6s-2.1-1.3-2.1-2.8c0-.9.7-1.5 1.4-1.5.3 0 .6.1.7.4.1-.3.4-.4.7-.4.7 0 1.4.6 1.4 1.5 0 1.5-2.1 2.8-2.1 2.8z" fill="currentColor" stroke="none"/><path d="M8.2 6.4c0-1.1.9-1.3.9-2.4M12.2 6.4c0-1.1.9-1.3.9-2.4" stroke-width="1.4"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M4 8.2A2.2 2.2 0 0 1 6.2 6h11.6A2.2 2.2 0 0 1 20 8.2v2.3a2.4 2.4 0 0 0 0 4.8v2.3a2.2 2.2 0 0 1-2.2 2.2H6.2A2.2 2.2 0 0 1 4 17.6v-2.3a2.4 2.4 0 0 0 0-4.8z"/><path d="M14.5 8.5v.01M14.5 12v.01M14.5 15.5v.01" stroke-width="2.6"/><path d="M8.8 10.2l.7 1.5 1.6.2-1.2 1.1.3 1.6-1.4-.8-1.4.8.3-1.6-1.2-1.1 1.6-.2z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 8.5V13l3.2 2"/><path d="M12 5V3.4M9.8 3.4h4.4" stroke-width="1.4"/><path d="M17.8 4.6l.5 1.1 1.1.5-1.1.5-.5 1.1-.5-1.1-1.1-.5 1.1-.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.8c.3 1 .3 1.9 0 2.8M12 18.4c.3.9.3 1.8 0 2.8M2.8 12c1 .3 1.9.3 2.8 0M18.4 12c.9.3 1.8.3 2.8 0M5.2 5.2c.9.6 1.6 1.3 2.1 2.1M16.7 16.7c.9.6 1.6 1.3 2.1 2.1M18.8 5.2c-.9.6-1.6 1.3-2.1 2.1M7.3 16.7c-.9.6-1.6 1.3-2.1 2.1" stroke-width="1.5"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5.5 19C5.5 10.5 10.5 5.5 19 5.5c0 8.5-5 13.5-13.5 13.5z"/><path d="M5.5 19c2.8-5.6 6.6-9 10.8-11.2"/><path d="M11 14.5c.4-1.6 1.2-2.9 2.4-3.9M13.8 11.7c.2-1.3.8-2.4 1.8-3.2" stroke-width="1.4"/><circle cx="18.6" cy="5.9" r=".9" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13.5" rx="2"/><path d="m4.2 7.4 7.8 5.6 7.8-5.6"/><path d="M12 16.4s-2.4-1.5-2.4-3.2c0-1 .8-1.7 1.6-1.7.4 0 .7.2.8.5.1-.3.4-.5.8-.5.8 0 1.6.7 1.6 1.7 0 1.7-2.4 3.2-2.4 3.2z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13.2 2.2 5 13.4h5.4L9 21.8l8.4-11.4h-5.6z"/><path d="M18.6 2.6l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2.8 2.5 5.4 5.8.7-4.3 4 1.1 5.8L12 15.9l-5.1 2.8 1.1-5.8-4.3-4 5.8-.7z"/><circle cx="12" cy="11.6" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-flower" viewBox="0 0 24 24"><path d="M12 3.5c1.9 0 2.9 1.7 2.9 3.2 0 1.7-1.2 2.9-2.9 2.9S9.1 8.4 9.1 6.7c0-1.5 1-3.2 2.9-3.2z"/><path d="M19.6 10.2c.5 1.8-.6 3.3-2.1 3.7-1.6.4-3.1-.6-3.5-2.1-.4-1.6.5-3.2 2.1-3.6 1.5-.4 3 .4 3.5 2z"/><path d="M16.8 18.6c-1.2 1.5-3.1 1.6-4.4.7-1.4-1-1.6-2.8-.6-4.1 1-1.4 2.9-1.6 4.2-.7 1.3.9 1.7 2.7.8 4.1z"/><path d="M7.6 18.4c-1.7-.6-2.5-2.3-2-3.9.5-1.6 2.2-2.4 3.8-1.9 1.6.5 2.4 2.2 1.9 3.8-.5 1.5-2.1 2.4-3.7 2z"/><path d="M4.6 9.4c.3-1.8 1.9-2.9 3.5-2.6 1.6.3 2.6 1.8 2.3 3.4-.3 1.6-1.8 2.6-3.4 2.3-1.5-.3-2.6-1.6-2.4-3.1z"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c.9 3.2-2.3 5.2-2.3 8.2a2.5 2.5 0 0 0 5 .4c.7-1.1.6-2.6.4-3.8 1.9 1.6 2.9 3.5 2.9 5.6A6 6 0 0 1 6 13.6C6 9.3 10 6.4 12 3z"/><path d="M12.4 14.2c.8.9 1.6 1.7 1.6 2.9a2 2 0 1 1-4 0c0-1.4 1.2-2 2.4-2.9z"/><circle cx="17.6" cy="19.4" r=".9" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2.5v19M3.8 7.2l16.4 9.6M20.2 7.2 3.8 16.8"/><path d="M12 2.5 9.8 4.7M12 2.5l2.2 2.2M12 21.5l-2.2-2.2M12 21.5l2.2-2.2M3.8 7.2l3 .3M3.8 7.2l1.5 2.6M20.2 16.8l-3-.3M20.2 16.8l-1.5-2.6M20.2 7.2l-3 .3M20.2 7.2l-1.5 2.6M3.8 16.8l3-.3M3.8 16.8l1.5-2.6" stroke-width="1.4"/></symbol>
+  <symbol id="i-percent" viewBox="0 0 24 24"><path d="M18.5 5.5c-.8 1-1.8 2-2.9 2.9-1 .9-2 1.8-2.9 2.9-.9 1-1.8 2-2.6 3.1-.8 1-1.5 2.1-2 3.1"/><circle cx="7.6" cy="7.6" r="2.7"/><circle cx="16.4" cy="16.4" r="2.7"/></symbol>
+  <symbol id="i-gem" viewBox="0 0 24 24"><path d="M7 4.5h10l3.2 4.6L12 19.5 3.8 9.1z"/><path d="M3.8 9.1h16.4M12 19.5 8.6 9.1 12 4.5l3.4 4.6L12 19.5"/><path d="M12 7.2l.5 1.1 1.1.5-1.1.5-.5 1.1-.5-1.1-1.1-.5 1.1-.5z" fill="currentColor" stroke="none"/></symbol></svg>
 
 <div class="page">
+  <div class="season-decor" aria-hidden="true"></div>
+  <div class="fx-layer" id="fxLayer" aria-hidden="true"></div>
 
   <header class="header" id="header">
     <div class="header__bar">
@@ -1278,7 +1616,7 @@ strong,b{font-weight:600}
         <a href="#como-funciona" data-go="como-funciona">Cómo funciona</a>
       </nav>
       <button class="bagbtn" id="bagBtn" type="button" aria-haspopup="dialog">
-        <svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg>Mi bolsa <span class="bagbtn__n" id="bagCount">0</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-bag" data-slot="bag"/></svg>Mi bolsa <span class="bagbtn__n" id="bagCount">0</span>
         <span class="sr" id="bagCountText">artículos en tu bolsa</span>
       </button>
     </div>
@@ -1295,6 +1633,8 @@ strong,b{font-weight:600}
           <span class="ln" style="--i:1"><span><em>van contigo.</em></span></span>
         </h1>
         <p class="hero__lead" data-rise style="--i:4">Encuentra esa prenda que te encanta y los detalles que la hacen especial. Elige tu color, encuentra tu talla y hazlo tuyo.</p>
+        <p class="hero__micro" id="heroMicro" hidden></p>
+        <p class="hero__goal" id="seasonGoal" hidden></p>
         <p class="hero__cta" data-rise style="--i:5"><a class="btn" href="#coleccion" data-go="coleccion">Explorar colección <svg class="icon icon--go" aria-hidden="true"><use href="#i-go"/></svg></a><a class="btn btn--ghost" href="#como-funciona" data-go="como-funciona"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>Cómo funciona</a></p>
       </div>
 
@@ -1326,7 +1666,7 @@ strong,b{font-weight:600}
 
     <section class="catalog" id="coleccion" aria-label="Colección">
       <div class="tools reveal" style="--d:.08s">
-        <button class="chip chip--only" id="onlyOffers" type="button" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>Solo ofertas</button>
+        <button class="chip chip--only" id="onlyOffers" type="button" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-spark" data-slot="solo"/></svg>Solo ofertas</button>
         <div class="sortrow"><span>Ordenar</span><button class="sortselect" id="sortBtn" type="button" aria-haspopup="dialog" aria-expanded="false"><span id="sortValue">Relevancia</span><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button></div>
         <button class="linkbtn tools__more" id="moreFilters" type="button" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Buscar y categorías</button>
         <div class="tools__extra" id="toolsExtra" hidden>
@@ -1351,17 +1691,17 @@ strong,b{font-weight:600}
       </div>
       <div class="step reveal" style="--d:.1s">
         <span class="step__n" aria-hidden="true">01</span>
-        <h3><svg class="icon step__ico" aria-hidden="true"><use href="#i-spark"/></svg>Elige tus favoritos</h3>
+        <h3><svg class="icon step__ico" aria-hidden="true"><use href="#i-spark" data-slot="step0"/></svg>Elige tus favoritos</h3>
         <p>Selecciona color, talla y cantidad.</p>
       </div>
       <div class="step reveal" style="--d:.2s">
         <span class="step__n" aria-hidden="true">02</span>
-        <h3><svg class="icon step__ico" aria-hidden="true"><use href="#i-go"/></svg>Solicita tu pedido</h3>
+        <h3><svg class="icon step__ico" aria-hidden="true"><use href="#i-go" data-slot="step1"/></svg>Solicita tu pedido</h3>
         <p>Deja tus datos para recoger o solicitar envío.</p>
       </div>
       <div class="step reveal" style="--d:.3s">
         <span class="step__n" aria-hidden="true">03</span>
-        <h3><svg class="icon step__ico" aria-hidden="true"><use href="#i-heart"/></svg>Atención de la tienda</h3>
+        <h3><svg class="icon step__ico" aria-hidden="true"><use href="#i-heart" data-slot="step2"/></svg>Atención de la tienda</h3>
         <p>La tienda revisa y confirma tu solicitud. No se cobra en esta web.</p>
       </div>
     </section>
@@ -1464,6 +1804,103 @@ strong,b{font-weight:600}
   const CLAVE_CACHE = 'yuli-dzul-catalogo-v2-reservas';
   const TALLAS = ['xxs', 'xs', 's', 'ch', 'm', 'g', 'l', 'xl', 'xxl', 'xxxl', 'unica'];
   const REFRESCO_MS = 2 * 60 * 1000;
+
+  /* ══════════ TEMÁTICAS PRO v4 (trasplante de tematicas-pro-v4) ══════════
+     Textos, iconos, insignias, logros y partículas por temporada.
+     Los productos del probador NO vienen aquí: el catálogo sigue siendo
+     el real de Supabase. La pill de oferta (.deal) no se toca. */
+  const TEMATICAS = {
+    'terra': { nombre: 'Terra', mark: 'spark', heroIcons: ['leaf','flower','sun'], steps: ['spark','go','heart'], btnIcon: 'bag', bagIcon: 'bag', soloIcon: 'spark', insignia: { icon: 'leaf', texto: 'Hecho a mano' }, logro: 'Hechos a mano, hechos con amor', fx: { icon: 'leaf', n: 8, tipo: 'fall' },
+      banner: 'Boutique cálida, todo el año', bannerSub: 'Ropa · Bisutería · Temporada',
+      eyebrow: 'Ropa · Bisutería · Temporada',
+      titulo: 'Colores que <em>van contigo.</em>',
+      lead: 'Encuentra esa prenda que te encanta y los detalles que la hacen especial. Elige tu color, encuentra tu talla y hazlo tuyo.',
+      micro: '', trust: ['Colores y tallas a tu elección', 'Recoge o solicita envío', 'Atención personal'],
+      cards: [
+        { icon: 'spark', t: 'A tu elección', p: 'Selecciona color, talla y cantidad en cada artículo.' },
+        { icon: 'home', t: 'Recoge o recibe', p: 'Pasa por tu pedido a tienda o solicita envío a domicilio.' },
+        { icon: 'heart', t: 'Atención personal', p: 'Te confirmamos tu pedido y resolvemos tus dudas de forma personal.' }],
+      catEyebrow: 'La colección', catTitulo: 'Artículos de la tienda', fanEyebrow: 'Destacado',
+      footerSay: 'Tu estilo, en cada detalle.' },
+    'buen-fin': { nombre: 'Buen Fin', mark: 'percent', heroIcons: ['tag','ticket','percent'], steps: ['percent','ticket','heart'], btnIcon: 'ticket', bagIcon: 'bag', soloIcon: 'percent', insignia: { icon: 'percent', texto: 'Buen Fin' }, logro: 'Con precio del Buen Fin', fx: { icon: 'spark', n: 12, tipo: 'fall' },
+      banner: 'Buen Fin · Precios especiales en artículos seleccionados', bannerSub: 'Solo por temporada · Hasta agotar existencias',
+      eyebrow: 'Buen Fin · Temporada de ofertas',
+      titulo: 'El Buen Fin <em>se viste así.</em>',
+      lead: 'Artículos seleccionados con precio especial por el Buen Fin. Elige tu color y tu talla antes de que se acaben.',
+      micro: 'Precios especiales en artículos marcados con la pill de oferta.',
+      trust: ['Precios especiales del Buen Fin', 'Recoge o solicita envío', 'Atención personal'],
+      cards: [
+        { icon: 'percent', t: 'Precios de Buen Fin', p: 'Busca la pill negra de oferta en cada artículo participante.' },
+        { icon: 'home', t: 'Recoge o recibe', p: 'Pasa por tu pedido a tienda o solicita envío a domicilio.' },
+        { icon: 'tag', t: 'Hasta agotar existencias', p: 'El stock que ves es el real de la tienda.' }],
+      catEyebrow: 'Buen Fin', catTitulo: 'Seleccionados con precio especial', fanEyebrow: 'Oferta · Buen Fin',
+      footerSay: 'Buen Fin: tu estilo, a mejor precio.' },
+    'hot-sale': { nombre: 'Hot Sale', mark: 'flame', heroIcons: ['flame','sun','bolt'], steps: ['flame','bolt','heart'], btnIcon: 'flame', bagIcon: 'bag', soloIcon: 'flame', insignia: { icon: 'flame', texto: 'Hot Sale' }, logro: 'Antes de que se acaben', fx: { icon: 'sun', n: 8, tipo: 'fall' },
+      banner: 'Hot Sale · Los precios más calientes de la temporada', bannerSub: 'Ofertas por tiempo limitado',
+      eyebrow: 'Hot Sale · Solo unos días',
+      titulo: 'Precios que <em>queman bonito.</em>',
+      lead: 'Llegó el Hot Sale: artículos seleccionados con precio especial por tiempo limitado. Si te gusta, no lo pienses mucho.',
+      micro: 'Las ofertas del Hot Sale duran poco: revisa la pill de cada artículo.',
+      trust: ['Ofertas por tiempo limitado', 'Recoge o solicita envío', 'Atención personal'],
+      cards: [
+        { icon: 'flame', t: 'Lo más caliente', p: 'Los artículos con pill de oferta son los del Hot Sale.' },
+        { icon: 'home', t: 'Recoge o recibe', p: 'Pasa por tu pedido a tienda o solicita envío a domicilio.' },
+        { icon: 'tag', t: 'Corre, que vuelan', p: 'Cantidades limitadas en los artículos participantes.' }],
+      catEyebrow: 'Hot Sale', catTitulo: 'Lo más caliente de la tienda', fanEyebrow: 'Hot Sale · Destacado',
+      footerSay: 'Hot Sale: que no se te enfríe el gusto.' },
+    'black-friday': { nombre: 'Black Friday', mark: 'gem', heroIcons: ['bag','tag','clock'], steps: ['gem','bag','heart'], btnIcon: 'bag', bagIcon: 'bag', soloIcon: 'gem', insignia: { icon: 'gem', texto: 'Relámpago' }, logro: 'Cazaste las ofertas', fx: { icon: 'star', n: 10, tipo: 'twinkle' },
+      banner: 'Black Friday · Una noche de precios únicos', bannerSub: 'Edición especial · Negro y dorado',
+      eyebrow: 'Black Friday · Edición especial',
+      titulo: 'Negro, dorado <em>y tuyo.</em>',
+      lead: 'Black Friday en la boutique: piezas seleccionadas con precio especial, en una edición sobria y elegante.',
+      micro: 'Precios de Black Friday en artículos marcados.',
+      trust: ['Precios únicos de Black Friday', 'Recoge o solicita envío', 'Atención personal'],
+      cards: [
+        { icon: 'gem', t: 'Selección Black Friday', p: 'Piezas elegidas para esta edición, con precio especial.' },
+        { icon: 'home', t: 'Recoge o recibe', p: 'Pasa por tu pedido a tienda o solicita envío a domicilio.' },
+        { icon: 'tag', t: 'Solo esta edición', p: 'Cuando se acaba la edición, vuelven los precios normales.' }],
+      catEyebrow: 'Black Friday', catTitulo: 'La selección en negro y dorado', fanEyebrow: 'Black Friday · Pieza clave',
+      footerSay: 'Black Friday: elegancia a precio único.' },
+    'navidad': { nombre: 'Navidad', mark: 'snow', heroIcons: ['gift','tree','bell'], steps: ['gift','bell','heart'], btnIcon: 'gift', bagIcon: 'gift', soloIcon: 'snow', insignia: { icon: 'gift', texto: 'Navideña' }, logro: 'Listos para regalar', fx: { icon: 'snow', n: 14, tipo: 'fall' },
+      banner: 'Navidad · Regala algo que se sienta', bannerSub: 'Temporada navideña · Artículos para regalar y estrenar',
+      eyebrow: 'Navidad · Temporada de regalar',
+      titulo: 'Regala algo <em>que se sienta.</em>',
+      lead: 'Llegó la Navidad a la boutique: prendas y detalles para regalar, estrenar en las fiestas y compartir en familia.',
+      micro: '¿Es para regalo? Avísanos en las notas de tu pedido.',
+      trust: ['Ideas para regalar', 'Recoge o solicita envío', 'Atención personal'],
+      cards: [
+        { icon: 'snow', t: 'Para regalar', p: 'Elige color y talla pensando en esa persona especial.' },
+        { icon: 'home', t: 'Recoge o recibe', p: 'Pasa por tu pedido a tienda o solicita envío a domicilio.' },
+        { icon: 'heart', t: 'Con cariño navideño', p: 'Te confirmamos tu pedido de forma personal, como siempre.' }],
+      catEyebrow: 'Navidad', catTitulo: 'Para regalar y estrenar', fanEyebrow: 'Navidad · Favorito',
+      footerSay: 'Feliz Navidad, con tu estilo de siempre.' },
+    'san-valentin': { nombre: 'San Valentín', mark: 'heart', heroIcons: ['heart','flower','mail'], steps: ['heart','mail','flower'], btnIcon: 'heart', bagIcon: 'heart', soloIcon: 'heart', insignia: { icon: 'heart', texto: 'Para regalar' }, logro: 'Listos para el 14', fx: { icon: 'heart', n: 10, tipo: 'rise' },
+      banner: 'San Valentín · Detalles que dicen lo que sientes', bannerSub: '14 de febrero · Para regalar o consentirte',
+      eyebrow: 'San Valentín · Temporada de detalles',
+      titulo: 'Detalles que <em>dicen te quiero.</em>',
+      lead: 'San Valentín es para regalar (y para consentirte): bisutería y prendas con ese toque que dice lo que sientes.',
+      micro: 'Pide tu artículo y la tienda te ayuda a dejarlo listo para regalar.',
+      trust: ['Detalles para regalar', 'Recoge o solicita envío', 'Atención personal'],
+      cards: [
+        { icon: 'heart', t: 'Para esa persona', p: 'Bisutería y detalles pensados para regalar el 14 de febrero.' },
+        { icon: 'home', t: 'Recoge o recibe', p: 'Pasa por tu pedido a tienda o solicita envío a domicilio.' },
+        { icon: 'spark', t: 'También para ti', p: 'Consentirte también cuenta como plan de San Valentín.' }],
+      catEyebrow: 'San Valentín', catTitulo: 'Detalles para el 14 de febrero', fanEyebrow: 'San Valentín · Para regalar',
+      footerSay: 'San Valentín: detalles que se sienten.' },
+    'dia-madres': { nombre: 'Día de las Madres', mark: 'flower', heroIcons: ['flower','heart','cup'], steps: ['flower','cup','heart'], btnIcon: 'flower', bagIcon: 'flower', soloIcon: 'flower', insignia: { icon: 'flower', texto: 'Para mamá' }, logro: 'Mamá va a amar esto', fx: { icon: 'flower', n: 10, tipo: 'fall' },
+      banner: 'Día de las Madres · Para la que siempre está', bannerSub: '10 de mayo · Regalos con cariño',
+      eyebrow: 'Día de las Madres · Para mamá',
+      titulo: 'Para mamá, <em>lo más bonito.</em>',
+      lead: 'El 10 de mayo se celebra a mamá: elige un detalle que la haga sentir tan especial como ella te hace sentir a ti.',
+      micro: '¿Quieres una nota para mamá? Escríbela en las notas del pedido.',
+      trust: ['Regalos para mamá', 'Recoge o solicita envío', 'Atención personal'],
+      cards: [
+        { icon: 'flower', t: 'Pensado para mamá', p: 'Prendas y bisutería suaves, bonitas y listas para regalar.' },
+        { icon: 'home', t: 'Recoge o recibe', p: 'Pasa por tu pedido a tienda o solicita envío a domicilio.' },
+        { icon: 'heart', t: 'Con una nota tuya', p: 'Agrega tu mensaje en las notas y la tienda lo incluye.' }],
+      catEyebrow: 'Día de las Madres', catTitulo: 'Bonito, como mamá', fanEyebrow: 'Para mamá · Favorito',
+      footerSay: 'Para mamá, con todo el cariño.' }
+  };
 
   /* Mismos tonos que las muestras de color de la app. */
   const TONOS = { negro: '#25212a', blanco: '#fffaf3', rosa: '#c87e9c', vino: '#691d40', rojo: '#c44754', azul: '#607ea7',
@@ -1710,6 +2147,7 @@ strong,b{font-weight:600}
   }
 
   function tarjeta(p, i) {
+    const T = TEMATICAS[document.documentElement.dataset.season] || TEMATICAS.terra;
     const unica = p.colores.length === 1 && p.colores[0].variantes.length === 1 ? p.colores[0].variantes[0] : null;
     const quedan = p.colores.flatMap(c => c.variantes).reduce((a, v) => a + libres(v.id), 0);
     const tallas = [...new Set(p.colores.flatMap(c => c.variantes.map(v => v.talla)))].sort(ordenTalla);
@@ -1728,11 +2166,12 @@ strong,b{font-weight:600}
         </div>
         <div class="card__body">
           <h3 class="card__name"><button class="card__open" type="button" data-open="${esc(p.id)}">${esc(p.nombre)}</button></h3>
+          <p class="card__season">${T.insignia ? `<span class="badge-season">${ico(T.insignia.icon)}${esc(T.insignia.texto)}</span>` : ''}</p>
           <p class="price">${etiquetaPrecio(p)}</p>
-          ${p.enOferta && ahorro > 0 ? `<p class="saving">Ahorras ${precio(ahorro)}</p>` : ''}
+          <p class="card__save">${p.enOferta && ahorro > 0 ? `<span class="saving">Ahorras ${precio(ahorro)}</span>` : ''}</p>
           ${meta}
           <div class="card__actions">
-            <button class="btn card__cta" type="button" data-add="${esc(p.id)}" ${quedan < 1 ? 'disabled' : ''}><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Agregar</button>
+            <button class="btn card__cta" type="button" data-add="${esc(p.id)}" ${quedan < 1 ? 'disabled' : ''}><svg class="icon" aria-hidden="true"><use href="#i-${T.btnIcon || 'plus'}"/></svg>Agregar</button>
             <button class="btn btn--ghost card__view" type="button" data-open="${esc(p.id)}"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Ver</button>
           </div>
         </div>
@@ -1803,7 +2242,7 @@ strong,b{font-weight:600}
   function pintarChips() {
     if (estado.cat !== 'todo' && !categoriasVisibles().includes(estado.cat)) estado.cat = 'todo';
     chips.innerHTML = [['todo', 'Todo'], ...categoriasVisibles().map(k => [k, ETIQUETAS[k]])].map(([k, v]) =>
-      `<button class="chip${k === 'ofertas' ? ' chip--deal' : ''}" type="button" data-cat="${k}" aria-pressed="${estado.cat === k}">${k === 'ofertas' ? '<svg class="spark" aria-hidden="true"><use href="#i-spark"/></svg>' : ''}${v}</button>`).join('');
+      `<button class="chip${k === 'ofertas' ? ' chip--deal' : ''}" type="button" data-cat="${k}" aria-pressed="${estado.cat === k}">${k === 'ofertas' ? '<svg class="spark" aria-hidden="true"><use href="#i-spark" data-slot="solo"/></svg>' : ''}${v}</button>`).join('');
     $('#footCats').innerHTML = categoriasVisibles().map(k =>
       `<li><button type="button" data-footcat="${k}">${ETIQUETAS[k]}</button></li>`).join('');
   }
@@ -1832,6 +2271,8 @@ strong,b{font-weight:600}
 
   function pintarBolsa(brinco = false) {
     const n = totalPiezas();
+    const T = TEMATICAS[document.documentElement.dataset.season] || TEMATICAS.terra;
+    actualizarLogro();
     bagCount.textContent = n;
     bagBtn.classList.toggle('has-items', n > 0);
     if (brinco && !calm) { bagCount.classList.remove('is-bump'); void bagCount.offsetWidth; bagCount.classList.add('is-bump'); }
@@ -1870,6 +2311,7 @@ strong,b{font-weight:600}
       <p class="total"><span>Subtotal (precio normal)</span><strong>${precio(subtotalNormal())}</strong></p>
       ${subtotalNormal() > subtotal() ? `<p class="total total--save"><span>Ahorro en ofertas</span><strong>\u2212${precio(subtotalNormal() - subtotal())}</strong></p>` : ''}
       <p class="total total--grand"><span>Total de tu bolsa</span><strong>${precio(subtotal())}</strong></p>
+      ${n ? `<p class="season-achievement">${ico('star')}<span><strong>${n} ${n === 1 ? 'artículo' : 'artículos'} de temporada</strong> en tu bolsa · ${esc(T.logro)}</span></p>` : ''}
       ${aviso}
       <div class="bag__actions">
         <button class="btn btn--block" type="button" data-request-order>Solicitar este pedido</button><button class="btn btn--ghost btn--block" type="button" data-copiar>Copiar mi lista</button>
@@ -1932,6 +2374,7 @@ strong,b{font-weight:600}
           <p class="eyebrow">${esc(CATEGORIAS[p.categoria])}${p.enOferta ? ' · Oferta' : ''}</p>
           <h2 class="pd__name" id="pdName">${esc(p.nombre)}</h2>
           <p class="price pd__price" id="pdPrice"></p>
+          <p class="pd__season" id="pdSeason"></p>
         </div>
         ${p.descripcion ? `<p class="pd__desc">${esc(p.descripcion)}</p>` : ''}
         ${p.sinColor ? '' : `<fieldset><legend id="pdColorLbl"></legend><div class="choices" id="pdColors"></div></fieldset>`}
@@ -1956,6 +2399,7 @@ strong,b{font-weight:600}
 
   function pintarDetalle(foto) {
     const p = (estado.catalogo || []).find(x => x.id === sel.pid);
+    const T = TEMATICAS[document.documentElement.dataset.season] || TEMATICAS.terra;
     const c = p.colores.find(x => x.id === sel.cid) || p.colores[0];
     const v = c.variantes.find(x => x.id === sel.vid) || c.variantes[0];
     sel.cid = c.id; sel.vid = v.id;
@@ -1991,6 +2435,7 @@ strong,b{font-weight:600}
     $('#pdPrice').innerHTML = v.oferta
       ? `<span class="now">${precio(v.precio)}</span><span class="was"><span class="sr">Antes </span>${precio(v.normal)}</span><span class="saving">\u2212${pctV}\u202f% · Ahorras ${precio(v.normal - v.precio)}</span>${terminaEn(v.fin) ? `<span class="ends">${terminaEn(v.fin)}</span>` : ''}`
       : precio(v.precio);
+    const pdSeason = $('#pdSeason'); if (pdSeason) pdSeason.innerHTML = T.insignia ? `<span class="badge-season">${ico(T.insignia.icon)}${esc(T.insignia.texto)}</span>` : '';
     $('#pdCant').textContent = sel.cant;
     $('[data-q="-1"]', pd).disabled = sel.cant <= 1;
     $('[data-q="1"]', pd).disabled = sel.cant >= quedan;
@@ -2000,7 +2445,7 @@ strong,b{font-weight:600}
     boton.disabled = quedan < 1;
     if (v.stock < 1) boton.textContent = 'Agotada';
     else if (quedan < 1) boton.textContent = 'Ya tienes todas las disponibles';
-    else boton.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Añadir a mi bolsa · ${precio(v.precio * sel.cant)}`;
+    else boton.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-${T.btnIcon || 'plus'}"/></svg>Añadir a mi bolsa · ${precio(v.precio * sel.cant)}`;
   }
 
   function refrescarDetalle() {
@@ -2353,6 +2798,69 @@ strong,b{font-weight:600}
     if (location.hash === hash) location.reload(); else location.hash = hash;
   }));
 
+
+  /* ══════════ Temáticas Pro v4: aplicar lo visual de la temporada ══════════
+     Lo llama apply() (segundo script) cada vez que cambia la temática que
+     manda la tienda, y al cargar. Sin selector para clientes.
+     El título se escribe en las 2 líneas .ln de la v3.8: la estructura y el
+     CSS no se tocan, así que la "g" sigue sin cortarse. */
+  let temaAplicado = null;
+  const temaDatos = () => TEMATICAS[document.documentElement.dataset.season] || TEMATICAS.terra;
+  function pintarFX() {
+    const layer = document.getElementById('fxLayer'); if (!layer) return;
+    const T = temaDatos();
+    const fx = T.fx || { icon: 'spark', n: 8, tipo: 'fall' };
+    let html = '';
+    for (let i = 0; i < fx.n; i++) {
+      const x = (Math.random() * 96).toFixed(1);
+      const dur = (10 + Math.random() * 10).toFixed(1);
+      const delay = (-Math.random() * 16).toFixed(1);
+      const size = (13 + Math.random() * 13).toFixed(0);
+      const drift = (Math.random() * 60 - 30).toFixed(0);
+      let top = '';
+      if (fx.tipo === 'twinkle') top = `top:${(4 + Math.random() * 55).toFixed(1)}%;`;
+      if (fx.tipo === 'rise') top = 'top:104%;';
+      html += `<span class="fx" style="--x:${x}%;--fx-dur:${dur}s;--fx-delay:${delay}s;--fx-size:${size}px;--fx-drift:${drift}px;${top}">${ico(fx.icon)}</span>`;
+    }
+    layer.innerHTML = html;
+  }
+  function actualizarLogro() {
+    const goal = document.getElementById('seasonGoal'); if (!goal) return;
+    const n = totalPiezas();
+    const T = temaDatos();
+    if (n > 0) { goal.hidden = false; goal.innerHTML = `${ico('star')}<span>${n} ${n === 1 ? 'artículo' : 'artículos'} de temporada en tu bolsa · ${esc(T.logro)}</span>`; }
+    else goal.hidden = true;
+  }
+  function aplicarTemaVisual(clave) {
+    const vis = TEMATICAS[clave] ? clave : 'navidad';
+    const T = TEMATICAS[vis];
+    const repetida = temaAplicado === vis;
+    temaAplicado = vis;
+    document.documentElement.dataset.season = vis; // El gancho manda solo: tarjetas y FX leen el tema de aquí
+    document.querySelectorAll('[data-season-mark]').forEach(el => { el.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#i-${T.mark}"/></svg>`; });
+    document.querySelectorAll('[data-season-label]').forEach(el => { el.textContent = T.banner; });
+    const eyebrow = document.querySelector('.hero__copy .eyebrow'); if (eyebrow) eyebrow.textContent = T.eyebrow;
+    const lns = document.querySelectorAll('.hero__title .ln > span');
+    if (lns.length >= 2) { const partes = T.titulo.split('<em>'); lns[0].innerHTML = (partes[0] || '').trim(); lns[1].innerHTML = partes[1] ? '<em>' + partes[1] : ''; }
+    const lead = document.querySelector('.hero__lead'); if (lead) lead.textContent = T.lead;
+    const micro = document.getElementById('heroMicro'); if (micro) { micro.textContent = T.micro || ''; micro.hidden = !T.micro; }
+    const trust = document.querySelectorAll('.trust li');
+    T.trust.forEach((txt, i) => { const li = trust[i]; if (!li) return; const nodos = [...li.childNodes]; const t = nodos[nodos.length - 1]; if (t && t.nodeType === 3) t.textContent = txt; });
+    const heroCards = document.querySelectorAll('.hero-card');
+    T.cards.forEach((c, i) => { const card = heroCards[i]; if (!card) return; const u = card.querySelector('use'); if (u) u.setAttribute('href', '#i-' + ((T.heroIcons && T.heroIcons[i]) || c.icon)); const h = card.querySelector('h3'); if (h) h.textContent = c.t; const p = card.querySelector('p'); if (p) p.textContent = c.p; });
+    (T.steps || []).forEach((ic, i) => { const u = document.querySelector(`[data-slot="step${i}"]`); if (u) u.setAttribute('href', '#i-' + ic); });
+    document.querySelectorAll('[data-slot="bag"]').forEach(u => u.setAttribute('href', '#i-' + (T.bagIcon || 'bag')));
+    document.querySelectorAll('[data-slot="solo"]').forEach(u => u.setAttribute('href', '#i-' + (T.soloIcon || 'spark')));
+    const say = document.querySelector('.footer__say'); if (say) say.textContent = T.footerSay;
+    if (repetida) return;
+    pintarFX();
+    actualizarLogro();
+    pintarRejilla(false);
+    pintarBolsa();
+    refrescarDetalle();
+  }
+  window.__yuliAplicarTema = aplicarTemaVisual;
+
   /* ══════════ Arranque ══════════ */
   estado.bolsa = leerBolsa();
   pintarChips(); pintarBolsa();
@@ -2367,11 +2875,11 @@ strong,b{font-weight:600}
 
 /* Apariencia y visitas públicas. No lee ni escribe precios, bolsa ni pedidos. */
 (()=>{
- const themes={'normal':['',''],'buen-fin':['Buen Fin','i-diamond'],'hot-sale':['Hot Sale','i-dot-circle'],'black-friday':['Black Friday','i-spark'],'navidad':['Navidad','i-spark'],'san-valentin':['San Valentín','i-heart'],'dia-madres':['Día de las Madres','i-infinity']};
+ const themes={'normal':1,'terra':1,'buen-fin':1,'hot-sale':1,'black-friday':1,'navidad':1,'san-valentin':1,'dia-madres':1};
  const root=document.documentElement, counter=document.getElementById('webVisits');
- function apply(theme){if(!Object.hasOwn(themes,theme))return;root.dataset.season=theme;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';el.querySelector('[data-season-label]').textContent=themes[theme][0];el.querySelector('[data-season-mark]').innerHTML=themes[theme][1]?'<svg class="icon" aria-hidden="true"><use href="#'+themes[theme][1]+'"/></svg>':'';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';}
+ function apply(theme){if(!Object.hasOwn(themes,theme))theme='navidad';const visual=theme==='normal'?'terra':theme;root.dataset.season=visual;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';if(window.__yuliAplicarTema)window.__yuliAplicarTema(visual);}
  try{localStorage.removeItem('yuli-web-theme-manual-v1');}catch{} /* Eleccion manual vieja: se borra, la tematica la manda solo la tienda. */
- try{apply(localStorage.getItem('yuli-web-theme-v1')||'normal');}catch{apply('normal');}
+ try{apply(localStorage.getItem('yuli-web-theme-v1')||'navidad');}catch{apply('navidad');}
  let busy=false;
  async function refresh(count=false){
   if(busy)return;busy=true;

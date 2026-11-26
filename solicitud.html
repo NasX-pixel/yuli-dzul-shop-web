@@ -1,6 +1,6 @@
 <!-- Yuli Dzul Shop - Solicitar pedido · Pagina completa Terra v2 - SOLO un formulario simple para solicitar un articulo visto en redes. Sin total ni cobro: la tienda elegira contigo el articulo y su precio. Mismo endpoint de Supabase, Turnstile y anti-duplicados. Sin foto de persona. La tematica la manda solo la tienda en Supabase. -->
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-season="navidad">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -368,19 +368,40 @@ img[data-foto].is-broken{display:none}
 @media (min-width:768px) and (max-width:1023px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 /* Yuli 0.8.9: temas de temporada, siempre claros. Sin ofertas ficticias. */
-:root[data-season="buen-fin"]{--bg:#fff7f3;--wash:#f8ded9;--heading:#93252d;--accent:#ac3439;--gold:#ab7650;--btn-solid:#93252d;--btn-a:#93252d;--btn-b:#b83c42;--chip-on:#93252d;--band:#4d2325;--band-2:#59262a;--surface:#fffcf9;--surface-2:#f6e2df;--frame:#f8e7e0;--line:#e8c9c4;--ring:#c98f89;--steps-b:#fae9e3}
-:root[data-season="hot-sale"]{--bg:#fff7ed;--wash:#ffe1c9;--heading:#98301a;--accent:#ad391d;--gold:#a66b2d;--btn-solid:#98301a;--btn-a:#98301a;--btn-b:#b94623;--chip-on:#a5361b;--band:#57291c;--band-2:#68311e;--surface:#fffcf6;--surface-2:#ffe9d4;--frame:#ffead7;--line:#eed0b6;--ring:#cb9670;--steps-b:#fff0dc}
-:root[data-season="black-friday"]{--bg:#faf7f0;--wash:#eae1d0;--heading:#292421;--accent:#665035;--gold:#947044;--btn-solid:#292421;--btn-a:#292421;--btn-b:#544536;--chip-on:#39312b;--band:#292421;--band-2:#332b24;--surface:#fffdf7;--surface-2:#ece5d8;--frame:#eee8dc;--line:#d9cdb9;--ring:#b09b7b;--steps-b:#f0e8d8}
-:root[data-season="navidad"]{--bg:#fff9ed;--wash:#e4ebdf;--heading:#245943;--accent:#9a3540;--gold:#aa7b37;--btn-solid:#245943;--btn-a:#245943;--btn-b:#3b6e55;--chip-on:#245943;--band:#203e32;--band-2:#294b3b;--surface:#fffdf6;--surface-2:#e8eddf;--frame:#edeadd;--line:#d2dece;--ring:#a5b79d;--steps-b:#f1eddb}
-:root[data-season="san-valentin"]{--bg:#fff5f7;--wash:#f5dfe8;--heading:#8d3152;--accent:#9a385c;--gold:#a37959;--btn-solid:#8d3152;--btn-a:#8d3152;--btn-b:#a84a69;--chip-on:#8d3152;--band:#512738;--band-2:#622b41;--surface:#fffbfc;--surface-2:#f4e2e9;--frame:#f5e6ec;--line:#e7cbd5;--ring:#c992a6;--steps-b:#f7e9ed}
-:root[data-season="dia-madres"]{--bg:#fff8f0;--wash:#f0e1d6;--heading:#785132;--accent:#8d4c59;--gold:#a47b4b;--btn-solid:#785132;--btn-a:#785132;--btn-b:#946747;--chip-on:#785132;--band:#49342a;--band-2:#594036;--surface:#fffdf8;--surface-2:#f2e3db;--frame:#f3e7db;--line:#e2d0c0;--ring:#c3a78a;--steps-b:#f7ebdf}
-.season-banner{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:14px;padding:16px 24px;background:var(--wash);color:var(--heading);border-block:1px solid var(--line);text-align:center}
-.season-banner[hidden]{display:none}.season-banner span{font-family:var(--font-display);font-size:clamp(1.3rem,3vw,1.8rem);letter-spacing:.04em}.season-mark{font-style:normal;font-size:1.6rem;color:var(--gold)}
-[data-season="buen-fin"] .season-banner:before{content:"";position:absolute;inset:-80px auto -80px 7%;width:58px;transform:rotate(30deg);border-inline:12px solid var(--heading);opacity:.12;z-index:-1}
-[data-season="hot-sale"] .season-banner{background:radial-gradient(ellipse at 90% 130%,#f3b98b 0 18%,transparent 19% 28%,#f5c9a7 29% 40%,transparent 41%),var(--wash)}
-[data-season="black-friday"] .season-banner{border-block:3px double var(--gold);letter-spacing:.1em;background:linear-gradient(115deg,transparent 75%,#decbaa55 75% 78%,transparent 78%),var(--wash)}
-[data-season="navidad"] .season-banner{background:radial-gradient(circle at 12% 35%,#c8a66d 0 2px,transparent 3px),radial-gradient(circle at 83% 65%,#c8a66d 0 2px,transparent 3px),var(--wash)}
-[data-season="dia-madres"] .season-banner:before{content:"";position:absolute;inset:-40px 8% -40px auto;width:90px;border:10px double #be928a55;border-radius:50%;transform:rotate(30deg);z-index:-1}
+:root[data-season="buen-fin"]{--bg:#fff7f3;--wash:#f8ded9;--heading:#93252d;--accent:#ac3439;--gold:#ab7650;--btn-solid:#93252d;--btn-a:#93252d;--btn-b:#b83c42;--chip-on:#93252d;--band:#4d2325;--band-2:#59262a;--surface:#fffcf9;--surface-2:#f6e2df;--frame:#f8e7e0;--line:#e8c9c4;--ring:#c98f89;--steps-b:#fae9e3
+  --btn-a:#93252d; --btn-b:#b83c42; --band:#4d2325; --band-2:#59262a; --steps-b:#fae9e3;
+}
+:root[data-season="hot-sale"]{--bg:#fff7ed;--wash:#ffe1c9;--heading:#98301a;--accent:#ad391d;--gold:#a66b2d;--btn-solid:#98301a;--btn-a:#98301a;--btn-b:#b94623;--chip-on:#a5361b;--band:#57291c;--band-2:#68311e;--surface:#fffcf6;--surface-2:#ffe9d4;--frame:#ffead7;--line:#eed0b6;--ring:#cb9670;--steps-b:#fff0dc
+  --btn-a:#98301a; --btn-b:#b94623; --band:#57291c; --band-2:#68311e; --steps-b:#fff0dc;
+}
+:root[data-season="black-friday"]{--bg:#faf7f0;--wash:#eae1d0;--heading:#292421;--accent:#665035;--gold:#947044;--btn-solid:#292421;--btn-a:#292421;--btn-b:#544536;--chip-on:#39312b;--band:#292421;--band-2:#332b24;--surface:#fffdf7;--surface-2:#ece5d8;--frame:#eee8dc;--line:#d9cdb9;--ring:#b09b7b;--steps-b:#f0e8d8
+  --btn-a:#292421; --btn-b:#544536; --band:#292421; --band-2:#332b24; --steps-b:#f0e8d8;
+}
+:root[data-season="navidad"]{--bg:#fff9ed;--wash:#e4ebdf;--heading:#245943;--accent:#9a3540;--gold:#aa7b37;--btn-solid:#245943;--btn-a:#245943;--btn-b:#3b6e55;--chip-on:#245943;--band:#203e32;--band-2:#294b3b;--surface:#fffdf6;--surface-2:#e8eddf;--frame:#edeadd;--line:#d2dece;--ring:#a5b79d;--steps-b:#f1eddb
+  --btn-a:#245943; --btn-b:#3b6e55; --band:#203e32; --band-2:#294b3b; --steps-b:#f1eddb;
+}
+:root[data-season="san-valentin"]{--bg:#fff5f7;--wash:#f5dfe8;--heading:#8d3152;--accent:#9a385c;--gold:#a37959;--btn-solid:#8d3152;--btn-a:#8d3152;--btn-b:#a84a69;--chip-on:#8d3152;--band:#512738;--band-2:#622b41;--surface:#fffbfc;--surface-2:#f4e2e9;--frame:#f5e6ec;--line:#e7cbd5;--ring:#c992a6;--steps-b:#f7e9ed
+  --btn-a:#8d3152; --btn-b:#a84a69; --band:#512738; --band-2:#622b41; --steps-b:#f7e9ed;
+}
+:root[data-season="dia-madres"]{--bg:#fff8f0;--wash:#f0e1d6;--heading:#785132;--accent:#8d4c59;--gold:#a47b4b;--btn-solid:#785132;--btn-a:#785132;--btn-b:#946747;--chip-on:#785132;--band:#49342a;--band-2:#594036;--surface:#fffdf8;--surface-2:#f2e3db;--frame:#f3e7db;--line:#e2d0c0;--ring:#c3a78a;--steps-b:#f7ebdf
+  --btn-a:#785132; --btn-b:#946747; --band:#49342a; --band-2:#594036; --steps-b:#f7ebdf;
+}
+.season-banner{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:12px;padding:20px 30px 26px;background:var(--banner-bg);color:var(--banner-ink);text-align:center}
+.season-banner[hidden]{display:none}
+.season-banner span{font-family:var(--font-display);font-size:clamp(1.05rem,2.6vw,1.45rem);letter-spacing:.03em;line-height:1.25}
+.season-mark{display:inline-flex;align-items:center;color:var(--gold);flex:none}
+.season-mark .icon{width:1.5rem;height:1.5rem}
+[data-season="terra"] .season-banner{clip-path:ellipse(130% 100% at 50% 0);padding-bottom:34px}
+[data-season="buen-fin"] .season-banner{clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),0 100%);padding-bottom:32px}
+[data-season="buen-fin"] .season-banner::before,[data-season="buen-fin"] .season-banner::after{content:"";position:absolute;top:-30px;bottom:-30px;width:44px;border-inline:10px solid rgb(255 243 236/.22);transform:rotate(24deg)}
+[data-season="buen-fin"] .season-banner::before{left:6%}
+[data-season="buen-fin"] .season-banner::after{right:6%}
+[data-season="hot-sale"] .season-banner{clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),95% 100%,90% calc(100% - 12px),85% 100%,80% calc(100% - 12px),75% 100%,70% calc(100% - 12px),65% 100%,60% calc(100% - 12px),55% 100%,50% calc(100% - 12px),45% 100%,40% calc(100% - 12px),35% 100%,30% calc(100% - 12px),25% 100%,20% calc(100% - 12px),15% 100%,10% calc(100% - 12px),5% 100%,0 calc(100% - 12px));padding-bottom:30px}
+[data-season="black-friday"] .season-banner{clip-path:polygon(26px 0,calc(100% - 26px) 0,100% 50%,calc(100% - 26px) 100%,26px 100%,0 50%);margin-inline:10px;box-shadow:inset 0 0 0 2px #947044,inset 0 0 0 5px #292421,inset 0 0 0 6px #947044}
+[data-season="navidad"] .season-banner{clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),96% 100%,92% calc(100% - 10px),88% 100%,84% calc(100% - 10px),80% 100%,76% calc(100% - 10px),72% 100%,68% calc(100% - 10px),64% 100%,60% calc(100% - 10px),56% 100%,52% calc(100% - 10px),48% 100%,44% calc(100% - 10px),40% 100%,36% calc(100% - 10px),32% 100%,28% calc(100% - 10px),24% 100%,20% calc(100% - 10px),16% 100%,12% calc(100% - 10px),8% 100%,4% calc(100% - 10px),0 100%);padding-bottom:28px}
+[data-season="san-valentin"] .season-banner{clip-path:polygon(0 0,100% 0,100% 100%,54% 100%,50% calc(100% - 14px),46% 100%,0 100%);padding-bottom:32px}
+[data-season="dia-madres"] .season-banner{clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),93% 100%,86% calc(100% - 8px),79% 100%,72% calc(100% - 8px),65% 100%,58% calc(100% - 8px),51% 100%,44% calc(100% - 8px),37% 100%,30% calc(100% - 8px),23% 100%,16% calc(100% - 8px),9% 100%,2% calc(100% - 8px),0 calc(100% - 4px));padding-bottom:28px}
+[data-season="dia-madres"] .season-banner::before{content:"";position:absolute;top:-46px;right:7%;width:96px;height:96px;border:9px double rgb(141 76 89/.28);border-radius:50%;transform:rotate(30deg)}
 .store-location{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border:1px solid currentColor;border-radius:16px;padding:12px 18px;color:inherit;text-decoration:none;margin-top:14px;font-weight:600}
 .web-visits{display:block;font-variant-numeric:tabular-nums}
 
@@ -717,7 +738,7 @@ strong,b{font-weight:600}
 .deal{background:var(--deal);color:#FFF8F0;animation:none}
 .card__media .deal{background:var(--deal);color:#FFF8F0}
 .saving{color:var(--deal)}
-.season-banner{font-size:.85rem;padding:12px 16px}
+.season-banner{font-size:.85rem}
 .backbtn{font-size:15px}
 .receipt h2{font-size:1.4rem;font-weight:500}
 
@@ -795,7 +816,7 @@ strong,b{font-weight:600}
   <symbol id="i-go" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
   <symbol id="i-diamond" viewBox="0 0 24 24"><path d="M12 3 21 12 12 21 3 12z"/></symbol>
   <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9H4z"/></symbol>
-  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.6A3.900 3.900 0 0 1 12 8a3.900 3.900 0 0 1 7 2.400C19 15.600 12 20 12 20z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.3S4.8 15.9 4.8 10.9c0-2.9 2.1-4.9 4.6-4.9 1.2 0 2.3.6 2.6 1.4.3-.8 1.4-1.4 2.6-1.4 2.5 0 4.6 2 4.6 4.9 0 5-7.2 9.4-7.2 9.4z"/><path d="M18.8 2.8l.5 1.4 1.4.5-1.4.5-.5 1.4-.5-1.4-1.4-.5 1.4-.5z" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.500"/><path d="m16 16 4.500 4.500"/></symbol>
   <symbol id="i-sort" viewBox="0 0 24 24"><path d="M8 20V5M4.500 8.500 8 5l3.500 3.500M16 4v15M12.500 15.500 16 19l3.500-3.500"/></symbol>
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
@@ -813,8 +834,13 @@ strong,b{font-weight:600}
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.8 3.5 9 3l1.8 4.2-2 1.6c.9 2.3 2.9 4.3 5.2 5.2l1.6-2L19.8 14l-.5 2.2c-.3 1.2-1.3 2-2.5 2C9.6 18.2 5.8 14.4 5.8 7.2c0-1.2.8-2.2 2-2.5z" transform="rotate(0)"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.4-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.6 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></symbol>
-  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M4 4h7l9 9-7 7-9-9z"/><circle cx="8.5" cy="8.5" r="1.4" fill="currentColor" stroke="none"/></symbol>
-  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5.5 8h13l-1.2 11a2 2 0 0 1-2 1.8H8.7a2 2 0 0 1-2-1.8z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></symbol></svg>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M4 4h7.2L20 12.8a1.8 1.8 0 0 1 0 2.6l-4.6 4.6a1.8 1.8 0 0 1-2.6 0L4 11.2z"/><path d="M6.8 6.8h6M7 16.6l6.8-6.8" stroke-width="1.1" stroke-dasharray="1.8 2.2" opacity=".65"/><path d="M8.7 10.2S6.9 8.9 6.9 7.7c0-.7.6-1.2 1.2-1.2.3 0 .5.1.6.3.1-.2.3-.3.6-.3.6 0 1.2.5 1.2 1.2 0 1.2-1.8 2.5-1.8 2.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5.5 8h13l-1.2 11a2 2 0 0 1-2 1.8H8.7a2 2 0 0 1-2-1.8z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></symbol>
+  <symbol id="i-percent" viewBox="0 0 24 24"><path d="M18.5 5.5c-.8 1-1.8 2-2.9 2.9-1 .9-2 1.8-2.9 2.9-.9 1-1.8 2-2.6 3.1-.8 1-1.5 2.1-2 3.1"/><circle cx="7.6" cy="7.6" r="2.7"/><circle cx="16.4" cy="16.4" r="2.7"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c.9 3.2-2.3 5.2-2.3 8.2a2.5 2.5 0 0 0 5 .4c.7-1.1.6-2.6.4-3.8 1.9 1.6 2.9 3.5 2.9 5.6A6 6 0 0 1 6 13.6C6 9.3 10 6.4 12 3z"/><path d="M12.4 14.2c.8.9 1.6 1.7 1.6 2.9a2 2 0 1 1-4 0c0-1.4 1.2-2 2.4-2.9z"/><circle cx="17.6" cy="19.4" r=".9" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-gem" viewBox="0 0 24 24"><path d="M7 4.5h10l3.2 4.6L12 19.5 3.8 9.1z"/><path d="M3.8 9.1h16.4M12 19.5 8.6 9.1 12 4.5l3.4 4.6L12 19.5"/><path d="M12 7.2l.5 1.1 1.1.5-1.1.5-.5 1.1-.5-1.1-1.1-.5 1.1-.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2.5v19M3.8 7.2l16.4 9.6M20.2 7.2 3.8 16.8"/><path d="M12 2.5 9.8 4.7M12 2.5l2.2 2.2M12 21.5l-2.2-2.2M12 21.5l2.2-2.2M3.8 7.2l3 .3M3.8 7.2l1.5 2.6M20.2 16.8l-3-.3M20.2 16.8l-1.5-2.6M20.2 7.2l-3 .3M20.2 7.2l-1.5 2.6M3.8 16.8l3-.3M3.8 16.8l1.5-2.6" stroke-width="1.4"/></symbol>
+  <symbol id="i-flower" viewBox="0 0 24 24"><path d="M12 3.5c1.9 0 2.9 1.7 2.9 3.2 0 1.7-1.2 2.9-2.9 2.9S9.1 8.4 9.1 6.7c0-1.5 1-3.2 2.9-3.2z"/><path d="M19.6 10.2c.5 1.8-.6 3.3-2.1 3.7-1.6.4-3.1-.6-3.5-2.1-.4-1.6.5-3.2 2.1-3.6 1.5-.4 3 .4 3.5 2z"/><path d="M16.8 18.6c-1.2 1.5-3.1 1.6-4.4.7-1.4-1-1.6-2.8-.6-4.1 1-1.4 2.9-1.6 4.2-.7 1.3.9 1.7 2.7.8 4.1z"/><path d="M7.6 18.4c-1.7-.6-2.5-2.3-2-3.9.5-1.6 2.2-2.4 3.8-1.9 1.6.5 2.4 2.2 1.9 3.8-.5 1.5-2.1 2.4-3.7 2z"/><path d="M4.6 9.4c.3-1.8 1.9-2.9 3.5-2.6 1.6.3 2.6 1.8 2.3 3.4-.3 1.6-1.8 2.6-3.4 2.3-1.5-.3-2.6-1.6-2.4-3.1z"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></symbol></svg>
 <div class="page">
   <header class="header" id="header">
     <div class="header__bar">
@@ -983,11 +1009,12 @@ strong,b{font-weight:600}
 <script>
 
 (()=>{
- const themes={'normal':['',''],'buen-fin':['Buen Fin','i-diamond'],'hot-sale':['Hot Sale','i-dot-circle'],'black-friday':['Black Friday','i-spark'],'navidad':['Navidad','i-spark'],'san-valentin':['San Valentín','i-heart'],'dia-madres':['Día de las Madres','i-infinity']};
+ const themes={'normal':1,'terra':1,'buen-fin':1,'hot-sale':1,'black-friday':1,'navidad':1,'san-valentin':1,'dia-madres':1};
+ const BANNERS={'terra':['Boutique cálida, todo el año','i-spark'],'buen-fin':['Buen Fin · Precios especiales en artículos seleccionados','i-percent'],'hot-sale':['Hot Sale · Los precios más calientes de la temporada','i-flame'],'black-friday':['Black Friday · Una noche de precios únicos','i-gem'],'navidad':['Navidad · Regala algo que se sienta','i-snow'],'san-valentin':['San Valentín · Detalles que dicen lo que sientes','i-heart'],'dia-madres':['Día de las Madres · Para la que siempre está','i-flower']};
  const root=document.documentElement, counter=document.getElementById('webVisits');
- function apply(theme){if(!Object.hasOwn(themes,theme))return;root.dataset.season=theme;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';el.querySelector('[data-season-label]').textContent=themes[theme][0];el.querySelector('[data-season-mark]').innerHTML=themes[theme][1]?'<svg class="icon" aria-hidden="true"><use href="#'+themes[theme][1]+'"/></svg>':'';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';}
+ function apply(theme){if(!Object.hasOwn(themes,theme))theme='navidad';const visual=theme==='normal'?'terra':theme;root.dataset.season=visual;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';el.querySelector('[data-season-label]').textContent=BANNERS[visual][0];el.querySelector('[data-season-mark]').innerHTML='<svg class="icon" aria-hidden="true"><use href="#'+BANNERS[visual][1]+'"/></svg>';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';}
  try{localStorage.removeItem('yuli-web-theme-manual-v1');}catch{} /* Eleccion manual vieja: se borra, la tematica la manda solo la tienda. */
- try{apply(localStorage.getItem('yuli-web-theme-v1')||'normal');}catch{apply('normal');}
+ try{apply(localStorage.getItem('yuli-web-theme-v1')||'navidad');}catch{apply('navidad');}
  let busy=false;
  async function refresh(count=false){
   if(busy)return;busy=true;
