@@ -1641,6 +1641,47 @@ strong,b{font-weight:600}
 .card__season{min-height:24px}
 </style>
 
+<style id="terra-v3-14">
+/* Terra v3.14 · etiquetas un poco más chicas + espaciado de la tarjeta apretado
+   (reporte de Carlos con la v3.13 viva, tema San Valentín; solo eso faltaba).
+   (1) ETIQUETAS SOBRE LA FOTO, OTRO ESCALÓN: la pill de oferta (.deal) y la
+   etiqueta de categoría (.tag) seguían viéndose grandes sobre la foto del
+   Santa (medido en Chrome real a 390 px: oferta 100×28 px, TEMPORADA
+   93×26 px, tapando juntas ~20% de la foto). Se achican un poco más, sin
+   exagerar y sin tocar su estilo: .deal .72rem (11.52 px) -> .66rem
+   (10.56 px), padding 5/10 -> 4/9 px; .tag .66rem (10.56 px) -> .60rem
+   (9.6 px), padding 5/9 -> 4/8 px, tracking .10em -> .08em.
+   La pill CONSERVA su negro metálico con efecto (bloque v3.4), mismo
+   texto, misma posición (arriba a la izquierda); la etiqueta igual
+   (fondo blanco, abajo a la izquierda). Vale para las 7 temáticas.
+   (2) ESPACIADO DE LA TARJETA: desglose medido en Chrome real (v3.13,
+   cuerpo 234.1 px): padding 8/12/10 (18 px), 5 huecos de 2 px (10 px),
+   nombre con reserva 2.4em (36 px, SE QUEDA: sin ella las columnas se
+   descuadran), insignia 24 px, precio 22.8 px, ahorro 18 px, meta 16 px,
+   acciones 89.3 px (padding-top 4 + Agregar 42 + hueco 4 + Ver 39.3).
+   Se aprieta lo que queda sin tocar nada de lo que Carlos pidió que se
+   quede: cuerpo padding 6/12/8 (-4 px), hueco 2 -> 1.5 px (-2.5 px),
+   acciones padding-top 4 -> 2 px (-2 px) y hueco 4 -> 3 px (-1 px),
+   insignia .badge-season padding 4/8 -> 3/7 px con renglón 24 -> 22 px
+   (-2 px), ahorro min-height 18 -> 16 px (-1 px, el contenido mide
+   16.9 px), meta line-height 1.25 -> 1.2 (-0.6 px). Total ~-13 px:
+   tarjeta ~390 -> ~376 px en celular. El hueco del cuerpo queda en
+   1.5 px y no en 1 px: medido en Chrome real, con un nombre de 2 líneas
+   el botón del nombre sobresale 1.19 px por debajo de su renglón
+   reservado, así que con 1 px el botón tocaba el renglón de la insignia
+   (-0.2 px); con 1.5 px queda 0.3 px libre y la insignia 1 px libre.
+   Botones intactos (Agregar 42 px, Ver 39.3 px), precio intacto (19 px),
+   nombre y alturas fijas intactos, sin bold nuevo. */
+.card__media .deal{font-size:.66rem;padding:4px 9px}
+.tag{font-size:.60rem;padding:4px 8px;letter-spacing:.08em}
+.card__body{padding:6px 12px 8px;gap:1.5px}
+.card__season{min-height:22px}
+.badge-season{padding:3px 7px}
+.card__save{min-height:16px}
+.card__meta{line-height:1.2}
+.card__actions{padding-top:2px;gap:3px}
+</style>
+
 
 
 </head>
