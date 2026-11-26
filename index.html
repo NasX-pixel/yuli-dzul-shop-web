@@ -79,7 +79,7 @@ h1,h2,h3,p{margin:0}
 
 /* ───────── Cabecera ───────── */
 .header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
-.header__bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px var(--gutter);background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);border:1px solid var(--line);border-top:0;border-radius:0 0 30px 30px;transition:box-shadow .35s,padding .35s var(--ease)}
+.header__bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px var(--gutter);border:1px solid var(--line);border-top:0;border-radius:0 0 30px 30px;transition:box-shadow .35s,padding .35s var(--ease)}
 .header.is-stuck .header__bar{padding-block:10px;box-shadow:0 18px 36px -26px rgb(var(--shadow) / .55)}
 .logo{font-family:var(--font-display);font-weight:600;font-size:clamp(1.25rem,6vw,1.75rem);letter-spacing:-.01em;color:var(--heading);text-decoration:none;white-space:nowrap;line-height:1}
 .logo em{font-weight:500}
@@ -169,8 +169,8 @@ h1,h2,h3,p{margin:0}
 }
 
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
-@media (min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
-@media (min-width:1080px){.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}}
+@media (min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:1080px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
 .card{position:relative;display:flex;flex-direction:column;padding:8px 8px 18px;border:1px solid var(--line);border-radius:30px;background:var(--surface);transition:translate .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;animation:cardIn .6s var(--ease) backwards;animation-delay:calc(var(--i,0) * 70ms)}
 @keyframes cardIn{from{opacity:0;translate:0 18px}}
@@ -195,7 +195,7 @@ h1,h2,h3,p{margin:0}
 .empty .btn{margin-top:8px}
 
 /* ───────── Cómo funciona ───────── */
-.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(34px,6vw,52px) clamp(18px,4vw,44px);margin:clamp(52px,8vw,108px) var(--gutter) 0;padding:clamp(26px,5vw,60px);border:1px solid var(--line);border-radius:38px;background:linear-gradient(135deg,var(--surface-2),var(--steps-b))}
+.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(34px,6vw,52px) clamp(18px,4vw,44px);padding:clamp(26px,5vw,60px);border:1px solid var(--line);border-radius:38px;background:linear-gradient(135deg,var(--surface-2),var(--steps-b))}
 .steps__title{font-family:var(--font-display);font-weight:400;font-size:clamp(2.1rem,1.4rem + 2.6vw,3.2rem);line-height:1.04;letter-spacing:-.015em;color:var(--heading);margin-top:14px}
 .step__n{display:grid;place-items:center;width:50px;height:50px;border:1px solid var(--ring);border-radius:50%;font-family:var(--font-display);font-size:1.25rem;color:var(--gold)}
 .step h3{margin:18px 0 8px;font-size:1.22rem;line-height:1.3;color:var(--heading)}
@@ -205,7 +205,7 @@ h1,h2,h3,p{margin:0}
 @media (min-width:980px){.steps{grid-template-columns:1.25fr 1fr 1fr 1fr;align-items:start}}
 
 /* ───────── Pie ───────── */
-.footer{margin-top:clamp(60px,9vw,124px);padding:clamp(44px,6vw,76px) var(--gutter) 30px;border-radius:44px 44px 0 0;background:var(--band-2);color:var(--on-band)}
+.footer{padding:clamp(44px,6vw,76px) var(--gutter) 30px;border-radius:44px 44px 0 0;background:var(--band-2);color:var(--on-band)}
 .footer__top{display:grid;gap:34px}
 .footer .logo{color:var(--on-band);font-size:2rem}
 .footer__say{margin-top:12px;font-family:var(--font-display);font-style:italic;font-size:1.3rem;color:rgb(255 255 255 / .72)}
@@ -1357,7 +1357,7 @@ strong,b{font-weight:600}
 .bag__actions [data-vaciar]{font-weight:600}
 .bag__actions .btn{font-weight:600}
 
-/* (5) Formulario del pedido — código del interactivo (.field, .deliv-card, .btn-add-big)
+/* (5) Formulario del pedido — código del interactivo
    tal cual; las etiquetas se quedan en frase normal con icono (regla de Carlos, el
    interactivo las trae en mayúsculas sin icono). */
 .order-panel h3{font-family:var(--font-body);font-size:1.19rem;font-weight:600;margin:26px 0 4px}
@@ -1731,6 +1731,104 @@ strong,b{font-weight:600}
 }
 </style>
 
+<style id="terra-v3-17">
+/* Terra v3.17 · Segunda auditoría + "waaaoow": detalle con pie fijo de verdad, pie legible, búsqueda visible en PC/tableta, aire parejo, hero deslizable en celular, transición de tema, icono del logro por tema, foto del hero con mejor encuadre, iconos nuevos y limpieza.
+   (1) DETALLE — PIE FIJO DE VERDAD: el pie ya no es sticky dentro de la información (eso tapaba la talla y la cantidad al abrir). Ahora el panel es una columna flex: la foto + la información bajan con su propio scroll y el pie (botón + nota) es un hermano fijo abajo, con una rayita arriba. Nada se ve cortado a la mitad. La foto de 425 px SE QUEDA.
+   (2) PIE LEGIBLE: "Ver mi último pedido" y "SHOP · BOUTIQUE" estaban en blanco sobre el pie claro (reglas viejas del pie oscuro). Ahora en tinta oscura.
+   (3) BÚSQUEDA VISIBLE: en PC y tableta la caja y los chips siempre se ven; el desplegable "Buscar y categorías" queda solo en celular.
+   (4) AIRE: 48–60 px entre secciones en PC/tableta (26 px en celular).
+   (5) REJILLA: 16 px en celular, 20 px en tableta, 24 px en PC.
+   (6) HERRAMIENTAS: el contador ya no parte "Actualizar" a otro renglón.
+   (7) PASOS: número→título ~20 px, título→texto ~11 px.
+   (8) HERO EN CELULAR: las 3 tarjetas en una fila deslizable con un asomo de la siguiente.
+   (9) TRANSICIÓN DE TEMA: colores con fundido de ~0.45 s solo cuando la temática realmente cambia.
+   (10) LOGRO DE LA BOLSA: el icono es el de cada tema (regalo en Navidad, corazón en San Valentín...), no la misma estrellita.
+   (11) FOTO DEL HERO EN PC: el punto focal baja para que el Santa se vea más completo.
+   (12) LIMPIEZA: se quitan declaraciones viejas anuladas (fondo translúcido + blur de la cabecera, márgenes con clamp de pasos y pie, huecos de rejilla viejos). Las ~27 "clases muertas" de la auditoría solo existen en comentarios, no hay reglas que quitar; y el aspect-ratio 16/10.4 del detalle SÍ está en uso en PC (la foto mide 318 px ahí), así que se queda. */
+
+/* (2) Pie legible */
+.footer #recuperar-pedido{color:var(--ink)!important}
+.footer .logo__sub{color:var(--ink-soft)}
+
+/* (1) Detalle: panel en columna flex, contenido con scroll propio, pie fijo hermano */
+.modal#dlgProduct .panel--product{display:flex;flex-direction:column;overflow:hidden}
+.modal#dlgProduct .panel--product .pd{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.modal#dlgProduct .panel--product .pd::-webkit-scrollbar{width:6px}
+.modal#dlgProduct .panel--product .pd::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.modal#dlgProduct .panel--product .pd::-webkit-scrollbar-track{background:transparent}
+.pd__foot{position:static;z-index:auto;flex:none;margin:14px -12px -12px;padding:14px 12px calc(12px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);box-shadow:none}
+.pd__foot #pdAdd{margin-top:0}
+.pd__foot .fine{margin-top:8px}
+
+/* (3) Búsqueda y categorías siempre visibles en tableta y PC */
+@media (min-width:700px){
+  #moreFilters{display:none}
+  .tools__extra[hidden]{display:grid}
+  .tools__extra{grid-column:1 / -1}
+  .count{grid-column:1 / -1;flex-wrap:nowrap}
+  .pd__foot{margin:14px -14px -14px}
+}
+
+/* (4) Aire entre secciones en PC y tableta (desde 700 px: tableta y PC) */
+@media (min-width:700px){
+  .catalog{padding-top:52px}
+  .steps{margin-top:56px}
+  .footer{margin-top:56px}
+}
+
+/* (5) Hueco de la rejilla por ancho */
+@media (min-width:700px){.grid{gap:20px}}
+@media (min-width:1080px){.grid{gap:24px}}
+
+/* (7) Pasos: aire parejo dentro de cada paso */
+.step h3{margin:20px 0 11px}
+
+/* (8) Hero en celular: tarjetas en fila deslizable */
+@media (max-width:699px){
+  .hero-cards{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:6px;scrollbar-width:none}
+  .hero-cards::-webkit-scrollbar{display:none}
+  .hero-card{flex:0 0 78%;scroll-snap-align:start}
+}
+
+/* (11) Foto del hero en PC: punto focal más abajo, el Santa se ve más completo */
+@media (min-width:980px){.fan__product .media img{object-position:50% 62%}}
+
+/* (9) Transición de tema: solo cuando la temática realmente cambia (la clase .theme-swap la pone el script) */
+@media (prefers-reduced-motion:no-preference){
+  html.theme-swap body,html.theme-swap .page,html.theme-swap .hero-card,html.theme-swap .steps,html.theme-swap .footer,html.theme-swap .tag,html.theme-swap .season-banner,html.theme-swap .bagbtn,html.theme-swap .sortselect,html.theme-swap .search input,html.theme-swap .notice,html.theme-swap .line,html.theme-swap .delivery-cards label,html.theme-swap .season-achievement,html.theme-swap .hero__goal,html.theme-swap .opt,html.theme-swap .choice span{transition:background-color .45s ease,color .45s ease,border-color .45s ease}
+  html.theme-swap .card{transition:translate .4s var(--ease),box-shadow .4s var(--ease),border-color .45s ease,background-color .45s ease}
+  html.theme-swap .btn{transition:translate .3s var(--ease),box-shadow .3s var(--ease),filter .3s,background-color .45s ease,color .45s ease,border-color .45s ease}
+  html.theme-swap .chip,html.theme-swap .chip--only{transition:background .45s ease,color .45s ease,box-shadow .3s,translate .3s var(--ease),border-color .45s ease}
+  html.theme-swap .header__bar{transition:box-shadow .35s,padding .35s var(--ease),background-color .45s ease,border-color .45s ease}
+  html.theme-swap .season-banner{animation:bannerFade .45s ease}
+  @keyframes bannerFade{from{opacity:.3}to{opacity:1}}
+}
+
+/* ── "Waaaoow" (Parte 2) ── */
+/* W1 · Ubicación con icono de pin */
+.store-location{gap:8px}
+.store-location .icon{width:1.1em;height:1.1em}
+/* W2/W3/W4 · Botones de la bolsa con icono */
+.bag__actions .linkbtn{display:inline-flex;align-items:center;gap:6px}
+.bag__actions .linkbtn .icon{width:1.05em;height:1.05em}
+/* W5 · Aviso con icono de bolsa */
+#toastBtn{display:inline-flex;align-items:center;gap:6px}
+/* W6 · Estados vacíos con icono grande */
+.empty__ico{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--surface-2);color:var(--accent);margin-bottom:2px}
+.empty__ico .icon{width:28px;height:28px}
+.bag__empty .icon{width:1.35em;height:1.35em;vertical-align:-4px;margin-right:8px;color:var(--accent)}
+/* W7 · Tarjetas del hero con levantamiento al pasar el cursor */
+@media (hover:hover){
+  .hero-card{transition:translate .3s var(--ease),box-shadow .3s var(--ease)}
+  .hero-card:hover{translate:0 -3px;box-shadow:0 16px 28px -18px rgb(var(--shadow) / .55)}
+}
+/* W11 · Botón Ordenar con su icono de ordenar a la izquierda */
+.sortselect>svg:first-child{color:var(--accent)}
+/* W14 · "Quitar filtros" con icono de X */
+.count .linkbtn{display:inline-flex;align-items:center;gap:5px}
+.count .linkbtn .icon{width:1em;height:1em}
+</style>
+
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1773,6 +1871,8 @@ strong,b{font-weight:600}
   <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c.9 3.2-2.3 5.2-2.3 8.2a2.5 2.5 0 0 0 5 .4c.7-1.1.6-2.6.4-3.8 1.9 1.6 2.9 3.5 2.9 5.6A6 6 0 0 1 6 13.6C6 9.3 10 6.4 12 3z"/><path d="M12.4 14.2c.8.9 1.6 1.7 1.6 2.9a2 2 0 1 1-4 0c0-1.4 1.2-2 2.4-2.9z"/><circle cx="17.6" cy="19.4" r=".9" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2.5v19M3.8 7.2l16.4 9.6M20.2 7.2 3.8 16.8"/><path d="M12 2.5 9.8 4.7M12 2.5l2.2 2.2M12 21.5l-2.2-2.2M12 21.5l2.2-2.2M3.8 7.2l3 .3M3.8 7.2l1.5 2.6M20.2 16.8l-3-.3M20.2 16.8l-1.5-2.6M20.2 7.2l-3 .3M20.2 7.2l-1.5 2.6M3.8 16.8l3-.3M3.8 16.8l1.5-2.6" stroke-width="1.4"/></symbol>
   <symbol id="i-percent" viewBox="0 0 24 24"><path d="M18.5 5.5c-.8 1-1.8 2-2.9 2.9-1 .9-2 1.8-2.9 2.9-.9 1-1.8 2-2.6 3.1-.8 1-1.5 2.1-2 3.1"/><circle cx="7.6" cy="7.6" r="2.7"/><circle cx="16.4" cy="16.4" r="2.7"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9.5 7V4.5A1.5 1.5 0 0 1 11 3h2a1.5 1.5 0 0 1 1.5 1.5V7M6.5 7l.8 11.2A2 2 0 0 0 9.3 20h5.4a2 2 0 0 0 2-1.8L17.5 7"/><path d="M10 11v6M14 11v6"/></symbol>
   <symbol id="i-gem" viewBox="0 0 24 24"><path d="M7 4.5h10l3.2 4.6L12 19.5 3.8 9.1z"/><path d="M3.8 9.1h16.4M12 19.5 8.6 9.1 12 4.5l3.4 4.6L12 19.5"/><path d="M12 7.2l.5 1.1 1.1.5-1.1.5-.5 1.1-.5-1.1-1.1-.5 1.1-.5z" fill="currentColor" stroke="none"/></symbol></svg>
 
 <div class="page">
@@ -1838,7 +1938,7 @@ strong,b{font-weight:600}
     <section class="catalog" id="coleccion" aria-label="Colección">
       <div class="tools reveal" style="--d:.08s">
         <button class="chip chip--only" id="onlyOffers" type="button" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-spark" data-slot="solo"/></svg>Solo ofertas</button>
-        <div class="sortrow"><span>Ordenar</span><button class="sortselect" id="sortBtn" type="button" aria-haspopup="dialog" aria-expanded="false"><span id="sortValue">Relevancia</span><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button></div>
+        <div class="sortrow"><span>Ordenar</span><button class="sortselect" id="sortBtn" type="button" aria-haspopup="dialog" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-sort"/></svg><span id="sortValue">Relevancia</span><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button></div>
         <button class="linkbtn tools__more" id="moreFilters" type="button" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Buscar y categorías</button>
         <div class="tools__extra" id="toolsExtra" hidden>
           <div class="search" role="search">
@@ -1882,7 +1982,7 @@ strong,b{font-weight:600}
     <div class="footer__top">
       <div>
         <a class="logo" href="#inicio" data-go="inicio">Yuli Dzul<span class="logo__sub">Shop · Boutique</span></a>
-        <p class="footer__say">Tu estilo, en cada detalle.</p><a class="store-location" href="https://maps.app.goo.gl/ts1PmMdhuPrf8S5FA?g_st=ac" target="_blank" rel="noopener noreferrer">Ubicación de la tienda · Cómo llegar</a>
+        <p class="footer__say">Tu estilo, en cada detalle.</p><a class="store-location" href="https://maps.app.goo.gl/ts1PmMdhuPrf8S5FA?g_st=ac" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Ubicación de la tienda · Cómo llegar</a>
       </div>
       <div>
         <h3>Categorías</h3>
@@ -1950,7 +2050,7 @@ strong,b{font-weight:600}
 
 <div class="toast" id="toast" role="status" aria-live="polite">
   <span id="toastText"></span>
-  <button type="button" id="toastBtn">Ver bolsa</button>
+  <button type="button" id="toastBtn"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg>Ver bolsa</button>
 </div>
 
 <script>
@@ -2370,6 +2470,7 @@ strong,b{font-weight:600}
   function pintarError() {
     grid.removeAttribute('aria-busy');
     grid.innerHTML = `<div class="empty">
+        <span class="empty__ico">${ico('x')}</span>
         <h3>No pudimos cargar la colección</h3>
         <p>Revisa tu conexión a internet e inténtalo de nuevo.</p>
         <button class="btn btn--ghost" type="button" data-retry>Reintentar</button>
@@ -2386,7 +2487,7 @@ strong,b{font-weight:600}
     const fuente = estado.cargando ? '<span>Actualizando…</span>'
       : estado.origen === 'vivo' ? `<span>Actualizado a las ${hora(estado.at)}</span><button class="linkbtn" type="button" data-retry>Actualizar</button>`
       : `<span class="is-off">Sin conexión · catálogo guardado de las ${hora(estado.at)}</span><button class="linkbtn" type="button" data-retry>Reintentar</button>`;
-    count.innerHTML = `<span>${texto}</span>${fuente}${sinFiltros ? '' : '<button class="linkbtn" type="button" data-reset>Quitar filtros</button>'}`;
+    count.innerHTML = `<span>${texto}</span>${fuente}${sinFiltros ? '' : `<button class="linkbtn" type="button" data-reset>${ico('x')}Quitar filtros</button>`}`;
   }
 
   function pintarRejilla(animar = true) {
@@ -2396,12 +2497,13 @@ strong,b{font-weight:600}
     let html = lista.map(tarjeta).join('');
 
     if (!estado.catalogo.length) {
-      html = `<div class="empty"><h3>La colección se está preparando</h3><p>Pronto verás aquí ropa, bisutería y artículos de temporada.</p></div>`;
+      html = `<div class="empty"><span class="empty__ico">${ico('bag')}</span><h3>La colección se está preparando</h3><p>Pronto verás aquí ropa, bisutería y artículos de temporada.</p></div>`;
     } else if (!lista.length) {
       const donde = estado.q
         ? `No encontramos artículos para “${esc(estado.q)}”${estado.cat !== 'todo' ? ' en ' + ETIQUETAS[estado.cat] : ''}.`
         : estado.cat === 'ofertas' ? 'Por ahora no hay ofertas activas.' : `Aún no hay artículos en ${CATEGORIAS[estado.cat]}.`;
       html = `<div class="empty">
+          <span class="empty__ico">${ico('search')}</span>
           <h3>${estado.q ? 'Sin coincidencias' : 'Sin artículos por ahora'}</h3>
           <p>${donde} Mira todo lo que hay en la tienda.</p>
           <button class="btn btn--ghost" type="button" data-reset>Ver todo</button>
@@ -2474,7 +2576,7 @@ strong,b{font-weight:600}
     const aviso = `<p class="notice">Ya puedes preparar tu bolsa. Envía tu solicitud para que la tienda confirme disponibilidad.</p>`;
     if (!n || !estado.catalogo) {
       bagBody.innerHTML = `
-        <p class="bag__empty">Tu bolsa está esperando tus favoritos.</p>
+        <p class="bag__empty">${ico('bag')}Tu bolsa está esperando tus favoritos.</p>
         <button class="btn btn--block" type="button" data-explore>Explorar colección ${ico('go', 'icon icon--go')}</button>
         ${aviso}
         <p class="fine">La bolsa no reserva existencias.</p>`;
@@ -2505,12 +2607,12 @@ strong,b{font-weight:600}
       <p class="total"><span>Subtotal (precio normal)</span><strong>${precio(subtotalNormal())}</strong></p>
       ${subtotalNormal() > subtotal() ? `<p class="total total--save"><span>Ahorro en ofertas</span><strong>\u2212${precio(subtotalNormal() - subtotal())}</strong></p>` : ''}
       <p class="total total--grand"><span>Total de tu bolsa</span><strong>${precio(subtotal())}</strong></p>
-      ${n ? `<p class="season-achievement">${ico('star')}<span><strong>${n} ${n === 1 ? 'artículo' : 'artículos'} de temporada</strong> en tu bolsa · ${esc(T.logro)}</span></p>` : ''}
+      ${n ? `<p class="season-achievement">${ico((T.insignia && T.insignia.icon) || 'star')}<span><strong>${n} ${n === 1 ? 'artículo' : 'artículos'} de temporada</strong> en tu bolsa · ${esc(T.logro)}</span></p>` : ''}
       ${aviso}
       <div class="bag__actions">
-        <button class="btn btn--block" type="button" data-request-order>Solicitar este pedido</button><button class="btn btn--ghost btn--block" type="button" data-copiar>Copiar mi lista</button>
+        <button class="btn btn--block" type="button" data-request-order>Solicitar este pedido ${ico('go', 'icon icon--go')}</button><button class="btn btn--ghost btn--block" type="button" data-copiar>${ico('copy')}Copiar mi lista</button>
         <p class="bag__status" id="bagStatus" role="status"></p>
-        <button class="linkbtn" type="button" data-vaciar>Vaciar bolsa</button>
+        <button class="linkbtn" type="button" data-vaciar>${ico('trash')}Vaciar bolsa</button>
       </div>
       <p class="fine">La bolsa no reserva existencias ni realiza cobros.</p>`;
     marcarFotosListas(bagBody);
@@ -2584,11 +2686,17 @@ strong,b{font-weight:600}
             <span class="stock" id="pdStock"></span>
           </div>
         </div>
-        <div class="pd__foot">
+      </div>`;
+    /* v3.17: el pie del detalle vive FUERA de .pd, como hermano fijo del panel
+       (antes era sticky dentro de la información y tapaba la talla y la cantidad
+       al abrir). El contenido (.pd) baja con su propio scroll; el botón nunca
+       se tapa y nada queda cortado a la mitad. */
+    const panelProducto = dlgProduct.querySelector('.panel--product');
+    panelProducto.querySelector('.pd__foot')?.remove();
+    panelProducto.insertAdjacentHTML('beforeend', `<div class="pd__foot">
           <button class="btn btn--block" type="button" id="pdAdd"></button>
           <p class="fine">La bolsa no reserva existencias.</p>
-        </div>
-      </div>`;
+        </div>`);
     pintarDetalle(true);
     abrir(dlgProduct);
   }
@@ -2662,7 +2770,7 @@ strong,b{font-weight:600}
       pintarDetalle(false);
     }
   });
-  pd.addEventListener('click', e => {
+  dlgProduct.addEventListener('click', e => {
     if (window.__pdSwipe && Date.now() - window.__pdSwipe < 400) return;
     const fullBtn = e.target.closest('[data-full]');
     const mediaImg = e.target.closest('#pdMedia img');
@@ -2905,7 +3013,7 @@ strong,b{font-weight:600}
     const data=await r.json();if(!r.ok){const e=Error(data.error||'No se pudo completar.');e.definitive=r.status===422;throw e;}return data;
   }
   function receipt(number,token){
-    oc.innerHTML=`<span class="receipt-check" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span><p class="eyebrow">Solicitud recibida</p><h2>Pedido #${esc(number)}</h2><p>La tienda revisará tu solicitud. Todavía no reserva unidades ni confirma la entrega.</p><p>Guarda este enlace privado para consultar el estado durante 90 días. Quien tenga el enlace podrá ver el pedido.</p><a class="btn" href="${esc(seguimientoURL(token))}">Ver seguimiento</a><button class="btn btn--ghost" id="copyTracking">Copiar enlace privado</button><p id="orderStatus" role="status"></p>`;
+    oc.innerHTML=`<span class="receipt-check" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span><p class="eyebrow">Solicitud recibida</p><h2>Pedido #${esc(number)}</h2><p>La tienda revisará tu solicitud. Todavía no reserva unidades ni confirma la entrega.</p><p>Guarda este enlace privado para consultar el estado durante 90 días. Quien tenga el enlace podrá ver el pedido.</p><a class="btn" href="${esc(seguimientoURL(token))}">Ver seguimiento ${ico('go', 'icon icon--go')}</a><button class="btn btn--ghost" id="copyTracking">${ico('copy')}Copiar enlace privado</button><p id="orderStatus" role="status"></p>`;
     $('#copyTracking',od).onclick=async()=>{try{await navigator.clipboard.writeText(seguimientoURL(token));$('#orderStatus',od).textContent='Enlace copiado.';}catch{$('#orderStatus',od).textContent=seguimientoURL(token);}};
   }
   async function openOrder(social=false){
@@ -2971,6 +3079,7 @@ strong,b{font-weight:600}
     if(!/^[0-9a-f]{64}$/.test(token)||sendingOrder)return;
     if($('#dlgBag').open)await cerrar($('#dlgBag'));
     oc.innerHTML='<p class="eyebrow">Contigo hasta la entrega</p><h2>Tu pedido</h2><p>Verifica para consultar el estado. Este enlace es privado.</p><div id="trackingResult"></div><div id="orderCaptcha"></div><p id="orderStatus" role="status"></p><button class="btn" id="refreshTracking">Consultar estado</button>';
+    document.getElementById('refreshTracking').insertAdjacentHTML('afterbegin', ico('search'));
     abrir(od);captcha('track');
     $('#refreshTracking',od).onclick=async()=>{
       if(sendingOrder)return;sendingOrder=true;$('#refreshTracking',od).disabled=true;
@@ -3029,7 +3138,7 @@ strong,b{font-weight:600}
     const goal = document.getElementById('seasonGoal'); if (!goal) return;
     const n = totalPiezas();
     const T = temaDatos();
-    if (n > 0) { goal.hidden = false; goal.innerHTML = `${ico('star')}<span>${n} ${n === 1 ? 'artículo' : 'artículos'} de temporada en tu bolsa · ${esc(T.logro)}</span>`; }
+    if (n > 0) { goal.hidden = false; goal.innerHTML = `${ico((T.insignia && T.insignia.icon) || 'star')}<span>${n} ${n === 1 ? 'artículo' : 'artículos'} de temporada en tu bolsa · ${esc(T.logro)}</span>`; }
     else goal.hidden = true;
   }
   function aplicarTemaVisual(clave) {
@@ -3077,7 +3186,7 @@ strong,b{font-weight:600}
 (()=>{
  const themes={'normal':1,'terra':1,'buen-fin':1,'hot-sale':1,'black-friday':1,'navidad':1,'san-valentin':1,'dia-madres':1};
  const root=document.documentElement, counter=document.getElementById('webVisits');
- function apply(theme){if(!Object.hasOwn(themes,theme))theme='terra';const visual=theme==='normal'?'terra':theme;root.dataset.season=visual;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';if(window.__yuliAplicarTema)window.__yuliAplicarTema(visual);}
+ function apply(theme){if(!Object.hasOwn(themes,theme))theme='terra';const visual=theme==='normal'?'terra':theme;if(root.dataset.season!==visual&&!matchMedia('(prefers-reduced-motion: reduce)').matches){root.classList.add('theme-swap');clearTimeout(root._tsT);root._tsT=setTimeout(()=>root.classList.remove('theme-swap'),520);}root.dataset.season=visual;document.querySelectorAll('[data-season-banner]').forEach(el=>{el.hidden=theme==='normal';});try{localStorage.setItem('yuli-web-theme-v1',theme);}catch{}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=getComputedStyle(root).getPropertyValue('--heading').trim()||'#7c3a1e';if(window.__yuliAplicarTema)window.__yuliAplicarTema(visual);}
  try{localStorage.removeItem('yuli-web-theme-manual-v1');}catch{} /* Eleccion manual vieja: se borra, la tematica la manda solo la tienda. */
  try{apply(localStorage.getItem('yuli-web-theme-v1')||'terra');}catch{apply('terra');}
  let busy=false;
